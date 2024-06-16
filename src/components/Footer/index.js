@@ -1,172 +1,78 @@
-import React, {useState, useEffect} from 'react';
-import FormInput from  './../forms/FormInput';
-import { Link } from 'react-router-dom';
-import ArrowForward from '../../assets/arrowForward.png'
+// Footer.js
 
-import './styles.scss';
+import React, { useState } from 'react';
+import './Footer.scss';
 
-import i18next from "i18next";
-import { useTranslation } from "react-i18next";
+const handlePhoneClick = () => {
+  window.open('facetime://' + '8057561111');
+};
 
-import Button from '../forms/Button';
-import { newsLetterSignUpStart } from '../../redux/User/user.actions';
-import { useDispatch } from "react-redux";
-const Footer = props => {
-    const [email, setEmail] = useState('');
-    const [signedUpNewsletter, setSignedUpNewsletter] = useState(false);
-    const { i18n, t } = useTranslation(["footer", "common"]);
-    const languageChange = (event) =>{
-        i18n.changeLanguage(event.target.value);
-        i18next.changeLanguage(event.target.value);
+const Footer = () => {
+  const [showPopoutBox, setShowPopoutBox] = useState(false);
 
-        setTimeout(() => {
-            window.location.reload();
-        }, 100);
-    }
+  const togglePopoutBox = () => {
+    setShowPopoutBox(!showPopoutBox);
+  };
+  const popoutBoxDivClass = showPopoutBox ? 'popout-box active' : 'popout-box'
+  const popoutModalDivClass = showPopoutBox ? 'popout-box-modal active' : 'popout-box-modal'
+  return (
+    <footer className="site-footer">
+  
+  <div className="footer-container">
+        <div className="footer-column">
+          <div className="column-title">
+            Contact Info
+          </div>
+          <ul>
+            <h2 className='phone-number contact-info'><a href="#" onClick={handlePhoneClick}>(805) 756-1111</a></h2>
+            <h2 className='contact-info'><a href="https://www.calpoly.edu/">
+              <span className="green-text">CAL</span>IFORNIA<br></br><span className="green-text">POLY</span>TECHNIC <br></br>STATE UNIVERSITY</a></h2>
+            <h2 className='contact-info'>
+              <a href="https://www.google.com/maps/dir//California+Polytechnic+State+University,+1+Grand+Ave,+San+Luis+Obispo,+CA+93407/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x80ecf1b4054c3551:0x98b3b48a29d99103!3e0?sa=X&ved=2ahUKEwj-wP-484-EAxWjKkQIHSS_C90Q-A96BAggEAA">1 GRAND AVENUE, <br></br><span className="green-text">S</span>AN <span className="green-text">L</span>UIS <span className="green-text">O</span>BISPO, CA 93407</a>
+          </h2>
+          </ul>
+        </div>
 
-    // default lanauge seting
-    useEffect(() =>{
-        if(localStorage.getItem("i18nextLng")?.length > 2){
-            i18next.changeLanguage("en");
-        }
-    },[])
+        <div className="footer-column">
+          <h4 className="column-title">Quick Links</h4>
+          <ul>
+            <h2 className='quick-links'><a href="https://maps.calpoly.edu/">CAL POLY MAPS</a></h2>
+            <h2 className='quick-links'><a href="https://mustangnews.net/">MUSTANG NEWS</a></h2>
+            <h2 className='quick-links'><a href="https://myportal.calpoly.edu/">CAL POLY PORTAL</a></h2>
+            <h2 className='quick-links'><a href="https://www.calpoly.edu/">UNIVERSITY HOME</a></h2>
+            <h2 className='quick-links'><a href="https://magazine.calpoly.edu/">CAL POLY MAGAZINE</a></h2>
+          </ul>
+        </div>
 
-    const dispatch = useDispatch();
-    const validateEmail = (email) => {
-        return email.match(
-            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-        // return true;
-    };
-    const handleNewsletterSignUp = (e) =>{
-        e.preventDefault();
+        <div className="footer-column">
+          <h4 className="column-title">More</h4>
+          <ul>
+            <h2 className='more'><a href="#">_</a></h2>
+          </ul>
+        </div>
+      </div>
 
-        if(validateEmail(email)){
-            dispatch(
-                newsLetterSignUpStart({email: email}),
-                setEmail(''),
-                setSignedUpNewsletter(true)
-            )
-        }
-        else{
-            console.log("Please enter a valid email address.")
-        }
+      <div className="footer-bottom">
+      <div className="bottom-top-wrap">
+        <div className={popoutBoxDivClass} onClick={togglePopoutBox}>
+          <p>{showPopoutBox ? "CLOSE" : "HELP"}</p>
+        </div>
+        {showPopoutBox && (
+          <div className={popoutModalDivClass}>
+            <p>This is the help modal content.</p>
+          </div>
+        )}
+        <div className="polySeal-container">
+          <div className="polySeal-image"/>
+        </div>
+      </div>
 
-
-    }
-    
-    return (
-        <footer className='footer' id="footer" class="dark">
-            <div>
-                <div className="box-container">
-                    {/* <div className="box box-address"> */}
-                        {/* <h3>{t("LOCATION")}</h3>
-                        <div className='address'>
-                            <a className='notLink'>{t("123 Temp St.")}</a>
-                            <a className='notLink'>{t("Xx-xx District,")}</a>
-                            <a className='notLink'>{t("Taipei City, Taiwan (R.O.C)")}</a>
-                        </div> */}
-                    {/* </div> */}
-                    <div className="box">
-                        <h3>{t("SOCIAL")}</h3>
-                        <ul class="footer__quicklinks unstyled">
-                            <li><a href="https://www.instagram.com/bushkatpc">{t("Instagram")}</a></li>
-                        </ul>
-                    </div>
-
-                    <div className="box">
-                        <h3>{t("INFORMATION")}</h3>
-                        <ul class="footer__quicklinks unstyled">
-                            
-                            <li>
-                                <Link to="/about">{t("About")}</Link>
-                            </li>
-                            {/* <li><a href="https://www.instagram.com/bushkatpc">{t("Instagram")}</a></li> */}
-                        </ul>
-                    </div>
-
-                    <div className="box">
-                        <h3>{t("JOIN OUR NEWSLETTER")}</h3>
-                        <div className="box-email">
-                            {!signedUpNewsletter ?                             
-                            <form onSubmit={handleNewsletterSignUp}>
-                                <FormInput 
-                                type = "email"
-                                name = "email"
-                                value = {email}
-                                onChange = { e => setEmail(e.target.value)}
-                                label = {t("common:Email")}
-                                />
-
-                                <Button type="submit" className="btn btn-submit">
-                                    <img src={ArrowForward} className="arrow"/>
-                                </Button>
-                                {/* <img src={ArrowForward} className="arrow" type="submit" /> */}
-                            </form>
-                            : <div className='sign-up-message'>
-                                {t("Thanks for subscribing!")}
-                            </div>}
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="box-container">
-                    <div className="box-bottom">
-                        <div className="content-wrapper">
-                            <h>© Büshka 2023</h> 
-                            <Link to= "terms">
-                                {t("Terms & Privacy")}
-                            </Link>
-                            <select 
-                                name ="language" 
-                                onChange={languageChange}
-                                value={localStorage.getItem("i18nextLng")}
-                            >
-                                <option value= "en">English</option>
-                                <option value= "tw">繁體中文</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    )
-}
+        {/* <p>Learn by Doing<sup><small>SM</small></sup></p> */}
+        <p>&copy; Cal Poly SLO 2024</p>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;
 
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import './styles.scss';
-
-// const Footer = props => {
-//     return (
-//         <footer className='footer'>
-
-//             <div className='wrap'>
-//                 <div className='wrap-copyrights'>
-//                     © Konsol 2022
-//                 </div>
-//             </div>
-
-//             <div className='wrap'>
-//                 <div className='wrap-links'>
-//                     <Link to= "terms">
-//                         Terms &amp; Privacy
-//                     </Link>
-//                 </div>
-//             </div>
-
-//             <div className='wrap'>
-//                 <div className='wrap-social'>
-//                     <a href="https://www.instagram.com/konsoltpc">Instagram</a>
-//                 </div>
-//             </div>
-//         </footer>
-//     )
-// }
-
-// export default Footer; 

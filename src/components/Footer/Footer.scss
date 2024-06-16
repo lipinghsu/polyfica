@@ -1,0 +1,203 @@
+/* Footer.scss */
+
+/* ... Your existing styles ... */
+
+.site-footer {
+  background: #f8f9fa;
+  color: black;
+  padding: 30px 0;
+  height: 640px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* Updated to space-between for equal spacing */
+  flex-wrap: wrap;
+  height: 420px;
+  margin-left: 36px; 
+}
+
+.footer-column {
+  width: calc(33.33% - 10px); /* Updated to 33.33% for equal spacing and considering margin-right */
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.contact-info{
+  padding-top: 0;
+  padding-bottom: 16px;
+  
+  a{
+    color: black;
+  }
+  a:visited {
+    color: black;
+  }
+  a:visited:hover{
+    color:#F0AF49;
+  }
+
+}
+
+.column-title {
+  
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 24px 0 0 0;
+  height: 24px;
+  color: black;
+  
+  a:visited {
+    color: black;
+  }
+}
+.quick-links:first-child{
+  margin-top: 20px;
+}
+.quick-links{
+  margin: 8px 0;
+  
+  a{
+    color:black;
+  }
+  a:visited{
+    color:black;
+  }
+  a:visited:hover{
+    color:#F0AF49;
+  }
+}
+.more{
+  border-bottom: 1px solid black;
+  margin-right:36px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  h2 {
+    // margin-top:
+    font-size: 2.5rem;
+    a:visited {
+      color: black;
+    }
+    a{
+      .green-text {
+        color: #3EAE86;
+      } 
+    }
+    a:hover{
+      color: #F0AF49;
+    }
+  }
+
+  li {
+    margin-bottom: 8px;
+    font-size: 1.6rem;
+
+    a {
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        color: #f8f9fa; /* Change color on hover */
+      }
+
+      &:visited {
+        color: black; /* Change color on hover */
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  
+  font-size: 14px;
+  padding: 10px 36px;
+  .bottom-top-wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    // padding: 10px 36px;
+
+    .popout-box {
+      // position: fixed;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
+      width: 96px;
+      margin-top: 60px;
+      // background-color: pink;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-weight: 500;
+      
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+
+      width: 80px;
+      height: 40px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .popout-box-modal{
+      display: flex;
+      position: absolute;
+
+      margin-left: 96px;
+      margin-bottom: 140px;
+      padding: 8px;
+
+      border-radius: 8px;
+      height: 256px;
+      
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+
+      background-color: transparent;
+      // transition: opacity 250ms ease;
+      transition: 0.2s all ease-in;
+      opacity: 0;
+    }
+    .popout-box-modal.active{
+      background-color: #FFFFFF;
+      // transition: opacity 250ms ease;
+      transition: 0.2s all ease-in;
+      opacity: 1;
+
+      margin-bottom: 156px;
+    }
+
+    /* Add styling to make it visible when needed */
+    .popout-box.active {
+      background-color: #F0AF49;
+      color:white;
+    }
+  }
+  .copy-right{
+    text-align: left;
+  }
+  .lbd{
+    text-align: right;
+  }
+}
+
+/* Styles for polySeal */
+.polySeal-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0px 0px 20px;
+  
+  .polySeal-image {
+    width: 100px;
+    height: 100px;
+    background-image: url('../../assets/polySeal.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+

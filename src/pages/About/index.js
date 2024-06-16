@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 
 import './styles.scss';
-import backgroundImage from '../../../src/assets/tp101.jpg';
+// import backgroundImage from '../../../src/assets/tp101.jpg';
 
 const About = props => {
     const { t } = useTranslation(["about"]);
@@ -15,7 +15,7 @@ const About = props => {
         <section className='about'>
             <div className='about-wrap'>
                 <div className="image-container">
-                    <img src={backgroundImage}></img>
+                    <img src={""}></img>
                 </div>
                 <div className='text-content-wrap'>
                     <h3>About</h3>

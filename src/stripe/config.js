@@ -1,1 +1,1 @@
-export const publishableKey = "";
+export const publishableKey = "temp";

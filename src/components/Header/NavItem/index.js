@@ -19,8 +19,6 @@ const NavItem = props => {
         };
     }, [open])
 
-
-    
     return(
         <li className="nav-item">
             {/* not mobile, image */}
@@ -38,7 +36,19 @@ const NavItem = props => {
             {/* not mobile, text */}
             {props.text && !props.mobile && !props.signOut &&
             <div>
-                <Link to= {props.link} >
+                {props.link ?                 
+                    <Link to= {props.link} >
+                        <span className="text-button">
+                            {props.text} 
+                            {/* cart item number */}
+                            {props.number != 0 && props.number &&
+                                <span> ({props.number})</span>
+                            }
+                        </span>
+                    </Link>
+                :
+
+                <div >
                     <span className="text-button">
                         {props.text} 
                         {/* cart item number */}
@@ -46,7 +56,9 @@ const NavItem = props => {
                             <span> ({props.number})</span>
                         }
                     </span>
-                </Link>
+                </div>
+                }
+
             </div>
             }
             
@@ -77,7 +89,7 @@ const NavItem = props => {
 
             {/*  log out button */}
             {props.text === "Log out" &&
-            <div onClick= {() => {props.signOut();}}>                
+            <div className='nav-item-wrap' onClick= {() => {props.signOut();}}>                
                 <Link to= {props.link} >
                     <span className="text-button">
                         {props.text} 

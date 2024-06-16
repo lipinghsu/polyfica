@@ -1,10 +1,10 @@
 import React from 'react';
-import ProductCard from '../../components/ProductCard';
+// import ProductCard from '../../components/ProductCard';
 
 const ProductDetails = ({}) => {
     return (
         <div className='productCardContainer'>
-            <ProductCard />
+            {/* <ProductCard /> */}
         </div>
     );
 }

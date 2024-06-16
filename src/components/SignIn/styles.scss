@@ -6,7 +6,6 @@ $footerHeight: 0px;
 $headerHeight: 6rem;
 $signInMargin: 4rem;
 
-
 .main-account{
     // background: #f8f8f8;
 }
@@ -14,18 +13,20 @@ $signInMargin: 4rem;
     .wrap{
             // Neumorphism //
             
-            // background: #fcfcfc;
-            // border-radius: 25px;
-            // box-shadow:  7.5px 7.5px 20px #eeeeee,
-                        // -7.5px -7.5px 20px #ffffff;
+            background: #fcfcfc;
+            border-radius: 25px;
+            box-shadow:  3.5px 3.5px 20px #eeeeee,
+                        -15.5px -15.5px 20px #ffffff;
         
         .formWrap{
-    
             .errorMessage{
                 color:red;
             }
+
             .socialSignin{
+                padding: 5px auto;
                 .row{
+                    
                     .btn-google{
                         background-color: white;
                         border: 1px solid #{$customDarkerGray};
@@ -62,6 +63,7 @@ $signInMargin: 4rem;
                 }
         
             }
+
             .or-tag{
                 align-items: center;
                 text-align: center;
@@ -70,6 +72,7 @@ $signInMargin: 4rem;
                 padding: 1rem 0;
                 color: #{$customDarkerGray}
             }
+
             .or-tag:before{
                 content: "";
                 display: inline-flex;
@@ -80,6 +83,7 @@ $signInMargin: 4rem;
                 margin-right: 10px;
                 border-top: 1px solid black;
             }
+
             .or-tag:after{
                 content: "";
                 display: inline-flex;
@@ -90,7 +94,6 @@ $signInMargin: 4rem;
                 margin-left: 10px;
                 border-top: 1px solid black;
             }
-        
         
             .resetPassword{
                 text-align:  right;

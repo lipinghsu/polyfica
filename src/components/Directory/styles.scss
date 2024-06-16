@@ -2,74 +2,124 @@ $footerHeight: 0rem;
 $headerHeight: 6rem;
 $mobilefooterHeight: 0rem;
 
+.directory {
+  height: 100%;
+  .wrap {
+    height: calc(100vh - #{$footerHeight});
+    // background: url('./../../assets/horsie2.jpg') center top no-repeat; /* Center the background image vertically and make it 100% width */
+    background-size: 100% 100%; /* Ensure the background image covers the entire container horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.directory{
-    height: 100%;
-    .wrap{
-        // background-color: pink;
-        // width: 100%;
-        height: calc(100vh - #{$footerHeight});
 
-        // padding: 20px;
-        .item{
-            height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+    .item {
+      height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+      min-width: 370px !important;
+      width: 100vw;
+      top: 60px;
+      position: absolute;
+      background-color: transparent;
 
-            min-width: 370px !important;
-            width: 100vw;
-            top:60px;
-            position: absolute;
-            
-            background-color: white;
+      // Ensure the image covers the entire div
+      background-position: center center; // Center the image
+      background-repeat: no-repeat; // Prevent the image from repeating
 
-            .inner-wrap{
-                
-                height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 48px);
-                @media (max-width: 840px) {
-                    margin: 0px 16px 16px 16px;
+      display: flex;
+      flex-direction: column;
+
+      .inner-wrap {
+        height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 48px);
+        margin: 0px 36px 36px 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+                // Add the following styles for the slideshow
+                &::before {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  z-index: -1;
+                  animation: slideshow linear 25s infinite;  // Adjust the duration as needed
                 }
-                margin: 0px 36px 36px 36px;
-                
-                background-position: center;
-                background-repeat: repeat;
-                
-                // center the inner div .item-logo
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            
-                a{
-                    width: 256px;
-                    height: 88px;
-                    .item-logo{
-                        width:100%;
-                        height: 100%;
-                        background-image: url('../../assets/barcode.png');
-                        background-position: center;
-
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                        border-radius: 0.25rem;
-                        cursor: pointer;
-                        z-index: 5;       
-                    }
-                    // .item-logo:hover{
-                    //     width:100%;
-                    //     height: 100%;
-                    //     background-image: url('../../assets/mh-shop-black.png');
-                    // }
+        
+                @keyframes slideshow {
+                  0%, 100% {
+                    background: url('./../../assets/the_p.jpg') center top no-repeat;
+                    background-size: 100% 100%;
+                  }
+                  // 25% {
+                  //   background: url('./../../assets/dexter_building.jpg') center top no-repeat;
+                  //   background-size: 100% 100%;
+                  // }
+                  // 33% {
+                  //   background: url('./../../assets/horsie2.jpg') center top no-repeat;
+                  //   background-size: 100% 100%;
+                  // }
+                  // 66% {
+                  //   background: url('./../../assets/einstein.jpg') center top no-repeat;
+                  //   background-size: 100% 100%;
+                  // }
                 }
 
-                &::after{
-                    // content: '';         // makes <Link> unclickable
-                    position: absolute;
-                    top: 0; left:0;
-                    // background: rgba(0,0,0,0.3);
-                    width: 100%;
-                    height:100%;
-                    z-index: 1;
-                }
-            }
+        .polyRatings-text {
+          text-align: center;
+          margin-bottom: 216px;
+          position: absolute;
+
+          img {
+            width: 480px; // Adjust the width as needed
+            height: auto; // Maintain aspect ratio
+            display: block;
+            margin: 0 auto; // Center the image horizontally
+          }
         }
-}
+        
+        .search-bar {
+          margin-bottom: 16px;
+          width: 520px;
+          .lu-search-icon {
+            cursor: pointer;
+          }
+          .search-input {
+            display: flex;
+            align-items: center;
+            background-color: #fff; // You can set the background color if needed
+            border-radius: 28px;
+            overflow: hidden;
+            margin-bottom: 16px; // Adjust spacing as needed
+            // border: 1px black solid;
+            svg {
+              margin-left: 16px; // Adjust spacing between the icon and input
+            }
+          }
+          input {
+            border: none;
+            padding: 16px;
+            height: 56px;
+            width: 100%;
+            outline: none;
+            max-width: 545px;
+            font-size: 1.6rem;
+          }
+        }
+        a {
+          // Add your styles for the link
+        }
 
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+        }
+      }
+    }
+  }
 }

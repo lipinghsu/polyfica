@@ -1,10 +1,10 @@
 import React from "react";
-import ProductResults from "../../components/ProductResults";
+import SearchResults from "../../components/SearchResults";
 
 const Search = ({ }) => {
     return (
         <div className="searchPage">
-            <ProductResults />
+            <SearchResults />
         </div>
     );
 };

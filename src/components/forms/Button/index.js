@@ -10,7 +10,6 @@ const Button = ({children, ...otherProps}) => {
             : <>{children}</>
             }
         </button>
-        
     )
 }
 

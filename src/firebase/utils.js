@@ -5,10 +5,12 @@ import { firebaseConfig } from './config';
 import {  getAuth } from "firebase/auth";
 import { getStorage } from 'firebase/storage';
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 firebase.initializeApp(firebaseConfig);
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 export const storage = getStorage(app);
 
 export const auth = getAuth();
@@ -53,4 +55,3 @@ export const getCurrentUser = () => {
         }, reject);
     })
 }
-

@@ -1,0 +1,73 @@
+$footerHeight: 0rem;
+$headerHeight: 6rem;
+$mobilefooterHeight: 0rem;
+
+.top-reviews {
+  height: 100%;
+  padding-bottom: 18px;
+
+  .title {
+    margin: 36px 36px 8px 36px;
+  }
+
+  .wrap {
+    height: calc(38vh - #{$footerHeight});
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+
+    .item {
+      border-radius: 25px;
+      background: #F7F7F7;
+      box-shadow: 5px 5px 20px #eeeeee, -5px -5px 20px #ffffff;
+      height: calc(33vh - #{$footerHeight});
+      margin: 36px;
+      min-width: 370px !important;
+      width: 100vw;
+
+      &.empty {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .inner-wrap {
+        margin: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+        margin-top: auto;
+        height: 100%;
+        .top {
+          margin-top: 24px;
+          .rating-score {
+            margin-bottom: 18px;
+          }
+        }
+
+        .center {
+          height: 100%;
+          .review-content {
+            flex-grow: 1;
+            height: 100%;
+          }
+        }
+
+        .bottom {
+          align-self: flex;
+          margin-bottom: 24px;
+        }
+
+        .review {
+          background-color: lightgray;
+        }
+      }
+    }
+  }
+}

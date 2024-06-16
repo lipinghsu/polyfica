@@ -1,11 +1,11 @@
 import React from "react";
-import CartDetail  from "../../components/CartDetail";
+// import CartDetail  from "../../components/CartDetail";
 import './styles.scss';
 
 const Cart = ({}) => {
     return(
         <div className="checkout-main">
-            <CartDetail />
+            {/* <CartDetail /> */}
         </div>
     );
 }

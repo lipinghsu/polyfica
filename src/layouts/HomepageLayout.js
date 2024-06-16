@@ -7,7 +7,7 @@ const HomepageLayout = props =>{
     return(
         <div className='flex-wrapper-homepage-layout'>
             <Header {...props} />
-            {props.children}  
+                {props.children}  
             <Footer />
         </div>
     );

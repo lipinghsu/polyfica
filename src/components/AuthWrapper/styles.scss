@@ -13,13 +13,11 @@ $signInMargin: 0rem;
     width: 100%;
     
     max-width: 52.0rem;
-    margin: 0rem auto 0rem;
-    border: 0px solid black;
+    margin: 0rem auto;
     border-radius: 19px;
 
     .wrap{
         padding: 1rem 2rem;
-        // padding: 1rem;
         white-space: pre-wrap;
         
         // dont have an account?
@@ -68,7 +66,7 @@ $signInMargin: 0rem;
             }
 
             a:hover{
-                color:black;
+                color:#3EAE86;
             }
         }
     }

@@ -98,7 +98,6 @@ const SignIn = props => {
             </h3>
             
             <div className="formWrap">
-
                 {errors.length > 0 && (
                     <div className="errorMessage">
                         {errors.map((e, index) => {
@@ -110,28 +109,29 @@ const SignIn = props => {
                         })}
                     </div>
                 )} 
-                {/* <div className="socialSignin">
+                <div className="socialSignin">
                     <div className="row">
                         <Button className="btn btn-google" onClick= { handleGoogleSignIn }>
                             Login with Google
                         </Button>
+
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <Button className="btn btn-apple">
                             Continue with Apple
                         </Button>
-                    </div> 
+                    </div>  */}
                     <div className="row">
                         <Button className="btn btn-facebook">
-                                Continue with Facebook
+                                Login with Facebook
                         </Button>
                     </div>
-                </div>  */}
-                <form onSubmit= { handleSubmit }>
+                </div> 
 
-                    {/* <div className="or-tag">
+                <form onSubmit= { handleSubmit }>
+                    <div className="or-tag">
                         <span>OR</span>
-                    </div> */}
+                    </div>
 
                     <FormInput 
                         type = "email"

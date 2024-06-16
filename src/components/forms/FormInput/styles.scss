@@ -7,7 +7,8 @@ $customLightGray: #bbbbbb;
     position:relative;
     display: flex;
     flex-direction: column;
-
+    
+    width: 100%;
     input, &.checkoutInput select{
         display: block;
         width:100%;
@@ -53,12 +54,12 @@ $customLightGray: #bbbbbb;
         
     }
     input:hover{
-        border: 2px solid #{$customDarkGray};
+        border: 2px solid #3EAE86;
         transition: none;
         
     }
     input:active, input:focus{
-        border: 2px solid black;
+        border: 2px solid #3EAE86;
         transition: 0.25s ease-in;
     }
 
@@ -81,7 +82,7 @@ $customLightGray: #bbbbbb;
     position: absolute;
     transform: translate(3px, -5px) scale(1);
     font-weight: 700;
-    color: #{$customDarkerGray};
+    color: #3EAE86;
     font-size: 1.55rem !important;
     // transition: 0.3s ease-in-out;
     padding: 0;
@@ -94,7 +95,7 @@ $customLightGray: #bbbbbb;
     position: absolute;
     
     font-weight: 700;
-    color: black;
+    color: #3B3A3B;
     font-size: 1.5rem !important;
     transition: 0.25s ease-out;
     width:100%;

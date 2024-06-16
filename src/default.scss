@@ -8,6 +8,7 @@ html{
     font-size: 10px;
 }
 
+
 html,
 body{
     margin: 0;
@@ -125,3 +126,15 @@ a, a:hover{
         border-top: 1px solid lightgray;
     }
 } 
+
+.resized-image {
+    width: 20%;
+    // max-width: 256px; /* To ensure it doesn't exceed 256 pixels */
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto; /* Center horizontally using margin */
+  }

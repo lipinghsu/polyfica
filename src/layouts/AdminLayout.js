@@ -5,7 +5,7 @@ import { signOutUserStart } from './../redux/User/user.actions';
 import Button from '../components/forms/Button';
 import VerticalNav from '../components/VerticalNav';
 
-import AddNewProduct from '../components/AddNewProduct';
+// import AddNewProduct from '../components/AddNewProduct';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -34,7 +34,7 @@ const AdminLayout = props => {
             {/* </div> */}
 
             <div className="controlPanel">
-                <AddNewProduct setHideModal={setHideModal} hideModal={hideModal}/>
+                {/* <AddNewProduct setHideModal={setHideModal} hideModal={hideModal}/> */}
 
                 <div className="sidebar">
                     <VerticalNav>

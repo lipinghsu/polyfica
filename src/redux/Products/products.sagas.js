@@ -4,7 +4,6 @@ import { handleAddProduct, handleFetchProducts, handleDeleteProduct, handleFetch
 import { fetchProductsStart, setProducts, setProduct } from './products.actions';
 import { auth } from '../../firebase/utils';
 
-
 export function* addProduct({ payload }){
     try{
         const timestamp = new Date();
@@ -19,12 +18,9 @@ export function* addProduct({ payload }){
         yield put(
             fetchProductsStart()
         );
-        
     } catch (error){
-
         console.log(error);
     }
-
 }
 
 export function* onAddProductStart(){
