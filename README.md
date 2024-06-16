@@ -1,4 +1,5 @@
-[Visit the deployed application](https://profh-2298e.web.app/)
+[Visit the deployed application (currently not resposive)](https://profh-2298e.web.app/)
+The responsive design of the website is still a work in progress. For the best experience, please view it on a web browser.
 
 ```markdown
 # Firebase React Project
