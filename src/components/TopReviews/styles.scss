@@ -44,6 +44,7 @@ $mobilefooterHeight: 0rem;
         gap: 16px;
         margin-top: auto;
         height: 100%;
+
         .top {
           margin-top: 24px;
           .rating-score {
@@ -66,6 +67,18 @@ $mobilefooterHeight: 0rem;
 
         .review {
           background-color: lightgray;
+        }
+
+        .user-name {
+          a {
+            color: black;
+            text-decoration: underline;
+            font-weight: 600;;
+            
+            &:visited {
+              color: black;
+            }
+          }
         }
       }
     }

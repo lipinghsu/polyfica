@@ -6,6 +6,7 @@ import { selectCartItemsCount } from '../../redux/Cart/cart.selectors';
 import DropdownMenu from './DropdownMenu';
 import SignupDropdown from './SignupDropdown';
 import ConditionalLink from './ConditionalLink';
+import WriteReviewModal from './WriteReviewModal'
 import NavItem from './NavItem';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
@@ -281,7 +282,7 @@ const Header = (props) => {
                     <div className="modal active">
                         <div className="modal-content">
                             <span className="close-button" onClick={() => setShowModal(false)}>&times;</span>
-                            <h4>{t("Write a Review")}</h4>
+                            <h2>{t("Write a Review")}</h2>
                             
                             <div className="form-row">
                                 <FormInput 

@@ -106,7 +106,7 @@
                         border-radius: 18px;
                         font-size: 1.5rem;
                         font-weight: 500;
-                        
+                        color: black;
                         background-color: rgba(223, 223, 223, 0.4);
 
                         &:hover {
@@ -523,7 +523,7 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
-    margin-top:16px;
+    margin-top:20px;
   }
   
   .close-button:hover,
@@ -536,3 +536,4 @@
 //   :root {
 //     background: yellow;
 //   }
+

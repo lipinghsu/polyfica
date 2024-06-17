@@ -27,6 +27,10 @@ const ProfProfile = () => {
     const [isFormExpanded, setIsFormExpanded] = useState(false);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+      
+    useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
         });

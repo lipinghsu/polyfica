@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { LuSearch } from 'react-icons/lu';
-import { firestore } from "../../firebase/utils"; 
+import { firestore } from "../../firebase/utils";
+import { Rating } from '@mui/material'; // Import Rating from Material-UI
 
 import './styles.scss';
 
 const TopReviews = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [topReviews, setTopReviews] = useState([]);
+  const [topReviews, setTopReviews] = useState([]); // Ensure this is an array
   const history = useHistory();
 
   useEffect(() => {
-    // Function to fetch top 6 reviews
     const fetchTopReviews = async () => {
       try {
         const professorsRef = firestore.collection('professors');
@@ -70,8 +70,8 @@ const TopReviews = (props) => {
                 
                 <div className='top'>
                   <div className='rating-score'>
-                    {/* Render stars based on rating */}
-                    {"★".repeat(review.qualityRating)}
+                    {/* Render stars based on rating using Material-UI Rating */}
+                    <Rating value={review.qualityRating} name="size-large" size="large"  readOnly />
                   </div>
                 </div>
 
@@ -83,7 +83,10 @@ const TopReviews = (props) => {
 
                 <div className='bottom'>
                   <div className='user-name'>
-                    {review.userName || 'Anonymous'} Reviewed {review.professorName}
+                    {review.userName || 'Anonymous'} Reviewed&nbsp; 
+                    <Link to={`/search/professors/${review.professorID}`}>
+                      {`${review.professorName}`}
+                    </Link>
                   </div>
                 </div>
 
@@ -97,28 +100,31 @@ const TopReviews = (props) => {
         <div className='wrap'>
           {topReviews.slice(3, 6).map((review, index) => (
             <div className='item' key={index}>
-            <div className='inner-wrap'>
-              
-              <div className='top'>
-                <div className='rating-score'>
-                  {/* Render stars based on rating */}
-                  {"★".repeat(review.qualityRating)}
+              <div className='inner-wrap'>
+                
+                <div className='top'>
+                  <div className='rating-score'>
+                    {/* Render stars based on rating using Material-UI Rating */}
+                    <Rating value={review.qualityRating} name="size-large" size="large" readOnly />
+                  </div>
                 </div>
-              </div>
 
-              <div className='center'>
-                <div className='review-content'>
-                  {review.reviewComment}
+                <div className='center'>
+                  <div className='review-content'>
+                    {review.reviewComment}
+                  </div>
                 </div>
-              </div>
 
-              <div className='bottom'>
-                <div className='user-name'>
-                  {review.userName || 'Anonymous'} Reviewed {review.professorName}
+                <div className='bottom'>
+                  <div className='user-name'>
+                    {review.userName || 'Anonymous'} Reviewed&nbsp; 
+                    <Link to={`/search/professors/${review.professorID}`}>
+                      {`${review.professorName}`}
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           ))}
           {renderEmptyItems(3 - topReviews.slice(3, 6).length)}
         </div>
