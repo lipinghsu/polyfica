@@ -60,7 +60,8 @@ const TopReviews = (props) => {
   return (
     <div className='top-reviews'>
       <h1 className='title'>
-              </h1>
+        The Latest Reviews from Students
+      </h1>
       <div className='row'>
         <div className='wrap'>
           {topReviews.slice(0, 3).map((review, index) => (

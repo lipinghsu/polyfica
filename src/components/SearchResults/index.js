@@ -12,7 +12,8 @@ const SearchResults = () => {
   const history = useHistory(); // Initialize useHistory
 
   const searchTerm = new URLSearchParams(location.search).get("term");
-
+  const searchTerms = searchTerm.split(" ");
+  let results = [];
   useEffect(() => {
     const fetchProfessors = async () => {
       try {
@@ -20,34 +21,76 @@ const SearchResults = () => {
           return;
         }
         const professorsRef = firestore.collection("professors");
-        const snapshot = await professorsRef
-          .where("firstName", ">=", searchTerm)
-          .where("firstName", "<=", searchTerm + "\uf8ff")
-          .get();
-
-        const results = snapshot.docs.map((doc) => doc.data());
+        
+        let results = [];
+        const searchTerms = searchTerm.split(" ");
+  
+        if (searchTerms.length === 1) {
+          // Single search term: search by either firstName or lastName
+          const snapshotFirstName = await professorsRef
+            .where("firstName", ">=", searchTerms[0])
+            .where("firstName", "<=", searchTerms[0] + "\uf8ff")
+            .get();
+  
+          const snapshotLastName = await professorsRef
+            .where("lastName", ">=", searchTerms[0])
+            .where("lastName", "<=", searchTerms[0] + "\uf8ff")
+            .get();
+  
+          // Combine all snapshots into one array of unique documents
+          const combinedResults = new Map();
+          snapshotFirstName.forEach(doc => combinedResults.set(doc.id, doc.data()));
+          snapshotLastName.forEach(doc => combinedResults.set(doc.id, doc.data()));
+  
+          results = Array.from(combinedResults.values());
+        } else if (searchTerms.length === 2) {
+          // Two search terms: search by firstName and then check lastName
+          const firstNameTerm = searchTerms[0];
+          const lastNameTerm = searchTerms[1];
+  
+          const snapshotFirstName = await professorsRef
+            .where("firstName", ">=", firstNameTerm)
+            .where("firstName", "<=", firstNameTerm + "\uf8ff")
+            .get();
+  
+          const filteredResults = [];
+          snapshotFirstName.forEach(doc => {
+            const data = doc.data();
+            if (data.lastName && data.lastName.toLowerCase().startsWith(lastNameTerm.toLowerCase())) {
+              filteredResults.push(data);
+            }
+          });
+  
+          results = filteredResults;
+        } else {
+          // Handle cases with more than two terms if necessary
+          console.warn("Search term contains more than two words, this case is not handled.");
+        }
+  
         setSearchResults(results);
-
+  
         const difficultyRatings = results.map((professor) => professor.difficultyRating || 0);
         const averageRating =
           difficultyRatings.length > 0
             ? difficultyRatings.reduce((acc, val) => acc + val) / difficultyRatings.length
             : null;
         setAverageDifficultyRating(averageRating);
-
+  
         console.log("No results found:", results.length === 0);
       } catch (error) {
         console.error("Error fetching professors:", error);
       }
     };
-
+  
     if (searchTerm) {
       fetchProfessors();
-    } else {
+    } 
+    else {
       setSearchResults([]);
       setAverageDifficultyRating(null);
     }
   }, [searchTerm]);
+  
 
   {/* Redirect to professor profile page */}
   const handleProfessorClick = (profID) => {
@@ -55,14 +98,17 @@ const SearchResults = () => {
   };
 
   const matchesSearch = (professor) => {
-    const searchTermLower = searchTerm?.toLowerCase() || ""; // Check for null
-    const firstNameLower = professor.firstName.toLowerCase();
-    const lastNameLower = professor.lastName.toLowerCase();
+    if (!searchTerm) return true;
   
-    return (
-      firstNameLower.includes(searchTermLower) ||
-      lastNameLower.includes(searchTermLower)
-    );
+    const searchTerms = searchTerm.toLowerCase().split(" ");
+    if (searchTerms.length === 1) {
+      return professor.firstName.toLowerCase().startsWith(searchTerms[0]) ||
+             professor.lastName.toLowerCase().startsWith(searchTerms[0]);
+    } else if (searchTerms.length === 2) {
+      return professor.firstName.toLowerCase().startsWith(searchTerms[0]) &&
+             professor.lastName.toLowerCase().startsWith(searchTerms[1]);
+    }
+    return false;
   };
 
   return (
