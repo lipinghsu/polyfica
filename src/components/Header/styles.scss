@@ -467,7 +467,7 @@ $customDarkGray: #b8b8b8;
     
     opacity: 0;
     top: calc((100vh - 6rem - (60rem + 49px)) / 2);
-    z-index: 99;
+    z-index: -10;
     position: absolute;
     
     // X cetner, 
@@ -582,8 +582,10 @@ $customDarkGray: #b8b8b8;
   .rev-modal.active{
     opacity: 1;
     margin-top: 0px;
-    transition: 0.25s all ease-out;
+    z-index: 10;
+    transition: 0.55s all ease-out;
   }
+
 
   .close-button {
     color: #aaa;

@@ -117,6 +117,11 @@ const Header = (props) => {
 
     const handleWriteReviewClick = () => {
         setShowModal(!showModal);
+        if(!showModal){
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // disable scrolling here
+        
     };
 
     const handleFormSubmit = async (event) => {
