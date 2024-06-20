@@ -1,5 +1,5 @@
 [Visit the deployed application](https://profh-2298e.web.app/)<br/>
-Browsing with a web browser is required sicne the website's responsive design is still in progress. 
+Browsing with a web browser is required since the website's responsive design is still in progress. 
 
 ```markdown
 # Firebase React Project
