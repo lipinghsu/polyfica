@@ -77,6 +77,9 @@ const TopReviews = (props) => {
 
                 <div className='center'>
                   <div className='review-content'>
+                  {/* <span class="material-symbols-outlined">
+                    format_quote
+                  </span> */}
                     {review.reviewComment}
                   </div>
                 </div>
@@ -111,6 +114,9 @@ const TopReviews = (props) => {
 
                 <div className='center'>
                   <div className='review-content'>
+                  {/* <span class="material-symbols-outlined">
+                    format_quote
+                  </span> */}
                     {review.reviewComment}
                   </div>
                 </div>

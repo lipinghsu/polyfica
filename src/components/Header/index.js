@@ -279,10 +279,15 @@ const Header = (props) => {
 
             {showModal && (
                 <form onSubmit={handleFormSubmit}>
-                    <div className="modal active">
+                    <div className="rev-modal active">
                         <div className="modal-content">
                             <span className="close-button" onClick={() => setShowModal(false)}>&times;</span>
                             <h2>{t("Write a Review")}</h2>
+                            <h3>
+                    {t("Help Us Understand Your Classroom Experience")}
+
+                            </h3>
+                            
                             
                             <div className="form-row">
                                 <FormInput 
@@ -356,10 +361,32 @@ const Header = (props) => {
                                 className="reviewComment"
                                 required
                             />
+                            <div className="terms">
+                            By clicking the "Submit" button, I acknowledge that I have read and agreed to the
+                            <span>{t(" ")}</span>
+                                <Link to="/terms">
+                                    {t("Terms of Service")}
+                                </Link>
+                                <span>{t(" and ")}</span>
+                                <Link to="/privacy">
+                                    {t("Privacy Policy")}
+                                </Link>
+                            <span>{t(".")}</span>
+                            </div>
+                            
+
 
                             <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>
                                 {t("Submit")}
                             </Button>
+                                                    
+                            <div className="cancel">
+                                <h3>
+                                    <Link to="/login">
+                                        {t("common:Cancel")}
+                                    </Link>
+                                </h3>
+                            </div>
                         </div>
                     </div>
                 </form>

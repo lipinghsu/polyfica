@@ -28,7 +28,7 @@ const Footer = () => {
             <h2 className='contact-info'><a href="https://www.calpoly.edu/">
               <span className="green-text">CAL</span>IFORNIA<br></br><span className="green-text">POLY</span>TECHNIC <br></br>STATE UNIVERSITY</a></h2>
             <h2 className='contact-info'>
-              <a href="https://www.google.com/maps/dir//California+Polytechnic+State+University,+1+Grand+Ave,+San+Luis+Obispo,+CA+93407/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x80ecf1b4054c3551:0x98b3b48a29d99103!3e0?sa=X&ved=2ahUKEwj-wP-484-EAxWjKkQIHSS_C90Q-A96BAggEAA">1 GRAND AVENUE, <br></br><span className="green-text">S</span>AN <span className="green-text">L</span>UIS <span className="green-text">O</span>BISPO, CA 93407</a>
+              <a href="https://www.google.com/maps/dir//California+Polytechnic+State+University,+1+Grand+Ave,+San+Luis+Obispo,+CA+93407/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x80ecf1b4054c3551:0x98b3b48a29d99103!3e0?sa=X&ved=2ahUKEwj-wP-484-EAxWjKkQIHSS_C90Q-A96BAggEAA">1 GRAND AVENUE <br></br><span className="green-text">S</span>AN <span className="green-text">L</span>UIS <span className="green-text">O</span>BISPO, CA 93407</a>
           </h2>
           </ul>
         </div>
@@ -68,7 +68,7 @@ const Footer = () => {
       </div>
 
         {/* <p>Learn by Doing<sup><small>SM</small></sup></p> */}
-        <p>&copy; Cal Poly SLO 2024</p>
+        <p>&copy; Cal Poly SLO 2024. </p>
       </div>
     </footer>
   );
