@@ -277,9 +277,9 @@ const Header = (props) => {
                 </div>
             </header>
 
-            {showModal && (
+            {true && (
                 <form onSubmit={handleFormSubmit}>
-                    <div className="rev-modal active">
+                    <div className={showModal ? "rev-modal active" : "rev-modal"}>
                         <div className="modal-content">
                             <span className="close-button" onClick={() => setShowModal(false)}>&times;</span>
                             <h2>{t("Write a Review")}</h2>
@@ -380,9 +380,9 @@ const Header = (props) => {
                                 {t("Submit")}
                             </Button>
                                                     
-                            <div className="cancel">
+                            <div className="cancel" onClick={() => setShowModal(false)}>
                                 <h3>
-                                    <Link to="/login">
+                                    <Link to="/">
                                         {t("common:Cancel")}
                                     </Link>
                                 </h3>

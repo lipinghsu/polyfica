@@ -106,6 +106,9 @@ const TopReviews = (props) => {
               <div className='inner-wrap'>
                 
                 <div className='top'>
+                  {/* <div className='course-name'>
+                  {review.reviewCourseName}
+                  </div> */}
                   <div className='rating-score'>
                     {/* Render stars based on rating using Material-UI Rating */}
                     <Rating value={review.qualityRating} name="size-large" size="large" readOnly />

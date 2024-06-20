@@ -464,6 +464,8 @@ $customDarkGray: #b8b8b8;
 
 
 .rev-modal {
+    
+    opacity: 0;
     top: calc((100vh - 6rem - (60rem + 49px)) / 2);
     z-index: 99;
     position: absolute;
@@ -472,6 +474,7 @@ $customDarkGray: #b8b8b8;
     justify-content: center;
     left: 0;right:0;
     margin: 0 auto;
+    margin-top: 20px;
     
     max-height: calc(60rem + 249px);
     max-width: 55rem;
@@ -481,6 +484,7 @@ $customDarkGray: #b8b8b8;
     background-color: white;
     // box-shadow: 5px 5px 20px #eeeeee, -5px -5px 20px #ffffff;
     border-radius: 1.75rem;
+    transition: 0.25s all ease-out;
     
     
     .modal-content {
@@ -576,9 +580,9 @@ $customDarkGray: #b8b8b8;
   }
   
   .rev-modal.active{
-    .flex-wrapper-homepage-layout{
-        background-color: rgba(0, 0, 0, 0.75); /* Darkens the background by 25% */
-    }
+    opacity: 1;
+    margin-top: 0px;
+    transition: 0.25s all ease-out;
   }
 
   .close-button {

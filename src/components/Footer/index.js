@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-column">
-          <h4 className="column-title">Quick Links</h4>
+          <h4 className="column-title">Campus Links</h4>
           <ul>
             <h2 className='quick-links'><a href="https://maps.calpoly.edu/">CAL POLY MAPS</a></h2>
             <h2 className='quick-links'><a href="https://mustangnews.net/">MUSTANG NEWS</a></h2>
@@ -68,7 +68,7 @@ const Footer = () => {
       </div>
 
         {/* <p>Learn by Doing<sup><small>SM</small></sup></p> */}
-        <p>&copy; Cal Poly SLO 2024. </p>
+        <p>&copy; Cal Poly SLO 2024 </p>
       </div>
     </footer>
   );

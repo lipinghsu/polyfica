@@ -6,48 +6,56 @@ const Terms = props => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    return(
+    return (
         <section className='terms'>
             <div className='terms-detail'>
-                <h3>
-                    Returns and Exchanges
-                </h3>
-
+                <h3>Terms of Use</h3>
                 <p>
-                    SHIPPING FEES ARE ONLY COVERED FOR PRODUCTS THAT ARE DAMAGED OR SHIPPED INCORRECTLY. PLEASE CONTACT CUSTOMER SUPPORT THROUGHT INSTAGRAM (@BUSHKATPC) WITH AN EXPLANATION OF DEFECT AND INCLUDE PHOTO AND/OR VIDEO OF DAMAGED OR INCORRECT ITEM TO RECEIVE A PREPAID SHIPPING LABEL VIA EMAIL FOR YOUR RETURN. 
-                </p>
-                <p>
-                    IF YOU HAVE RECEIVED A RETURN SHIPPING LABEL, MAKE SURE YOU SEND YOUR ITEM(S) BACK WITHIN 2 WEEKS FROM RECEIVING YOUR RETURN SHIPPING LABEL OR YOUR RETURN SHIPPING LABEL WILL BECOME INVALID. 
+                    Welcome to our professor review site. By using our platform, you agree to comply with and be bound by the following terms and conditions. Please review these terms carefully. If you do not agree to these terms, you should not use this site.
                 </p>
             </div>
             <div className='terms-detail'>
-                <h3>
-                    Taxes and Duties
-                </h3>
-
+                <h3>Content and Conduct</h3>
                 <p>
-                    NEARLY EVERY SHIPMENT THAT CROSSES AN INTERNATIONAL BORDER IS SUBJECT TO THE ASSESSMENT OF DUTIES AND TAXES AND (UNFORTUNATELY) EACH COUNTRY DETERMINES THE ASSESSMENT OF DUTIES AND TAXES DIFFERENTLY.
-                </p>
-                <p>
-                    IT IS IMPORTANT TO NOTE THAT ALL TAXES AND DUTIES ARE AT THE RESPONSIBILITY OF THE PURCHASER. WE DO NOT HAVE THE ABILITY TO MARK PACKAGES AS HAVING "NO COMMERCIAL VALUE" IN ORDER TO REDUCE POTENTIAL DUTIES DUE.
-                </p>
-                <p>
-                    **MAKE SURE TO RESEARCH YOUR COUNTRY'S CUSTOMS REQUIREMENTS IN ORDER TO AVOID ANY UNEXPECTED FEES.**
+                    Users are responsible for the content they post, including reviews and comments. All content must be respectful, truthful, and relevant to the purpose of reviewing professors. We reserve the right to remove any content that violates these guidelines.
                 </p>
             </div>
             <div className='terms-detail'>
-                <h3>
-                    Shipping and Delivery Time
-                </h3>
-
+                <h3>Privacy Policy</h3>
                 <p>
-                    MOST ORDERS ARE FULFILLED WITHIN 2-4 BUSINESS DAYS OF THE ORDER BEING PLACED ONLINE. DOMESTIC DELIVERY TAKES 7-10 DAYS WHILE INTERNATIONAL DELIVERY CAN TAKE ANYWHERE FROM 2-10 WEEKS.
-                </p>
-                <p>
-                    **MULTIPLE UNIT ORDERS WILL NOT SHIP UNTIL ALL ITEMS ARE AVAILABLE IN STOCK.**
+                    Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your information. By using our site, you consent to our privacy practices as outlined in the Privacy Policy.
                 </p>
             </div>
-            
+            <div className='terms-detail'>
+                <h3>Intellectual Property</h3>
+                <p>
+                    All content on this site, including text, graphics, logos, and software, is the property of our site or its content suppliers and is protected by international copyright laws. Unauthorized use of any content on this site is strictly prohibited.
+                </p>
+            </div>
+            <div className='terms-detail'>
+                <h3>Disclaimer of Warranties</h3>
+                <p>
+                    This site is provided on an "as is" and "as available" basis. We make no warranties, express or implied, regarding the operation or availability of the site, or the accuracy, reliability, or completeness of any information provided.
+                </p>
+            </div>
+            <div className='terms-detail'>
+                <h3>Limitation of Liability</h3>
+                <p>
+                    In no event shall our site be liable for any damages arising out of or in connection with your use of the site. This limitation of liability applies to all damages of any kind, including direct, indirect, incidental, punitive, and consequential damages.
+                </p>
+            </div>
+            <div className='terms-detail'>
+                <h3>Changes to Terms</h3>
+                <p>
+                    We reserve the right to modify these terms at any time. Any changes will be effective immediately upon posting. Your continued use of the site after any changes constitutes your acceptance of the new terms.
+                </p>
+            </div>
+            <div className='terms-detail'>
+                <h3>Contact Us</h3>
+                <p>
+                    If you have any questions about these terms, please contact us via our support page.
+                </p>
+            </div>
         </section>
     );
 };

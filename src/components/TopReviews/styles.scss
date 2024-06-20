@@ -27,6 +27,8 @@ $mobilefooterHeight: 0rem;
       margin: 36px;
       min-width: 370px !important;
       width: 100vw;
+      font-weight: 600;
+      font-size: 1.75rem;
 
       &.empty {
         background: transparent;
@@ -47,6 +49,11 @@ $mobilefooterHeight: 0rem;
         height: 100%;
         .top {
           margin-top: 24px;
+          // .course-name{
+          //   text-align: center;
+          //   font-weight: normal;
+          //   font-size: 1.5rem;
+          // }
           .rating-score {
             // margin-bottom: 18px;
           }

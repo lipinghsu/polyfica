@@ -12,9 +12,11 @@ const SearchResults = () => {
   const history = useHistory(); // Initialize useHistory
 
   const searchTerm = new URLSearchParams(location.search).get("term");
-  const searchTerms = searchTerm.split(" ");
-  let results = [];
+
   useEffect(() => {
+    // This search function can only handle a string with maximum of 1 space
+    // (NAME) or (FIRST_NAME LAST_NAME)
+    // [(FIRST_NAME MIDDLE_NAME LAST_NAME) or substring search will not work.]
     const fetchProfessors = async () => {
       try {
         if (!searchTerm) {
