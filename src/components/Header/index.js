@@ -222,7 +222,7 @@ const Header = (props) => {
                                         <button className="signup-btn" onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
-                                        {showSignupDropdown && <SignupDropdown label="Sign Up" link="/registration"/>}
+                                        {showSignupDropdown && <SignupDropdown label="Sign Me Up" link="/registration"/>}
                                     </div>
                                 ]}
                             </ul>
