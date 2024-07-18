@@ -14,6 +14,7 @@ const SignupDropdown = (props) => {
             props.signOut();
         }
     };
+
     return (
         <div className="signup-dropdown">
             <div className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
@@ -27,9 +28,6 @@ const SignupDropdown = (props) => {
                 <Link to={props.link} className="dropdown-item" onClick={handleClick}>
                     {props.label}
                 </Link>
-                
-
-
             </div>
         </div>
     );

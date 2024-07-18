@@ -72,10 +72,17 @@ $mobilefooterHeight: 0rem;
           position: absolute;
 
           img {
+
             width: 480px; // Adjust the width as needed
             height: auto; // Maintain aspect ratio
             display: block;
             margin: 0 auto; // Center the image horizontally
+            @media (max-width: 480px) {
+              width: 420px; // Adjust the width as needed
+            }
+            @media (max-width: 421px) {
+              width: 321px; // Adjust the width as needed
+            }
           }
         }
         

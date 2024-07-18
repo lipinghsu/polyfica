@@ -228,8 +228,9 @@ const Header = (props) => {
                             </ul>
                         </div>
                     }
-
-                    {mobile &&
+                    {/* right header button */}
+                    
+                    {/* {mobile &&
                         <div className='callToActions mobile'>
                             <ul>
                                 <li className="nav-item">
@@ -242,7 +243,7 @@ const Header = (props) => {
                                 </li>
                             </ul>
                         </div>
-                    }
+                    } */}
                 </div>
 
                 <div className={sidebar ? "sidebar active" : "sidebar"} ref={refOutsideDiv}>
@@ -275,7 +276,7 @@ const Header = (props) => {
                                     <NavItem text={t("Log in")} link="/login" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
                                     <NavItem text={t("Sign up")} link="/registration" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
                                 </div>
-                                <NavItem text={t("Shop")} link="/search" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
+                                {/* <NavItem text={t("Shop")} link="/search" setSidebar={setSidebar} sidebar={sidebar} mobile={true} /> */}
                             </div>
                         ]}
                     </ul>

@@ -5,15 +5,14 @@ $customDarkGray: #b8b8b8;
     height: 6rem;
     background-color: transparent;
     z-index: 10;
-    position: fixed;
+    // position: fixed;
     width: 100%;
     top: 0;
     padding: 0 3.6rem;
-    
     @media (max-width: 840px) {
         padding: 0 1.6rem;
     }
-
+    
     .wrap {
         position: relative;
         height: 100%;
@@ -29,6 +28,7 @@ $customDarkGray: #b8b8b8;
         }
 
         .sideMenu {
+            
             height: 36px;
             width: 36px;
 
@@ -166,11 +166,6 @@ $customDarkGray: #b8b8b8;
                         max-height: 24px;
                     }
                 }
-            }
-
-            // this targets review & log in buttons
-            li.nav-item:not(:last-child):hover {
-                // background-color: tomato;
             }
 
             .nav-item {
@@ -314,6 +309,7 @@ $customDarkGray: #b8b8b8;
             }
 
             .signup-btn {
+                z-index: 500;
                 background-color: transparent;
                 width: 36px;
                 height: 36px;
@@ -321,6 +317,8 @@ $customDarkGray: #b8b8b8;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                cursor: pointer;
+
                 &:hover{
                     background-color: rgba(223, 223, 223, 0.4);
                 }
@@ -329,7 +327,6 @@ $customDarkGray: #b8b8b8;
                     color: black;
                     font-size: 24px;
                 }
-
             }
         }
 
@@ -350,6 +347,7 @@ $customDarkGray: #b8b8b8;
     .sidebar.active {
         left: 0;
         transition: left 0.3s ease-in-out;
+        z-index: 888;
 
         .sidebar-items {
             .nav-item {
@@ -363,6 +361,7 @@ $customDarkGray: #b8b8b8;
     }
 
     .sidebar {
+        z-index: 888;
         left: calc(-100% - 300px);
         transition: left 0.3s ease-in-out;
         min-width: 29.24rem;
@@ -464,7 +463,6 @@ $customDarkGray: #b8b8b8;
 
 
 .rev-modal {
-    
     opacity: 0;
     top: calc((100vh - 6rem - (60rem + 49px)) / 2);
     z-index: -10;
@@ -587,7 +585,6 @@ $customDarkGray: #b8b8b8;
     transition: 0.55s all ease-out;
   }
 
-
   .close-button {
     color: #aaa;
     float: right;
@@ -601,9 +598,5 @@ $customDarkGray: #b8b8b8;
     color: black;
     text-decoration: none;
     cursor: pointer;
-    // background-color: ;
   }
-//   :root {
-//     background: yellow;
-//   }
 
