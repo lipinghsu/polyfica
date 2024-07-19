@@ -51,8 +51,11 @@ $mobilefooterHeight: 0rem;
             @media (max-width: 480px) {
               width: 420px; // Adjust the width as needed
             }
-            @media (max-width: 421px) {
-              width: 321px; // Adjust the width as needed
+            @media (max-width: 420px) {
+              width: 400px; // Adjust the width as needed
+            }
+            @media (max-width: 400px) {
+              width: 360px; // Adjust the width as needed
             }
           }
         }

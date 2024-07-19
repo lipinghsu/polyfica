@@ -1,18 +1,11 @@
 /* Footer.scss */
 
-/* Footer.scss */
-
-/* ... Your existing styles ... */
-
 .site-footer {
   background: #f8f9fa;
   color: black;
-  padding: 30px 0;
-  height: 640px;
-  @media (max-width: 840px) {
-    height: 1032px;
-    
-  }
+  padding: 30px 0 0 0;
+  height: 100%;
+
 }
 
 .footer-container {
@@ -28,7 +21,6 @@
     height: auto;
     margin-left: 0;
     margin: auto 36px;
-    
   }
 }
 
@@ -45,8 +37,7 @@
 
 .contact-info {
   padding-top: 0;
-  padding-bottom: 16px;
-  
+  padding-bottom: 0px;
   a {
     color: black;
   }
@@ -64,7 +55,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   margin: 24px 0 0 0;
-  height: 24px;
+  height: 12px;
   color: black;
   
   a:visited {
@@ -209,7 +200,7 @@ ul {
 
     /* Add styling to make it visible when needed */
     .popout-box.active {
-      background-color: #F0AF49;
+      background-color: #f0b925;
       color: white;
     }
   }
