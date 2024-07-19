@@ -10,7 +10,8 @@
   padding: 30px 0;
   height: 640px;
   @media (max-width: 840px) {
-    height: 980px;
+    height: 1032px;
+    
   }
 }
 
@@ -94,6 +95,10 @@
 .more {
   border-bottom: 1px solid black;
   margin-right: 36px;
+  @media(max-width: 840px){
+    
+    margin-right: 0px;
+  }
 }
 
 ul {
@@ -193,6 +198,13 @@ ul {
       transition: 0.2s all ease-in;
       opacity: 1;
       margin-bottom: 156px;
+      @media (max-width: 840px){
+        transform: translateY(-156px);
+        left: 30px;
+        
+        // margin-left: 96px;
+        
+      }
     }
 
     /* Add styling to make it visible when needed */
@@ -218,7 +230,9 @@ ul {
   align-items: center;
   text-align: center;
   padding: 15px 0px 0px 20px;
-
+  @media (max-width: 840px){
+    padding-right: 0 !important;
+  }
 
   .polySeal-image {
     width: 100px;
@@ -234,6 +248,7 @@ ul {
 @media (max-width: 840px) {
   .footer-container .footer-column:last-child {
     margin-top: 64px;
+    margin-right: 0;;
   }
   .bottom-top-wrap {
     .polySeal-container {
