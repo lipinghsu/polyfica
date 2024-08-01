@@ -199,7 +199,8 @@ ul {
     }
 
     /* Add styling to make it visible when needed */
-    .popout-box.active {
+    .popout-box:hover {
+      transition: 0.05s all ease-in;
       background-color: #f0b925;
       color: white;
     }

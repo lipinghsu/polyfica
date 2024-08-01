@@ -4,14 +4,17 @@ $mobilefooterHeight: 0rem;
 
 .directory {
   height: 100%;
+  
+  z-index: 1;
   .wrap {
+    
     height: calc(100vh - #{$footerHeight});
     // background: url('./../../assets/horsie2.jpg') center top no-repeat; /* Center the background image vertically and make it 100% width */
     background-size: 100% 100%; /* Ensure the background image covers the entire container horizontally */
     display: flex;
     justify-content: center;
     align-items: center;
-
+    z-index: 1;
 
     .item {
       height: calc(100vh - #{$headerHeight} - #{$footerHeight});
@@ -19,16 +22,16 @@ $mobilefooterHeight: 0rem;
       width: 100vw;
       top: 60px;
       position: absolute;
+      z-index: -1;
       background-color: transparent;
-
-      // Ensure the image covers the entire div
-      background-position: center center; // Center the image
-      background-repeat: no-repeat; // Prevent the image from repeating
 
       display: flex;
       flex-direction: column;
       background: url('./../../assets/the_p.jpg') center top no-repeat;
+      // background-color: aquamarine;
       background-size: 100% 100%;
+      
+
       .inner-wrap {
         height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 48px);
         margin: 0px 36px 36px 36px;
