@@ -4,13 +4,11 @@ $mobilefooterHeight: 0rem;
 
 .directory {
   height: 100%;
-  
   z-index: 1;
+
   .wrap {
-    
     height: calc(100vh - #{$footerHeight});
-    // background: url('./../../assets/horsie2.jpg') center top no-repeat; /* Center the background image vertically and make it 100% width */
-    background-size: 100% 100%; /* Ensure the background image covers the entire container horizontally */
+    background-size: 100% 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,15 +20,12 @@ $mobilefooterHeight: 0rem;
       width: 100vw;
       top: 60px;
       position: absolute;
-      z-index: -1;
+      z-index: -1; // Default z-index
       background-color: transparent;
-
       display: flex;
       flex-direction: column;
       background: url('./../../assets/the_p.jpg') center top no-repeat;
-      // background-color: aquamarine;
       background-size: 100% 100%;
-      
 
       .inner-wrap {
         height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 48px);
@@ -39,48 +34,46 @@ $mobilefooterHeight: 0rem;
         align-items: center;
         justify-content: center;
 
-                
-
         .polyRatings-text {
           text-align: center;
           margin-bottom: 216px;
           position: absolute;
           img {
-
-            width: 480px; // Adjust the width as needed
-            height: auto; // Maintain aspect ratio
+            width: 480px;
+            height: auto;
             display: block;
-            margin: 0 auto; // Center the image horizontally
+            margin: 0 auto;
             @media (max-width: 480px) {
-              width: 420px; // Adjust the width as needed
+              width: 420px;
             }
             @media (max-width: 420px) {
-              width: 400px; // Adjust the width as needed
+              width: 400px;
             }
             @media (max-width: 400px) {
-              width: 360px; // Adjust the width as needed
+              width: 360px;
             }
           }
         }
-        
+
         .search-bar {
           margin-bottom: 16px;
           width: 520px;
           .lu-search-icon {
             cursor: pointer;
           }
+
           .search-input {
             display: flex;
             align-items: center;
-            background-color: #fff; // You can set the background color if needed
+            background-color: #fff;
             border-radius: 28px;
             overflow: hidden;
-            margin-bottom: 16px; // Adjust spacing as needed
-            // border: 1px black solid;
+            margin-bottom: 16px;
             svg {
-              margin-left: 16px; // Adjust spacing between the icon and input
+              margin-left: 16px;
             }
           }
+
           input {
             border: none;
             padding: 16px;
@@ -90,9 +83,6 @@ $mobilefooterHeight: 0rem;
             max-width: 545px;
             font-size: 1.6rem;
           }
-        }
-        a {
-          // Add your styles for the link
         }
 
         &::after {
@@ -105,5 +95,9 @@ $mobilefooterHeight: 0rem;
         }
       }
     }
+  }
+
+  &:hover .item {
+    z-index: 1; // Change z-index on hover to enable search bar
   }
 }

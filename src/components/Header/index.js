@@ -379,9 +379,6 @@ const Header = (props) => {
                                 </Link>
                             <span>{t(".")}</span>
                             </div>
-                            
-
-
                             <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>
                                 {t("Submit")}
                             </Button>
