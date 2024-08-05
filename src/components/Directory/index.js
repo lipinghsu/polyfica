@@ -10,8 +10,6 @@ const Directory = ({ showSignupDropdown }) => {
   const searchBarRef = useRef(null);
   const history = useHistory();
 
-  const phText = isSearchFocused ? 'SearchFocused' : showSignupDropdown ? 'showSignupDropdown' : 'not Focused';
-
   const handleSearchEnter = (e) => {
     if (e.key === 'Enter' && searchTerm.length > 0) {
       history.push(`/search/professors?term=${searchTerm}`);
@@ -68,7 +66,7 @@ const Directory = ({ showSignupDropdown }) => {
                   type='text'
                   value={searchTerm}
                   onKeyPress={handleSearchEnter}
-                  placeholder={phText}
+                  placeholder='Search for a professor'
                   onFocus={handleFocus}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
