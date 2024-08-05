@@ -23,7 +23,7 @@ $mobilefooterHeight: 0rem;
       background-color: transparent;
       display: flex;
       flex-direction: column;
-      background: url('./../../assets/the_ppppp.jpg') center top no-repeat;
+      background: url('./../../assets/the_ppppp2.jpg') center top no-repeat;
     
       background-size: 100% 100%;
 
@@ -39,7 +39,7 @@ $mobilefooterHeight: 0rem;
 
         .polyRatings-text {
           text-align: center;
-          margin-bottom: 192px;
+          margin-bottom: 176px;
           position: absolute;
           img {
             width: 480px;
@@ -59,7 +59,7 @@ $mobilefooterHeight: 0rem;
         }
 
         .search-bar {
-          margin-bottom: 16px;
+          // margin-bottom: 16px;
           width: 520px;
           .lu-search-icon {
             cursor: pointer;
