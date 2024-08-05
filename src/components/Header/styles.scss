@@ -211,38 +211,6 @@ $customDarkGray: #b8b8b8;
                     vertical-align: middle;
                 }
 
-                .dropdown {
-                    z-index: 90;
-                    position: absolute;
-                    top: 60px;
-                    width: 128px;
-                    transform: translateX(-75%);
-                    background-color: white;
-                    border-radius: 12px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-                    .menu-item {
-                        z-index: 90;
-                        border-radius: 12px;
-                        height: 50px;
-                        display: flex;
-                        align-items: center;
-                        text-align: center;
-                        justify-content: center;
-                        padding: 0.5rem 2rem 0.5rem 2rem;
-
-                        span {
-                            z-index: 90;
-                            color: white;
-                        }
-
-                        &:hover {
-                            // background-color: rgb(23, 23, 23);
-                            transition: 0s;
-                        }
-                    }
-                }
-
                 .icon-button {
                     --button-size: calc(var(--nav-size) * 0.35);
                     height: calc(var(--button-size));

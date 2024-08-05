@@ -4,11 +4,11 @@ import TopReviews from '../../components/TopReviews';
 
 import './styles.scss';
 
-const Homepage = props => {
-    return(
+const Homepage = ({ showSignupDropdown }) => {
+    return (
         <section className='homepage'>
-            <Directory />
-            <TopReviews/>
+            <Directory showSignupDropdown={showSignupDropdown} />
+            <TopReviews />
         </section>
     );
 };

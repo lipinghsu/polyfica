@@ -20,7 +20,7 @@ $mobilefooterHeight: 0rem;
       width: 100vw;
       top: 60px;
       position: absolute;
-      z-index: -1; // Default z-index
+      // z-index: 3; // Default z-index
       background-color: transparent;
       display: flex;
       flex-direction: column;
@@ -95,9 +95,5 @@ $mobilefooterHeight: 0rem;
         }
       }
     }
-  }
-
-  &:hover .item {
-    z-index: 1; // Change z-index on hover to enable search bar
   }
 }

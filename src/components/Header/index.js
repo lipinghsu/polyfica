@@ -25,7 +25,7 @@ const mapState = (state) => ({
     totalNumCartItems: selectCartItemsCount(state),
 });
 
-const Header = (props) => {
+const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { currentUser, totalNumCartItems } = useSelector(mapState);
@@ -37,7 +37,7 @@ const Header = (props) => {
     const [sidebar, setSidebar] = useState(false);
     const [hide, setHide] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
-    const [showSignupDropdown, setShowSignupDropdown] = useState(false);
+    // const [showSignupDropdown, setShowSignupDropdown] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -51,6 +51,8 @@ const Header = (props) => {
     const [schoolName, setSchoolName] = useState('');
 
     const refOutsideDiv = useRef(null);
+    const dropdownRef = useRef(null);
+    
 
     const signOut = () => {
         dispatch(signOutUserStart());
@@ -71,6 +73,26 @@ const Header = (props) => {
             document.body.style.overflowY = 'visible';
         };
     }, [sidebar]);
+
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setShowSignupDropdown(false);
+          }
+        };
+    
+        if (showSignupDropdown) {
+          document.addEventListener('mousedown', handleClickOutside);
+        } else {
+          document.removeEventListener('mousedown', handleClickOutside);
+        }
+    
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, [showSignupDropdown]);
+
 
     useEffect(() => {
         if (window.innerWidth <= 840) {
@@ -196,7 +218,7 @@ const Header = (props) => {
                                     />
                                 ]}
                                 {currentUser && [
-                                    <div className="signup-container">
+                                    <div className="signup-container" ref={dropdownRef}>
                                         <button className="signup-btn" onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
@@ -218,18 +240,17 @@ const Header = (props) => {
                                     <NavItem text={t("Log In")} link="/login" className="login-button" />
                                 ]}
                                 {!currentUser && [
-                                    <div className="signup-container">
+                                    <div className="signup-container" ref={dropdownRef}>
                                         <button className="signup-btn" onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
-                                        {showSignupDropdown && <SignupDropdown label="Sign Me Up" link="/registration"/>}
+                                        {showSignupDropdown && <SignupDropdown label="Sign Me Up" link="/registration" class="SignupDropdown"/>}
                                     </div>
                                 ]}
                             </ul>
                         </div>
                     }
                     {/* right header button */}
-                    
                     {/* {mobile &&
                         <div className='callToActions mobile'>
                             <ul>

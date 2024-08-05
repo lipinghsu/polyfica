@@ -1,15 +1,16 @@
-// Directory.js
-
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import polyRatingsText from './../../assets/poly_ratings_text.png';
 import { LuSearch } from 'react-icons/lu';
-
 import './styles.scss';
 
-const Directory = (props) => {
+const Directory = ({ showSignupDropdown }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false); // State to manage z-index
+  const searchBarRef = useRef(null);
   const history = useHistory();
+
+  const phText = isSearchFocused ? 'SearchFocused' : showSignupDropdown ? 'showSignupDropdown' : 'not Focused';
 
   const handleSearchEnter = (e) => {
     if (e.key === 'Enter' && searchTerm.length > 0) {
@@ -23,6 +24,28 @@ const Directory = (props) => {
     }
   };
 
+  const handleFocus = () => {
+    setIsSearchFocused(true);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+        setIsSearchFocused(false);
+      }
+    };
+
+    if (isSearchFocused) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isSearchFocused]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -30,32 +53,30 @@ const Directory = (props) => {
   return (
     <div className='directory'>
       <div className='wrap'>
-        <div className='item'>
+        <div
+          className='item'
+          style={{ zIndex: isSearchFocused ? 1 : showSignupDropdown ? -1 : 0 }} // Apply z-index dynamically
+        >
           <div className='inner-wrap'>
-            {/* Move polyRatingsText above the search bar */}
             <div className='polyRatings-text'>
               <img src={polyRatingsText} alt='polyRatingsText' />
             </div>
-
-            {/* Add the search bar here */}
-            <div className='search-bar'>
+            <div className='search-bar' ref={searchBarRef}>
               <div className='search-input'>
-              <LuSearch onClick={handleSearchClick} className='lu-search-icon'/>
-                <input 
-                type='text' 
-                value={searchTerm}
-                onKeyPress={handleSearchEnter}
-                placeholder='Search for a professor' 
-                onChange={(e) => setSearchTerm(e.target.value)}
+                <LuSearch onClick={handleSearchClick} className='lu-search-icon' />
+                <input
+                  type='text'
+                  value={searchTerm}
+                  onKeyPress={handleSearchEnter}
+                  placeholder={phText}
+                  onFocus={handleFocus}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              {/* Add any search button or icon here if needed */}
             </div>
-            {/* Rest of your inner-wrap content */}
             <a>
               <div className='item-logo'></div>
             </a>
-            {/* ::after pseudo-element */}
             <div className='overlay'></div>
           </div>
         </div>
