@@ -20,23 +20,26 @@ $mobilefooterHeight: 0rem;
       width: 100vw;
       top: 60px;
       position: absolute;
-      // z-index: 3; // Default z-index
       background-color: transparent;
       display: flex;
       flex-direction: column;
-      background: url('./../../assets/the_p.jpg') center top no-repeat;
+      background: url('./../../assets/the_pppp.jpg') center top no-repeat;
+    
       background-size: 100% 100%;
 
       .inner-wrap {
+
         height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 48px);
         margin: 0px 36px 36px 36px;
+        // background-color: rgb(45, 99, 70);
+        // border-radius: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
 
         .polyRatings-text {
           text-align: center;
-          margin-bottom: 216px;
+          margin-bottom: 192px;
           position: absolute;
           img {
             width: 480px;
@@ -65,16 +68,18 @@ $mobilefooterHeight: 0rem;
           .search-input {
             display: flex;
             align-items: center;
-            background-color: #fff;
+            background-color: white;
             border-radius: 28px;
             overflow: hidden;
             margin-bottom: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.259);
             svg {
               margin-left: 16px;
             }
           }
 
           input {
+            // background-color: #ffffffcc;
             border: none;
             padding: 16px;
             height: 56px;
