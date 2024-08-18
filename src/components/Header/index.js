@@ -17,6 +17,7 @@ import DefaultUserImage from '../../assets/user2-w.png';
 import SideMenuDefaultUserImage from '../../assets/account_circle.png';
 import { firestore } from '../../firebase/utils';  // Ensure this imports the necessary Firebase utilities
 import './styles.scss';
+import SizeButton from './SizeButton';
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
@@ -334,25 +335,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                     required
                                 />
                             </div>
-
-                            <div className="form-row">
-                                <FormInput 
-                                    type="number"
-                                    name="qualityRating"
-                                    value={qualityRating}
-                                    onChange={e => setQualityRating(e.target.value)}
-                                    label={t("Quality Rating")}
-                                    required
-                                />
-                                <FormInput 
-                                    type="number"
-                                    name="difficultyRating"
-                                    value={difficultyRating}
-                                    onChange={e => setDifficultyRating(e.target.value)}
-                                    label={t("Difficulty Rating")}
-                                    required
-                                />
-                            </div>
                             <FormInput 
                                 type="text"
                                 name="reviewCourseName"
@@ -388,6 +370,11 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 className="reviewComment"
                                 required
                             />
+                            <div className='form-row'>
+                                <SizeButton/>
+                                <SizeButton/>
+                            </div>
+                                         
                             <div className="terms">
                             By clicking the "Submit" button, I acknowledge that I have read and agreed to the
                             <span>{t(" ")}</span>

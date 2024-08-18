@@ -120,10 +120,15 @@ const TopReviews = (props) => {
               </div>
               <div className='bottom'>
                 <div className='user-name'>
-                  {review.userName || 'Anonymous'} Reviewed&nbsp; 
+                  <div className=''>
+                    {review.userName || 'Anonymous'} Reviewed&nbsp; 
+                  </div>
+                <div className='prof-name'>
                   <Link to={`/search/professors/${review.professorID}`}>
                     {`${review.professorName}`}
                   </Link>
+                </div>
+
                 </div>
               </div>
             </div>

@@ -65,40 +65,57 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="searchResults">
-      <div className="searchTermInfo">
-        {searchTerm && (
-          <p>
-            {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "{searchTerm}" in their name
-          </p>
-        )}
+    <div className="search-result-wrap">
+      <div className="content">
+        <div className="filter">
+        {/* by department */}
+        {/* by school name */}
+        {/* by rating above {value} */}
+        </div>
+        <div className="sort">
+        {/* Number of Ratings: */}
+        {/* by rating {value} */}
+        </div>
       </div>
-      <div>
-        {searchResults.map((professor, index) => (
-          <div
-            key={index}
-            className="professor"
-            onClick={() => handleProfessorClick(professor.id)}
-          >
-            <div className="professorName">
-              {professor.firstName} {professor.lastName}
-            </div>
-            <div className="department">{professor.department}</div>
-            <div className="schoolName">{professor.schoolName}</div>
-            <div className="infoContainer">
-              <div className="averageRating">
-                Difficulty: {averageDifficultyRating?.toFixed(1) || "-"}
+      <div className="searchResults">
+        <div className="searchTermInfo">
+          {searchTerm && (
+            <p>
+              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "{searchTerm}" in their name
+            </p>
+          )}
+        </div>
+        <div>
+          {searchResults.map((professor, index) => (
+            <div
+              key={index}
+              className="professor"
+              onClick={() => handleProfessorClick(professor.id)}
+            >
+              <div className="professorName">
+                {professor.firstName} {professor.lastName}
               </div>
-              <div className="reviewCommentLength">
-                {professor.reviewComment?.length || 0}{" "}
-                {professor.reviewComment?.length > 1 ? "reviews" : "review"}
+              <div className="department">{professor.department}</div>
+              <div className="schoolName">{professor.schoolName}</div>
+              <div className="infoContainer">
+                <div className="averageRating">
+                  Difficulty: {averageDifficultyRating?.toFixed(1) || "-"}
+                </div>
+                <div className="reviewCommentLength">
+                  {professor.reviewComment?.length || 0}{" "}
+                  {professor.reviewComment?.length > 1 ? "reviews" : "review"}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default SearchResults;
+
+
+// add filter (department, school)
+// add sort (overall rating, # of reviews,)

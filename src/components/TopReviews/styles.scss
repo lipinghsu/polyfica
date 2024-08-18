@@ -145,16 +145,24 @@
       }
 
       .user-name {
+        display: flex;
+        flex-direction: row;
+
+        .prof-name{
+          // font-weight: 500;
+        }
+        
         a {
           color: black;
           text-decoration: underline;
-          font-weight: 600;
+          
           
           &:visited {
             color: black;
           }
           &:hover{
-            color:#3EAE86;
+            color: #F0AF49;
+            
           }
         }
       }
