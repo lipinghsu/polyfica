@@ -32,6 +32,7 @@ $mobilefooterHeight: 0rem;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
 
         .polyRatings-text {
           text-align: center;
@@ -53,20 +54,38 @@ $mobilefooterHeight: 0rem;
             }
           }
         }
-        
+
+        .search-bar-block {
+          margin-top: 8px;
+          max-width: 557px;
+          width: calc(100% + 12px);
+          height: 64px;
+          position: absolute;
+          border-radius: 32px 32px 0 0;
+          &.active {
+            background-color: rgb(240, 240, 240);
+          }
+        }
+
         .search-bar {
           width: 100%;
-          max-width: 545px; // Ensure the search bar remains responsive
+          max-width: 545px;
           position: relative;
+
+          &:focus-within ~ .search-bar-block {
+            background-color: black;
+          }
 
           .suggestions {
             position: absolute;
-            width: 100%; // Make suggestions inherit the width of the search-bar
-            background: white;
+            left: -6px;
+            width: calc(100% + 12px);
+            max-width: 557px;
+            background-color: rgb(240, 240, 240);
             border-radius: 0 0 28px 28px;
             z-index: 10;
-            a{
-              color:black;
+            a {
+              color: black;
             }
           }
 
@@ -76,47 +95,41 @@ $mobilefooterHeight: 0rem;
             padding-left: 48px;
             cursor: pointer;
             display: flex;
-            align-items: center; /* Vertically center the content */
+            align-items: center;
             &:last-child:hover {
               border-radius: 0 0 28px 28px;
             }
             &:hover {
               background: #F0AF49;
-              color:white;
+              color: white;
             }
           }
 
           .lu-search-icon {
-            // cursor: pointer;
             font-size: 1.6rem;
-            flex-shrink: 0; 
+            flex-shrink: 0;
           }
 
-          .clear-button, .arrow-icon {
+          .clear-button,
+          .arrow-icon {
             cursor: pointer;
-            
-            // font-size: 1.6rem;
-            flex-shrink: 0; 
+            flex-shrink: 0;
           }
-          .arrow-button{
+
+          .arrow-button {
             width: 48px;
             height: 56px;
-            // background-color: pink;
             display: flex;
-            align-items: center; /* Vertically center the content */
+            align-items: center;
             justify-content: center;
             padding-right: 16px;
             border-radius: 0 50% 50% 0;
             margin-left: 8px;
           }
-          .arrow-button{
-            
 
-          }
-
-          .arrow-button:hover{
+          .arrow-button:hover {
             background-color: #F0AF49;
-            color:white;
+            color: white;
             transition: all 0.05s ease-out;
           }
 
@@ -128,25 +141,25 @@ $mobilefooterHeight: 0rem;
             color: white;
             border-radius: 12px;
             display: flex;
-            align-items: center;  
-            justify-content: center; 
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
           }
-          .clear-button:hover{
+
+          .clear-button:hover {
             background-color: rgb(155, 155, 155, 0.55);
             transition: all 0.05s ease-out;
           }
-          
 
           .search-input {
             display: flex;
+            overflow: hidden;
             align-items: center;
             background-color: white;
             border-radius: 28px;
-            overflow: hidden;
+
             &.active {
-              border-bottom-left-radius: 0;
-              border-bottom-right-radius: 0;
+              border-radius: 28px;
             }
 
             svg {
@@ -160,7 +173,6 @@ $mobilefooterHeight: 0rem;
             height: 56px;
             width: 100%;
             outline: none;
-            max-width: 545px;
             font-size: 1.6rem;
           }
         }

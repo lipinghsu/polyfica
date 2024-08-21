@@ -89,7 +89,6 @@ const Directory = ({ showSignupDropdown }) => {
       setSuggestions([]);
     }
   }, [searchTerm]);
-
   const highlightMatch = (text, searchTerm) => {
     const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
     return parts.map((part, index) =>
@@ -108,6 +107,8 @@ const Directory = ({ showSignupDropdown }) => {
             <div className='polyRatings-text'>
               <img src={polyRatingsText} alt='polyRatingsText' />
             </div>
+            <div className={`search-bar-block ${suggestions.length > 0 ? 'active' : ''}`} >
+            </div>
             <div 
               className={`search-bar ${isSearchFocused ? 'active' : ''}`} 
               ref={searchBarRef}
@@ -121,6 +122,7 @@ const Directory = ({ showSignupDropdown }) => {
                   placeholder='Search for a professor'
                   onFocus={handleFocus}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  className={`${suggestions.length > 0 ? 'active' : ''}`} 
                 />
                 {searchTerm && (
                   <>
