@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import polyRatingsText from './../../assets/poly_ratings_text.png';
 import { LuSearch, LuX, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
@@ -90,6 +90,13 @@ const Directory = ({ showSignupDropdown }) => {
     }
   }, [searchTerm]);
 
+  const highlightMatch = (text, searchTerm) => {
+    const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+    return parts.map((part, index) =>
+      part.toLowerCase() === searchTerm.toLowerCase() ? <strong key={index}>{part}</strong> : part
+    );
+  };
+
   return (
     <div className='directory'>
       <div className='wrap'>
@@ -120,8 +127,8 @@ const Directory = ({ showSignupDropdown }) => {
                     <div onClick={handleClearSearch} className='clear-button'>
                       CLEAR
                     </div>
-                    <div onClick={handleClearSearch} className='arrow-button'>
-                      <LuArrowRight onClick={handleSearchClick} className='arrow-icon' />
+                    <div onClick={handleSearchClick} className='arrow-button'>
+                      <LuArrowRight className='arrow-icon' />
                     </div>
                   </>
                 )}
@@ -130,9 +137,9 @@ const Directory = ({ showSignupDropdown }) => {
               {suggestions.length > 0 && (
                 <div className='suggestions'>
                   {suggestions.map((professor, index) => (
-                    <div key={index} className='suggestion-item'>
-                      {professor.firstName} {professor.lastName}
-                    </div>
+                    <Link to={`/search/professors/${professor.profID}`} key={index} className='suggestion-item'>
+                      {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
+                    </Link>
                   ))}
                 </div>
               )}

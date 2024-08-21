@@ -17,7 +17,7 @@ import DefaultUserImage from '../../assets/user2-w.png';
 import SideMenuDefaultUserImage from '../../assets/account_circle.png';
 import { firestore } from '../../firebase/utils';
 import './styles.scss';
-import SizeButton from './SizeButton';
+import RatingSlider from './RatingSlider';
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
@@ -346,11 +346,11 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                             <div className='column-wrap'>
                                 <div className="form-row rating-sliders">
                                     <div className="slider-label">Quality</div>
-                                    <SizeButton/>
+                                    <RatingSlider/>
                                 </div>
                                 <div className="form-row rating-sliders">
                                     <div className="slider-label">Difficulty</div>
-                                    <SizeButton/>
+                                    <RatingSlider/>
                                 </div>
                             </div>
                                          
