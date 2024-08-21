@@ -104,7 +104,7 @@ $customDarkGray: #b8b8b8;
                         justify-content: center;
                     }
                     &:first-child{
-                        width: 178px;
+                        width: 170px;
                         border-radius: 18px;
                         font-size: 1.5rem;
                         font-weight: 500;
@@ -177,7 +177,14 @@ $customDarkGray: #b8b8b8;
                     margin-bottom: 3px;padding-right: 8px;
                 }
                 .text-button.review-btn{
-                    padding-bottom: 4px;padding-top: 0px;border-top-width: 0px;border-top-style: solid;margin-top: 0px;margin-bottom: 0px;border-bottom-width: 0px;border-bottom-style: solid;
+                    padding-bottom: 4px;
+                    padding-top: 0px;
+                    border-top-width: 0px;
+                    border-top-style: solid;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    border-bottom-width: 0px;
+                    border-bottom-style: solid;
                 }
 
                 a {

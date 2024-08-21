@@ -6,7 +6,7 @@ import { selectCartItemsCount } from '../../redux/Cart/cart.selectors';
 import DropdownMenu from './DropdownMenu';
 import SignupDropdown from './SignupDropdown';
 import ConditionalLink from './ConditionalLink';
-import WriteReviewModal from './WriteReviewModal'
+import WriteReviewModal from './WriteReviewModal';
 import NavItem from './NavItem';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
@@ -15,7 +15,7 @@ import { TbMenu2, TbX } from "react-icons/tb";
 import Logo from '../../assets/poly_ratings_logo.png';
 import DefaultUserImage from '../../assets/user2-w.png';
 import SideMenuDefaultUserImage from '../../assets/account_circle.png';
-import { firestore } from '../../firebase/utils';  // Ensure this imports the necessary Firebase utilities
+import { firestore } from '../../firebase/utils';
 import './styles.scss';
 import SizeButton from './SizeButton';
 import i18next from "i18next";
@@ -38,7 +38,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
     const [sidebar, setSidebar] = useState(false);
     const [hide, setHide] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
-    // const [showSignupDropdown, setShowSignupDropdown] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +52,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
 
     const refOutsideDiv = useRef(null);
     const dropdownRef = useRef(null);
-    
 
     const signOut = () => {
         dispatch(signOutUserStart());
@@ -75,7 +73,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
         };
     }, [sidebar]);
 
-
     useEffect(() => {
         const handleClickOutside = (event) => {
           if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -93,7 +90,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
           document.removeEventListener('mousedown', handleClickOutside);
         };
       }, [showSignupDropdown]);
-
 
     useEffect(() => {
         if (window.innerWidth <= 840) {
@@ -143,8 +139,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
         if(!showModal){
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        // disable scrolling here
-        
     };
 
     const handleFormSubmit = async (event) => {
@@ -251,21 +245,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                             </ul>
                         </div>
                     }
-                    {/* right header button */}
-                    {/* {mobile &&
-                        <div className='callToActions mobile'>
-                            <ul>
-                                <li className="nav-item">
-                                    <Link to={'/cart'}>
-                                        <HiOutlineShoppingBag size={28} color={"black"} strokeWidth={"1"} />
-                                        {totalNumCartItems > 0 &&
-                                            <div className='cart-item-number'>{totalNumCartItems}</div>
-                                        }
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    } */}
                 </div>
 
                 <div className={sidebar ? "sidebar active" : "sidebar"} ref={refOutsideDiv}>
@@ -298,7 +277,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                     <NavItem text={t("Log in")} link="/login" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
                                     <NavItem text={t("Sign up")} link="/registration" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
                                 </div>
-                                {/* <NavItem text={t("Shop")} link="/search" setSidebar={setSidebar} sidebar={sidebar} mobile={true} /> */}
                             </div>
                         ]}
                     </ul>
@@ -311,11 +289,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                         <div className="modal-content">
                             <span className="close-button" onClick={() => setShowModal(false)}>&times;</span>
                             <h2>{t("Write a Review")}</h2>
-                            <h3>
-                    {t("Help Us Understand Your Classroom Experience")}
-
-                            </h3>
-                            
+                            <h3>{t("Help Us Understand Your Classroom Experience")}</h3>
                             
                             <div className="form-row">
                                 <FormInput 
@@ -343,7 +317,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 label={t("Course Name")}
                                 required
                             />
-
                             <FormInput 
                                 type="text"
                                 name="department"
@@ -352,7 +325,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 label={t("Department")}
                                 required
                             />
-
                             <FormInput 
                                 type="text"
                                 name="schoolName"
@@ -370,14 +342,20 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 className="reviewComment"
                                 required
                             />
-                            <div className='form-row'>
-                                <SizeButton/>
-                                <SizeButton/>
+                            <div className='column-wrap'>
+                                <div className="form-row rating-sliders">
+                                    <div className="slider-label">Quality</div>
+                                    <SizeButton/>
+                                </div>
+                                <div className="form-row rating-sliders">
+                                    <div className="slider-label">Difficulty</div>
+                                    <SizeButton/>
+                                </div>
                             </div>
                                          
                             <div className="terms">
-                            By clicking the "Submit" button, I acknowledge that I have read and agreed to the
-                            <span>{t(" ")}</span>
+                                By clicking the "Submit" button, I acknowledge that I have read and agreed to the
+                                <span>{t(" ")}</span>
                                 <Link to="/terms">
                                     {t("Terms of Service")}
                                 </Link>
@@ -385,7 +363,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 <Link to="/privacy">
                                     {t("Privacy Policy")}
                                 </Link>
-                            <span>{t(".")}</span>
+                                <span>{t(".")}</span>
                             </div>
                             <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>
                                 {t("Submit")}

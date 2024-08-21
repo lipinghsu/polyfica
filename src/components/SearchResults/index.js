@@ -81,7 +81,7 @@ const SearchResults = () => {
         <div className="searchTermInfo">
           {searchTerm && (
             <p>
-              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "{searchTerm}" in their name
+              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong>{searchTerm}</strong>" in their name
             </p>
           )}
         </div>
