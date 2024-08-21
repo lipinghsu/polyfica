@@ -1,9 +1,13 @@
 .column-wrap{
     display: flex;
     flex-direction: row;
+
     .rating-sliders {
     display: flex;
     flex-direction: column;
+    &:last-child {
+        margin-left: 10px;
+    }
 
     .slider-label {
         font-weight: bold;
@@ -14,21 +18,20 @@
     .button-group-container {
         display: flex;
         overflow: hidden;
-        margin: 5px 0px;
-        justify-content: left;
-        align-items: center;
+        margin: 4px 0px;
+        // justify-content: left;
+        // align-items: center;
         border-radius: 32px;
+        // background-color: black;
 
-        &:last-child {
-            margin-left: 10px;
-        }
+
 
         .button-container {
             width: 46px;
             height: 47.5px;
             padding: 0.25rem 0.75rem;
             margin: auto 2px;
-            background-color: rgba(184, 184,184, 0.5); // Light gray initially
+            background-color: rgba(184, 184,184, 0.25); // Light gray initially
             cursor: pointer;
 
             .button {

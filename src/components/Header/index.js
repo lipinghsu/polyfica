@@ -319,20 +319,21 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                             />
                             <FormInput 
                                 type="text"
-                                name="department"
-                                value={department}
-                                onChange={e => setDepartment(e.target.value)}
-                                label={t("Department")}
-                                required
-                            />
-                            <FormInput 
-                                type="text"
                                 name="schoolName"
                                 value={schoolName}
                                 onChange={e => setSchoolName(e.target.value)}
                                 label={t("School Name")}
                                 required
                             />
+                            <FormInput 
+                                type="text"
+                                name="department"
+                                value={department}
+                                onChange={e => setDepartment(e.target.value)}
+                                label={t("Department")}
+                                required
+                            />
+
                             <FormInput 
                                 type="text"
                                 name="reviewComment"

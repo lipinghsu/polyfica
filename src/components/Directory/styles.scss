@@ -61,18 +61,45 @@ $mobilefooterHeight: 0rem;
         .search-bar {
           // margin-bottom: 16px;
           width: 520px;
+
+          .suggestions {
+            position: absolute;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            // max-height: 200px;
+            // overflow-y: auto;
+            // height: 100%;
+            width: 520px;
+            z-index: 10;
+          }
+          
+          .suggestion-item {
+            height: 56px;
+            padding-left: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center; /* Vertically center the content */
+            // justify-content: center; /* Horizontally center the content */
+            
+            &:hover {
+              background: #f0f0f0;
+            }
+          }
+          
           .lu-search-icon {
             cursor: pointer;
           }
-
           .search-input {
             display: flex;
             align-items: center;
             background-color: white;
             border-radius: 28px;
             overflow: hidden;
-            margin-bottom: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.259);
+            &.active {
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+            }
+            
             svg {
               margin-left: 16px;
             }

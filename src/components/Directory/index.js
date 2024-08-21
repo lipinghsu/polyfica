@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import polyRatingsText from './../../assets/poly_ratings_text.png';
 import { LuSearch } from 'react-icons/lu';
+import { firestore } from '../../firebase/utils';
 import './styles.scss';
 
 const Directory = ({ showSignupDropdown }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [isSearchFocused, setIsSearchFocused] = useState(false); // State to manage z-index
+  const [isSearchFocused, setIsSearchFocused] = useState(false); 
+  const [suggestions, setSuggestions] = useState([]); // State to hold suggestions
   const searchBarRef = useRef(null);
   const history = useHistory();
 
@@ -45,22 +47,59 @@ const Directory = ({ showSignupDropdown }) => {
   }, [isSearchFocused]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const fetchSuggestions = async () => {
+      try {
+        if (!searchTerm) {
+          setSuggestions([]);
+          return;
+        }
+
+        const professorsRef = firestore.collection("professors");
+        let suggestions = [];
+        const searchTerms = searchTerm.toLowerCase().split(" ");
+
+        const allProfessorsSnapshot = await professorsRef.get();
+        let allProfessors = [];
+        allProfessorsSnapshot.forEach((doc) => allProfessors.push({ id: doc.id, ...doc.data() }));
+
+        suggestions = allProfessors.filter(professor =>
+          searchTerms.some(term =>
+            professor.firstName.toLowerCase().includes(term) ||
+            professor.lastName.toLowerCase().includes(term)
+          )
+        );
+
+        suggestions = suggestions.slice(0, 5);
+        setSuggestions(suggestions);
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+        setSuggestions([]);
+      }
+    };
+
+    if (searchTerm) {
+      fetchSuggestions();
+    } else {
+      setSuggestions([]);
+    }
+  }, [searchTerm]);
 
   return (
     <div className='directory'>
       <div className='wrap'>
         <div
           className='item'
-          style={{ zIndex: isSearchFocused ? 1 : showSignupDropdown ? -1 : 0 }} // Apply z-index dynamically
+          style={{ zIndex: isSearchFocused ? 1 : showSignupDropdown ? -1 : 0 }}
         >
           <div className='inner-wrap'>
             <div className='polyRatings-text'>
               <img src={polyRatingsText} alt='polyRatingsText' />
             </div>
-            <div className='search-bar' ref={searchBarRef}>
-              <div className='search-input'>
+            <div 
+              className={`search-bar ${suggestions.length > 0 ? 'active' : ''}`} 
+              ref={searchBarRef}
+            >
+              <div className={`search-input ${suggestions.length > 0 ? 'active' : ''}`} >
                 <LuSearch onClick={handleSearchClick} className='lu-search-icon' />
                 <input
                   type='text'
@@ -71,6 +110,15 @@ const Directory = ({ showSignupDropdown }) => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
+              {suggestions.length > 0 && (
+                <div className='suggestions'>
+                  {suggestions.map((professor, index) => (
+                    <div key={index} className='suggestion-item'>
+                      {professor.firstName} {professor.lastName}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <a>
               <div className='item-logo'></div>
