@@ -471,8 +471,8 @@ $customDarkGray: #b8b8b8;
         h3{
             display: block !important;
             // text-align: center;
-            font-weight: 700;
-            font-size: 1.75rem;
+            font-weight: 400;
+            font-size: 1.45rem;
 
             margin: 0.75rem auto;
             // padding:0 0 2rem 0;
@@ -561,7 +561,7 @@ $customDarkGray: #b8b8b8;
   }
 
   .close-button {
-    background-color: rgba(155, 155, 155, 0.25); /* Ensure background color uses rgba */
+    background-color: rgba(184, 184,184, 0.25); /* Ensure background color uses rgba */
     color: black;
     margin-top: 12px;
     border-radius: 50%;
@@ -576,7 +576,7 @@ $customDarkGray: #b8b8b8;
     
     /* Optional: Consider replacing float with absolute positioning if needed */
     position: absolute;
-    top: 12px;  /* Adjust as needed */
+    top: 12.5px;  /* Adjust as needed */
     right: 12px;  /* Adjust as needed */
 
     &:hover {

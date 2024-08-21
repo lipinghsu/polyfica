@@ -9,7 +9,7 @@ const sizeOptions = [
   { id: 5, value: '5' }
 ];
 
-export default function RatingSlider() {
+export default function RatingSlider({ onChange }) {  // Accept a callback prop
   const [hovered, setHovered] = useState(null);
   const [current, setCurrent] = useState(null);
 
@@ -20,8 +20,12 @@ export default function RatingSlider() {
   function handleMouseLeave() {
     setHovered(null);
   }
+
   function handleSelectedButton(size) {
     setCurrent(size.id);
+    if (onChange) {
+      onChange(size.value);  // Call the callback with the selected value
+    }
   }
 
   return (
@@ -34,12 +38,11 @@ export default function RatingSlider() {
             className={buttonClass}
             key={sizeOption.id}
             onClick={() => handleSelectedButton(sizeOption)}
-
             onMouseEnter={() => handleMouseEnter(sizeOption)}
             onMouseLeave={handleMouseLeave}
-          >
-            
+          > 
             <div className="button">
+              
             </div>
           </div>
         );

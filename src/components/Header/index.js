@@ -344,14 +344,21 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 className="reviewComment"
                                 required
                             />
+                            
                             <div className='column-wrap'>
                                 <div className="form-row rating-sliders">
                                     <div className="slider-label">Quality</div>
-                                    <RatingSlider/>
+                                    <RatingSlider
+                                        onChange={(value) => setQualityRating(value)}  // Correctly handle the value
+                                        required
+                                    />
                                 </div>
                                 <div className="form-row rating-sliders">
                                     <div className="slider-label">Difficulty</div>
-                                    <RatingSlider/>
+                                    <RatingSlider
+                                        onChange={(value) => setDifficultyRating(value)}  // Correctly handle the value
+                                        required
+                                    />
                                 </div>
                             </div>
                                          
