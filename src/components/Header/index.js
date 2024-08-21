@@ -3,22 +3,18 @@ import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOutUserStart } from '../../redux/User/user.actions';
 import { selectCartItemsCount } from '../../redux/Cart/cart.selectors';
-import DropdownMenu from './DropdownMenu';
 import SignupDropdown from './SignupDropdown';
 import ConditionalLink from './ConditionalLink';
-import WriteReviewModal from './WriteReviewModal';
 import NavItem from './NavItem';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
-import { HiOutlineShoppingBag } from "react-icons/hi";
 import { TbMenu2, TbX } from "react-icons/tb";
 import Logo from '../../assets/poly_ratings_logo.png';
-import DefaultUserImage from '../../assets/user2-w.png';
+import closeImage from '../../assets/closeImage2.png';
 import SideMenuDefaultUserImage from '../../assets/account_circle.png';
 import { firestore } from '../../firebase/utils';
 import './styles.scss';
 import RatingSlider from './RatingSlider';
-import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 const mapState = (state) => ({
@@ -287,7 +283,12 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                 <form onSubmit={handleFormSubmit}>
                     <div className={showModal ? "rev-modal active" : "rev-modal"}>
                         <div className="modal-content">
-                            <span className="close-button" onClick={() => setShowModal(false)}>&times;</span>
+                            <span className="close-button" onClick={() => setShowModal(false)}>
+                                <div className='close-image'>
+                                    {/* <closeImage/> */}
+                                    &times;
+                                </div>
+                            </span>
                             <h2>{t("Write a Review")}</h2>
                             <h3>{t("Help Us Understand Your Classroom Experience")}</h3>
                             
@@ -370,13 +371,13 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 {t("Submit")}
                             </Button>
                                                     
-                            <div className="cancel" onClick={() => setShowModal(false)}>
+                            {/* <div className="cancel" onClick={() => setShowModal(false)}>
                                 <h3>
                                     <Link to="/">
                                         {t("common:Cancel")}
                                     </Link>
                                 </h3>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </form>
