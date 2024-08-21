@@ -119,16 +119,15 @@ const TopReviews = (props) => {
                 </div>
               </div>
               <div className='bottom'>
-                <div className='user-name'>
-                  <div className=''>
-                    {review.userName || 'Anonymous'} Reviewed&nbsp; 
-                  </div>
-                <div className='prof-name'>
-                  <Link to={`/search/professors/${review.professorID}`}>
-                    {`${review.professorName}`}
-                  </Link>
-                </div>
-
+                <div className='user-prof-container'>
+                  <span className='user-name'>
+                    {review.userName || 'Anonymous'} Reviewed&nbsp;
+                  </span>
+                  <span className='prof-name'>
+                    <Link to={`/search/professors/${review.professorID}`}>
+                      {`${review.professorName}`}
+                    </Link>
+                  </span>
                 </div>
               </div>
             </div>

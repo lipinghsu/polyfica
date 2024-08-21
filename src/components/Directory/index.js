@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import polyRatingsText from './../../assets/poly_ratings_text.png';
-import { LuSearch } from 'react-icons/lu';
+import { LuSearch, LuX, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
 import './styles.scss';
 
 const Directory = ({ showSignupDropdown }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false); 
-  const [suggestions, setSuggestions] = useState([]); // State to hold suggestions
+  const [suggestions, setSuggestions] = useState([]);
   const searchBarRef = useRef(null);
   const history = useHistory();
 
@@ -24,6 +24,11 @@ const Directory = ({ showSignupDropdown }) => {
     }
   };
 
+  const handleClearSearch = () => {
+    setSearchTerm('');
+    setSuggestions([]);
+  };
+
   const handleFocus = () => {
     setIsSearchFocused(true);
   };
@@ -32,6 +37,7 @@ const Directory = ({ showSignupDropdown }) => {
     const handleClickOutside = (event) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
         setIsSearchFocused(false);
+        setSuggestions([]);
       }
     };
 
@@ -96,11 +102,11 @@ const Directory = ({ showSignupDropdown }) => {
               <img src={polyRatingsText} alt='polyRatingsText' />
             </div>
             <div 
-              className={`search-bar ${suggestions.length > 0 ? 'active' : ''}`} 
+              className={`search-bar ${isSearchFocused ? 'active' : ''}`} 
               ref={searchBarRef}
             >
               <div className={`search-input ${suggestions.length > 0 ? 'active' : ''}`} >
-                <LuSearch onClick={handleSearchClick} className='lu-search-icon' />
+                <LuSearch className='lu-search-icon' />
                 <input
                   type='text'
                   value={searchTerm}
@@ -109,6 +115,17 @@ const Directory = ({ showSignupDropdown }) => {
                   onFocus={handleFocus}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
+                {searchTerm && (
+                  <>
+                    <div onClick={handleClearSearch} className='clear-button'>
+                      CLEAR
+                    </div>
+                    <div onClick={handleClearSearch} className='arrow-button'>
+                      <LuArrowRight onClick={handleSearchClick} className='arrow-icon' />
+                    </div>
+                  </>
+                )}
+                
               </div>
               {suggestions.length > 0 && (
                 <div className='suggestions'>

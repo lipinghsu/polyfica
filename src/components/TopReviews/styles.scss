@@ -138,34 +138,31 @@
           margin-bottom:0px;
           // background-color: blue;
         }
+        .user-prof-container{
+          .user-name{
+
+          }
+          .prof-name {            
+            a {
+              color: black;
+              text-decoration: underline;
+              &:visited {
+                color: black;
+              }
+              &:hover{
+                color: #F0AF49;
+                
+              }
+            }
+          }
+        }
       }
 
       .review {
         background-color: lightgray;
       }
 
-      .user-name {
-        display: flex;
-        flex-direction: row;
-
-        .prof-name{
-          // font-weight: 500;
-        }
-        
-        a {
-          color: black;
-          text-decoration: underline;
-          
-          
-          &:visited {
-            color: black;
-          }
-          &:hover{
-            color: #F0AF49;
-            
-          }
-        }
-      }
+      
     }
   }
 }
