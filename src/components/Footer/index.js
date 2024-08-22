@@ -68,7 +68,7 @@ const Footer = () => {
       </div>
 
         {/* <p>Learn by Doing<sup><small>SM</small></sup></p> */}
-        <p>&copy; Cal Poly SLO 2024</p>
+        <p>&copy; 2024 Cal Poly SLO</p>
       </div>
     </footer>
   );

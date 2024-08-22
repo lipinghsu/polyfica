@@ -84,6 +84,7 @@ $mobilefooterHeight: 0rem;
             background-color: rgb(240, 240, 240);
             border-radius: 0 0 28px 28px;
             z-index: 10;
+
             a {
               color: black;
             }
@@ -96,12 +97,15 @@ $mobilefooterHeight: 0rem;
             cursor: pointer;
             display: flex;
             align-items: center;
+
             &:last-child:hover {
               border-radius: 0 0 28px 28px;
             }
+
             &:hover {
               background: #F0AF49;
               color: white;
+              
             }
           }
 
@@ -112,7 +116,7 @@ $mobilefooterHeight: 0rem;
 
           .clear-button,
           .arrow-icon {
-            cursor: pointer;
+            
             flex-shrink: 0;
           }
 
@@ -124,7 +128,8 @@ $mobilefooterHeight: 0rem;
             justify-content: center;
             padding-right: 16px;
             border-radius: 0 50% 50% 0;
-            margin-left: 8px;
+            margin-left: 4px;
+            cursor:pointer;
           }
 
           .arrow-button:hover {

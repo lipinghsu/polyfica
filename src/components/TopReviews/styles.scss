@@ -15,6 +15,7 @@
   }
   .title {
     margin: 0px 36px 8px 36px;
+    font-size: 25px;
     @media (max-width: 840px) {
       margin: 0 0 36px 0;
       text-align: center;
@@ -75,8 +76,8 @@
     border-radius: 25px;
     background: #F7F7F7;
     box-shadow: 5px 5px 20px #eeeeee, -5px -5px 20px #ffffff;
-    font-weight: 600;
-    font-size: 1.75rem;
+    
+    font-size: 16px;
 
     &.empty {
       background: transparent;
@@ -96,6 +97,7 @@
       }
 
       .top {
+        
         margin-top: 0px;
 
         .rating-score {
@@ -107,6 +109,7 @@
         height: 100%;
 
         .review-content {
+          
           overflow: hidden;
           text-overflow: ellipsis;
           
@@ -136,6 +139,8 @@
       }
 
       .bottom {
+        font-weight: 500;
+        font-size: 15px;
         align-self: flex;
         margin-bottom: 48px;
         @media (max-width: 840px) {
