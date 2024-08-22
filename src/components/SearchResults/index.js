@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { firestore } from "../../firebase/utils";
 import "./SearchResults.scss";
+import upArrow from "../../assets/arrow_up.png"; // Adjust the path as necessary
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -10,9 +11,51 @@ const capitalizeFirstLetter = (string) => {
 const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [averageDifficultyRating, setAverageDifficultyRating] = useState(null);
+  const [departments, setDepartments] = useState([]);
+  const [selectedDepartments, setSelectedDepartments] = useState([]);
+  const [departmentSearchTerm, setDepartmentSearchTerm] = useState("");
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const location = useLocation();
   const history = useHistory();
+  const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (filterRef.current && !filterRef.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [filterRef]);
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const professorsRef = firestore.collection("professors");
+        const professorsSnapshot = await professorsRef.get();
+        const departmentSet = new Set();
+        
+        professorsSnapshot.forEach((doc) => {
+          const department = doc.data().department;
+          if (department) {
+            departmentSet.add(department);
+          }
+        });
+
+        const departmentList = Array.from(departmentSet).sort();
+        setDepartments(departmentList);
+      } catch (error) {
+        console.error("Error fetching departments:", error);
+      }
+    };
+
+    fetchDepartments();
+  }, []);
 
   useEffect(() => {
     const fetchProfessors = async () => {
@@ -25,7 +68,6 @@ const SearchResults = () => {
         let results = [];
         const searchTerms = searchTerm.split(" ").map(term => term.toLowerCase());
 
-        // Fetch all professors and filter results in application code
         const allProfessorsSnapshot = await professorsRef.get();
         let allProfessors = [];
         allProfessorsSnapshot.forEach((doc) => allProfessors.push({ id: doc.id, ...doc.data() }));
@@ -36,6 +78,13 @@ const SearchResults = () => {
             professor.lastName.toLowerCase().includes(term)
           )
         );
+
+        // Apply department filter if any selected
+        if (selectedDepartments.length > 0) {
+          results = results.filter(professor =>
+            selectedDepartments.includes(professor.department)
+          );
+        }
 
         setSearchResults(results);
 
@@ -58,25 +107,37 @@ const SearchResults = () => {
       setSearchResults([]);
       setAverageDifficultyRating(null);
     }
-  }, [searchTerm]);
+  }, [searchTerm, selectedDepartments]);
 
+  
   const handleProfessorClick = (profID) => {
     history.push(`/search/professors/${profID}`);
   };
 
+  const handleDepartmentSearchChange = (event) => {
+    setDepartmentSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const handleDepartmentChange = (event) => {
+    const value = event.target.value;
+    setSelectedDepartments((prevSelected) =>
+      prevSelected.includes(value)
+        ? prevSelected.filter((dept) => dept !== value)
+        : [...prevSelected, value]
+    );
+  };
+
+  const toggleDropdown = (event) => {
+    event.stopPropagation(); // Prevent the event from propagating to the document
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const filteredDepartments = departments.filter(department =>
+    department.toLowerCase().includes(departmentSearchTerm)
+  );
+  
   return (
     <div className="search-result-wrap">
-      <div className="content">
-        <div className="filter">
-        {/* by department */}
-        {/* by school name */}
-        {/* by rating above {value} */}
-        </div>
-        <div className="sort">
-        {/* Number of Ratings: */}
-        {/* by rating {value} */}
-        </div>
-      </div>
       <div className="searchResults">
         <div className="searchTermInfo">
           {searchTerm && (
@@ -85,6 +146,44 @@ const SearchResults = () => {
             </p>
           )}
         </div>
+
+        <div className="filter" ref={filterRef}>
+          <div className="filter-top" onClick={toggleDropdown} >
+            <label htmlFor="department-filter" className="dropdown-label">
+              Department
+            </label>
+            <img
+              src={upArrow}
+              alt="Toggle Dropdown"
+              className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
+            />
+          </div>
+          {dropdownVisible && (
+            <div className="department-dropdown">
+              <input
+                type="text"
+                placeholder="Search department"
+                value={departmentSearchTerm}
+                onChange={handleDepartmentSearchChange}
+                className="department-search"
+              />
+              <div className="department-list">
+                {filteredDepartments.map((dept, index) => (
+                  <label key={index} className="department-option">
+                    <input
+                      type="checkbox"
+                      value={dept}
+                      checked={selectedDepartments.includes(dept)}
+                      onChange={handleDepartmentChange}
+                    />
+                    {capitalizeFirstLetter(dept)}
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         <div>
           {searchResults.map((professor, index) => (
             <div
@@ -115,7 +214,3 @@ const SearchResults = () => {
 };
 
 export default SearchResults;
-
-
-// add filter (department, school)
-// add sort (overall rating, # of reviews,)

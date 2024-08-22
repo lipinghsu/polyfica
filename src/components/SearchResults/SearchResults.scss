@@ -1,91 +1,156 @@
-.search-result-wrap{
-    display: flex;
-    flex-direction: row;
-    
-  .content{
-    // height: 100%;
-    background-color: black;
-    width: 400px;
-    margin: 32px;
-    border-radius: 16px;
-    padding: 16px;
-    .filter{
-      background-color: purple;
-      height: 200px;
-      border-radius: 8px;
-    }
-    .sort{
-      margin-top: 16px;
-      background-color: purple;
-      height: 200px;
-      border-radius: 8px;
-    }
-  }
-  
+.search-result-wrap {
+  display: flex;
+  flex-direction: column;
+
   .searchResults {
     margin-top: 20px;
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+
+    .searchTermInfo {
+      margin-bottom: 16px;
+      font-size: 1em;
+      color: #333;
+    }
+
+    .filter {
+      position: relative;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      max-width: 256px;
+      border: 1px solid rgb(185, 185, 185);
+      width: 100%;
+      cursor: pointer;
+      &:hover{
+        background-color: rgb(245, 245, 245, 0.55);
+        border: 1px solid rgb(245, 245, 245);
+      }
+      .filter-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        .dropdown-label {
+          color: black;
+          cursor: pointer;
+          width: 100%;
+        }
+
+        .arrow-icon {
+          margin-left: auto; /* Pushes the arrow to the right */
+          border-radius: 10px;
+          width: 20px;
+          height: 20px;
+          transition: transform 0.3s ease;
+          filter: brightness(0) saturate(100%) invert(11%) sepia(14%) saturate(1006%) hue-rotate(224deg) brightness(97%) contrast(90%);
+          
+          &.rotated {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .department-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px;
+        margin-top: 4px;
+        z-index: 1000;
+
+        .department-search {
+          width: 100%;
+          padding: 8px;
+          margin-bottom: 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+        }
+
+        .department-list {
+          max-height: 150px;
+          overflow-y: auto;
+        }
+
+        .department-option {
+          display: flex;
+          align-items: center;
+          padding: 8px;
+          border-bottom: 1px solid #eee;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          input[type="checkbox"] {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+
     .professor {
       width: 100%;
-      min-width: 400px; /* Limiting the maximum width */
-      border-radius: 8px; /* Rounded corners */
-      background-color: #f5f5f5; /* Slightly darker background */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
-      margin-bottom: 2px; /* Bottom margin between professors */
-      padding: 20px; /* Padding inside each professor div */
-      transition: background-color 0.05s ease-out, cursor 0.05s ease-out; /* Smooth transition for hover effect */
-  
+      min-width: 400px;
+      border-radius: 8px;
+      background-color: #f5f5f5;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2px;
+      padding: 20px;
+      transition: background-color 0.05s ease-out, cursor 0.05s ease-out;
+
       &:hover {
-        background-color: #e0e0e0; /* Lighter background color on hover */
-        cursor: pointer; /* Change cursor to pointer on hover */
+        background-color: #e0e0e0;
+        cursor: pointer;
       }
-  
+
       .professorName {
         font-weight: bold;
         font-size: 1.2em;
         color: #333;
       }
-  
+
       .department {
         font-size: 0.8em;
         margin-top: 5px;
         color: #666;
       }
-  
+
       .schoolName {
         font-size: 0.8em;
         margin-top: 5px;
         color: rgb(80, 80, 80);
       }
-  
+
       .infoContainer {
         display: flex;
-        justify-content: space-between; /* Align children at each end */
+        justify-content: space-between;
       }
-  
+
       .averageRating {
         font-weight: bold;
         font-size: 0.8em;
         color: #333;
         margin-top: 20px;
       }
-  
+
       .reviewCommentLength {
         font-size: 0.8em;
         color: #333;
         margin-top: 20px;
       }
-  
-      /* Adjust styles for the Link component */
+
       a {
-        text-decoration: none; /* Remove default underline */
-        color: inherit; /* Inherit text color */
+        text-decoration: none;
+        color: inherit;
       }
     }
   }
-  
 }
