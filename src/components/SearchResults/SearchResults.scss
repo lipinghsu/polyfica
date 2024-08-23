@@ -71,6 +71,13 @@
           border-radius: 4px;
           border: 1px solid #ccc;
         }
+
+        .department-search:focus{
+          outline: none !important;
+          border: 1px solid rgb(62, 174, 134);
+          
+          
+        }
     
         .department-list {
           max-height: 150px;
@@ -82,16 +89,27 @@
           align-items: center;
           padding: 8px;
           border-bottom: 1px solid #eee;
-          border-radius: 6px;
+          border-radius: 16px;
           font-size: 1.45rem;
+          cursor: pointer;
+        
           &:last-child {
             border-bottom: none;
           }
-          &:hover{
-            background-color: #F0AF49;
+        
+          &:hover {
+            background-color: rgb(62, 174, 134, 0.5);
           }
+        
+          &.selected {
+            transition: 0.15s ease-out;
+            background-color: rgb(62, 174, 134);
+            color:white;
+          }
+        
           input[type="checkbox"] {
-            margin-right: 8px;
+            // margin: auto 8px;
+            appearance: none;
           }
         }
       }

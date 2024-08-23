@@ -111,6 +111,9 @@ $mobilefooterHeight: 0rem;
             &:last-child:hover {
               border-radius: 0 0 28px 28px;
             }
+            &:last-child{
+              padding-bottom: 8px;
+            }
 
             &:hover {
               background: #F0AF49;

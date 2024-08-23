@@ -5,12 +5,17 @@ $customDarkGray: #b8b8b8;
     height: 6rem;
     background-color: transparent;
     z-index: 10;
-    // position: fixed;
-    width: 100%;
+    position: sticky;
     top: 0;
     padding: 0 3.6rem;
+    box-shadow: none;
+
     @media (max-width: 840px) {
         padding: 0 1.6rem;
+    }
+    &.scrolled {
+        background-color: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .wrap {

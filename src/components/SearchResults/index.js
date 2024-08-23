@@ -175,7 +175,10 @@ const SearchResults = () => {
               />
               <div className="department-list">
                 {filteredDepartments.map((dept, index) => (
-                  <label key={index} className="department-option">
+                  <label
+                    key={index}
+                    className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
+                  >
                     <input
                       type="checkbox"
                       value={dept}

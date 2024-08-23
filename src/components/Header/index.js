@@ -110,6 +110,13 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
+            if (window.scrollY > 0) {
+                setHide(false);
+                document.querySelector('header').classList.add('scrolled');
+            } else {
+                document.querySelector('header').classList.remove('scrolled');
+            }
+    
             if (window.scrollY < 45 || window.scrollY < lastScrollY) {
                 setHide(false);
             } else {
@@ -118,6 +125,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
             setLastScrollY(window.scrollY);
         }
     };
+    
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
