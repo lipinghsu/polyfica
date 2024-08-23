@@ -20,18 +20,19 @@ const SearchResults = () => {
   const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
   
+  // collapse filter dropdown menu if user click outside of the div
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (filterRef.current && !filterRef.current.contains(event.target)) {
         setDropdownVisible(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [filterRef]);
+
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -146,9 +147,9 @@ const SearchResults = () => {
             </p>
           )}
         </div>
-
-        <div className="filter" ref={filterRef}>
-          <div className="filter-top" onClick={toggleDropdown} >
+        
+        <div className="filter" ref={filterRef} >
+          <div className="filter-top" >
             <label htmlFor="department-filter" className="dropdown-label">
               Department
             </label>
@@ -158,6 +159,11 @@ const SearchResults = () => {
               className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
             />
           </div>
+
+          {/* a transparent div on top of filter-top */}
+          {/* (onClick doesn't work on padding) */}
+          <div className="filter-overlay" onClick={toggleDropdown}></div>
+          
           {dropdownVisible && (
             <div className="department-dropdown">
               <input

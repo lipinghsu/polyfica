@@ -89,14 +89,24 @@ $mobilefooterHeight: 0rem;
               color: black;
             }
           }
-
+          .suggestions .suggestion-item.active {
+            background-color: #F0AF49; /* Adjust as needed for highlighting */
+            color:white;  
+          }
+          .suggestion-item.active {
+            .professor-details{
+              .professor-department{
+                color:white ;
+              }
+              .professor-schoolName {
+                color:white ;
+              }
+            }
+          }
+          
           .suggestion-item {
-            font-size: 1.6rem;
-            height: 56px;
-            padding-left: 54px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
+            // height: 56px;
+            // align-items: center;
 
             &:last-child:hover {
               border-radius: 0 0 28px 28px;
@@ -108,6 +118,45 @@ $mobilefooterHeight: 0rem;
               
             }
           }
+          
+          .suggestion-item {
+            font-size: 1.6rem;
+            padding-left: 54px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 7px 7px 7px 54px;
+          
+            &:hover {
+              background: #F0AF49;
+              color: white;
+              .professor-details{
+                .professor-department{
+                  color:white ;
+                }
+                .professor-schoolName {
+                  color:white ;
+                }
+                
+              }
+            }
+          
+            .professor-details {
+              font-size: 1.2rem;
+              margin-top: 3px;
+          
+              .professor-department{
+                color: rgb(155, 155, 155, 1);
+              }
+              .professor-schoolName {
+                margin-top: 1px;
+                display: block;
+                color: black; /* Adjust this color as needed */
+              }
+            }
+          }
+
 
           .lu-search-icon {
             font-size: 1.6rem;

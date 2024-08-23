@@ -1,32 +1,50 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import polyRatingsText from './../../assets/poly_ratings_text.png';
-import { LuSearch, LuX, LuArrowRight } from 'react-icons/lu';
+import { LuSearch, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
 import './styles.scss';
 
 const Directory = ({ showSignupDropdown }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [isSearchFocused, setIsSearchFocused] = useState(false); 
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const searchBarRef = useRef(null);
   const history = useHistory();
 
   const handleSearchEnter = (e) => {
     if (e.key === 'Enter' && searchTerm.length > 0) {
-      history.push(`/search/professors?term=${searchTerm}`);
+      if (activeSuggestionIndex >= 0) {
+        history.push(`/search/professors/${suggestions[activeSuggestionIndex].profID}`);
+      } else {
+        history.push(`/search/professors?term=${searchTerm}`);
+      }
+    } else if (e.key === 'ArrowDown') {
+      setActiveSuggestionIndex((prevIndex) =>
+        prevIndex < suggestions.length - 1 ? prevIndex + 1 : 0
+      );
+    } else if (e.key === 'ArrowUp') {
+      setActiveSuggestionIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : suggestions.length - 1
+      );
     }
   };
 
   const handleSearchClick = () => {
     if (searchTerm.length > 0) {
-      history.push(`/search/professors?term=${searchTerm}`);
+      if (activeSuggestionIndex >= 0) {
+        history.push(`/search/professors/${suggestions[activeSuggestionIndex].profID}`);
+      } else {
+        history.push(`/search/professors?term=${searchTerm}`);
+      }
     }
   };
 
   const handleClearSearch = () => {
     setSearchTerm('');
     setSuggestions([]);
+    setActiveSuggestionIndex(-1);
   };
 
   const handleFocus = () => {
@@ -38,6 +56,7 @@ const Directory = ({ showSignupDropdown }) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
         setIsSearchFocused(false);
         setSuggestions([]);
+        setActiveSuggestionIndex(-1);
       }
     };
 
@@ -89,6 +108,7 @@ const Directory = ({ showSignupDropdown }) => {
       setSuggestions([]);
     }
   }, [searchTerm]);
+
   const highlightMatch = (text, searchTerm) => {
     const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
     return parts.map((part, index) =>
@@ -109,20 +129,23 @@ const Directory = ({ showSignupDropdown }) => {
             </div>
             <div className={`search-bar-block ${suggestions.length > 0 ? 'active' : ''}`} >
             </div>
-            <div 
-              className={`search-bar ${isSearchFocused ? 'active' : ''}`} 
+            <div
+              className={`search-bar ${isSearchFocused ? 'active' : ''}`}
               ref={searchBarRef}
             >
-              <div className={`search-input ${suggestions.length > 0 ? 'active' : ''}`} >
+              <div className={`search-input ${suggestions.length > 0 ? 'active' : ''}`}>
                 <LuSearch className='lu-search-icon' />
                 <input
                   type='text'
                   value={searchTerm}
-                  onKeyPress={handleSearchEnter}
+                  onKeyDown={handleSearchEnter}
                   placeholder='Search for a professor'
                   onFocus={handleFocus}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className={`${suggestions.length > 0 ? 'active' : ''}`} 
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setActiveSuggestionIndex(-1);
+                  }}
+                  className={`${suggestions.length > 0 ? 'active' : ''}`}
                 />
                 {searchTerm && (
                   <>
@@ -134,13 +157,22 @@ const Directory = ({ showSignupDropdown }) => {
                     </div>
                   </>
                 )}
-                
               </div>
               {suggestions.length > 0 && (
                 <div className='suggestions'>
                   {suggestions.map((professor, index) => (
-                    <Link to={`/search/professors/${professor.profID}`} key={index} className='suggestion-item'>
-                      {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
+                    <Link
+                      to={`/search/professors/${professor.profID}`}
+                      key={index}
+                      className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''}`}
+                    >
+                      <div>
+                        {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
+                      </div>
+                      <div className="professor-details">
+                        <div className="professor-department">{professor.department}</div>
+                        <div className="professor-schoolName">{professor.schoolName}</div>
+                      </div>
                     </Link>
                   ))}
                 </div>
