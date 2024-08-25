@@ -4,27 +4,32 @@
 
   .searchResults {
     margin-top: 20px;
-    font-family: Arial, sans-serif;
+    // font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .searchTermInfo {
       margin-bottom: 16px;
-      font-size: 1em;
+      font-size: 1.6rem;
       color: #333;
     }
 
     .filter {
+      height: 38px;
       position: relative;
       border-radius: 8px;
-      padding: 16px;
+      padding: 8px;
       margin-bottom: 16px;
       max-width: 256px;
       border: 1px solid rgb(185, 185, 185);
       width: 100%;
       background-color: white;
       cursor: pointer;
+
+      // display: flex;
+      justify-content: center;
+      // align-items: center;
     
       &:hover {
         background-color: rgb(245, 245, 245, 0.55);
@@ -37,9 +42,13 @@
         align-items: center;
         justify-content: space-between;
         z-index: 1; /* Make sure the content stays on top */
+        .dropdown-label{
+          font-size: 1.5rem;
+        }
       }
     
       .filter-overlay {
+        
         background-color: transparent;
         position: absolute;
         top: 0;
@@ -130,6 +139,7 @@
     
 
     .professor {
+      // height: 144git px;
       width: 100%;
       min-width: 400px;
       border-radius: 8px;
@@ -146,18 +156,18 @@
 
       .professorName {
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.6rem;
         color: #333;
       }
 
       .department {
-        font-size: 0.8em;
+        font-size: 1.2rem;
         margin-top: 5px;
         color: #666;
       }
 
       .schoolName {
-        font-size: 0.8em;
+        font-size: 1.2rem;
         margin-top: 5px;
         color: rgb(80, 80, 80);
       }

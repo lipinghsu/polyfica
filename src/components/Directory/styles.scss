@@ -38,6 +38,8 @@ $mobilefooterHeight: 0rem;
           text-align: center;
           margin-bottom: 176px;
           position: absolute;
+          // this changes the text to white
+          // filter: sepia(100%) saturate(300%) hue-rotate(230deg) brightness(2);
           img {
             width: 480px;
             height: auto;
@@ -89,39 +91,36 @@ $mobilefooterHeight: 0rem;
               color: black;
             }
           }
+
           .suggestions .suggestion-item.active {
-            background-color: #F0AF49; /* Adjust as needed for highlighting */
-            color:white;  
-          }
-          .suggestion-item.active {
-            .professor-details{
-              .professor-department{
-                color:white ;
-              }
+            background-color: #280845; 
+            color: white;
+            border-radius: 0 28px 28px 0;
+
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              width: 6px;
+              background-color: #e9b25e;
+              border-radius: 0 4px 4px 0;
+            }
+
+            &:last-child {
+              overflow: hidden;
+              border-radius: 0 28px 28px 28px;
+            }
+
+            .professor-details {
+              .professor-department,
               .professor-schoolName {
-                color:white ;
+                color: white;
               }
             }
           }
-          
-          .suggestion-item {
-            // height: 56px;
-            // align-items: center;
 
-            &:last-child:hover {
-              border-radius: 0 0 28px 28px;
-            }
-            &:last-child{
-              padding-bottom: 8px;
-            }
-
-            &:hover {
-              background: #F0AF49;
-              color: white;
-              
-            }
-          }
-          
           .suggestion-item {
             font-size: 1.6rem;
             padding-left: 54px;
@@ -130,26 +129,46 @@ $mobilefooterHeight: 0rem;
             flex-direction: column;
             align-items: flex-start;
             padding: 7px 7px 7px 54px;
-          
+            position: relative; /* Added to position the green box */
+
+            &:last-child {
+              padding-bottom: 8px;
+            }
+            &:last-child:hover{
+              border-radius: 0px 28px 28px 28px;
+            }
+
             &:hover {
-              background: #F0AF49;
+              background: #280845;
               color: white;
-              .professor-details{
-                .professor-department{
-                  color:white ;
-                }
-                .professor-schoolName {
-                  color:white ;
-                }
+              border-radius: 0px 28px 28px 0px;
+              overflow: hidden;
+
+              &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 6px; /* Width of the green box */
+                background-color: #e9b25e;
+                border-radius: 0 4px 4px 0;
                 
               }
+
+              .professor-details {
+                .professor-department,
+                .professor-schoolName {
+                  color: white;
+                }
+              }
             }
-          
+
             .professor-details {
               font-size: 1.2rem;
               margin-top: 3px;
-          
-              .professor-department{
+
+              .professor-department {
                 color: rgb(155, 155, 155, 1);
               }
               .professor-schoolName {
@@ -160,7 +179,6 @@ $mobilefooterHeight: 0rem;
             }
           }
 
-
           .lu-search-icon {
             font-size: 1.6rem;
             flex-shrink: 0;
@@ -168,7 +186,6 @@ $mobilefooterHeight: 0rem;
 
           .clear-button,
           .arrow-icon {
-            
             flex-shrink: 0;
           }
 
@@ -181,11 +198,11 @@ $mobilefooterHeight: 0rem;
             padding-right: 16px;
             border-radius: 0 50% 50% 0;
             margin-left: 4px;
-            cursor:pointer;
+            cursor: pointer;
           }
 
           .arrow-button:hover {
-            background-color: #F0AF49;
+            background-color: #e9b25e;
             color: white;
             transition: all 0.05s ease-out;
           }

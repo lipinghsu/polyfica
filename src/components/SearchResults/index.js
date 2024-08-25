@@ -207,11 +207,18 @@ const SearchResults = () => {
               <div className="schoolName">{professor.schoolName}</div>
               <div className="infoContainer">
                 <div className="averageRating">
-                  Difficulty: {averageDifficultyRating?.toFixed(1) || "-"}
+                  Difficulty: {" "}
+                  {professor.commentData?.length > 0 
+                    ? (
+                        professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) 
+                        / professor.commentData.length
+                      ).toFixed(1) 
+                    : "-"
+                  }
                 </div>
                 <div className="reviewCommentLength">
-                  {professor.reviewComment?.length || 0}{" "}
-                  {professor.reviewComment?.length > 1 ? "reviews" : "review"}
+                  {professor.commentData?.length || 0}{" "}
+                  {professor.commentData?.length > 1 ? "reviews" : "review"}
                 </div>
               </div>
             </div>
