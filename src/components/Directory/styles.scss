@@ -15,20 +15,20 @@ $mobilefooterHeight: 0rem;
     z-index: 1;
 
     .item {
-      height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+      height: calc(100vh - #{$footerHeight});
       min-width: 370px !important;
       width: 100vw;
-      top: 60px;
+      top: 0px;
       position: absolute;
       background-color: transparent;
       display: flex;
       flex-direction: column;
-      background: url('./../../assets/the_ppppp2.jpg') center top no-repeat;
+      background: url('./../../assets/the_ppppp3.jpg') center top no-repeat;
       background-size: 100% 100%;
 
       .inner-wrap {
-        height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 48px);
-        margin: 0px 36px 36px 36px;
+        height: calc(100vh - #{$footerHeight} - 48px);
+        margin: 36px 36px 36px 36px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -227,6 +227,7 @@ $mobilefooterHeight: 0rem;
 
           .search-input {
             display: flex;
+            height: 56px;
             overflow: hidden;
             align-items: center;
             background-color: white;

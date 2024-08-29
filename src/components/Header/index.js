@@ -240,6 +240,10 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 ]}
                                 {!currentUser && [
                                     <div className="signup-container" ref={dropdownRef}>
+{/*                                         
+                                        <button className="signup-btn" >
+                                        
+                                        </button> */}
                                         <button className="signup-btn" onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>

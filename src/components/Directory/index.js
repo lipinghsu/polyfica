@@ -22,11 +22,11 @@ const Directory = ({ showSignupDropdown }) => {
       }
     } else if (e.key === 'ArrowDown') {
       setActiveSuggestionIndex((prevIndex) =>
-        prevIndex < suggestions.length - 1 ? prevIndex + 1 : 0
+        prevIndex < suggestions.length - 1 ? prevIndex + 1 : -1
       );
     } else if (e.key === 'ArrowUp') {
       setActiveSuggestionIndex((prevIndex) =>
-        prevIndex > 0 ? prevIndex - 1 : suggestions.length - 1
+        prevIndex > -1 ? prevIndex - 1 : suggestions.length - 1
       );
     }
   };
