@@ -11,8 +11,8 @@ const ConditionalLink = (props) => {
     };
 
     return (
-        <Link to={props.link} onClick={handleClick} className="nav-item">
-            {props.className === "review-btn" ? 
+        <Link to={props.link} onClick={handleClick} className= {props.navClassName}>
+            {props.className === "review-btn " || props.className === "review-btn scrolled"? 
             <span className="material-symbols-outlined">
                 edit_square
             </span>

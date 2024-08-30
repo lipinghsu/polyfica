@@ -35,6 +35,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
     const [hide, setHide] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [showModal, setShowModal] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
     const [firstName, setFirstName] = useState('');
@@ -52,6 +53,17 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
     const signOut = () => {
         dispatch(signOutUserStart());
     }
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     useEffect(() => {
         const handleClickOutsideDiv = (e) => {
@@ -125,6 +137,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
             setLastScrollY(window.scrollY);
         }
     };
+    
     
 
     useEffect(() => {
@@ -211,14 +224,16 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                     <ConditionalLink 
                                         text={t("Write a Review")} 
                                         link="/login" 
-                                        className='review-btn' 
+                                        className={`review-btn ${isScrolled ? 'scrolled' : ''}`}
                                         preventLink={true}
                                         handleWriteReviewClick={handleWriteReviewClick} // Pass the function as a prop
                                     />
                                 ]}
                                 {currentUser && [
                                     <div className="signup-container" ref={dropdownRef}>
-                                        <button className="signup-btn" onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
+                                        <button 
+                                            className={`signup-btn ${isScrolled ? 'scrolled' : ''}`}
+                                            onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
                                         {showSignupDropdown && <SignupDropdown label="Log Out" link="/" signOut={signOut} />}
@@ -230,7 +245,8 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                     <ConditionalLink 
                                         text={t("Write a Review")} 
                                         link="/login" 
-                                        className='review-btn' 
+                                        className={`review-btn ${isScrolled ? 'scrolled' : ''}`}
+                                        navClassName={`nav-item ${isScrolled ? 'scrolled' : ''}`}
                                         preventLink={true}
                                         handleWriteReviewClick={handleWriteReviewClick} // Pass the function as a prop
                                     />
@@ -240,11 +256,9 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 ]}
                                 {!currentUser && [
                                     <div className="signup-container" ref={dropdownRef}>
-{/*                                         
-                                        <button className="signup-btn" >
-                                        
-                                        </button> */}
-                                        <button className="signup-btn" onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
+                                        <button     
+                                            className={`signup-btn ${isScrolled ? 'scrolled' : ''}`} 
+                                            onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
                                         {showSignupDropdown && <SignupDropdown label="Sign Me Up" link="/registration" class="SignupDropdown"/>}
