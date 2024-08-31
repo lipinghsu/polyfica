@@ -22,7 +22,7 @@ const mapState = (state) => ({
     totalNumCartItems: selectCartItemsCount(state),
 });
 
-const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
+const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { currentUser, totalNumCartItems } = useSelector(mapState);
@@ -245,9 +245,10 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                     <ConditionalLink 
                                         text={t("Write a Review")} 
                                         link="/login" 
-                                        className={`review-btn ${isScrolled ? 'scrolled' : ''}`}
-                                        navClassName={`nav-item ${isScrolled ? 'scrolled' : ''}`}
+                                        className={`review-btn ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''}`}
+                                        navClassName={`nav-item ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''}`}
                                         preventLink={true}
+                                        reviewButton={true}
                                         handleWriteReviewClick={handleWriteReviewClick} // Pass the function as a prop
                                     />
                                 ]}
@@ -257,7 +258,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown }) => {
                                 {!currentUser && [
                                     <div className="signup-container" ref={dropdownRef}>
                                         <button     
-                                            className={`signup-btn ${isScrolled ? 'scrolled' : ''}`} 
+                                            className={`signup-btn ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''}`}
                                             onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>

@@ -24,8 +24,8 @@ const DashBoardLayout = props => {
     const configUserProfile = {
         currentUser
     }
+    
     return (
-
         <div className="dashboardLayout">
             <Header {...props} />
             {/* <div className='second-header'>

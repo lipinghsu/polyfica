@@ -12,6 +12,7 @@ const HomepageLayout = (props) => {
                 {...props} 
                 showSignupDropdown={showSignupDropdown} 
                 setShowSignupDropdown={setShowSignupDropdown} 
+                homepageHeader = {true}
             />
             {React.cloneElement(props.children, { showSignupDropdown })}
             <Footer />

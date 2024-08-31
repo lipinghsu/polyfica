@@ -12,14 +12,14 @@ const ConditionalLink = (props) => {
 
     return (
         <Link to={props.link} onClick={handleClick} className= {props.navClassName}>
-            {props.className === "review-btn " || props.className === "review-btn scrolled"? 
+            {props.reviewButton ? 
             <span className="material-symbols-outlined">
                 edit_square
             </span>
             :
             null
             }
-            <span className={props.link ? "text-button " + props.className : "text-button"}>
+            <span className={props.link ? ("text-button " + props.className) : "text-button"}>
                 {props.text}
                 {/* cart item number */}
                 {props.number !== 0 && props.number &&

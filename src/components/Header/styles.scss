@@ -110,33 +110,33 @@ $customDarkGray: #b8b8b8;
                         font-size: 1.5rem;
                         font-weight: 500;
                         color: black;
-                        // background-color: rgba(230, 230, 230, 0.776);
-                        background-color: white;
+                        background-color: rgba(230, 230, 230, 0.776);
 
+                        // header- Write a Review button
+                        &:hover {
+                            background-color: #d3d3d3;
+                        }
+                        &.homepage:hover {
+                            background-color: rgba(230, 230, 230, 0.776);
+                            
+                        }
+                        &.homepage {
+                            background-color: white;
+                        }
 
+                        &:visited{
+                            color: black;
+                        }
+
+                        // write a review button - scrolled
                         &.scrolled{
                             background-color: rgba(230, 230, 230, 0.776);
                         }
-
-
-                        // write a review button - scrolled
                         &.scrolled:hover{
                             background-color: #d3d3d3;
-                            
-
                             .text-button.review-btn.scrolled{
                                 background-color: #d3d3d3;
                             }
-
-                        }
-                        
-                        // header- Write a Review button
-                        &:hover {
-                            background-color: rgba(230, 230, 230, 0.776);
-                            
-                        }
-                        &:visited{
-                            color: black;
                         }
         
                         a {
@@ -308,9 +308,12 @@ $customDarkGray: #b8b8b8;
                 }
             }
 
-            .signup-btn {
-                // background-color: rgba(230, 230, 230, 0.776)
+            .signup-btn.homepage {
                 background-color: white;
+            }
+            .signup-btn {
+                background-color: rgba(230, 230, 230, 0.776);
+                // background-color: white;
                 z-index: 500;
                 width: 36px;
                 height: 36px;
@@ -322,12 +325,10 @@ $customDarkGray: #b8b8b8;
                 cursor: pointer;
 
                 &:hover{
-                    // background-color: #d3d3d3;
-                    background-color: rgba(230, 230, 230, 0.776);
+                    background-color: #d3d3d3;
                 }
                 &.scrolled {
                     background-color: rgba(230, 230, 230, 0.776);
-                    // background-color: #2b8d6c !important;
                 }
                 &.scrolled:hover{
                     background-color: #d3d3d3;
@@ -338,9 +339,8 @@ $customDarkGray: #b8b8b8;
                     font-size: 24px;
                 }
             }
-
         }
-
+        
         .mobile {
             ul {
                 .nav-item {
@@ -615,4 +615,3 @@ $customDarkGray: #b8b8b8;
         max-height: 100%; 
     }
 }
-  
