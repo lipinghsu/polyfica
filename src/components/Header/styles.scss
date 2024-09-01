@@ -16,7 +16,10 @@ $customDarkGray: #b8b8b8;
     &.scrolled {
         background-color: rgba(254, 254, 254, 0.952);
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    }
 
+    &.sidebar-active {
+        background-color: white; // Change to your desired color
     }
     
     .wrap {
@@ -355,9 +358,11 @@ $customDarkGray: #b8b8b8;
     }
 
     .sidebar.active {
-        left: 0;
-        transition: left 0.3s ease-in-out;
-        z-index: 888;
+        width: 100vw;
+        opacity: 1;
+
+        transition: opacity 0.25s ease-in-out, left 0s ease-in;
+        left: 0px;
 
         .sidebar-items {
             .nav-item {
@@ -371,10 +376,10 @@ $customDarkGray: #b8b8b8;
     }
 
     .sidebar {
-        z-index: 888;
-        left: calc(-100% - 300px);
+        left: -100vw;
+        opacity: 0;
         transition: left 0.3s ease-in-out;
-        min-width: 29.24rem;
+        width: 100vw;
         background: white;
         height: calc(100vh - 60px);
         position: absolute;
@@ -395,7 +400,7 @@ $customDarkGray: #b8b8b8;
                 margin: 8px 0;
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: left;
 
                 a {
                     border-radius: 24px;
@@ -418,7 +423,8 @@ $customDarkGray: #b8b8b8;
                     border-radius: 50%;
                 }
 
-                &:hover a {
+                &:hover{
+                    border-radius: 24px;
                     background-color: rgba(238, 238, 238, 1);
                 }
             }
@@ -500,13 +506,17 @@ $customDarkGray: #b8b8b8;
         width: 100%;
         height: 100%;
         max-width: 600px;
-        text-align: center;
+        // text-align: center;
+        h2{
+            text-align: center;
+        }
         h3{
             display: block !important;
             font-weight: 400;
             font-size: 1.45rem;
 
             margin: 0.75rem auto;
+            text-align: center;
 
             a{
                 color: rgba($color: #b8b8b8, $alpha: 1.0);
@@ -522,6 +532,7 @@ $customDarkGray: #b8b8b8;
         }
         .terms{
             // text-align:left;
+            text-align: center;
             padding: 1rem 0 1rem 0;
             font-size: 1.45rem;
             line-height: 1.15;
@@ -559,15 +570,14 @@ $customDarkGray: #b8b8b8;
                 margin-left: 10px;
             }
 
-            // modal reviewComment input
             .reviewComment{
                 height: 128px;
-            }
+            } 
         }
+
         .form-row {
             display: flex;    
             width: space-between;
-
             .formInput {
                 width: 100%;
                 &:first-child{

@@ -23,6 +23,9 @@ export default function RatingSlider({ onChange }) {  // Accept a callback prop
 
   function handleSelectedButton(size) {
     setCurrent(size.id);
+    if(current === size.id){
+      setCurrent(-1);
+    }
     if (onChange) {
       onChange(size.value);  // Call the callback with the selected value
     }

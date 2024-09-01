@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import './styles.scss'; // Ensure this imports the necessary styles
 
 const ConditionalLink = (props) => {
     const handleClick = (e) => {
         if (props.preventLink) {
-            e.preventDefault(); // Prevents the default link behavior
-            props.handleWriteReviewClick(); // Call the function passed via props
+            e.preventDefault();
+            props.handleWriteReviewClick();
         }
     };
 

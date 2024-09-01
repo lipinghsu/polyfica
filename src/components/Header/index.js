@@ -54,6 +54,39 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         dispatch(signOutUserStart());
     }
 
+    // disable window scrolling if sidebar is active
+    useEffect(() => {
+        const handleClickOutsideDiv = (e) => {
+            if (!e.target.closest('.sidebar')) {
+                setSidebar(false);
+            }
+        };
+    
+        const lockScroll = () => {
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+        };
+    
+        const unlockScroll = () => {
+            document.body.style.position = '';
+            document.body.style.width = '';
+        };
+    
+        if (sidebar) {
+            lockScroll();
+            document.addEventListener("click", handleClickOutsideDiv, true);
+        } else {
+            unlockScroll();
+        }
+    
+        return () => {
+            unlockScroll(); // Ensure scrolling is re-enabled when the component unmounts or sidebar closes
+            document.removeEventListener('click', handleClickOutsideDiv, true);
+        };
+    }, [sidebar]);
+
+
+    // detect scroll
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0);
@@ -65,6 +98,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         };
     }, []);
 
+    // hide sidebar if user clicks outside of thie div
     useEffect(() => {
         const handleClickOutsideDiv = (e) => {
             if (!e.target.closest('.sidebar')) {
@@ -81,6 +115,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         };
     }, [sidebar]);
 
+    // hide drop down menu if user clicks outside of thie div
     useEffect(() => {
         const handleClickOutside = (event) => {
           if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -99,12 +134,14 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         };
       }, [showSignupDropdown]);
 
+    // detect window size -> mobile mode
     useEffect(() => {
         if (window.innerWidth <= 840) {
             setMobile(true);
         }
     }, []);
 
+    // detect window size -> desktop mode
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 840) {
@@ -119,6 +156,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
@@ -137,7 +175,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
             setLastScrollY(window.scrollY);
         }
     };
-    
     
 
     useEffect(() => {
@@ -198,7 +235,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
 
     return (
         <>
-            <header className={(hide ? "header hidden" : "header")}>
+            <header className={`${hide ? "header hidden" : "header"} ${sidebar ? "sidebar-active" : ""}`}>
                 <div className="wrap">
                     {mobile &&
                         <div className="sideMenu">
