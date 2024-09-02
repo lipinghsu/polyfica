@@ -10,7 +10,6 @@ import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
 import { TbMenu2, TbX } from "react-icons/tb";
 import Logo from '../../assets/poly_ratings_logo.png';
-import closeImage from '../../assets/closeImage2.png';
 import SideMenuDefaultUserImage from '../../assets/account_circle.png';
 import { firestore } from '../../firebase/utils';
 import './styles.scss';
@@ -54,39 +53,20 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         dispatch(signOutUserStart());
     }
 
-    // disable window scrolling if sidebar is active
+    // Disable window scrolling if sidebar or modal is active
     useEffect(() => {
-        const handleClickOutsideDiv = (e) => {
-            if (!e.target.closest('.sidebar')) {
-                setSidebar(false);
-            }
-        };
-    
-        const lockScroll = () => {
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100%';
-        };
-    
-        const unlockScroll = () => {
-            document.body.style.position = '';
-            document.body.style.width = '';
-        };
-    
-        if (sidebar) {
-            lockScroll();
-            document.addEventListener("click", handleClickOutsideDiv, true);
+        if (sidebar || showModal) {
+            document.body.style.overflow = 'hidden';
         } else {
-            unlockScroll();
+            document.body.style.overflow = '';
         }
-    
+
         return () => {
-            unlockScroll(); // Ensure scrolling is re-enabled when the component unmounts or sidebar closes
-            document.removeEventListener('click', handleClickOutsideDiv, true);
+            document.body.style.overflow = ''; // Clean up on component unmount
         };
-    }, [sidebar]);
+    }, [sidebar, showModal]);
 
-
-    // detect scroll
+    // Detect scroll
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0);
@@ -98,7 +78,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         };
     }, []);
 
-    // hide sidebar if user clicks outside of thie div
+    // Hide sidebar if user clicks outside of the div
     useEffect(() => {
         const handleClickOutsideDiv = (e) => {
             if (!e.target.closest('.sidebar')) {
@@ -107,41 +87,39 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         }
         if (sidebar) {
             document.addEventListener("click", handleClickOutsideDiv, true);
-            document.body.style.overflowY = 'hidden';
         }
         return () => {
             document.removeEventListener('click', handleClickOutsideDiv);
-            document.body.style.overflowY = 'visible';
         };
     }, [sidebar]);
 
-    // hide drop down menu if user clicks outside of thie div
+    // Hide dropdown menu if user clicks outside of the div
     useEffect(() => {
         const handleClickOutside = (event) => {
-          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-            setShowSignupDropdown(false);
-          }
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowSignupDropdown(false);
+            }
         };
-    
-        if (showSignupDropdown) {
-          document.addEventListener('mousedown', handleClickOutside);
-        } else {
-          document.removeEventListener('mousedown', handleClickOutside);
-        }
-    
-        return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
-        };
-      }, [showSignupDropdown]);
 
-    // detect window size -> mobile mode
+        if (showSignupDropdown) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showSignupDropdown]);
+
+    // Detect window size -> mobile mode
     useEffect(() => {
         if (window.innerWidth <= 840) {
             setMobile(true);
         }
     }, []);
 
-    // detect window size -> desktop mode
+    // Detect window size -> desktop mode
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 840) {
@@ -180,7 +158,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
             } else {
                 document.querySelector('header').classList.remove('scrolled');
             }
-    
+
             if (window.scrollY < 45 || window.scrollY < lastScrollY) {
                 setHide(false);
             } else {
@@ -189,7 +167,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
             setLastScrollY(window.scrollY);
         }
     };
-    
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -204,7 +181,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
 
     const handleWriteReviewClick = () => {
         setShowModal(!showModal);
-        if(!showModal){
+        if (!showModal) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
@@ -234,7 +211,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                 schoolName: schoolName,
                 commentData: [commentData]
             };
-            
+
             const docRef = await firestore.collection('professors').add(newProfessorData);
             await docRef.update({
                 profID: docRef.id

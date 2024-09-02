@@ -2,7 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { firestore } from "../../firebase/utils";
 import "./SearchResults.scss";
+import ConditionalLink from "../Header/ConditionalLink";
 import upArrow from "../../assets/arrow_up.png"; // Adjust the path as necessary
+
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -151,7 +153,7 @@ const SearchResults = () => {
             </h2>
           )}
         </div>
-        
+        {/* add filters: (# of reviews: [any, 20+, 50+, 90+]) (ratings:[any, 2.0+, 3.0+, 4.0+, 4.5+])  */}
         <div className="filter" ref={filterRef} >
           <div className="filter-top" >
             <label htmlFor="department-filter" className="dropdown-label">
@@ -227,6 +229,26 @@ const SearchResults = () => {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+      <div className="search-bottom">
+        <div className="box-temp">
+
+        </div>
+        <div className="text-a">
+          Can't find a professor?
+        </div>
+        <div className="text-b">
+          They might not be listed on <strong>polyRatings</strong> yet. Add them and be the first to write a review!
+        </div>
+        <div className="review-btn">
+          <ConditionalLink 
+              text={("Write a Review")} 
+              link="/login" 
+              className={`review-btn`}
+              preventLink={true}
+              // handleWriteReviewClick={handleWriteReviewClick} 
+          />
         </div>
       </div>
     </div>

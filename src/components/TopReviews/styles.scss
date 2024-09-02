@@ -1,8 +1,11 @@
 .top-reviews {
+  padding-top: 54px;
+  margin-bottom: 55px;
   height: 100%;
-  padding-bottom: 18px;
+  
   margin: auto 32px;
   height: 800px;
+  margin-bottom: 55px;
   @media (max-width: 840px) {
     margin: auto 32px;
     height: 700px;
@@ -34,6 +37,7 @@
       flex: 1 1 30%;
       max-width: 30%;
       margin: 1.5%;
+      min-height: 320px;
       height: 320px;
       
 

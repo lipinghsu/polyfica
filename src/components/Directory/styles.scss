@@ -7,7 +7,7 @@ $mobilefooterHeight: 0rem;
   z-index: 1;
 
   .wrap {
-    height: calc(100vh - #{$footerHeight});
+    height: calc(100vh - #{$footerHeight + $headerHeight});
     background-size: 100% 100%;
     display: flex;
     justify-content: center;
