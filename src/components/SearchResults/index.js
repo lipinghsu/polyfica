@@ -35,7 +35,6 @@ const SearchResults = () => {
     };
   }, [filterRef]);
 
-
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
@@ -131,7 +130,8 @@ const SearchResults = () => {
   };
 
   const toggleDropdown = (event) => {
-    event.stopPropagation(); // Prevent the event from propagating to the document
+    // Prevent the event from propagating to the document
+    event.stopPropagation(); 
     setDropdownVisible(!dropdownVisible);
   };
 
@@ -140,21 +140,22 @@ const SearchResults = () => {
   );
 
   const searchTermStyle = {
-    color: '#3EAE86', // Change 'red' to your desired color
+    color: '#3EAE86'
   };
   
   return (
     <div className="search-result-wrap">
-      <div className="searchResults">
-        <div className="searchTermInfo">
+      <div className="searchTermInfo">
           {searchTerm && (
             <h2>
               {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={searchTermStyle}>{searchTerm}</strong>" in their name
             </h2>
           )}
-        </div>
+      </div>
+      <div className="searchResults">
+
         {/* add filters: (# of reviews: [any, 20+, 50+, 90+]) (ratings:[any, 2.0+, 3.0+, 4.0+, 4.5+])  */}
-        <div className="filter" ref={filterRef} >
+        <div className="filter" ref={filterRef}>
           <div className="filter-top" >
             <label htmlFor="department-filter" className="dropdown-label">
               Department
@@ -165,10 +166,10 @@ const SearchResults = () => {
               className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
             />
           </div>
-
-          {/* a transparent div on top of filter-top */}
-          {/* (onClick doesn't work on padding) */}
-          <div className="filter-overlay" onClick={toggleDropdown}></div>
+          <div className="filter-overlay" onClick={toggleDropdown}>
+            {/* this is a transparent div on top of filter-top */}
+            {/* added because onClick doesn't work on padding */}
+          </div>
           
           {dropdownVisible && (
             <div className="department-dropdown">
@@ -199,7 +200,8 @@ const SearchResults = () => {
           )}
         </div>
 
-        <div>
+        <div className="prof-wrap">
+
           {searchResults.map((professor, index) => (
             <div
               key={index}
@@ -229,28 +231,34 @@ const SearchResults = () => {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-      <div className="search-bottom">
-        <div className="box-temp">
+
+          <div className="search-bottom">
+            <div className="box-temp">
+
+            </div>
+            <div className="text-a">
+              Can't find a professor?
+            </div>
+            <div className="text-b">
+            They may not be on <strong>polyRatings</strong> yet. Add them now and be the first to write a review!
+            </div>
+            <div className="review-btn">
+              <ConditionalLink 
+                  text={("Write a Review")} 
+                  link="/login" 
+                  className={`review-btn`}
+                  preventLink={true}
+                  // handleWriteReviewClick={handleWriteReviewClick} 
+              />
+            </div>
+          </div>
 
         </div>
-        <div className="text-a">
-          Can't find a professor?
-        </div>
-        <div className="text-b">
-          They might not be listed on <strong>polyRatings</strong> yet. Add them and be the first to write a review!
-        </div>
-        <div className="review-btn">
-          <ConditionalLink 
-              text={("Write a Review")} 
-              link="/login" 
-              className={`review-btn`}
-              preventLink={true}
-              // handleWriteReviewClick={handleWriteReviewClick} 
-          />
-        </div>
+
+        
+
       </div>
+      
     </div>
   );
 };

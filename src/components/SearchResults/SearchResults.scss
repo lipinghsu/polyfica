@@ -1,25 +1,52 @@
 .search-result-wrap {
   display: flex;
   flex-direction: column;
+  margin: auto 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .searchTermInfo {
+    width: 100%;
+    // background-color: #f8f9fa;;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: 1.6rem;
+    color: #333;
+    justify-content: center;
+    text-align: center;
+    
+  }
+  
   .searchResults {
-
+    padding: 0 72px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    // align-items: center;
 
-    .searchTermInfo {
-      margin-bottom: 16px;
-      font-size: 1.6rem;
-      color: #333;
+    @media (max-width: 840px) {
+      flex-direction: column;
+
+      .prof-wrap{
+        padding-left: 0 !important;
+      }
     }
 
     .filter {
+      width: 370px !important;
+      top: 0;
+      @media (max-width: 840px) {
+        width: 100% !important;
+      }
+      
+      width: 370px;
       height: 38px;
       position: relative;
       border-radius: 8px;
       padding: 8px;
-      margin-bottom: 20px;
-      max-width: 256px;
+      margin-bottom: 18px;
+      // max-width: 256px;
       border: 1px solid rgb(185, 185, 185);
       width: 100%;
       background-color: white;
@@ -32,7 +59,6 @@
       }
     
       .filter-top {
-        
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -102,7 +128,7 @@
           }
         
           &:hover {
-            background-color: rgb(62, 174, 134, 0.5);
+            background-color: rgba(230, 230, 230, 0.776);
           }
         
           &.selected {
@@ -131,111 +157,121 @@
         }
       }
     }
-    
 
-    .professor {
-      // height: 144git px;
+    .search-bottom{
       width: 100%;
-      min-width: 400px;
-      border-radius: 8px;
-      background-color: #f5f5f5;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2px;
-      padding: 20px;
-      transition: background-color 0.05s ease-out, cursor 0.05s ease-out;
-
-      &:hover {
-        background-color: #e0e0e0;
-        cursor: pointer;
-      }
-
-      .professorName {
-        font-weight: bold;
-        font-size: 1.6rem;
-        color: #333;
-      }
-
-      .department {
-        font-size: 1.2rem;
-        margin-top: 5px;
-        color: #666;
-      }
-
-      .schoolName {
-        font-size: 1.2rem;
-        margin-top: 5px;
-        color: rgb(80, 80, 80);
-      }
-
-      .infoContainer {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .averageRating {
-        font-weight: bold;
-        font-size: 0.8em;
-        color: #333;
-        margin-top: 20px;
-      }
-
-      .reviewCommentLength {
-        font-size: 0.8em;
-        color: #333;
-        margin-top: 20px;
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-    }
-  }
-
-  .search-bottom{
-
-    width: 400px;
-    margin: 36px auto;
-    padding: 16px;
-    height: 144px;
-    border-radius: 13px;
-    // background-color: #04da8d;
-    background-color: #3eae86;
-    font-size:  16px;
-    font-weight: 700px !important;
-    // .box-temp{
-    //   background-color: white;
-    //   width: 32px;
-    //   height: 32px;
-    // }
-    .text-a{
-      font-weight: 700;
-    }
-    .text-b{
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-    .review-btn{
+      margin: 36px auto;
+      padding: 16px;
+      height: 144px;
+      border-radius: 13px;
       
-      background-color: black;
-      align-items: center; 
-      justify-content: center; 
-      text-align: center;
-      height: 36px;
-      border-radius: 18px;
-      display: flex;
-      color:white;
-      // margin: auto 12px;
-      // width: 168px;
-      a{
+      background-color: #3EAE86;
+      font-size: 16px;
+      font-weight: 700px !important;
+      // .box-temp{
+      //   background-color: white;
+      //   width: 32px;
+      //   height: 32px;
+      // }
+      .text-a{
+        font-weight: 700;
+      }
+      .text-b{
+        margin-top: 8px;
+        margin-bottom: 16px;
+      }
+  
+      .review-btn{
+        &:hover{
+          .review-btn{
+            background-color: rgb(25, 25, 25);
+          }
+          
+        }
+        
+        background-color: black;
+        align-items: center; 
+        justify-content: center; 
+        text-align: center;
         height: 36px;
-        // background-color: red;
-        span{
+        border-radius: 18px;
+        display: flex;
+        color: white;
+        // margin: auto 12px;
+        // width: 168px;
+        a{
+          width: 100%;
           height: 36px;
-          // background-color: orange;
+          // background-color: red;
+          span{
+            height: 36px;
+            // background-color: orange;
+          }
+        }
+  
+      }
+    }
+    
+    .prof-wrap{
+      width: 100%;
+      padding-left: 36px;
+      .professor {
+        // height: 144git px;
+        width: 100%;
+        min-width: 380px;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2px;
+        padding: 20px;
+        transition: background-color 0.05s ease-out, cursor 0.05s ease-out;
+  
+        &:hover {
+          background-color: #e0e0e0;
+          cursor: pointer;
+        }
+  
+        .professorName {
+          font-weight: bold;
+          font-size: 1.6rem;
+          color: #333;
+        }
+  
+        .department {
+          font-size: 1.2rem;
+          margin-top: 5px;
+          color: #666;
+        }
+  
+        .schoolName {
+          font-size: 1.2rem;
+          margin-top: 5px;
+          color: rgb(80, 80, 80);
+        }
+  
+        .infoContainer {
+          display: flex;
+          justify-content: space-between;
+        }
+  
+        .averageRating {
+          font-weight: bold;
+          font-size: 0.8em;
+          color: #333;
+          margin-top: 20px;
+        }
+  
+        .reviewCommentLength {
+          font-size: 0.8em;
+          color: #333;
+          margin-top: 20px;
+        }
+  
+        a {
+          text-decoration: none;
+          color: inherit;
         }
       }
-
-    }
+    } 
   }
 }

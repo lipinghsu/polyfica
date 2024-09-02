@@ -7,6 +7,11 @@ $headerHeight: 6rem;
 $signInMargin: 0rem;
 
 .authWrapper{
+    display: flex; /* Change to flexbox */
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+
     padding: calc(50vh - 24rem - #{$headerHeight} - #{$footerHeight}) 2rem;
     padding-top: calc(50vh - 24rem - #{$headerHeight} - #{$footerHeight} - 2rem);
     height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$signInMargin}*2);
@@ -20,7 +25,7 @@ $signInMargin: 0rem;
     .wrap{
         padding: 1rem 2rem;
         white-space: pre-wrap;
-        
+        width: 100%;
         // dont have an account?
         h2{
             font-size: 2.75rem;
