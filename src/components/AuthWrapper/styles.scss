@@ -8,7 +8,8 @@ $signInMargin: 0rem;
 
 .authWrapper{
     padding: calc(50vh - 24rem - #{$headerHeight} - #{$footerHeight}) 2rem;
-    // height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$signInMargin}*2);
+    padding-top: calc(50vh - 24rem - #{$headerHeight} - #{$footerHeight} - 2rem);
+    height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$signInMargin}*2);
     display: block;
     width: 100%;
     

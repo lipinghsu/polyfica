@@ -7,15 +7,15 @@ $headerHeight: 6rem;
 $signInMargin: 4rem;
 
 .main-account{
-    // background: #f8f8f8;
+    // height: calc(100vw - $headerHeight - $signInMargin);
 }
 .authWrapper{
     .wrap{
-            // Neumorphism //     
-            background: #fcfcfc;
+            padding-top: 17.5px;
+            background: #f8f9fa;
             border-radius: 25px;
-            box-shadow:  3.5px 3.5px 20px #eeeeee,
-                        -15.5px -15.5px 20px #ffffff;
+            box-shadow:  3.5px 3.5px 2px #eeeeee,
+                        -3.5px -3.5px 2px #ffffff;
         
         .formWrap{
             .errorMessage{

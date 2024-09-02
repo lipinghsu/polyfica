@@ -157,6 +157,20 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         };
     }, []);
 
+    // Dismiss modal on Esc key press
+    useEffect(() => {
+        const handleEsc = (event) => {
+            if (event.keyCode === 27) {  // 27 is the keycode for the Esc key
+                setShowModal(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleEsc);
+
+        return () => {
+            window.removeEventListener('keydown', handleEsc);
+        };
+    }, []);
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
@@ -299,7 +313,8 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                             onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
-                                        {showSignupDropdown && <SignupDropdown label="Sign Me Up" link="/registration" class="SignupDropdown"/>}
+                                        {showSignupDropdown && 
+                                        <SignupDropdown label="Sign Me Up" link="/registration" class="SignupDropdown"/>}
                                     </div>
                                 ]}
                             </ul>

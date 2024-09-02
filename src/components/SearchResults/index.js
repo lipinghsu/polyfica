@@ -136,15 +136,19 @@ const SearchResults = () => {
   const filteredDepartments = departments.filter(department =>
     department.toLowerCase().includes(departmentSearchTerm)
   );
+
+  const searchTermStyle = {
+    color: '#3EAE86', // Change 'red' to your desired color
+  };
   
   return (
     <div className="search-result-wrap">
       <div className="searchResults">
         <div className="searchTermInfo">
           {searchTerm && (
-            <p>
-              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong>{searchTerm}</strong>" in their name
-            </p>
+            <h2>
+              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={searchTermStyle}>{searchTerm}</strong>" in their name
+            </h2>
           )}
         </div>
         
