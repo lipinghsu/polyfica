@@ -153,52 +153,61 @@ const SearchResults = () => {
           )}
       </div>
       <div className="searchResults">
+          <div className="filter-wrap">
+            {/* add filters: (# of reviews: [any, 20+, 50+, 90+]) (ratings:[any, 2.0+, 3.0+, 4.0+, 4.5+])  */}
 
-        {/* add filters: (# of reviews: [any, 20+, 50+, 90+]) (ratings:[any, 2.0+, 3.0+, 4.0+, 4.5+])  */}
-        <div className="filter" ref={filterRef}>
-          <div className="filter-top" >
-            <label htmlFor="department-filter" className="dropdown-label">
+            
+            <div className="filter-dep" ref={filterRef}>
+            {/* <div className="dep-filter-title" ref={filterRef}>
               Department
-            </label>
-            <img
-              src={upArrow}
-              alt="Toggle Dropdown"
-              className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
-            />
-          </div>
-          <div className="filter-overlay" onClick={toggleDropdown}>
-            {/* this is a transparent div on top of filter-top */}
-            {/* added because onClick doesn't work on padding */}
-          </div>
-          
-          {dropdownVisible && (
-            <div className="department-dropdown">
-              <input
-                type="text"
-                placeholder="Search department"
-                value={departmentSearchTerm}
-                onChange={handleDepartmentSearchChange}
-                className="department-search"
-              />
-              <div className="department-list">
-                {filteredDepartments.map((dept, index) => (
-                  <label
-                    key={index}
-                    className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
-                  >
-                    <input
-                      type="checkbox"
-                      value={dept}
-                      checked={selectedDepartments.includes(dept)}
-                      onChange={handleDepartmentChange}
-                    />
-                    {capitalizeFirstLetter(dept)}
-                  </label>
-                ))}
+            </div> */}
+              <div className="filter-top" >
+              
+                <label htmlFor="department-filter" className="dropdown-label">
+                  {/* Any */}
+                  Department
+                </label>
+                <img
+                  src={upArrow}
+                  alt="Toggle Dropdown"
+                  className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
+                />
               </div>
+              <div className="filter-overlay" onClick={toggleDropdown}>
+                {/* this is a transparent div on top of filter-top */}
+                {/* added because onClick doesn't work on padding */}
+              </div>
+              
+              {dropdownVisible && (
+                <div className="department-dropdown">
+                  <input
+                    type="text"
+                    placeholder="Search department"
+                    value={departmentSearchTerm}
+                    onChange={handleDepartmentSearchChange}
+                    className="department-search"
+                  />
+                  <div className="department-list">
+                    {filteredDepartments.map((dept, index) => (
+                      <label
+                        key={index}
+                        className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
+                      >
+                        <input
+                          type="checkbox"
+                          value={dept}
+                          checked={selectedDepartments.includes(dept)}
+                          onChange={handleDepartmentChange}
+                        />
+                        {capitalizeFirstLetter(dept)}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </div>
+
 
         <div className="prof-wrap">
 
