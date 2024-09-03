@@ -27,7 +27,7 @@ export default function RatingSlider({ onChange }) {  // Accept a callback prop
       setCurrent(-1);
     }
     if (onChange) {
-      onChange(size.value);  // Call the callback with the selected value
+      onChange(size.value);
     }
   }
 

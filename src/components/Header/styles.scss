@@ -118,9 +118,6 @@ $customDarkGray: #b8b8b8;
                             // padding: auto 8px !important;
     
                         }
-                        &:nth-child(1):hover{
-                            background-color: #359b77;
-                        }
                         &:nth-child(1):visited{
                             color: white;   
                             
@@ -169,12 +166,16 @@ $customDarkGray: #b8b8b8;
                 }
             }
 
+            // header log in button
             li.nav-item:nth-child(2) {
                 a {
                     color: white;
                 }
 
                 &:hover {
+                    .text-button:nth-child(1){
+                        background-color: #2b8d6c;    
+                    }
                     background-color: #2b8d6c;
                 }
             }
@@ -485,7 +486,7 @@ $customDarkGray: #b8b8b8;
                 .row-review{
                     font-weight: 500; 
                     height: 36px;
-                    margin-top: 8px;
+                    margin-top: 16px;
                     border-radius: 24px;
                     color:white;
                     background-color: black;

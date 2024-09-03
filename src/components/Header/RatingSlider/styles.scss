@@ -1,31 +1,20 @@
-.column-wrap {
+.column-wrap{
     display: flex;
     flex-direction: row;
-    @media (max-width: 540px) {
-        text-align: center;
+    @media(max-width: 540px){
+        flex-direction: column ;
+        justify-content: center;
         align-items: center;
-        flex-direction: column !important;
+        text-align: center;
     }
 
     .rating-sliders {
-        @media (max-width: 540px) {
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            // border: 1px solid rgb(228, 228, 228);
-            // border-radius: 6px;
-            // box-shadow: rgba(126, 126, 126, 0.25) 0px 4px 4px;
-            
-        }
-
         display: flex;
         flex-direction: column;
-
         &:last-child {
             margin-left: 10px;
-            @media (max-width: 540px) {
-                margin-left: 0 !important;
-                margin-top: 7.5px;
+            @media(max-width: 540px){
+                margin-left: 0px;
             }
         }
 
@@ -35,11 +24,79 @@
             font-size: 1.2rem;
         }
 
-        .button-group-container {
+        .button-group-container{
             display: flex;
             overflow: hidden;
             margin: 4px 0px;
             border-radius: 32px;
+
+            
+
+            // // Hover effects for when a specific button is hovered
+            // .hovered-1 ~ .button-container:nth-child(1) {
+            //     background-color: rgba(255, 94, 94, 0.55); // Color for the first button when the first is hovered
+            // }
+
+
+            // .hovered-2 ~ .button-container:nth-child(1) {
+            //     background-color: rgba(255, 94, 94, 0.55); // Different color for the first button when the second is hovered
+            // }
+
+            // .hovered-2 ~ .button-container:nth-child(2) {
+            //     background-color: rgba(255, 161, 94, 0.55); // Color for the second button when the second is hovered
+            // }
+
+
+            // .hovered-3 ~ .button-container:nth-child(1) {
+            //     background-color: rgba(255, 94, 94, 0.55); // Different color for the first button when the third is hovered
+            // }
+
+            // .hovered-3 ~ .button-container:nth-child(2) {
+            //     background-color: rgba(255, 161, 94, 0.55); // Different color for the second button when the third is hovered
+            // }
+
+            // .hovered-3 ~ .button-container:nth-child(3) {
+            //     background-color: rgba(255, 214, 94, 0.55); // Color for the third button when the third is hovered
+            // }
+
+
+            // .hovered-4 ~ .button-container:nth-child(1) {
+            //     background-color: rgba(255, 94, 94, 0.55); // Color for the first button when the fourth is hovered
+            // }
+
+            // .hovered-4 ~ .button-container:nth-child(2) {
+            //     background-color: rgba(255, 161, 94, 0.55); // Color for the second button when the fourth is hovered
+            // }
+
+            // .hovered-4 ~ .button-container:nth-child(3) {
+            //     background-color: rgba(255, 214, 94, 0.55); // Color for the third button when the fourth is hovered
+            // }
+
+            // .hovered-4 ~ .button-container:nth-child(4) {
+            //     background-color: rgba(165, 214, 108, 0.55); // Color for the fourth button when the fourth is hovered
+            // }
+
+
+            // .hovered-5 ~ .button-container:nth-child(1) {
+            //     background-color: rgba(255, 94, 94, 0.55); // Color for the first button when the fifth is hovered
+            // }
+
+            // .hovered-5 ~ .button-container:nth-child(2) {
+            //     background-color: rgba(255, 161, 94, 0.55); // Color for the second button when the fifth is hovered
+            // }
+
+            // .hovered-5 ~ .button-container:nth-child(3) {
+            //     background-color: rgba(255, 214, 94, 0.55); // Color for the third button when the fifth is hovered
+            // }
+
+            // .hovered-5 ~ .button-container:nth-child(4) {
+            //     background-color: rgba(165, 214, 108, 0.55); // Color for the fourth button when the fifth is hovered
+            // }
+
+            // .hovered-5 ~ .button-container:nth-child(5) {
+            //     background-color: rgba(94, 193, 108, 0.55); // Color for the fifth button when the fifth is hovered
+            // }
+
 
             .button-container {
                 transition: all 0.2s ease-out;
@@ -47,8 +104,73 @@
                 height: 47.5px;
                 padding: 0.25rem 0.75rem;
                 margin: auto 2px;
-                background-color: rgba(184, 184,184, 0.25);
+                background-color: rgba(184, 184,184, 0.25); // Light gray initially
                 cursor: pointer;
+
+                @media(max-width: 540px){
+                    width: 69px;
+                }
+
+                &.hovered-1 {
+                    &:nth-child(1) {
+                        background-color: rgba(255, 94, 94, 0.55);
+                    }
+                }
+        
+                &.hovered-2 {
+                    &:nth-child(1) {
+                        background-color: rgba(255, 94, 94, 0.55); 
+                    }
+                    &:nth-child(2) {
+                        background-color: rgba(255, 161, 94, 0.55); 
+                    }
+                    
+                }
+        
+                &.hovered-3 {
+                    &:nth-child(1) {
+                        background-color: rgba(255, 94, 94, 0.55);
+                    }
+                    &:nth-child(2) {
+                        background-color: rgba(255, 161, 94, 0.55); 
+                    }
+                    &:nth-child(3) {
+                        background-color: rgba(255, 214, 94, 0.55);
+                    }
+                }
+
+                &.hovered-4 {
+                    &:nth-child(1) {
+                        background-color: rgba(255, 94, 94, 0.55);
+                    }
+                    &:nth-child(2) {
+                        background-color: rgba(255, 161, 94, 0.55); 
+                    }
+                    &:nth-child(3) {
+                        background-color: rgba(255, 214, 94, 0.55);
+                    }
+                    &:nth-child(4) {
+                        background-color: rgba(165, 214, 108, 0.55);
+                    }
+                }
+
+                &.hovered-5 {
+                    &:nth-child(1) {
+                    background-color: rgba(255, 94, 94, 0.55);
+                    }
+                    &:nth-child(2) {
+                    background-color: rgba(255, 161, 94, 0.55); 
+                    }
+                    &:nth-child(3) {
+                        background-color: rgba(255, 214, 94, 0.55);
+                    }
+                    &:nth-child(4) {
+                        background-color: rgba(165, 214, 108, 0.55);
+                    }
+                    &:nth-child(5) {
+                        background-color: rgba(94, 193, 108, 0.55);
+                    }
+                }
 
                 .button {
                     display: flex;
@@ -63,13 +185,14 @@
                 }
 
                 &:first-child {
-                    border-radius: 50% 0 0 50% !important;
+                    border-radius: 23px 0 0 23px !important;
                 }
 
                 &:last-child {
-                    border-radius: 0 50% 50% 0 !important;
+                    border-radius: 0 23px 23px 0 !important;
                 }
 
+                // Active state - fully opaque of the respective color
                 &:nth-child(1).active {
                     background-color: #FF5E5E;
                 }
