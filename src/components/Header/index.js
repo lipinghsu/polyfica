@@ -62,7 +62,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         }
 
         return () => {
-            document.body.style.overflow = ''; // Clean up on component unmount
+            document.body.style.overflow = '';
         };
     }, [sidebar, showModal]);
 
@@ -237,6 +237,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                             </a>
                         </div>
                     }
+                    
 
                     <div className="logo">
                         <Link to="/">
@@ -281,7 +282,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                     />
                                 ]}
                                 {!currentUser && [
-                                    <NavItem text={t("Log In")} link="/login" className="login-button" />
+                                    <NavItem text={t("Log In")} link="/login" className="login-button" mobile={false}/>
                                 ]}
                                 {!currentUser && [
                                     <div className="signup-container" ref={dropdownRef}>
@@ -299,7 +300,8 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                     }
                 </div>
 
-                <div className={sidebar ? "sidebar active" : "sidebar"} ref={refOutsideDiv}>
+                {/*  */}
+                <div className= {sidebar ? "sidebar active" : "sidebar"} ref={refOutsideDiv}>
                     <ul className="sidebar-items">
                         {currentUser && [
                             <div className='row-account'>
@@ -322,12 +324,22 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 setSidebar={setSidebar} sidebar={sidebar} signOut={signOut} logOutButton={true} text={t("Log out")}
                             />,
                         ]}
-
+                        {/* mobile, not logged in */}
+                        {/* side menu needs to be dismissed */}
                         {!currentUser && [
                             <div className='logged-out'>
                                 <div className='account'>
                                     <NavItem text={t("Log in")} link="/login" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
                                     <NavItem text={t("Sign up")} link="/registration" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
+                                </div>
+                                <div className='row-review' onClick={handleWriteReviewClick}>
+                                    <ConditionalLink 
+                                        text={t("Write a Review")} 
+                                        link="/login" 
+                                        className={`review-btn ${isScrolled ? 'scrolled' : ''}`}
+                                        preventLink={true}
+                                        handleWriteReviewClick={handleWriteReviewClick}
+                                    />
                                 </div>
                             </div>
                         ]}

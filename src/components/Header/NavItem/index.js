@@ -17,10 +17,16 @@ const NavItem = props => {
         return () => {
             document.removeEventListener('click', handleClickOutsideDiv);
         };
-    }, [open])
+    }, [open]);
+
+    const handleClick = () => {
+        if (props.mobile) {
+            props.setSidebar(false);
+        }
+    };
 
     return(
-        <li className="nav-item">
+        <Link className="nav-item" to={props.link} onClick={handleClick}>
             {/* not mobile, image */}
             {props.image && !props.mobile &&
             <div ref={refOutsideDiv} className="profile-image-button">
@@ -41,7 +47,7 @@ const NavItem = props => {
                         <span className="text-button">
                             {props.text} 
                             {/* cart item number */}
-                            {props.number != 0 && props.number &&
+                            {props.number !== 0 && props.number &&
                                 <span> ({props.number})</span>
                             }
                         </span>
@@ -52,7 +58,7 @@ const NavItem = props => {
                     <span className="text-button">
                         {props.text} 
                         {/* cart item number */}
-                        {props.number != 0 && props.number &&
+                        {props.number !== 0 && props.number &&
                             <span> ({props.number})</span>
                         }
                     </span>
@@ -65,7 +71,7 @@ const NavItem = props => {
             {/* mobile, image (account) */}
             {props.image && props.mobile &&
             <div>
-                <Link to= {props.link} >
+                <Link to= {props.link}>
                 <img
                     src={props.image} 
                     alt="userProfilePicture" 
@@ -77,7 +83,7 @@ const NavItem = props => {
             }
             {/* mobile, text */}
             {props.text && props.mobile &&
-            <div onClick= {() => {props.setSidebar(false);}}>              
+            <div>              
                 <Link to= {props.link} >
                     <span className="text-button">
                         {props.text} 
@@ -98,7 +104,7 @@ const NavItem = props => {
 
             </div>
             }
-        </li>
+        </Link>
     )
 }
 

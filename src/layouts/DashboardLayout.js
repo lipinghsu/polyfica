@@ -28,9 +28,7 @@ const DashBoardLayout = props => {
     return (
         <div className="dashboardLayout">
             <Header {...props} />
-            {/* <div className='second-header'>
-                <UserProfile {...configUserProfile} />
-            </div> */}
+            
             <div className="controlPanel">
                 <div className="sidebar">
                     <VerticalNav>

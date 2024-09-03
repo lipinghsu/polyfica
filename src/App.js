@@ -113,11 +113,6 @@ const App = props => {
             </MainLayout>
           )} />
 
-          {/* <Route path ="/profile/:userID" render={() =>(
-              <DashBoardLayout>
-                <Profile />
-              </DashBoardLayout>
-          )} /> */}
           {/* Route to display the professor profile */}
           <Route path="/search/professors/:profID" render={({ match }) => (
             <MainLayout>
@@ -129,7 +124,7 @@ const App = props => {
           {/* Route to display search results */}
           <Route path="/search" render={() => (
             <MainLayout>
-              <SearchResults onSelectProfessor={setSelectedProfessor} />
+              <SearchResults onSelectProfessor={setSelectedProfessor}/>
             </MainLayout>
           )} />
 

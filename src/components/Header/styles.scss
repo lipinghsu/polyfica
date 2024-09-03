@@ -102,9 +102,31 @@ $customDarkGray: #b8b8b8;
             ul {
                 .nav-item {
                     .text-button {
+                        
                         align-items: center;
                         justify-content: center;
+
+                        // header log in button
+                        &:nth-child(1){
+                            margin: auto 8px;
+                            font-weight: 500;
+                            font-size: 1.5rem;
+                            color: white;
+                            background-color: #3eae86;
+                            width: 100%;
+                            border-radius: 18px;
+                            // padding: auto 8px !important;
+    
+                        }
+                        &:nth-child(1):hover{
+                            background-color: #359b77;
+                        }
+                        &:nth-child(1):visited{
+                            color: white;   
+                            
+                        }
                     }
+
                     &:first-child {
                         width: 170px;
                         border-radius: 18px;
@@ -112,7 +134,7 @@ $customDarkGray: #b8b8b8;
                         font-weight: 500;
                         color: black;
                         background-color: rgba(230, 230, 230, 0.776);
-
+                        
                         &:hover {
                             background-color: #d3d3d3;
                         }
@@ -186,7 +208,7 @@ $customDarkGray: #b8b8b8;
             .nav-item {
                 height: 36px;
                 line-height: 36px;
-                width: 112px;
+                width: 94px;
                 text-align: center;
                 .material-symbols-outlined {
                     margin-bottom: 3px;
@@ -262,7 +284,7 @@ $customDarkGray: #b8b8b8;
                 padding: 0 8px;
                 margin: 6px;
                 display: inline-block;
-
+            
                 a,
                 span {
                     justify-content: center;
@@ -270,15 +292,17 @@ $customDarkGray: #b8b8b8;
                     font-size: 1.5rem;
                 }
 
-                &:first-child {
-                    border: none !important;
-                    width: 136px;
-                    padding: 0px;
-                }
+                // apply these to <Link/>
+                // &:first-child {
+                //     border: none !important;
+                //     width: 136px;
+                //     padding: 0px;
+                // }
 
-                &:first-child:hover {
-                    background-color: #3eae8723;
-                }
+                // &:first-child:hover {
+                //     background-color: #3eae8723;
+                // }
+                // 
 
                 &:nth-child(2) {
                     width: 80px;
@@ -297,7 +321,6 @@ $customDarkGray: #b8b8b8;
 
                 &:last-child {
                     margin-right: 0;
-
                     a span {
                         color: white;
                     }
@@ -386,7 +409,7 @@ $customDarkGray: #b8b8b8;
             padding: 2px 12px;
 
             .nav-item {
-                height: 48px;
+                height: 36px;
                 list-style: none;
                 width: 100%;
                 margin: 8px 0;
@@ -427,6 +450,7 @@ $customDarkGray: #b8b8b8;
                 margin-bottom: 10px;
 
                 .nav-item {
+                    
                     a {
                         padding: 0;
 
@@ -447,12 +471,42 @@ $customDarkGray: #b8b8b8;
             .logged-out {
                 .account {
                     border-bottom: 1px lightgray solid;
+
+                    // this is each side menu list item
                     .nav-item {
+                        cursor: pointer;
+                        
                         .text-button {
                             font-weight: 500;
                             font-size: 1.8rem;
                         }
                     }
+                }
+                .row-review{
+                    font-weight: 500; 
+                    height: 36px;
+                    margin-top: 8px;
+                    border-radius: 24px;
+                    color:white;
+                    background-color: black;
+                    
+                    display: flex;
+                    text-align: center;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+
+                    a:visited{
+                        justify-content: center;
+                        align-items: center;
+                        color:white;
+                        margin: auto 2px;
+                        
+                    }
+                }
+
+                .row-review:hover{
+                    background-color: rgb(55, 55, 55);
                 }
             }
         }
