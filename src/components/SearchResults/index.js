@@ -3,8 +3,8 @@ import { useLocation, useHistory } from "react-router-dom";
 import { firestore } from "../../firebase/utils";
 import "./SearchResults.scss";
 import ConditionalLink from "../Header/ConditionalLink";
-import upArrow from "../../assets/arrow_up.png"; // Adjust the path as necessary
-
+import upArrow from "../../assets/arrow_up.png"; 
+import searchImg from "../../assets/search-img.png";
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -142,6 +142,11 @@ const SearchResults = () => {
   const searchTermStyle = {
     color: '#3EAE86'
   };
+
+  // Determine the label for the dropdown based on selected departments
+  const dropdownLabel = selectedDepartments.length > 0 
+    ? selectedDepartments.join(", ") 
+    : "Department";
   
   return (
     <div className="search-result-wrap">
@@ -154,18 +159,10 @@ const SearchResults = () => {
       </div>
       <div className="searchResults">
           <div className="filter-wrap">
-            {/* add filters: (# of reviews: [any, 20+, 50+, 90+]) (ratings:[any, 2.0+, 3.0+, 4.0+, 4.5+])  */}
-
-            
             <div className="filter-dep" ref={filterRef}>
-            {/* <div className="dep-filter-title" ref={filterRef}>
-              Department
-            </div> */}
               <div className="filter-top" >
-              
                 <label htmlFor="department-filter" className="dropdown-label">
-                  {/* Any */}
-                  Department
+                  {dropdownLabel}
                 </label>
                 <img
                   src={upArrow}
@@ -175,42 +172,36 @@ const SearchResults = () => {
               </div>
               <div className="filter-overlay" onClick={toggleDropdown}>
                 {/* this is a transparent div on top of filter-top */}
-                {/* added because onClick doesn't work on padding */}
               </div>
-              
-              {dropdownVisible && (
-                <div className="department-dropdown">
-                  <input
-                    type="text"
-                    placeholder="Search department"
-                    value={departmentSearchTerm}
-                    onChange={handleDepartmentSearchChange}
-                    className="department-search"
-                  />
-                  <div className="department-list">
-                    {filteredDepartments.map((dept, index) => (
-                      <label
-                        key={index}
-                        className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
-                      >
-                        <input
-                          type="checkbox"
-                          value={dept}
-                          checked={selectedDepartments.includes(dept)}
-                          onChange={handleDepartmentChange}
-                        />
-                        {capitalizeFirstLetter(dept)}
-                      </label>
-                    ))}
-                  </div>
+              <div className={dropdownVisible? "department-dropdown active" : "department-dropdown"}>
+                <input
+                  type="text"
+                  placeholder="Search department"
+                  value={departmentSearchTerm}
+                  onChange={handleDepartmentSearchChange}
+                  className="department-search"
+                />
+                <div className="department-list">
+                  {filteredDepartments.map((dept, index) => (
+                    <label
+                      key={index}
+                      className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
+                    >
+                      <input
+                        type="checkbox"
+                        value={dept}
+                        checked={selectedDepartments.includes(dept)}
+                        onChange={handleDepartmentChange}
+                      />
+                      {capitalizeFirstLetter(dept)}
+                    </label>
+                  ))}
                 </div>
-              )}
+              </div>
             </div>
           </div>
 
-
         <div className="prof-wrap">
-
           {searchResults.map((professor, index) => (
             <div
               key={index}
@@ -242,14 +233,18 @@ const SearchResults = () => {
           ))}
 
           <div className="search-bottom">
-            <div className="box-temp">
-
-            </div>
-            <div className="text-a">
-              Can't find a professor?
-            </div>
-            <div className="text-b">
-            They may not be on <strong>polyRatings</strong> yet. Add them now and be the first to write a review!
+            <div className="box-top">
+              <div className="img-box">
+                <img src={searchImg}/>
+              </div>
+              <div className="text-box">
+                <div className="text-a">
+                  Can't find a professor?
+                </div>
+                <div className="text-b">
+                  They may not be on <strong>polyRatings</strong> yet. Add them now and be the first to write a review!
+                </div>
+              </div>
             </div>
             <div className="review-btn">
               <ConditionalLink 
@@ -257,17 +252,11 @@ const SearchResults = () => {
                   link="/login" 
                   className={`review-btn`}
                   preventLink={true}
-                  // handleWriteReviewClick={handleWriteReviewClick} 
               />
             </div>
           </div>
-
         </div>
-
-        
-
       </div>
-      
     </div>
   );
 };
