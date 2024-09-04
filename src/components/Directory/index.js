@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import polyRatingsText from './../../assets/poly_ratings_text.png';
+import calpolyficaText from './../../assets/calpolyfica_text.png';
 import { LuSearch, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
 import './styles.scss';
@@ -124,8 +125,8 @@ const Directory = ({ showSignupDropdown }) => {
           style={{ zIndex: isSearchFocused ? 1 : showSignupDropdown ? -1 : 0 }}
         >
           <div className='inner-wrap'>
-            <div className='polyRatings-text'>
-              <img src={polyRatingsText} alt='polyRatingsText' />
+            <div className='calpolyfica-text'>
+              <img src={calpolyficaText} alt='calpolyficaText' />
             </div>
             <div className={`search-bar-block ${suggestions.length > 0 ? 'active' : ''}`} >
             </div>

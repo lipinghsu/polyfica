@@ -242,7 +242,7 @@ const SearchResults = () => {
                   Can't find a professor?
                 </div>
                 <div className="text-b">
-                  They may not be on <strong>polyRatings</strong> yet. Add them now and be the first to write a review!
+                  They may not be on <strong>calpolyfica</strong> yet. Add them now and be the first to write a review!
                 </div>
               </div>
             </div>
