@@ -10,6 +10,13 @@ const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
+const reviewOptions = [
+  { id: 1, value: 'Any' },
+  { id: 2, value: '25+' },
+  { id: 3, value: '50+' },
+  { id: 4, value: '100+' }
+];
+
 const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [averageDifficultyRating, setAverageDifficultyRating] = useState(null);
@@ -17,12 +24,13 @@ const SearchResults = () => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const [departmentSearchTerm, setDepartmentSearchTerm] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [selectedReviewFilter, setSelectedReviewFilter] = useState(null); // New state for review filter
   const location = useLocation();
   const history = useHistory();
   const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
-  
-  // collapse filter dropdown menu if user click outside of the div
+
+  // collapse filter dropdown menu if user clicks outside of the div
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (filterRef.current && !filterRef.current.contains(event.target)) {
@@ -88,6 +96,14 @@ const SearchResults = () => {
           );
         }
 
+        // Apply review count filter if selected
+        if (selectedReviewFilter && selectedReviewFilter !== 'Any') {
+          const reviewCount = parseInt(selectedReviewFilter);
+          results = results.filter(professor =>
+            professor.commentData && professor.commentData.length >= reviewCount
+          );
+        }
+
         setSearchResults(results);
 
         const difficultyRatings = results.map((professor) => professor.difficultyRating || 0);
@@ -109,7 +125,7 @@ const SearchResults = () => {
       setSearchResults([]);
       setAverageDifficultyRating(null);
     }
-  }, [searchTerm, selectedDepartments]);
+  }, [searchTerm, selectedDepartments, selectedReviewFilter]);
 
   
   const handleProfessorClick = (profID) => {
@@ -139,30 +155,46 @@ const SearchResults = () => {
     department.toLowerCase().includes(departmentSearchTerm)
   );
 
-  const searchTermStyle = {
-    color: '#3EAE86'
+  const handleReviewFilterClick = (value) => {
+    setSelectedReviewFilter(value);
   };
 
-  // Determine the label for the dropdown based on selected departments
-  const dropdownLabel = selectedDepartments.length > 0 
-    ? selectedDepartments.join(", ") 
-    : "Department";
-  
   return (
     <div className="search-result-wrap">
       <div className="searchTermInfo">
           {searchTerm && (
             <h2>
-              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={searchTermStyle}>{searchTerm}</strong>" in their name
+              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#3EAE86' }}>{searchTerm}</strong>" in their name
             </h2>
           )}
       </div>
       <div className="searchResults">
           <div className="filter-wrap">
-            <div className="filter-dep" ref={filterRef}>
+            
+            {/* start of rating filter */}
+            <div className="filter-title rating">
+              Number of Reviews
+            </div>
+            <div className="filter-num-rev">
+              {reviewOptions.map((option) => (
+                <button
+                  key={option.id}
+                  className={`review-filter-button${selectedReviewFilter === option.value ? ' active' : ''}`}
+                  onClick={() => handleReviewFilterClick(option.value)}
+                >
+                  {option.value}
+                </button>
+              ))}
+            </div>
+
+            {/* start of num rev filter */}
+            <div className="filter-title">
+              Rating
+            </div>
+            <div className="filter-dropdown num-rev">
               <div className="filter-top" >
                 <label htmlFor="department-filter" className="dropdown-label">
-                  {dropdownLabel}
+                  Any
                 </label>
                 <img
                   src={upArrow}
@@ -170,33 +202,22 @@ const SearchResults = () => {
                   className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
                 />
               </div>
-              <div className="filter-overlay" onClick={toggleDropdown}>
-                {/* this is a transparent div on top of filter-top */}
-              </div>
-              <div className={dropdownVisible? "department-dropdown active" : "department-dropdown"}>
-                <input
-                  type="text"
-                  placeholder="Search department"
-                  value={departmentSearchTerm}
-                  onChange={handleDepartmentSearchChange}
-                  className="department-search"
+            </div>
+
+            {/* start of department filter */}
+            <div className="filter-title">
+              Department
+            </div>
+            <div className="filter-dropdown" ref={filterRef}>
+              <div className="filter-top" >
+                <label htmlFor="department-filter" className="dropdown-label">
+                  Any
+                </label>
+                <img
+                  src={upArrow}
+                  alt="Toggle Dropdown"
+                  className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
                 />
-                <div className="department-list">
-                  {filteredDepartments.map((dept, index) => (
-                    <label
-                      key={index}
-                      className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
-                    >
-                      <input
-                        type="checkbox"
-                        value={dept}
-                        checked={selectedDepartments.includes(dept)}
-                        onChange={handleDepartmentChange}
-                      />
-                      {capitalizeFirstLetter(dept)}
-                    </label>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
@@ -235,14 +256,14 @@ const SearchResults = () => {
           <div className="search-bottom">
             <div className="box-top">
               <div className="img-box">
-                <img src={searchImg}/>
+                <img src={searchImg} alt="search" />
               </div>
               <div className="text-box">
                 <div className="text-a">
                   Can't find a professor?
                 </div>
                 <div className="text-b">
-                  They may not be on <strong>calpolyfica</strong> yet. Add them now and be the first to write a review!
+                  They may not be on <strong>polyRatings</strong> yet. Add them now and be the first to write a review!
                 </div>
               </div>
             </div>
