@@ -14,6 +14,7 @@
         &:last-child {
             margin-left: 10px;
             @media(max-width: 540px){
+                margin-top: 6px;
                 margin-left: 0px;
             }
         }
@@ -101,7 +102,7 @@
             .button-container {
                 transition: all 0.2s ease-out;
                 width: 46px;
-                height: 47.5px;
+                height: 38px;
                 padding: 0.25rem 0.75rem;
                 margin: auto 2px;
                 background-color: rgba(184, 184,184, 0.25); // Light gray initially

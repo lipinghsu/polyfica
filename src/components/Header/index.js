@@ -361,7 +361,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 </div>
                             </span>
                             <h2>{t("Write a Review")}</h2>
-                            <h3>{t("Help Us Understand Your Classroom Experience")}</h3>
+                            <h3>{t("Help us understand your class experience.")}</h3>
                             
                             <div className="form-row">
                                 <FormInput 
@@ -369,7 +369,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                     name="firstName"
                                     value={firstName}
                                     onChange={e => setFirstName(e.target.value)}
-                                    label={t("First Name")}
+                                    label={t("Prof. First Name")}
                                     required
                                 />
                                 <FormInput 
@@ -377,32 +377,52 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                     name="lastName"
                                     value={lastName}
                                     onChange={e => setLastName(e.target.value)}
-                                    label={t("Last Name")}
+                                    label={t("Prof. Last Name")}
                                     required
                                 />
                             </div>
-                            <FormInput 
-                                type="text"
-                                name="reviewCourseName"
-                                value={reviewCourseName}
-                                onChange={e => setReviewCourseName(e.target.value)}
-                                label={t("Course Name")}
-                                required
-                            />
+
                             <FormInput 
                                 type="text"
                                 name="schoolName"
                                 value={schoolName}
                                 onChange={e => setSchoolName(e.target.value)}
-                                label={t("School Name")}
+                                label={t("Name of School")}
                                 required
                             />
+
                             <FormInput 
                                 type="text"
                                 name="department"
                                 value={department}
                                 onChange={e => setDepartment(e.target.value)}
                                 label={t("Department")}
+                                required
+                            />
+                            {/* <div className="form-row">
+                                <FormInput 
+                                    type="text"
+                                    name="department"
+                                    value={department}
+                                    onChange={e => setDepartment(e.target.value)}
+                                    label={t("Subject")}
+                                    required
+                                />
+                                <FormInput 
+                                    type="text"
+                                    name="reviewCourseName"
+                                    value={reviewCourseName}
+                                    onChange={e => setReviewCourseName(e.target.value)}
+                                    label={t("Course Number")}
+                                    required
+                                />
+                            </div> */}
+                            <FormInput 
+                                type="text"
+                                name="reviewCourseName"
+                                value={reviewCourseName}
+                                onChange={e => setReviewCourseName(e.target.value)}
+                                label={t("Course Code (Ex: AERO 101)")}
                                 required
                             />
 
@@ -446,7 +466,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 <span>{t(".")}</span>
                             </div>
                             <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>
-                                {t("Submit")}
+                                {t("Add Professor")}
                             </Button>
                                                     
                             {/* <div className="cancel" onClick={() => setShowModal(false)}>

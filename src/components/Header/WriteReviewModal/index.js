@@ -67,24 +67,7 @@ const WriteReviewModal = ({ showModal, setShowModal }) => {
                     <h4>{t("Write a Review")}</h4>
                     
                     <form onSubmit={handleFormSubmit}>
-                        <div className="formRow">
-                            <FormInput 
-                                type="text"
-                                name="firstName"
-                                value={firstName}
-                                onChange={e => setFirstName(e.target.value)}
-                                label={t("First Name")}
-                                required
-                            />
-                            <FormInput 
-                                type="text"
-                                name="lastName"
-                                value={lastName}
-                                onChange={e => setLastName(e.target.value)}
-                                label={t("Last Name")}
-                                required
-                            />
-                        </div>
+
 
                         <div className="formRow">
                             <FormInput 

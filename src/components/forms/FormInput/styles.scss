@@ -16,7 +16,7 @@ $customLightGray: #bbbbbb;
         font-weight: 300;
         line-height: 1;
         color:black;
-        border: 1.5px solid #{$customLightGray};
+        border: 1.5px solid rgba(195, 195, 195, 0.425);
         border-radius: 6px;
         transition: 0.25s ease-in;
         padding: 0rem .75rem 0 .75rem;
@@ -25,6 +25,7 @@ $customLightGray: #bbbbbb;
         outline: none;
     }
     
+
     // unselected, not filled
     .form-input-label{
         position: absolute;
@@ -33,7 +34,7 @@ $customLightGray: #bbbbbb;
         transform-origin: top left;
         transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
         color: #{$customDarkGray};
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         line-height: 1;
         padding:0 1.5rem;
         left: 0px;
@@ -47,7 +48,7 @@ $customLightGray: #bbbbbb;
         
     }
     input:hover{
-        border: 2px solid #3EAE86;
+        border: 1.5px solid #3EAE86;
         transition: none;
         
     }
@@ -74,20 +75,20 @@ $customLightGray: #bbbbbb;
 
 .formRow:focus-within label {
     position: absolute;
-    transform: translate(3px, -5px) scale(1);
+    transform: translate(5px, -4px) scale(1);
     font-weight: 700;
     color: #3EAE86;
-    font-size: 1.4rem !important;
+    font-size: 1.3rem !important;
     padding: 0;
 }
 
 // label transformation when input is filled
 .formRow .filled {
-    transform: translate(7.5px, -5px) scale(1);
+    transform: translate(10px, -4px) scale(1);
     position: absolute;
-    font-weight: 700;
+    font-weight: 600;
     color: #3B3A3B;
-    font-size: 1.4rem !important;
+    font-size: 1.3rem !important;
     transition: 0.25s ease-out;
     width: 100%;
 }
