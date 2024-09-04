@@ -1,5 +1,4 @@
 [Visit the deployed application](https://profh-2298e.web.app/)<br/>
-
 ```markdown
 # Firebase React Project
 
