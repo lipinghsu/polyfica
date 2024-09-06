@@ -35,29 +35,37 @@ $mobilefooterHeight: 0rem;
         justify-content: center;
         position: relative;
 
-        .calpolyfica-text {
+        .polyfica_text {
           text-align: center;
           margin-bottom: 176px;
           position: absolute;
           // this changes the text to white
           // filter: sepia(100%) saturate(300%) hue-rotate(230deg) brightness(2);
           img {
-            width: 480px;
-            height: auto;
+            max-width: 425px; /* Ensures the image does not exceed the container width */
+            height: auto; /* Maintains the aspect ratio */
             display: block;
             margin: 0 auto;
-            @media (max-width: 480px) {
-              width: 420px;
+            @media (max-width: 555px) {
+              width: 400px;
               margin-bottom: -10px;
             }
-            @media (max-width: 420px) {
-              width: 400px;
+            @media (max-width: 520px) {
+              width: 380px;
               margin-bottom: -15px;
               
             }
-            @media (max-width: 400px) {
+            @media (max-width: 500px) {
               width: 360px;
               margin-bottom: -20px;
+            }
+            @media (max-width: 480px) {
+              width: 340px;
+              margin-bottom: -25px;
+            }
+            @media (max-width: 460px) {
+              width: 320px;
+              margin-bottom: -30px;
             }
           }
         }
