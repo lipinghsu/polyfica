@@ -45,6 +45,10 @@ const SearchResults = () => {
   const [selectedRatingFilter, setSelectedRatingFilter] = useState('Any');
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  const boxRightRef = useRef();
+  const movingDivRef = useRef();
+  const [stop, setStop] = useState(false);
 
   // Effect to track window size changes
   useEffect(() => {
@@ -208,10 +212,35 @@ const SearchResults = () => {
   ? selectedDepartments.join(", ") 
   : "Any";
 
+  const controlMovingDiv = () => {
+    if (windowWidth >= 1020) { // Only move when window width is >= 1020px
+      const boxRightBottomY = (boxRightRef.current?.offsetHeight + boxRightRef.current?.offsetTop);
+      const stopPosition = boxRightBottomY - movingDivRef.current?.offsetHeight - 20; // 20px above the bottom
+  
+      if (typeof window !== 'undefined') {
+        if (window.scrollY + 87 > stopPosition) {
+          setStop(true);
+        } else {
+          setStop(false);
+        }
+      }
+    } else {
+      setStop(true);
+    }
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", controlMovingDiv);
+      // Cleanup function
+      return () => {
+        window.removeEventListener('scroll', controlMovingDiv);
+      };
+    }
+  }, [windowWidth]); // Re-run effect when windowWidth changes
+
   return (
     <div className="search-result-wrap">
-
-      
       <div className="searchTermInfo">
           {searchTerm && (
             <h2>
@@ -221,12 +250,26 @@ const SearchResults = () => {
       </div>
       {windowWidth < 1020 && (
         <button className={isFilterVisible ? "toggle-filter-btn active" : "toggle-filter-btn"} onClick={() => setIsFilterVisible(!isFilterVisible)}>
-          
           {isFilterVisible ? "Hide Filters" : "Show Filters"}
         </button>
       )}
+      
       <div className="searchResults">
-          <div className={isFilterVisible ? "filter-wrap visible" : "filter-wrap"}>
+        <div
+          className={isFilterVisible ? "filter-wrap visible" : "filter-wrap"}
+          ref={movingDivRef}
+          style={
+            stop ? {
+              position: 'relative', // Make the position relative when movement is stopped
+              top: 'auto'
+            } : {
+              position: 'sticky',
+              top: 87
+            }
+          }
+        >
+
+
             <div className="filter-title rating">
               Number of Reviews
             </div>
