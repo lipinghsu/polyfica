@@ -36,7 +36,7 @@ const SearchResults = () => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const [departmentSearchTerm, setDepartmentSearchTerm] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [selectedReviewFilter, setSelectedReviewFilter] = useState(null); // New state for review filter
+  const [selectedReviewFilter, setSelectedReviewFilter] = useState('Any'); // New state for review filter
   const location = useLocation();
   const history = useHistory();
   const filterRef = useRef(null);

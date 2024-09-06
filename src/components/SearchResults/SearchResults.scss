@@ -40,9 +40,9 @@
     }
 
     .filter-wrap {
-      height: 0px;
-      opacity: 0;
-      display: none;
+      height: 270px;
+      padding: 20px;
+
 
       border-radius: 18px;
       margin-bottom: 0 !important;
@@ -52,6 +52,9 @@
       width: 416px;
 
       @media (max-width: 1020px) {
+        height: 0px;
+        opacity: 0;
+        display: none;
         border-radius: 0 0 18px 18px;
         // padding: 20px !important;
         width: 100%;
