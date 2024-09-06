@@ -5,6 +5,7 @@ import "./SearchResults.scss";
 import ConditionalLink from "../Header/ConditionalLink";
 import upArrow from "../../assets/arrow_up.png"; 
 import searchImg from "../../assets/search-img.png";
+import filter_icon from "../../assets/filter_icon.png";
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -220,6 +221,7 @@ const SearchResults = () => {
       </div>
       {windowWidth < 1020 && (
         <button className={isFilterVisible ? "toggle-filter-btn active" : "toggle-filter-btn"} onClick={() => setIsFilterVisible(!isFilterVisible)}>
+          
           {isFilterVisible ? "Hide Filters" : "Show Filters"}
         </button>
       )}
@@ -282,7 +284,7 @@ const SearchResults = () => {
                   onChange={handleDepartmentSearchChange}
                   className="department-search"
                 />
-                <div className="department-list">
+                {dropdownVisible && (<div className="department-list">
                   {filteredDepartments.map((dept, index) => (
                     <label
                       key={index}
@@ -297,7 +299,8 @@ const SearchResults = () => {
                       {capitalizeFirstLetter(dept)}
                     </label>
                   ))}
-                </div>
+                </div>)}
+                
               </div>
             </div>
           </div>
@@ -348,7 +351,7 @@ const SearchResults = () => {
               </div>
             </div>
             <div className="review-btn">
-              <ConditionalLink 
+              <ConditionalLink
                   text={("Write a Review")} 
                   link="/login" 
                   className={`review-btn`}

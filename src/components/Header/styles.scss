@@ -376,6 +376,7 @@ $customDarkGray: #b8b8b8;
     .sidebar.active {
         width: 100vw;
         opacity: 1;
+        z-index: 100;
 
         transition: opacity 0.25s ease-in-out, left 0s ease-in;
         left: 0px;

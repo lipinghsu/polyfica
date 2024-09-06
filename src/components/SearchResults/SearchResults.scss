@@ -32,17 +32,20 @@
     }
     
     .filter-wrap.visible {
-      height: 270px;
+      height: 276px;
       opacity: 1;
       padding: 20px;
-      transition: height 0.25s ease-out, opacity 0s ease-out;
-      display: inline;
+      transition: height 0.2s ease-out, opacity 0.1s ease-out;
+
+      display: block;
+      z-index: 9;
+      overflow-y: visible;
+      
     }
 
     .filter-wrap {
       height: 270px;
       padding: 20px;
-
 
       border-radius: 18px;
       margin-bottom: 0 !important;
@@ -56,11 +59,12 @@
         opacity: 0;
         display: none;
         border-radius: 0 0 18px 18px;
-        // padding: 20px !important;
+
         width: 100%;
         box-shadow: none;
         z-index: 10;
         margin-bottom: 24px;
+        overflow-y: scroll;
       }
 
       .filter-title {
@@ -74,6 +78,7 @@
       }
 
       .filter-num-rev {
+        overflow-x: scroll;
         height: 54px;
         background-color: white;
         width: 100%;
@@ -83,12 +88,11 @@
         flex-direction: row;
 
         .review-filter-button {
-          height: 100%;
-          width: 100%;
-          font-size: 14px;
-          background-color: white;
           border: none;
           cursor: pointer;
+          font-size: 14px;
+          background-color: white;
+          height: 100%; width: 100%;
           transition: background-color 0.25s ease;
 
           &:not(:first-child) {
@@ -162,7 +166,6 @@
         .department-dropdown.active {
           top: 100%;
           opacity: 1;
-          z-index: 1000;
           transition: all 0.25s ease-out;
         }
 
@@ -172,7 +175,6 @@
           top: -10px;
           width: 100%;
           opacity: 0;
-          z-index: -1000;
           background-color: white;
           border: 1px solid #ccc;
           border-radius: 4px;
@@ -195,6 +197,7 @@
           .department-list {
             max-height: 150px;
             overflow-y: auto;
+            z-index: -10;
           }
 
           .department-option {
@@ -348,6 +351,11 @@
         }
       }
 
+
+      .review-btn:hover {
+        background-color: rgba(55, 55, 55, 1);
+      }
+
       .review-btn {
         width: 100%;
         background-color: black;
@@ -368,9 +376,9 @@
   }
 
   .toggle-filter-btn.active {
-    border-radius: 18px 18px 0 0px;
-    background-color: black;
     color: white;
+    background-color: black;
+    border-radius: 18px 18px 0 0px;
     transition: background-color 0.25s ease-out, color 0.25s ease-out;
   }
 
