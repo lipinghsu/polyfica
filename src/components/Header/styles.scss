@@ -101,6 +101,7 @@ $customDarkGray: #b8b8b8;
             }
             ul {
                 .nav-item {
+                    
                     .text-button {
                         
                         align-items: center;
@@ -363,6 +364,7 @@ $customDarkGray: #b8b8b8;
         .mobile {
             ul {
                 .nav-item {
+                    
                     padding: 0 !important;
                     &:hover {
                         background-color: rgba(238, 238, 238, 1);
@@ -383,6 +385,7 @@ $customDarkGray: #b8b8b8;
 
         .sidebar-items {
             .nav-item {
+                
                 a {
                     span {
                         // font-size: 5rem;

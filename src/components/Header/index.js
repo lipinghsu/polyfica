@@ -319,14 +319,14 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 </NavItem>
                             </div>,
                             <NavItem
-                                text={t("Shop")} link="/search"
-                                mobile={true}
-                                setSidebar={setSidebar} sidebar={sidebar}
-                            />,
-                            <NavItem
-                                setSidebar={setSidebar} sidebar={sidebar} signOut={signOut} logOutButton={true} text={t("Log out")}
+                                setSidebar={setSidebar} 
+                                sidebar={sidebar} 
+                                signOut={signOut} 
+                                logOutButton={true} 
+                                text={t("Log out")}
                             />,
                         ]}
+
                         {/* mobile, not logged in */}
                         {/* side menu needs to be dismissed */}
                         {!currentUser && [

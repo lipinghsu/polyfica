@@ -49,6 +49,11 @@ const SearchResults = () => {
   const boxRightRef = useRef();
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
+  
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
 
   // Effect to track window size changes
   useEffect(() => {
@@ -60,10 +65,7 @@ const SearchResults = () => {
         setIsFilterVisible(true);
       }
     };
-
     window.addEventListener("resize", handleResize);
-    
-    // Clean up the event listener
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -232,12 +234,11 @@ const SearchResults = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener("scroll", controlMovingDiv);
-      // Cleanup function
       return () => {
         window.removeEventListener('scroll', controlMovingDiv);
       };
     }
-  }, [windowWidth]); // Re-run effect when windowWidth changes
+  }, [windowWidth]); 
 
   return (
     <div className="search-result-wrap">
