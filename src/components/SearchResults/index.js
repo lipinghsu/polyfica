@@ -31,9 +31,10 @@ const ratingOptions = [
 ];
 
 const sortOptions = [
-  { id: 1, value: "Alphabetical" },
-  { id: 2, value: "Highest Rating" },
-  { id: 3, value: "Most Reviews" },
+  { id: 1, value: "Alphabetical (Last Name)" },
+  { id: 2, value: "Alphabetical (First Name)" },
+  { id: 3, value: "Highest Rating" },
+  { id: 4, value: "Most Reviews" },
 ];
 
 const SearchResults = () => {
@@ -189,11 +190,16 @@ const SearchResults = () => {
   }, [searchTerm, selectedDepartments, selectedReviewFilter, selectedRatingFilter, selectedSortOption]);
 
   const sortResults = (results, sortOption) => {
-    if (sortOption === "Alphabetical") {
+    if (sortOption === "Alphabetical (Last Name)") {
       results.sort((a, b) => a.lastName.localeCompare(b.lastName));
-    } else if (sortOption === "Highest Rating") {
+    } 
+    else if(sortOption === "Alphabetical (First Name)") {
+      results.sort((a, b) => a.firstName.localeCompare(b.firstName));
+    } 
+    else if (sortOption === "Highest Rating") {
       results.sort((a, b) => (b.difficultyRating || 0) - (a.difficultyRating || 0));
-    } else if (sortOption === "Most Reviews") {
+    } 
+    else if (sortOption === "Most Reviews") {
       results.sort((a, b) => (b.commentData?.length || 0) - (a.commentData?.length || 0));
     }
   };
