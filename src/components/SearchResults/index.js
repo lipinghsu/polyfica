@@ -50,17 +50,24 @@ const SearchResults = () => {
   const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
   const [selectedRatingFilter, setSelectedRatingFilter] = useState('Any');
-  const [selectedSortOption, setSelectedSortOption] = useState("Alphabetical");
+  const [selectedSortOption, setSelectedSortOption] = useState("Alphabetical (Last Name)");
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  
+  const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
+
+
+
   
   const boxRightRef = useRef();
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
   
-  const handleSortChange = (e) => {
-    setSelectedSortOption(e.target.value);
+  const toggleSortDropdown = () => {
+    setIsSortDropdownVisible(!isSortDropdownVisible);
+  };
+  const handleSortChange = (option) => {
+    setSelectedSortOption(option);
+    setIsSortDropdownVisible(false);
   };
 
   useEffect(() => {
@@ -308,19 +315,29 @@ const SearchResults = () => {
             <div className="section-title">
               Sort By
             </div>
-            <div className="filter-dropdown">
-              <select value={selectedSortOption} onChange={handleSortChange} className="sort-select">
-                {sortOptions.map((option) => (
-                  <option key={option.id} value={option.value} className="option-label">
-                    {option.value}
-                  </option>
-                ))}
-              </select>
+            <div className={`filter-dropdown ${isSortDropdownVisible ? 'active' : ''}`} onClick={toggleSortDropdown}>
+              <div className="dropdown-label">
+                {selectedSortOption} {/* Display current selected option */}
+              </div>
               <img
                 src={upArrow}
                 alt="Toggle Dropdown"
-                className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
+                className={`arrow-icon ${isSortDropdownVisible ? 'rotated' : ''}`}
               />
+              
+              {isSortDropdownVisible && (
+            <div className="sort-options">
+              {sortOptions.map((option) => (
+                <div
+                  key={option.id}
+                  className="sort-option"
+                  onClick={() => handleSortChange(option.value)}
+                >
+                  {option.value}
+                </div>
+              ))}
+            </div>
+          )}
             </div>
           </div>
 

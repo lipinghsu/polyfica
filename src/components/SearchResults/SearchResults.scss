@@ -92,30 +92,59 @@
         margin-bottom: 32px;
         height: 120px !important;
 
-        .filter-dropdown{
-          width: 100% !important;
+        .filter-dropdown {
+          position: relative;
+          width: 370px;
+          height: 39px;
+          padding: 8px;
+          margin-bottom: 18px;
           margin-top: 12px;
-          // background-color: greenyellow !important;
+          border-radius: 8px;
+          border: 1.5px solid rgba(195, 195, 195, 0.425);
+          background-color: white;
+          cursor: pointer;
           display: flex;
-          justify-content: center ;
-          
-          .sort-select{
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
+          align-items: center;
+          justify-content: space-between;
+        
+          .dropdown-label {
+            flex-grow: 1;
+            font-size: 14px;
+          }
+        
+          .arrow-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            filter: brightness(0) saturate(100%) invert(11%) sepia(14%) saturate(1006%) hue-rotate(224deg) brightness(97%) contrast(90%);
             
-            // translate: ;
-            // height: 100% !important;
-            // width: 100%;
-
-            margin-top: -7px;
-            border: none;
-            position:absolute;
-            .option-label {
-              
+            &.rotated {
+              transform: rotate(180deg);
             }
           }
-          
+        
+          .sort-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 8px;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        
+            .sort-option {
+              padding: 10px 8px;
+              cursor: pointer;
+              font-size: 14px;
+              transition: background-color 0.1s ease-out;
+        
+              &:hover {
+                background-color: rgba(195, 195, 195, 0.425);
+              }
+            }
+          }
         }
       }
       .bot{
