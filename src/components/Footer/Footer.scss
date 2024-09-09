@@ -195,13 +195,10 @@ ul {
       background-color: #FFFFFF;
       transition: 0.2s all ease-in;
       opacity: 1;
-      margin-bottom: 156px;
+      margin-bottom: 142px;
       @media (max-width: 840px){
-        transform: translateY(-156px);
-        left: 30px;
-        
-        // margin-left: 96px;
-        
+        transform: translateY(-142px);
+        left: 24px;
       }
     }
 

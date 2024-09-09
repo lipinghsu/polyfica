@@ -20,7 +20,7 @@
     margin: 0px 36px 8px 36px;
     font-size: 25px;
     @media (max-width: 840px) {
-      margin: 0 0 36px 0;
+      margin: 0 0 12px 0;
       text-align: center;
     }
 
@@ -143,9 +143,10 @@
         }
         .user-prof-container{
           .user-name{
-
+            
           }
-          .prof-name {            
+          .prof-name {         
+            font-weight: 700;  
             a {
               color: black;
               text-decoration: underline;

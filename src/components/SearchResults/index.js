@@ -16,8 +16,8 @@ const reviewOptions = [
   { id: 1, value: 'Any' },
   { id: 2, value: '25+' },
   { id: 3, value: '50+' },
-  { id: 4, value: '75+' },
-  { id: 5, value: '100+' }
+  { id: 4, value: '100+' },
+  { id: 5, value: '200+' }
 ];
 
 
@@ -28,6 +28,12 @@ const ratingOptions = [
   { id: 3, value: '3.0+' },
   { id: 4, value: '4.0+' },
   { id: 5, value: '4.5+' }
+];
+
+const sortOptions = [
+  { id: 1, value: "Alphabetical" },
+  { id: 2, value: "Highest Rating" },
+  { id: 3, value: "Most Reviews" },
 ];
 
 const SearchResults = () => {
@@ -43,13 +49,18 @@ const SearchResults = () => {
   const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
   const [selectedRatingFilter, setSelectedRatingFilter] = useState('Any');
+  const [selectedSortOption, setSelectedSortOption] = useState("Alphabetical");
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
   
   const boxRightRef = useRef();
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
   
+  const handleSortChange = (e) => {
+    setSelectedSortOption(e.target.value);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -81,6 +92,8 @@ const SearchResults = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [filterRef]);
+
+  
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -151,6 +164,7 @@ const SearchResults = () => {
           );
         }
 
+        sortResults(results, selectedSortOption);
         setSearchResults(results);
 
         const difficultyRatings = results.map((professor) => professor.difficultyRating || 0);
@@ -172,7 +186,19 @@ const SearchResults = () => {
       setSearchResults([]);
       setAverageDifficultyRating(null);
     }
-  }, [searchTerm, selectedDepartments, selectedReviewFilter, selectedRatingFilter]);
+  }, [searchTerm, selectedDepartments, selectedReviewFilter, selectedRatingFilter, selectedSortOption]);
+
+  const sortResults = (results, sortOption) => {
+    if (sortOption === "Alphabetical") {
+      results.sort((a, b) => a.lastName.localeCompare(b.lastName));
+    } else if (sortOption === "Highest Rating") {
+      results.sort((a, b) => (b.difficultyRating || 0) - (a.difficultyRating || 0));
+    } else if (sortOption === "Most Reviews") {
+      results.sort((a, b) => (b.commentData?.length || 0) - (a.commentData?.length || 0));
+    }
+  };
+
+  
 
   
   const handleProfessorClick = (profID) => {
@@ -220,7 +246,7 @@ const SearchResults = () => {
       const stopPosition = boxRightBottomY - movingDivRef.current?.offsetHeight - 20; // 20px above the bottom
   
       if (typeof window !== 'undefined') {
-        if (window.scrollY + 87 > stopPosition) {
+        if (window.scrollY + 340 > stopPosition) {
           setStop(true);
         } else {
           setStop(false);
@@ -240,6 +266,8 @@ const SearchResults = () => {
     }
   }, [windowWidth]); 
 
+
+
   return (
     <div className="search-result-wrap">
       <div className="searchTermInfo">
@@ -254,7 +282,7 @@ const SearchResults = () => {
           {isFilterVisible ? "Hide Filters" : "Show Filters"}
         </button>
       )}
-      
+
       <div className="searchResults">
         <div
           className={isFilterVisible ? "filter-wrap visible" : "filter-wrap"}
@@ -265,89 +293,112 @@ const SearchResults = () => {
               top: 'auto'
             } : {
               position: 'sticky',
-              top: 87
+              top: 64
             }
           }
         >
+          <div className="inner-wrap top">
+            {/* sort */}
+            <div className="section-title">
+              Sort By
+            </div>
+            <div className="filter-dropdown">
+              <select value={selectedSortOption} onChange={handleSortChange} className="sort-select">
+                {sortOptions.map((option) => (
+                  <option key={option.id} value={option.value} className="option-label">
+                    {option.value}
+                  </option>
+                ))}
+              </select>
+              <img
+                src={upArrow}
+                alt="Toggle Dropdown"
+                className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
+              />
+            </div>
+          </div>
 
-
+          <div className="inner-wrap bot">
+            <div className="section-title">
+              Search Filters
+            </div>
             <div className="filter-title rating">
               Number of Reviews
             </div>
-            <div className="filter-num-rev">
-              {reviewOptions.map((option) => (
-                <button
-                  key={option.id}
-                  className={`review-filter-button${selectedReviewFilter === option.value ? ' active' : ''}`}
-                  onClick={() => handleReviewFilterClick(option.value)}
-                >
-                  {option.value}
-                </button>
-              ))}
-            </div>
+              <div className="filter-num-rev">
+                {reviewOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    className={`review-filter-button${selectedReviewFilter === option.value ? ' active' : ''}`}
+                    onClick={() => handleReviewFilterClick(option.value)}
+                  >
+                    {option.value}
+                  </button>
+                ))}
+              </div>
 
-            {/* start of num rev filter */}
-            <div className="filter-title">
-              Rating
-            </div>
-            <div className="filter-num-rev">
-              {ratingOptions.map((option) => (
-                <button
-                  key={option.id}
-                  className={`review-filter-button${selectedRatingFilter === option.value ? ' active' : ''}`}
-                  onClick={() => handleRatingFilterClick(option.value)}
-                >
-                  {option.value}
-                </button>
-              ))}
-            </div>
-            
-            {/* start of department filter */}
-            <div className="filter-title">
-              Department
-            </div>
-            <div className="filter-dropdown" ref={filterRef}>
-            <div className="filter-top" >
-                <label htmlFor="department-filter" className="dropdown-label">
-                  {dropdownLabel}
-                </label>
-                <img
-                  src={upArrow}
-                  alt="Toggle Dropdown"
-                  className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
-                />
+              {/* start of num rev filter */}
+              <div className="filter-title">
+                Rating
               </div>
-              <div className="filter-overlay" onClick={toggleDropdown}>
-                {/* this is a transparent div on top of filter-top */}
+              <div className="filter-num-rev">
+                {ratingOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    className={`review-filter-button${selectedRatingFilter === option.value ? ' active' : ''}`}
+                    onClick={() => handleRatingFilterClick(option.value)}
+                  >
+                    {option.value}
+                  </button>
+                ))}
               </div>
-              <div className={dropdownVisible? "department-dropdown active" : "department-dropdown"}>
-                <input
-                  type="text"
-                  placeholder="Search department"
-                  value={departmentSearchTerm}
-                  onChange={handleDepartmentSearchChange}
-                  className="department-search"
-                />
-                {dropdownVisible && (<div className="department-list">
-                  {filteredDepartments.map((dept, index) => (
-                    <label
-                      key={index}
-                      className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
-                    >
-                      <input
-                        type="checkbox"
-                        value={dept}
-                        checked={selectedDepartments.includes(dept)}
-                        onChange={handleDepartmentChange}
-                      />
-                      {capitalizeFirstLetter(dept)}
-                    </label>
-                  ))}
-                </div>)}
-                
+              
+              {/* start of department filter */}
+              <div className="filter-title">
+                Department
               </div>
-            </div>
+              <div className="filter-dropdown" ref={filterRef}>
+                <div className="filter-top" >
+                  <label htmlFor="department-filter" className="dropdown-label">
+                    {dropdownLabel}
+                  </label>
+                  <img
+                    src={upArrow}
+                    alt="Toggle Dropdown"
+                    className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
+                  />
+                </div>
+                <div className="filter-overlay" onClick={toggleDropdown}>
+                  {/* this is a transparent div on top of filter-top */}
+                </div>
+                <div className={dropdownVisible? "department-dropdown active" : "department-dropdown"}>
+                  <input
+                    type="text"
+                    placeholder="Search department"
+                    value={departmentSearchTerm}
+                    onChange={handleDepartmentSearchChange}
+                    className="department-search"
+                  />
+                  {dropdownVisible && (<div className="department-list">
+                    {filteredDepartments.map((dept, index) => (
+                      <label
+                        key={index}
+                        className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
+                      >
+                        <input
+                          type="checkbox"
+                          value={dept}
+                          checked={selectedDepartments.includes(dept)}
+                          onChange={handleDepartmentChange}
+                        />
+                        {capitalizeFirstLetter(dept)}
+                      </label>
+                    ))}
+                  </div>)}
+                </div>
+              </div>
           </div>
+        </div>
 
         <div className="prof-wrap">
           {searchResults.map((professor, index) => (
