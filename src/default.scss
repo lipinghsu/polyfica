@@ -84,7 +84,7 @@ a, a:hover{
 
 .main{
     width: 100%;
-    min-height: calc(100vh - #{$headerHeight});        // 100% - header_height - footerHeight
+    // min-height: calc(100vh - #{$headerHeight});        // 100% - header_height - footerHeight
     @media (max-width:486px) {
         min-height: calc(100vh - #{$headerHeight});
     }

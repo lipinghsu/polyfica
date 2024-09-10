@@ -54,9 +54,7 @@ const SearchResults = () => {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
-
-
-
+  const [loading, setLoading] = useState(true);
   
   const boxRightRef = useRef();
   const movingDivRef = useRef();
@@ -129,8 +127,10 @@ const SearchResults = () => {
 
   useEffect(() => {
     const fetchProfessors = async () => {
+      setLoading(true);
       try {
         if (!searchTerm) {
+          setLoading(false);
           return;
         }
 
@@ -183,16 +183,23 @@ const SearchResults = () => {
         setAverageDifficultyRating(averageRating);
 
         console.log("No results found:", results.length === 0);
-      } catch (error) {
+      } 
+      catch (error) {
         console.error("Error fetching professors:", error);
       }
+      finally {
+        setLoading(false); // Set loading to false once data is fetched
+      }
+
     };
 
     if (searchTerm) {
       fetchProfessors();
-    } else {
+    } 
+    else {
       setSearchResults([]);
       setAverageDifficultyRating(null);
+      setLoading(false);
     }
   }, [searchTerm, selectedDepartments, selectedReviewFilter, selectedRatingFilter, selectedSortOption]);
 
@@ -324,20 +331,17 @@ const SearchResults = () => {
                 alt="Toggle Dropdown"
                 className={`arrow-icon ${isSortDropdownVisible ? 'rotated' : ''}`}
               />
-              
-              {isSortDropdownVisible && (
-            <div className="sort-options">
-              {sortOptions.map((option) => (
-                <div
-                  key={option.id}
-                  className="sort-option"
-                  onClick={() => handleSortChange(option.value)}
-                >
-                  {option.value}
-                </div>
-              ))}
-            </div>
-          )}
+              <div className={isSortDropdownVisible ? "sort-options active" : "sort-options" }>
+                {sortOptions.map((option) => (
+                  <div
+                    key={option.id}
+                    className="sort-option"
+                    onClick={() => handleSortChange(option.value)}
+                  >
+                    {option.value}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -423,36 +427,50 @@ const SearchResults = () => {
           </div>
         </div>
 
+
         <div className="prof-wrap">
-          {searchResults.map((professor, index) => (
-            <div
-              key={index}
-              className="professor"
-              onClick={() => handleProfessorClick(professor.id)}
-            >
-              <div className="professorName">
-                {professor.firstName} {professor.lastName}
-              </div>
-              <div className="department">{professor.department}</div>
-              <div className="schoolName">{professor.schoolName}</div>
-              <div className="infoContainer">
-                <div className="averageRating">
-                  Difficulty: {" "}
-                  {professor.commentData?.length > 0 
-                    ? (
-                        professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) 
-                        / professor.commentData.length
-                      ).toFixed(1) 
-                    : "-"
-                  }
-                </div>
-                <div className="reviewCommentLength">
-                  {professor.commentData?.length || 0}{" "}
-                  {professor.commentData?.length > 1 ? "reviews" : "review"}
-                </div>
-              </div>
+          {loading ? (
+            <div className="loading-spinner">
+              <div className="spinner"></div>
             </div>
-          ))}
+          ) : 
+          (
+            searchResults.map((professor, index) => (
+              <div
+                key={index}
+                className="professor"
+                onClick={() => handleProfessorClick(professor.id)}
+              >
+                <div className="professorName">
+                  {professor.firstName} {professor.lastName}
+                </div>
+                <div className="department">{professor.department}</div>
+                <div className="schoolName">{professor.schoolName}</div>
+                <div className="infoContainer">
+                  <div className="averageRating">
+                    Difficulty: {" "}
+                    {professor.commentData?.length > 0 
+                      ? (
+                          professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) 
+                          / professor.commentData.length
+                        ).toFixed(1) 
+                      : "-"
+                    }
+                  </div>
+                  <div className="reviewCommentLength">
+                    {professor.commentData?.length || 0}{" "}
+                    {professor.commentData?.length > 1 ? "reviews" : "review"}
+                  </div>
+                </div>
+              </div>
+              
+            ))
+          )}
+          {searchResults.length >= 1 && (
+            <div className="empty-div">
+              {/* insert margin */}
+            </div>
+          )}
 
           <div className="search-bottom">
             <div className="box-top">
@@ -477,6 +495,7 @@ const SearchResults = () => {
               />
             </div>
           </div>
+          
         </div>
       </div>
     </div>
