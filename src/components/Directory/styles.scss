@@ -63,22 +63,34 @@ $mobilefooterHeight: 0rem;
               width: 340px;
               margin-bottom: -25px;
             }
-            @media (max-width: 460px) {
-              width: 320px;
-              margin-bottom: -30px;
-            }
+            // @media (max-width: 460px) {
+            //   width: 320px;
+            //   margin-bottom: -30px;
+            // }
           }
         }
 
         .search-bar-block {
-          margin-top: 8px;
-          max-width: 557px;
-          width: calc(100% + 12px);
           height: 64px;
           position: absolute;
+
+          margin-top: 8px;
+          // margin: auto 20px;
+          max-width: 557px;
+          width: calc(100% + 12px);
+          
           border-radius: 32px 32px 0 0;
+
           &.active {
             background-color: rgb(240, 240, 240);
+
+
+            transition: height 0.2s ease-out;
+            @media(max-width: 840px){
+              height: 48px;
+              margin: auto 20px;
+              transition: height 0.2s ease-out;
+            }
           }
         }
 
@@ -231,6 +243,11 @@ $mobilefooterHeight: 0rem;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            @media (max-width: 840px) {
+              height: 20px;
+              width: 50px;
+              font-size: 1rem;
+            }
           }
 
           .clear-button:hover {
@@ -245,6 +262,13 @@ $mobilefooterHeight: 0rem;
             align-items: center;
             background-color: white;
             border-radius: 28px;
+
+            transition: height 0.2s ease-out;
+            @media(max-width: 840px){
+              height: 48px;
+              // margin: auto 20px;
+              transition: height 0.2s ease-out;
+            }
 
             &.active {
               border-radius: 28px;

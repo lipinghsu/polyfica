@@ -12,6 +12,7 @@ $customDarkGray: #b8b8b8;
 
     @media (max-width: 840px) {
         padding: 0 1.6rem;
+        height: 5rem;
     }
     &.scrolled {
         background-color: rgba(254, 254, 254, 0.952);
@@ -59,7 +60,7 @@ $customDarkGray: #b8b8b8;
                 }
 
                 &:hover {
-                    background-color: rgba(238, 238, 238, 1);
+                    background-color: rgb(238, 238, 238);
                     border-radius: 6px;
                 }
             }
