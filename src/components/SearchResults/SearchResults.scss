@@ -435,11 +435,14 @@
 
 
         .profileImage-wrap {
-          
+          // @media (max-width:840px) {
+          //   height: 48px;
+          //   width: 48px;
+          // }
           flex-shrink: 0;
           
-          height: 64px !important;
-          width: 64px !important;
+          height: 64px;
+          width: 64px;
           display: flex;
           justify-content: center; /* Center the image horizontally */
           align-items: center; /* Center the image vertically */

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RatingSlider from '../../Header/RatingSlider';
 
 const CommentForm = ({
     isFormExpanded,
@@ -29,29 +30,21 @@ const CommentForm = ({
                 ></textarea>
                 {isFormExpanded && (
                     <>
-                        <div className="ratingInputs">
-                            <label>Quality Rating:</label>
-                            {[1, 2, 3, 4, 5].map((rating) => (
-                                <button
-                                    type="button"
-                                    key={"quality" + rating}
-                                    onClick={() => handleQualityRating(rating)}
-                                    className={`ratingButton ${qualityRating === rating ? 'active' : ''}`}
-                                >
-                                    {rating}
-                                </button>
-                            ))}
-                            <label>Difficulty Rating:</label>
-                            {[1, 2, 3, 4, 5].map((rating) => (
-                                <button
-                                    type="button"
-                                    key={"difficulty" + rating}
-                                    onClick={() => handleDifficultyRating(rating)}
-                                    className={`ratingButton ${difficultyRating === rating ? 'active' : ''}`}
-                                >
-                                    {rating}
-                                </button>
-                            ))}
+                        <div className='column-wrap'>
+                            <div className="form-row rating-sliders">
+                                <div className="slider-label">Quality</div>
+                                <RatingSlider
+                                    onChange={(value) => handleQualityRating(value)}  // Correctly handle the value
+                                    required
+                                />
+                            </div>
+                            <div className="form-row rating-sliders">
+                                <div className="slider-label">Difficulty</div>
+                                <RatingSlider
+                                    onChange={(value) => handleDifficultyRating(value)}  // Correctly handle the value
+                                    required
+                                />
+                            </div>
                         </div>
                         <div className="courseCodeContainer">
                             <label>Course Code:</label>

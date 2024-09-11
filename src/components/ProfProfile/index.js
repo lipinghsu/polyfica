@@ -6,6 +6,7 @@ import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
 import ProfessorDetails from './ProfessorDetails';
 
+
 function calculateAverageQualityRating(commentData) {
     if (!commentData || commentData.length === 0) {
         return 0;
@@ -217,7 +218,7 @@ const ProfProfile = () => {
     return (
         <div className="profProfile" onClick={handleFormCollapse}>
             {professor && <ProfessorDetails professor={professor} />}
-            <CommentForm
+            {/* <CommentForm
                 isFormExpanded={isFormExpanded}
                 newComment={newComment}
                 handleCommentChange={handleCommentChange}
@@ -231,7 +232,7 @@ const ProfProfile = () => {
                 handleFormClick={handleFormClick}
                 handleFormCollapse={handleFormCollapse}
             />
-            
+             */}
             <div className="profComments">
                 {professor && professor.commentData && professor.commentData.length > 0 ? (
                     professor.commentData.map((comment, index) => (

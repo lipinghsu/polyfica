@@ -3,6 +3,8 @@ import { storage, firestore } from '../../../firebase/utils'; // Ensure this pat
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import defaultProfileImage from "../../../assets/defaultProfImage.png"
+
+// add like/dislike button -> add likeCount in the professor document
 function calculateAverageQualityRating(commentData) {
   if (!commentData || commentData.length === 0) {
     return 0;
@@ -152,6 +154,18 @@ const ProfessorDetails = ({ professor }) => {
         <p>
           Professor in the {professor.department} department at {professor.schoolName}.
         </p>
+        <div className="bottom-wrap">
+            <div className="count-wrap">
+                <div className="follower-count">0 followers</div>
+                <div className="like-count">0 likes</div>
+            </div>
+            
+            <div className="button-wrap">
+                <button className="follow-button">Follow</button>
+                <button className="like-button">Like</button>
+                <button className="comment-button">Comment</button>
+            </div>
+        </div>
       </div>
 
       {/* {thumbNail && (
@@ -178,7 +192,7 @@ const ProfessorDetails = ({ professor }) => {
         </div>
       )} */}
 
-      <div className="pictureGallery">
+      {/* <div className="pictureGallery">
         {professorPictures.map((picture) => (
           <div key={picture.id} className="pictureItem">
             <img src={picture.url} alt="Professor" className="profPicture" />
@@ -186,9 +200,9 @@ const ProfessorDetails = ({ professor }) => {
             <span>Likes: {picture.likeCount}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
-      {professor.commentData ? (
+      {/* {professor.commentData ? (
         <div className="averageRating">
           <div className="progressBar">
             <div
@@ -205,7 +219,7 @@ const ProfessorDetails = ({ professor }) => {
         </div>
       ) : (
         <p>Overall Quality Based on 0 ratings</p>
-      )}
+      )} */}
     </div>
   );
 };
