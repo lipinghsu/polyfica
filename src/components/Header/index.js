@@ -214,7 +214,10 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                 schoolName: schoolName,
                 commentData: [commentData]
             };
-
+            
+            // search database 
+            // -> if prof exist (name, school, department all match) 
+            // -> update comment filed
             const docRef = await firestore.collection('professors').add(newProfessorData);
             await docRef.update({
                 profID: docRef.id

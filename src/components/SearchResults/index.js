@@ -6,7 +6,7 @@ import ConditionalLink from "../Header/ConditionalLink";
 import upArrow from "../../assets/arrow_up.png"; 
 import searchImg from "../../assets/search-img.png";
 import filter_icon from "../../assets/filter_icon.png";
-
+import defaultProfileImage from "../../assets/defaultProfImage.png";
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
@@ -98,8 +98,6 @@ const SearchResults = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [filterRef]);
-
-  
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -427,7 +425,6 @@ const SearchResults = () => {
           </div>
         </div>
 
-
         <div className="prof-wrap">
           {loading ? (
             <div className="loading-spinner">
@@ -441,27 +438,38 @@ const SearchResults = () => {
                 className="professor"
                 onClick={() => handleProfessorClick(professor.id)}
               >
-                <div className="professorName">
-                  {professor.firstName} {professor.lastName}
+                <div className='profileImage-wrap'>
+                    {professor.profileImage ? (
+                    <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
+                    ) : (
+                    <img src={defaultProfileImage} alt="Default Profile" />
+                    )}
+
                 </div>
-                <div className="department">{professor.department}</div>
-                <div className="schoolName">{professor.schoolName}</div>
-                <div className="infoContainer">
-                  <div className="averageRating">
-                    Difficulty: {" "}
-                    {professor.commentData?.length > 0 
-                      ? (
-                          professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) 
-                          / professor.commentData.length
-                        ).toFixed(1) 
-                      : "-"
-                    }
+                <div className='prof-content'>
+                  <div className="professorName">
+                    {professor.firstName} {professor.lastName}
                   </div>
-                  <div className="reviewCommentLength">
-                    {professor.commentData?.length || 0}{" "}
-                    {professor.commentData?.length > 1 ? "reviews" : "review"}
+                  <div className="department">{professor.department}</div>
+                  <div className="schoolName">{professor.schoolName}</div>
+                  <div className="infoContainer">
+                    <div className="averageRating">
+                      Difficulty: {" "}
+                      {professor.commentData?.length > 0 
+                        ? (
+                            professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) 
+                            / professor.commentData.length
+                          ).toFixed(1) 
+                        : "-"
+                      }
+                    </div>
+                    <div className="reviewCommentLength">
+                      {professor.commentData?.length || 0}{" "}
+                      {professor.commentData?.length > 1 ? "reviews" : "review"}
+                    </div>
                   </div>
                 </div>
+
               </div>
               
             ))

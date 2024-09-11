@@ -29,6 +29,7 @@
     display: flex;
     flex-direction: row;
     
+    
     @media (max-width: 840px) {
       padding: 0 16px;
     }
@@ -423,52 +424,81 @@
         margin-bottom: 6px;
         padding: 20px;
         transition: background-color 0.05s ease-out, cursor 0.05s ease-out;
+    
+        display: flex;
+        align-items: center; /* Align items vertically to center the image and content */
+    
         &:hover {
           background-color: #e0e0e0;
           cursor: pointer;
         }
 
 
-
-        .professorName {
-          font-weight: bold;
-          font-size: 1.6rem;
-          color: #333;
-        }
-
-        .department {
-          font-size: 1.2rem;
-          margin-top: 5px;
-          color: #666;
-        }
-
-        .schoolName {
-          font-size: 1.2rem;
-          margin-top: 5px;
-          color: rgb(80, 80, 80);
-        }
-
-        .infoContainer {
+        .profileImage-wrap {
+          
+          flex-shrink: 0;
+          
+          height: 64px !important;
+          width: 64px !important;
           display: flex;
-          justify-content: space-between;
+          justify-content: center; /* Center the image horizontally */
+          align-items: center; /* Center the image vertically */
+          margin-right: 8px; /* Add some space between the image and content */
+    
+          img {
+            border-radius: 50%; /* Make the image circular */
+            height: 100% !important;
+            width: 100% !important;
+            object-fit: cover; /* Ensure the image fits within the circle */
+          }
         }
-
-        .averageRating {
-          font-weight: bold;
-          font-size: 0.8em;
-          color: #333;
-          margin-top: 20px;
-        }
-
-        .reviewCommentLength {
-          font-size: 0.8em;
-          color: #333;
-          margin-top: 20px;
-        }
-
-        a {
-          text-decoration: none;
-          color: inherit;
+    
+        .prof-content {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          margin-left: 12px;
+          
+          .professorName {
+            font-weight: bold;
+            font-size: 1.6rem;
+            color: #333;
+          }
+  
+          .department {
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: #666;
+          }
+  
+          .schoolName {
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: rgb(80, 80, 80);
+          }
+  
+          .infoContainer {
+            display: flex;
+            justify-content: space-between;
+          }
+  
+          .averageRating {
+            font-weight: bold;
+            font-size: 0.8em;
+            color: #333;
+            margin-top: 20px;
+          }
+  
+          .reviewCommentLength {
+            font-size: 0.8em;
+            color: #333;
+            margin-top: 20px;
+          }
+  
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
         }
       }
     }
