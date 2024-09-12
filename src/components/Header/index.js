@@ -212,7 +212,9 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                 firstName: firstName,
                 lastName: lastName,
                 schoolName: schoolName,
-                commentData: [commentData]
+                commentData: [commentData],
+                likeCount: 0,
+                follower: 0
             };
             
             // search database 

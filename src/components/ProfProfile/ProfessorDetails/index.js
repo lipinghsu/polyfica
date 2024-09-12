@@ -126,7 +126,7 @@ const ProfessorDetails = ({ professor }) => {
         <h2 className="profName">
           {professor.firstName} {professor.lastName}
         </h2>
-        <p>
+        <p className='profIntro'>
           Professor in the <b>{professor.department}</b>  department at <b>{professor.schoolName}</b>.
         </p>
 
@@ -138,16 +138,16 @@ const ProfessorDetails = ({ professor }) => {
                     <span className="count-text">{professor.commentData?.length > 1 ? "reviews" : "review"}</span>
                 </div>
                 <div className="follower-count">
-                    <span className="number">0</span> <span className="count-text">followers</span>
+                    <span className="number">0</span> <span className="count-text">follower</span>
                 </div>
                 <div className="like-count">
-                    <span className="number">0</span> <span className="count-text">likes</span>
+                    <span className="number">0</span> <span className="count-text">like</span>
                 </div>
             </div>
             <div className="button-wrap">
+                <button className="review-button">Review</button>
                 <button className="follow-button">Follow</button>
                 <button className="like-button">Like</button>
-                <button className="comment-button">Comment</button>
             </div>
         </div>
       </div>

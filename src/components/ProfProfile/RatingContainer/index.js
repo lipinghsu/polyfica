@@ -12,7 +12,6 @@ const RatingContainer = ({ qualityRating, difficultyRating }) => (
                 </div>
             </div>
         </div>
-
         <div className='rating-wrap'>
             <div className="ratingLabel">
                 Difficulty

@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import RatingContainer from '../RatingContainer';
+import shareIcon from '../../../assets/share_icon.png';
+import commentIcon from '../../../assets/comment_icon.png';
 
 const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index }) => {
-    const handleShare = async(event) => {
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 840);
+
+    // Update state based on window size
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 840);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const handleShare = async (event) => {
         const shareData = {
             title: 'Check out this professor review',
             text: comment.reviewComment,
-            url: window.location.href
-        }
+            url: window.location.href,
+        };
         if (navigator.canShare) {
-            navigator.share(shareData).catch(
-                (error) => console.log('Error sharing', error)
-            );
             try {
                 await navigator.share(shareData);
-              } 
-            catch (error) {
-                // output.textContent = `Error: ${error.message}`;
+            } catch (error) {
+                console.log('Error sharing', error);
             }
-        } 
-        else {
+        } else {
             alert('Share feature is not supported in your browser.');
         }
     };
@@ -27,33 +37,72 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index })
     return (
         <div className="commentItem">
             <div className="commentHeader">
-                <RatingContainer
-                    qualityRating={comment.qualityRating}
-                    difficultyRating={comment.difficultyRating}
-                />
-                <div className='commentContainer'>
+                
+                {!isSmallScreen && (
+                    <RatingContainer
+                        qualityRating={comment.qualityRating}
+                        difficultyRating={comment.difficultyRating}
+                    />
+                )}
+                
+                <div className="commentContainer">
+                    
                     <div className="commentTop">
-                        <p className="commentCourse">{comment.reviewCourseName}</p>
+                        <p className="commentUser">
+                            @{comment.userName || 'Anonymous'}
+                        </p>
+                        <p className="commentCourse">
+                            {comment.reviewCourseName}
+                        </p>
                         <p className="commentDate">
                             {comment.reviewDates
                                 ? new Date(comment.reviewDates.seconds * 1000).toLocaleDateString()
                                 : 'No date available'}
                         </p>
                     </div>
+                    {isSmallScreen && (
+                    <RatingContainer
+                        qualityRating={comment.qualityRating}
+                        difficultyRating={comment.difficultyRating}
+                    />
+                    )}
+
                     <p className="commentReview">{comment.reviewComment}</p>
+ 
+
                     <div className="likeDislikeShareContainer">
-                    <div className="likeDislikeContainer">
-                    <button className={`likeButton ${comment.userLikes.includes(currentUser?.uid) ? 'liked' : ''}`} onClick={() => handleLike(index)}>
-                        <span class="material-symbols-outlined">shift</span>
-                    </button>
-                    <span className="likeCount">{comment.likes || 0}</span>
-                    <button className={`dislikeButton ${comment.userDislikes.includes(currentUser?.uid) ? 'disliked' : ''}`} onClick={() => handleDislike(index)}>
-                        <span class="material-symbols-outlined">shift</span>
-                    </button>
-                </div>
+                        <div className="likeDislikeContainer">
+                            <button
+                                className={`likeButton ${comment.userLikes.includes(currentUser?.uid) ? 'liked' : ''}`}
+                                onClick={() => handleLike(index)}
+                            >
+                                <span className="material-symbols-outlined">shift</span>
+                            </button>
+                            <span className="likeCount">{comment.likes || 0}</span>
+                            <button
+                                className={`dislikeButton ${comment.userDislikes.includes(currentUser?.uid) ? 'disliked' : ''}`}
+                                onClick={() => handleDislike(index)}
+                            >
+                                <span className="material-symbols-outlined">shift</span>
+                            </button>
+                        </div>
+                        <div className="shareContainer">
+                            <button className="commentButton" onClick={null}>
+                                {isSmallScreen ? (
+                                    <img src={commentIcon} alt="Comment Icon" />
+                                ) : (
+                                    <span className="material-icons">Comment</span>
+                                )}
+                            </button>
+                        </div>
+
                         <div className="shareContainer">
                             <button className="shareButton" onClick={handleShare}>
-                                <span className="material-icons">Share</span>
+                                {isSmallScreen ? (
+                                    <img src={shareIcon} alt="Share Icon" />
+                                ) : (
+                                    <span className="material-icons">Share</span>
+                                )}
                             </button>
                         </div>
                     </div>

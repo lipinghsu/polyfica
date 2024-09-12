@@ -212,7 +212,21 @@ const ProfProfile = () => {
     }, [profID]);
 
     if (isLoading) {
-        return <div className="loading">Loading...</div>;
+        return (
+            <div className="skeleton-loader">
+                <div className="skeleton-header"></div>
+                <div className="skeleton-body">
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                </div>
+                <div className="skeleton-body">
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                </div>
+            </div>
+        );
     }
 
     return (
