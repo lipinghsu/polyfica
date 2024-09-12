@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { storage, firestore } from '../../../firebase/utils'; // Ensure this path is correct
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-import defaultProfileImage from "../../../assets/defaultProfImage.png"
+import defaultProfileImage from "../../../assets/defaultProfImage.png";
 
 // add like/dislike button -> add likeCount in the professor document
 function calculateAverageQualityRating(commentData) {
@@ -20,6 +20,19 @@ const ProfessorDetails = ({ professor }) => {
   const [progress, setProgress] = useState(0);
   const [temp, setTemp] = useState("0");
   const [selectedFile, setSelectedFile] = useState(null); // Store selected file
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 840); // Check if screen width is >= 840px
+
+  // Handle window resize events to show/hide the count-wrap based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 840);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
@@ -40,54 +53,18 @@ const ProfessorDetails = ({ professor }) => {
     const uploadTask = uploadBytesResumable(storageRef, selectedFile, metadata);
     setUploading(true);
     
-
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        setTemp("01");
-        
-
         const progressPercent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setTemp("1");
         setProgress(progressPercent);
-        setTemp("2");
-        console.log(`Upload is ${progressPercent}% done`);
-        setTemp(`Upload is ${progressPercent}% done`);
-        switch (snapshot.state) {
-          case 'paused':
-            setTemp("Upload is paused");
-            console.log('Upload is paused');
-            break;
-          case 'running':
-            setTemp("Upload is running");
-            console.log('Upload is running');
-            break;
-        }
-        setTemp("end of upload");
       },
       (error) => {
         console.error('Upload failed:', error);
-        // Handle different errors
-        switch (error.code) {
-          case 'storage/unauthorized':
-            console.error('User doesn\'t have permission to access the object');
-            break;
-          case 'storage/canceled':
-            console.error('User canceled the upload');
-            break;
-          case 'storage/unknown':
-            console.error('Unknown error occurred:', error.serverResponse);
-            break;
-          default:
-            console.error('An error occurred during upload');
-        }
         setUploading(false);
       },
       async () => {
-        setTemp("async1");
-        // Upload completed successfully, now get the download URL
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        console.log('File available at', downloadURL);
 
         const newPicture = {
           id: Date.now(),
@@ -137,29 +114,32 @@ const ProfessorDetails = ({ professor }) => {
 
   return (
     <div className="profDetails">
-        {/* {temp} */}
       <div className="profHeader">
         <div className='profileImage-wrap'>
-            {professor.profileImage ? (
+          {professor.profileImage ? (
             <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
-            ) : (
+          ) : (
             <img src={defaultProfileImage} alt="Default Profile" />
-            )}
-
+          )}
         </div>
       
         <h2 className="profName">
           {professor.firstName} {professor.lastName}
         </h2>
         <p>
-          Professor in the {professor.department} department at {professor.schoolName}.
+          Professor in the { } department at {professor.schoolName}.
         </p>
+
         <div className="bottom-wrap">
+            
             <div className="count-wrap">
+                <div className="review-count">
+                    {professor.commentData?.length || 0}{" "}
+                    {professor.commentData?.length > 1 ? "reviews" : "review"}
+                </div>
                 <div className="follower-count">0 followers</div>
                 <div className="like-count">0 likes</div>
             </div>
-            
             <div className="button-wrap">
                 <button className="follow-button">Follow</button>
                 <button className="like-button">Like</button>
@@ -168,58 +148,6 @@ const ProfessorDetails = ({ professor }) => {
         </div>
       </div>
 
-      {/* {thumbNail && (
-        <div className="thumbnail">
-          <img src={thumbNail.url} alt="Professor Thumbnail" />
-        </div>
-      )} */}
-
-      {/* <input type="file" accept="image/*" onChange={handleFileSelect} /> */}
-
-      {/* Show upload button only if a file is selected */}
-      {/* {selectedFile && (
-        <button onClick={handleUpload} disabled={uploading}>
-          {uploading ? 'Uploading...' : 'Upload'}
-        </button>
-      )} */}
-{/* 
-      {uploading && (
-        <div className="upload-progress">
-          <div className="progress-bar">
-            <div className="progress" style={{ width: `${progress}%` }} />
-          </div>
-          <p>{progress.toFixed(2)}%</p>
-        </div>
-      )} */}
-
-      {/* <div className="pictureGallery">
-        {professorPictures.map((picture) => (
-          <div key={picture.id} className="pictureItem">
-            <img src={picture.url} alt="Professor" className="profPicture" />
-            <button onClick={() => handleLike(picture.id)}>Like</button>
-            <span>Likes: {picture.likeCount}</span>
-          </div>
-        ))}
-      </div> */}
-
-      {/* {professor.commentData ? (
-        <div className="averageRating">
-          <div className="progressBar">
-            <div
-              className="progress"
-              style={{
-                width: `${(calculateAverageQualityRating(professor.commentData) / 5) * 100}%`,
-                backgroundColor: `hsl(${
-                  (calculateAverageQualityRating(professor.commentData) / 5) * 120
-                }, 100%, 50%)`,
-              }}
-            />
-          </div>
-          <p>Overall Quality Based on {professor.commentData.length} Ratings</p>
-        </div>
-      ) : (
-        <p>Overall Quality Based on 0 ratings</p>
-      )} */}
     </div>
   );
 };

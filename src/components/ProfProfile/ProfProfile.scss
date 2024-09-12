@@ -57,6 +57,8 @@
           height: 100%;
         }
       }
+      
+
       display: flex;
       flex-direction: column;
       // align-items: center;
@@ -66,6 +68,9 @@
         font-weight: bold;
         margin: 8px 0;
         color: #333;
+        @media(max-width: 840px){
+          font-size: 24px;
+        }
       }
 
       p {
@@ -74,6 +79,16 @@
         margin-top: 0px;
       }
       .bottom-wrap {
+        @media(max-width: 840px){
+          flex-direction: column-reverse;
+          .count-wrap {
+            // width: 100%;
+            // border-top: 1px solid black;
+            // border-bottom: 1px solid black;
+            margin-top: 12px;
+          }
+
+        }
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -85,9 +100,15 @@
         .count-wrap {
           display: flex;
           gap: 16px;
+          @media(max-width: 840px){
+            // position: absolute;
+            // transform: translate();
+          }
   
           .follower-count,
-          .like-count {
+          .like-count,
+          .review-count
+           {
             font-size: 15px;
             font-weight: bold;
             color: #555;
@@ -97,6 +118,14 @@
         .button-wrap {
           display: flex;
           gap: 16px;
+          @media(max-width:840px){
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            button {
+              width: 100%;
+            }
+          }
   
           button {
             padding: 8px 16px;
