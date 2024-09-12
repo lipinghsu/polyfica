@@ -127,18 +127,22 @@ const ProfessorDetails = ({ professor }) => {
           {professor.firstName} {professor.lastName}
         </h2>
         <p>
-          Professor in the { } department at {professor.schoolName}.
+          Professor in the <b>{professor.department}</b>  department at <b>{professor.schoolName}</b>.
         </p>
 
         <div className="bottom-wrap">
             
             <div className="count-wrap">
                 <div className="review-count">
-                    {professor.commentData?.length || 0}{" "}
-                    {professor.commentData?.length > 1 ? "reviews" : "review"}
+                    <span className="number">{professor.commentData?.length || 0}</span>{" "}
+                    <span className="count-text">{professor.commentData?.length > 1 ? "reviews" : "review"}</span>
                 </div>
-                <div className="follower-count">0 followers</div>
-                <div className="like-count">0 likes</div>
+                <div className="follower-count">
+                    <span className="number">0</span> <span className="count-text">followers</span>
+                </div>
+                <div className="like-count">
+                    <span className="number">0</span> <span className="count-text">likes</span>
+                </div>
             </div>
             <div className="button-wrap">
                 <button className="follow-button">Follow</button>

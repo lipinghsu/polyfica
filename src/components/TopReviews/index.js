@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { LuSearch } from 'react-icons/lu';
 import { firestore } from "../../firebase/utils";
-import { Rating } from '@mui/material'; // Import Rating from Material-UI
+import { Rating } from '@mui/material';
 
 import './styles.scss';
 

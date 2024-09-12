@@ -7,6 +7,8 @@ import upArrow from "../../assets/arrow_up.png";
 import searchImg from "../../assets/search-img.png";
 import filter_icon from "../../assets/filter_icon.png";
 import defaultProfileImage from "../../assets/defaultProfImage.png";
+import { Rating } from '@mui/material'; 
+
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
@@ -453,15 +455,16 @@ const SearchResults = () => {
                   <div className="department">{professor.department}</div>
                   <div className="schoolName">{professor.schoolName}</div>
                   <div className="infoContainer">
-                    <div className="averageRating">
-                      Difficulty: {" "}
-                      {professor.commentData?.length > 0 
+
+                    <div className='rating-score'>
+                      {/* Render stars based on rating using Material-UI Rating */}
+                      <Rating precision={0.5} value= {professor.commentData?.length > 0 
                         ? (
                             professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) 
                             / professor.commentData.length
                           ).toFixed(1) 
                         : "-"
-                      }
+                      } name="size-large" size="large" readOnly />
                     </div>
                     <div className="reviewCommentLength">
                       {professor.commentData?.length || 0}{" "}
