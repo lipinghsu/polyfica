@@ -118,13 +118,14 @@
           cursor: pointer;           
           &.review-button {
             @media (max-width:840px) {
-              background-color: #3EAE86;
+              // background-color: #3EAE86;
+              background-color: rgba(230, 230, 230, 0.776);
               border: 0px;
               &:hover {
                 border: 0px !important;
-                // background-color: rgb(225, 225, 225);
+                background-color: rgb(225, 225, 225);
               }
-              color:white;
+              color:black;
             }
             // width: 170px;
             // width: 170px;
@@ -132,7 +133,7 @@
             font-size: 1.5rem;
             font-weight: 500;
             color: black;
-            background-color: white;;
+            background-color: white;
             border: 1px solid #00000033;
             &:hover {
               border: 1px solid #0000007F;
@@ -258,6 +259,15 @@
             cursor: pointer;
   
             &.follow-button {
+              background-color: rgba(230, 230, 230, 0.776);
+              @media (max-width:840px){
+                background-color: #3EAE86;
+                color:white;
+                &:hover {
+                  background-color: #2b8d6c !important;
+                }
+              }
+                
               
               color: black;
               font-weight: 500;
@@ -293,10 +303,11 @@
           border-radius: 18px;
           font-size: 1.5rem;
           font-weight: 500;
-          color: black;
-          background-color: white;;
+          color: #555;
+          background-color: white;
           border: 1px solid #00000033;
           &:hover {
+            color: #333;
             border: 1px solid #0000007F;
             // background-color: rgb(225, 225, 225);
           }
@@ -639,8 +650,8 @@
               width: 52px;
               @media (max-width: 840px) {
                 // width: 100% !important;
-                height: 45px;
-                width: 45px;
+                // height: 45px;
+                // width: 45px;
                 margin-bottom: 5px;
               }
               .ratingValue {
@@ -653,12 +664,13 @@
                 width: 52px;
                 border-radius: 50%;
                 font-weight: bolder;
-                background-color: black;
+                color: black;
+                background-color: #e1e1e1;
                 @media (max-width: 840px) {
                   // width: 100% !important;
-                  background-color: transparent;
-                  height: 45px;
-                  width: 45px;
+                  // background-color: transparent;
+                  // height: 45px;
+                  // width: 45px;
                 }
               }
             }
@@ -779,6 +791,7 @@
 
           .likeButton,
           .dislikeButton {
+            background-color: rgba(230, 230, 230, 0.776);
             padding: 6px;
             margin: 0 10px;
             border: none;
@@ -892,24 +905,40 @@
 
 
 .skeleton-loader {
-  padding: 20px;
+  padding: 12px 36px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  // gap: 16px;
+
+  
+  @media (max-width:840px){
+    padding: 12px;
+  }
 }
 
 .skeleton-header {
-  height: 50px;
-  width: 150px;
+  margin: 0;
+  padding: 0;
+
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
   background-color: #e0e0e0;
   animation: skeleton-loading 1.2s ease-in-out infinite;
-  border-radius: 8px;
+  // border-radius: 8px;
 }
 
 .skeleton-body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  // gap: 10px;
+  // background-color: red;
+  margin-bottom: 20px;
+  @media (max-width:840px) {
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
 }
 
 .skeleton-line {
@@ -918,6 +947,40 @@
   background-color: #e0e0e0;
   animation: skeleton-loading 1.2s ease-in-out infinite;
   border-radius: 8px;
+  &.name{
+    width: 25%;
+    height: 24px;
+    margin: 8px 0;
+    border-radius: 12px;
+  }
+  &.detail{
+    border-radius: 10px;
+    width: 75%;
+    margin-bottom: 12px;
+  }
+  &.count{
+    height: 36px;
+    width: 25%;
+    margin-bottom: 12px;
+    border-radius: 18px;
+  }
+  &.rev-btn{
+    width: 100%;
+    height: 36px;
+    // margin-bottom: 12px;
+    border-radius: 18px;
+  }
+
+  &.content{
+    min-height: 185px;
+    margin-bottom: 12px;
+    &:last-child{
+      margin-bottom: 0px;
+    }
+    @media (max-width:840px) {
+
+    }
+  }
 }
 
 @keyframes skeleton-loading {

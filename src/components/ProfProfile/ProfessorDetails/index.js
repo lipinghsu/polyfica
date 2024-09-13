@@ -121,9 +121,6 @@ const ProfessorDetails = ({ professor }) => {
         </p>
 
         <div className="bottom-wrap">
-          {!isLargeScreen ? 
-            <button className="review-button">Write a review</button>
-          : null}
 
           {true ? (
             <div className="count-wrap">
@@ -141,10 +138,14 @@ const ProfessorDetails = ({ professor }) => {
           ) : null}
 
           <div className="button-wrap">
+            {!isLargeScreen ? 
+            <button className="review-button">Review</button>
+            : null}
             <button className="follow-button">Follow</button>
             <button className="like-button">
               Like
             </button>
+            
           </div>
 
         </div>

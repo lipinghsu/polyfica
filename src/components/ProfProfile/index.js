@@ -215,14 +215,15 @@ const ProfProfile = () => {
             <div className="skeleton-loader">
                 <div className="skeleton-header"></div>
                 <div className="skeleton-body">
-                    <div className="skeleton-line"></div>
-                    <div className="skeleton-line"></div>
-                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line name"></div>
+                    <div className="skeleton-line detail"></div>
+                    <div className="skeleton-line count"></div>
+                    <div className="skeleton-line rev-btn"></div>
                 </div>
                 <div className="skeleton-body">
-                    <div className="skeleton-line"></div>
-                    <div className="skeleton-line"></div>
-                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line content"></div>
+                    <div className="skeleton-line content"></div>
+                    <div className="skeleton-line content"></div>
                 </div>
             </div>
         );

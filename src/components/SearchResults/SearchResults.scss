@@ -589,14 +589,21 @@
     background-color: #3eae86;
     border-radius: 18px 18px 0 0px;
     transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    border: none;
+    &:hover{
+      background-color: #2b8d6c;
+      border: none;
+      color:white;
+    }
   }
 
   .toggle-filter-btn {
     margin-bottom: 0;
     padding: 10px 20px;
-    background-color: #3eae86;
-    color: white;
-    border: none;
+    background-color: white;
+    border: 1px solid #00000033;
+    color:#555;
+    // border: none;
     height: 36px;
     border-radius: 18px;
     font-size: 1.5rem;
@@ -617,8 +624,9 @@
     box-sizing: border-box;
 
     &:hover {
-      background-color: #2b8d6c;   
-      color: white;
+      color:#444;
+      border: 1px solid #0000007F;
+    
     }
 
     @media (min-width: 1020px) {
