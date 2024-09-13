@@ -2,6 +2,7 @@
   border-top: 1px solid #d3d3d3;
   padding-top: 12px;
   margin: 0 36px 36px 36px;
+  
 
   @media (max-width:840px) {
     padding-top: 16px;
@@ -19,12 +20,10 @@
 
   .profDetails {
     background-color: #fff;
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    // padding: 20px;
-    // border-radius: 8px;
     margin-bottom: 20px;
-    border-bottom: 1px solid #d3d3d3;
-    
+    @media (max-width: 840px) {
+      margin-bottom: 0px;
+    }
 
     .upload-progress {
       margin: 20px 0;
@@ -54,23 +53,33 @@
     }
 
     .profHeader {
-      .profileImage-wrap{
-        
-        height:80px;
-        width: 80px;
+      .top-wrap {
+        width: 100%;
+        height: 80px;
         display: flex;
-        justify-content: center; /* Center the image horizontally */
-        align-items: center; /* Center the image vertically */
-        flex-shrink: 0;
-
-        img{
-          border: 1px solid #d3d3d3;
-          border-radius: 40px;
-          width: 100%;
-          height: 100%;
-          object-fit: cover; /* Ensure the image fits within the circle */
+        align-items: center;
+        justify-content: space-between;
+      
+        .profileImage-wrap {
+          height: 80px;
+          width: 80px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0; /* Prevent shrinking of the container */
+        
+          img {
+            width: 80px; /* Fixed width */
+            height: 80px; /* Fixed height */
+            object-fit: cover; /* Ensure the image fits within the circle */
+            border-radius: 40px; /* Make the image circular */
+            border: 1px solid #d3d3d3; /* Optional border */
+          }
         }
+
       }
+      
+
       
 
       display: flex;
@@ -89,18 +98,48 @@
 
       .profIntro {
         @media(max-width: 840px){
-          // font-size: 14px;
+          font-size: 14px;
         }
         font-size: 16px;
         color: black;
         margin-top: 0px;
         margin-bottom: 12px;
         b{
-          font-weight: 500 !important;
+          font-weight: 600 !important;
         }
       }
       .bottom-wrap {
         margin-bottom: 12px;
+        button {
+          width: 100%;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 24px;
+          cursor: pointer;           
+          &.review-button {
+            @media (max-width:840px) {
+              background-color: #3EAE86;
+              border: 0px;
+              &:hover {
+                border: 0px !important;
+                // background-color: rgb(225, 225, 225);
+              }
+              color:white;
+            }
+            // width: 170px;
+            // width: 170px;
+            border-radius: 18px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: black;
+            background-color: white;;
+            border: 1px solid #00000033;
+            &:hover {
+              border: 1px solid #0000007F;
+              // background-color: rgb(225, 225, 225);
+            }
+          }
+        }
         .review-count,
         .follower-count,
         .like-count {
@@ -114,7 +153,11 @@
           // align-items: flex-start; /* Align to the left for better readability */
           gap: 12px; /* Adjust gap between rows */
           .count-wrap{
+            @media (max-width: 840px) {
+              padding-bottom: 12px;
+            }
             border-top: 1px solid #d3d3d3;
+            border-bottom: 1px solid #d3d3d3;
             padding-top: 12px;
             width: 100%;
             display: flex;
@@ -187,15 +230,16 @@
         .button-wrap {
           display: flex;
           gap: 16px;
-          // font-weight: 500;
-          // font-size: 1.5rem;
           .follow-button,
           .like-button,
           .review-button{
             font-weight: 500;
             font-size: 1.5rem;
             font-family: Helvetica Neue, Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
-
+            img{
+              height: 32px;
+              width: 32px;
+            }
           }
           
           @media(max-width:840px){
@@ -204,86 +248,61 @@
             justify-content: center;
             button {
               width: 100%;
-              
             }
           }
   
           button {
-            padding: 8px 16px;
+            padding: 8px 18px;
             border: none;
             border-radius: 24px;
             cursor: pointer;
-            // transition: background-color 0.3s ease;
   
             &.follow-button {
-              background-color: #3EAE86;
-              color: white;
-              border: 1px solid #3EAE86;
-
+              
+              color: black;
               font-weight: 500;
   
               &:hover {
-                background-color: white;
-                color: #218838;
+                background-color: rgb(225, 225, 225);
               }
             }
   
             &.like-button {
+              // width: 170px;
+              border-radius: 18px;
+              font-size: 1.5rem;
               font-weight: 500;
-              background-color: black;
-              border: 1px solid black;
-              color: white;
-              color: white;
-  
+              color: black;
+              background-color: rgba(230, 230, 230, 0.776);
               &:hover {
-                background-color: white;
-                color: black;
-                border: 1px solid black;
-
+                background-color: rgb(225, 225, 225);
               }
-            }
-  
-            &.review-button {
-              font-weight: 500;
-              // background-color: rgba(230, 230, 230, 0.776);
-              border: 1px solid black;
-              color:white;
-              background-color: black;
-  
-              &:hover {
-                color: black;
-                background-color: white;
+              @media (max-width: 840px) {
               }
             }
           }
         }
       }
+      button {
+        width: 100%;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 24px;
+        cursor: pointer;           
+        &.review-button {
+          border-radius: 18px;
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: black;
+          background-color: white;;
+          border: 1px solid #00000033;
+          &:hover {
+            border: 1px solid #0000007F;
+            // background-color: rgb(225, 225, 225);
+          }
+        }
+      }
     }
-
-    // .averageRating {
-    //   // margin: 20px 0;
-
-    //   .progressBar {
-    //     margin: 0 auto;
-    //     width: 100%;
-    //     max-width: 300px;
-    //     background-color: #f1f1f1;
-    //     border-radius: 8px;
-    //     overflow: hidden;
-    //     height: 20px;
-    //   }
-
-    //   .progress {
-    //     height: 100%;
-    //     transition: width 0.3s;
-    //   }
-
-    //   p {
-    //     font-size: 14px;
-    //     color: #555;
-    //     text-align: center;
-    //   }
-    // }
 
     .pictureGallery {
       display: flex;
@@ -524,7 +543,9 @@
     border-radius: 8px;
     margin-top: 20px;
     margin-bottom: 20px;
-
+    @media (max-width: 840px) {
+      margin-top: 0px;
+    }
     .commentItem {
       @media (max-width: 840px) {
         // margin-bottom: 9px;
@@ -561,6 +582,9 @@
           margin-right: 10px;
 
           @media (max-width: 840px) {
+            // border-top: 1px solid #d3d3d3;
+            // border-bottom: 1px solid #d3d3d3;
+            border-radius: 0px;
             // position:absolute;
             flex-direction: row;
             padding: 0px;
@@ -577,7 +601,7 @@
             &:last-child {
               // margin-top: 16px;
             }
-            margin-top: 8px;
+            margin-top: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -586,13 +610,18 @@
               width: 100%;
             }
             .ratingLabel {
+              margin-top: 4px;
               font-size: 14px;
+              color: #333;
               // color: #999;
               font-weight: 500;
               
               text-align: center;
               width: 100%;
-              margin-bottom: 8px;
+              // margin-bottom: 8px;
+              &:last-child{
+
+              }
               @media (max-width: 840px) {
                 width: 100%;
                 height: 18px;
@@ -602,10 +631,11 @@
 
             .ratingRow {
               display: flex;
+              flex-direction: column;
               justify-content: space-between;
               align-items: center;
               
-              height: 52px;
+              height: 100%;
               width: 52px;
               @media (max-width: 840px) {
                 // width: 100% !important;
@@ -623,8 +653,10 @@
                 width: 52px;
                 border-radius: 50%;
                 font-weight: bolder;
+                background-color: black;
                 @media (max-width: 840px) {
                   // width: 100% !important;
+                  background-color: transparent;
                   height: 45px;
                   width: 45px;
                 }
@@ -634,22 +666,21 @@
             .qualityRatingRow {    
               @media (max-width: 840px) {
                 width: 100%;
+                color:black;
+                background-color: transparent;
+                
               }
 
-              background-color: black;
               color:white;
-              
-              border: 1px solid black;
-
               border-radius: 26px;
             }
 
             .difficultyRatingRow {
               @media (max-width: 840px) {
                 width: 100%;
+                background-color: transparent;
+                color:black;
               }
-
-              background-color: black;
               color:white;
               border-radius: 26px;
             }
@@ -658,31 +689,45 @@
 
         .commentTop {
           display: flex;
-          justify-content: space-between;
+          justify-content: space-between; // Ensures .commentUser and .commentDate stay at the sides
+          align-items: center;
+          position: relative; // To allow absolute positioning for .commentCourse
           width: 100%;
           margin-bottom: 8px;
           padding-top: 8px;
-
-          .commentUser{
+        
+          .commentUser {
             font-size: 14px;
-            color: #999;
+            color: #555;
             margin: 0;
-            align-self: flex-start;
           }
+        
           .commentCourse {
-            font-size: 16px;
+            // background-color: white;
+            color:black !important;
+            height: 32px;
+            border-radius: 16px;
+            width: 96px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute; // Ensures it's centered relative to .commentTop
+            left: 50%; // Move the element to the center of the container
+            transform: translateX(-50%); // Shift it back by 50% of its own width for true centering
+            font-size: 15px;
             font-weight: bold;
             color: #333;
             margin: 0;
           }
-
+        
           .commentDate {
             font-size: 14px;
-            color: #999;
+            color: #555;
             margin: 0;
-            align-self: flex-end;
           }
         }
+        
       }
 
       .commentContainer {
@@ -713,19 +758,22 @@
         padding-top: 3px;
         padding-bottom: 1px;
         
+        
         border-radius: 25px;
         height: 36px;
         @media (max-width: 840px) {
+          padding-top: 15px;
           // margin-bottom: 4px;
         }
 
         .likeDislikeContainer {
           display: flex;
           justify-content: center;
-          background-color: rgb(248, 249, 250);  /* Matching parent background */
+          // background-color: rgb(248, 249, 250);  /* Matching parent background */
+          background-color: rgba(230, 230, 230, 0.776);
           // border-radius: 16px;  /* Soft rounded corners */
-          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15),  /* Dark shadow for depth */
-                      -2px -2px 4px rgba(255, 255, 255, 0.15); 
+          // box-shadow: 2px 2px 2px rgba(55, 55, 55, 0.245),  /* Dark shadow for depth */
+          // -2px -2px 2px rgba(255, 255, 255, 0.925); 
           width: 102px;
           border-radius: 18px;
 
@@ -740,7 +788,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgb(248, 249, 250);  /* Matching parent background */
+            // background-color: rgb(248, 249, 250);  /* Matching parent background */
 
             &.liked {
               color: #007bff;
@@ -774,8 +822,7 @@
         }
 
         .shareContainer {
-          
-          
+          background-color: rgba(230, 230, 230, 0.776);
           &:last-child{
             
             margin-left: auto;
@@ -790,18 +837,13 @@
           border-radius: 18px;
           height: 36px;
 
-          background-color: rgb(248, 249, 250);  /* Matching parent background */
-          // border-radius: 16px;  /* Soft rounded corners */
-          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15),  /* Dark shadow for depth */
-                      -2px -2px 4px rgba(255, 255, 255, 0.15); 
-
           &:hover {
             background-color: #e1e1e1;
           }
 
           .shareButton ,
           .commentButton {
-            // color: purple !important;
+            
             // span{
               font-weight: 500 !important;
             // }

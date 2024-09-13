@@ -3,7 +3,6 @@ import { firestore, auth } from "../../firebase/utils";
 import { useParams, useHistory } from 'react-router-dom';
 import './ProfProfile.scss';
 import CommentItem from './CommentItem';
-import CommentForm from './CommentForm';
 import ProfessorDetails from './ProfessorDetails';
 
 

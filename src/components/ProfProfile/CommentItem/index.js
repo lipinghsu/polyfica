@@ -3,6 +3,7 @@ import RatingContainer from '../RatingContainer';
 import shareIcon from '../../../assets/share_icon.png';
 import commentIcon from '../../../assets/comment_icon.png';
 
+
 const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index }) => {
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 840);
 
@@ -44,7 +45,7 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index })
                         difficultyRating={comment.difficultyRating}
                     />
                 )}
-                
+                {/* make review button like reddit comment button */}
                 <div className="commentContainer">
                     
                     <div className="commentTop">
@@ -56,8 +57,24 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index })
                         </p>
                         <p className="commentDate">
                             {comment.reviewDates
-                                ? new Date(comment.reviewDates.seconds * 1000).toLocaleDateString()
-                                : 'No date available'}
+                            ? (() => {
+                                const date = new Date(comment.reviewDates.seconds * 1000);
+                                const today = new Date();
+                                
+                                const options = {
+                                    month: 'short',
+                                    day: 'numeric',
+                                };
+
+                                // Add year if it's not the current year
+                                if (date.getFullYear() !== today.getFullYear()) {
+                                    options.year = 'numeric';
+                                }
+
+                                return date.toLocaleDateString('en-US', options);
+                            })()
+                            : 'No date available'
+                            }
                         </p>
                     </div>
                     {isSmallScreen && (

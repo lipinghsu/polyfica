@@ -132,10 +132,10 @@ $customDarkGray: #b8b8b8;
                         font-size: 1.5rem;
                         font-weight: 500;
                         color: black;
-                        background-color: rgba(230, 230, 230, 0.776);
+                        // background-color: rgba(230, 230, 230, 0.776);
                         
                         &:hover {
-                            background-color: #d3d3d3;
+                            background-color: rgba(230, 230, 230, 0.776);
                         }
                         &.homepage:hover {
                             background-color: rgba(230, 230, 230, 0.776);
@@ -149,12 +149,13 @@ $customDarkGray: #b8b8b8;
                         }
 
                         &.scrolled {
-                            background-color: rgba(230, 230, 230, 0.776);
+                            // background-color: rgba(230, 230, 230, 0.776);
                         }
                         &.scrolled:hover {
-                            background-color: #d3d3d3;
+                            
+                            background-color: rgba(230, 230, 230, 0.776);
                             .text-button.review-btn.scrolled {
-                                background-color: #d3d3d3;
+                                // background-color: #d3d3d3;
                             }
                         }
 
@@ -219,7 +220,7 @@ $customDarkGray: #b8b8b8;
                 }
 
                 .text-button.review-btn.scrolled {
-                    background-color: rgba(230, 230, 230, 0.776);
+                    // background-color: rgba(230, 230, 230, 0.776);
                 }
 
                 .text-button.review-btn {
@@ -347,13 +348,13 @@ $customDarkGray: #b8b8b8;
                 cursor: pointer;
 
                 &:hover {
-                    background-color: #d3d3d3;
+                    background-color: rgb(225, 225, 225);
                 }
                 &.scrolled {
                     background-color: rgba(230, 230, 230, 0.776);
                 }
                 &.scrolled:hover {
-                    background-color: #d3d3d3;
+                    background-color: rgb(225, 225, 225);
                 }
 
                 .material-symbols-outlined {
