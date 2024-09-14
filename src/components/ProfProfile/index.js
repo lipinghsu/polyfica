@@ -260,7 +260,10 @@ const ProfProfile = () => {
                         />
                     ))
                 ) : (
-                    <p>No review comments available for this professor.</p>
+                    <div className="no-comment">
+                        <p>No review comments available for this professor.</p>
+                    </div>
+                    
                 )}
             </div>
         </div>

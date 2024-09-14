@@ -57,7 +57,9 @@ const SearchResults = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-  
+  const [isReviewDropdownVisible, setIsReviewDropdownVisible] = useState(false);
+  const [isRatingDropdownVisible, setIsRatingDropdownVisible] = useState(false);
+
   const boxRightRef = useRef();
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
@@ -69,6 +71,15 @@ const SearchResults = () => {
     setSelectedSortOption(option);
     setIsSortDropdownVisible(false);
   };
+
+
+  const toggleReviewDropdown = () => {
+    setIsReviewDropdownVisible(!isReviewDropdownVisible);
+  };
+
+  const toggleRatingDropdown = () => {
+    setIsRatingDropdownVisible(!isRatingDropdownVisible);
+  };  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -352,49 +363,49 @@ const SearchResults = () => {
             <div className="filter-title rating">
               Number of Reviews
             </div>
-              <div className="filter-num-rev">
-                {reviewOptions.map((option) => (
-                  <button
-                    key={option.id}
-                    className={`review-filter-button${selectedReviewFilter === option.value ? ' active' : ''}`}
-                    onClick={() => handleReviewFilterClick(option.value)}
-                  >
-                    {option.value}
-                  </button>
-                ))}
-              </div>
+            <div className="filter-num-rev">
+              {reviewOptions.map((option) => (
+                <button
+                  key={option.id}
+                  className={`review-filter-button${selectedReviewFilter === option.value ? ' active' : ''}`}
+                  onClick={() => handleReviewFilterClick(option.value)}
+                >
+                  {option.value}
+                </button>
+              ))}
+            </div>
 
-              {/* start of num rev filter */}
-              <div className="filter-title">
-                Rating
-              </div>
-              <div className="filter-num-rev">
-                {ratingOptions.map((option) => (
-                  <button
-                    key={option.id}
-                    className={`review-filter-button${selectedRatingFilter === option.value ? ' active' : ''}`}
-                    onClick={() => handleRatingFilterClick(option.value)}
-                  >
-                    {option.value}
-                  </button>
-                ))}
-              </div>
+            {/* start of num rev filter */}
+            <div className="filter-title">
+              Rating
+            </div>
+            <div className="filter-num-rev">
+              {ratingOptions.map((option) => (
+                <button
+                  key={option.id}
+                  className={`review-filter-button${selectedRatingFilter === option.value ? ' active' : ''}`}
+                  onClick={() => handleRatingFilterClick(option.value)}
+                >
+                  {option.value}
+                </button>
+              ))}
+            </div>
               
-              {/* start of department filter */}
-              <div className="filter-title">
-                Department
-              </div>
+            {/* start of department filter */}
+            <div className="filter-title">
+              Department
+            </div>
               <div className="filter-dropdown" ref={filterRef}>
-                <div className="filter-top" >
-                  <label htmlFor="department-filter" className="dropdown-label">
-                    {dropdownLabel}
-                  </label>
-                  <img
-                    src={upArrow}
-                    alt="Toggle Dropdown"
-                    className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
-                  />
+                {/* <div className="filter-top" > */}
+                <div className="dropdown-label">
+                  {dropdownLabel}
                 </div>
+                <img
+                  src={upArrow}
+                  alt="Toggle Dropdown"
+                  className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
+                />
+                {/* </div> */}
                 <div className="filter-overlay" onClick={toggleDropdown}>
                   {/* this is a transparent div on top of filter-top */}
                 </div>
@@ -423,18 +434,20 @@ const SearchResults = () => {
                     ))}
                   </div>)}
                 </div>
-              </div>
+            </div>
           </div>
         </div>
 
         <div className="prof-wrap">
+        
           {loading ? (
             <div className="loading-spinner">
               <div className="spinner"></div>
             </div>
-          ) : 
+      ) : 
           (
             searchResults.map((professor, index) => (
+              <div className="item-wrap">
               <div
                 key={index}
                 className="professor"
@@ -449,14 +462,12 @@ const SearchResults = () => {
 
                 </div>
                 <div className='prof-content'>
-                  <div className="professorName">
-                    {professor.firstName} {professor.lastName}
-                  </div>
-                  <div className="department">{professor.department}</div>
-                  <div className="schoolName">{professor.schoolName}</div>
-                  <div className="infoContainer">
-
-                    <div className='rating-score'>
+                  <div className="infoHeader">
+                    <div className="professorName">
+                      {professor.firstName} {professor.lastName}
+                    </div>
+                    
+                    <div className="rating-score">
                       {/* Render stars based on rating using Material-UI Rating */}
                       <Rating precision={0.5} value= {professor.commentData?.length > 0 
                         ? (
@@ -466,6 +477,10 @@ const SearchResults = () => {
                         : "-"
                       } name="size-large" size="large" readOnly />
                     </div>
+                  </div>
+                  <div className="department">{professor.department}</div>
+                  <div className="infoFooter">
+                    <div className="schoolName">{professor.schoolName}</div>
                     <div className="reviewCommentLength">
                       {professor.commentData?.length || 0}{" "}
                       {professor.commentData?.length > 1 ? "reviews" : "review"}
@@ -474,7 +489,7 @@ const SearchResults = () => {
                 </div>
 
               </div>
-              
+              </div>
             ))
           )}
           {searchResults.length >= 1 && (

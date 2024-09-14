@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import polyfica_text from './../../assets/polyfica_final_transparent_corrected.png';
 import { LuSearch, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
+import defaultProfileImage from "../../assets/defaultProfImage.png";
 import './styles.scss';
 
 const Directory = ({ showSignupDropdown }) => {
@@ -166,13 +167,25 @@ const Directory = ({ showSignupDropdown }) => {
                       key={index}
                       className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''}`}
                     >
-                      <div>
-                        {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
+
+
+                      <div className='profileImage-wrap'>
+                        {professor.profileImage ? (
+                        <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
+                        ) : (
+                        <img src={defaultProfileImage} alt="Default Profile" />
+                        )}
                       </div>
-                      <div className="professor-details">
-                        <div className="professor-department">{professor.department}</div>
-                        <div className="professor-schoolName">{professor.schoolName}</div>
+                      <div className='right-wrap'>
+                        <div>
+                          {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
+                        </div>
+                        <div className="professor-details">
+                          <div className="professor-department">{professor.department}</div>
+                          <div className="professor-schoolName">{professor.schoolName}</div>
+                        </div>
                       </div>
+
                     </Link>
                   ))}
                 </div>

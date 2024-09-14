@@ -214,7 +214,8 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                 schoolName: schoolName,
                 commentData: [commentData],
                 likeCount: 0,
-                follower: 0
+                follower: 0,
+                profileImage: ""
             };
             
             // search database 
