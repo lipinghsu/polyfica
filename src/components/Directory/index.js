@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import polyfica_text from './../../assets/polyfica_final_transparent_corrected.png';
+import polyfica_text from './../../assets/polyfica_text.png';
 import { LuSearch, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
 import defaultProfileImage from "../../assets/defaultProfImage.png";
@@ -18,14 +18,17 @@ const Directory = ({ showSignupDropdown }) => {
     if (e.key === 'Enter' && searchTerm.length > 0) {
       if (activeSuggestionIndex >= 0) {
         history.push(`/search/professors/${suggestions[activeSuggestionIndex].profID}`);
-      } else {
+      } 
+      else {
         history.push(`/search/professors?term=${searchTerm}`);
       }
-    } else if (e.key === 'ArrowDown') {
+    } 
+    else if (e.key === 'ArrowDown') {
       setActiveSuggestionIndex((prevIndex) =>
         prevIndex < suggestions.length - 1 ? prevIndex + 1 : -1
       );
-    } else if (e.key === 'ArrowUp') {
+    } 
+    else if (e.key === 'ArrowUp') {
       setActiveSuggestionIndex((prevIndex) =>
         prevIndex > -1 ? prevIndex - 1 : suggestions.length - 1
       );
@@ -36,7 +39,8 @@ const Directory = ({ showSignupDropdown }) => {
     if (searchTerm.length > 0) {
       if (activeSuggestionIndex >= 0) {
         history.push(`/search/professors/${suggestions[activeSuggestionIndex].profID}`);
-      } else {
+      } 
+      else {
         history.push(`/search/professors?term=${searchTerm}`);
       }
     }
@@ -167,8 +171,6 @@ const Directory = ({ showSignupDropdown }) => {
                       key={index}
                       className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''}`}
                     >
-
-
                       <div className='profileImage-wrap'>
                         {professor.profileImage ? (
                         <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
@@ -176,6 +178,7 @@ const Directory = ({ showSignupDropdown }) => {
                         <img src={defaultProfileImage} alt="Default Profile" />
                         )}
                       </div>
+
                       <div className='right-wrap'>
                         <div>
                           {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}

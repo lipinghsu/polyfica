@@ -8,6 +8,7 @@ import searchImg from "../../assets/search-img.png";
 import filter_icon from "../../assets/filter_icon.png";
 import defaultProfileImage from "../../assets/defaultProfImage.png";
 import { Rating } from '@mui/material'; 
+import Dropdown from "./DropDown";
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -15,7 +16,7 @@ const capitalizeFirstLetter = (string) => {
 
 
 const reviewOptions = [
-  { id: 1, value: 'Any' },
+  { id: 1, value: 'Number of Reviews' },
   { id: 2, value: '25+' },
   { id: 3, value: '50+' },
   { id: 4, value: '100+' },
@@ -25,7 +26,7 @@ const reviewOptions = [
 
 // this is not working properly
 const ratingOptions = [
-  { id: 1, value: 'Any' },
+  { id: 1, value: 'Rating' },
   { id: 2, value: '2.0+' },
   { id: 3, value: '3.0+' },
   { id: 4, value: '4.0+' },
@@ -46,12 +47,12 @@ const SearchResults = () => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const [departmentSearchTerm, setDepartmentSearchTerm] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [selectedReviewFilter, setSelectedReviewFilter] = useState('Any'); // New state for review filter
+  const [selectedReviewFilter, setSelectedReviewFilter] = useState('Number of Reviews'); // New state for review filter
   const location = useLocation();
   const history = useHistory();
   const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
-  const [selectedRatingFilter, setSelectedRatingFilter] = useState('Any');
+  const [selectedRatingFilter, setSelectedRatingFilter] = useState('Rating');
   const [selectedSortOption, setSelectedSortOption] = useState("Alphabetical (Last Name)");
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -168,7 +169,7 @@ const SearchResults = () => {
         }
 
         // Apply rating filter if selected
-        if (selectedRatingFilter && selectedRatingFilter !== 'Any') {
+        if (selectedRatingFilter && selectedRatingFilter !== 'Rating') {
           const minRating = parseFloat(selectedRatingFilter);
           results = results.filter(professor =>
             professor.difficultyRating && parseFloat(professor.difficultyRating) >= minRating
@@ -176,7 +177,7 @@ const SearchResults = () => {
         }
 
         // Apply review count filter if selected
-        if (selectedReviewFilter && selectedReviewFilter !== 'Any') {
+        if (selectedReviewFilter && selectedReviewFilter !== 'Number of Reviews') {
           const reviewCount = parseInt(selectedReviewFilter);
           results = results.filter(professor =>
             professor.commentData && professor.commentData.length >= reviewCount
@@ -269,7 +270,7 @@ const SearchResults = () => {
 
   const dropdownLabel = selectedDepartments.length > 0 
   ? selectedDepartments.join(", ") 
-  : "Any";
+  : "Department";
 
   const controlMovingDiv = () => {
     if (windowWidth >= 1020) { // Only move when window width is >= 1020px
@@ -304,7 +305,7 @@ const SearchResults = () => {
       <div className="searchTermInfo">
           {searchTerm && (
             <h2>
-              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#37d637' }}>{searchTerm}</strong>" in their name
+              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#008938' }}>{searchTerm}</strong>" in their name
             </h2>
           )}
       </div>
@@ -333,68 +334,29 @@ const SearchResults = () => {
             <div className="section-title">
               Sort By
             </div>
-            <div className={`filter-dropdown ${isSortDropdownVisible ? 'active' : ''}`} onClick={toggleSortDropdown}>
-              <div className="dropdown-label">
-                {selectedSortOption} {/* Display current selected option */}
-              </div>
-              <img
-                src={upArrow}
-                alt="Toggle Dropdown"
-                className={`arrow-icon ${isSortDropdownVisible ? 'rotated' : ''}`}
-              />
-              <div className={isSortDropdownVisible ? "sort-options active" : "sort-options" }>
-                {sortOptions.map((option) => (
-                  <div
-                    key={option.id}
-                    className="sort-option"
-                    onClick={() => handleSortChange(option.value)}
-                  >
-                    {option.value}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <Dropdown
+              sortOptions={sortOptions}
+              selectedSortOption={selectedSortOption} 
+              handleSortChange={handleSortChange}
+            />
           </div>
 
           <div className="inner-wrap bot">
             <div className="section-title">
               Search Filters
             </div>
-            <div className="filter-title rating">
-              Number of Reviews
-            </div>
-            <div className="filter-num-rev">
-              {reviewOptions.map((option) => (
-                <button
-                  key={option.id}
-                  className={`review-filter-button${selectedReviewFilter === option.value ? ' active' : ''}`}
-                  onClick={() => handleReviewFilterClick(option.value)}
-                >
-                  {option.value}
-                </button>
-              ))}
-            </div>
-
-            {/* start of num rev filter */}
-            <div className="filter-title">
-              Rating
-            </div>
-            <div className="filter-num-rev">
-              {ratingOptions.map((option) => (
-                <button
-                  key={option.id}
-                  className={`review-filter-button${selectedRatingFilter === option.value ? ' active' : ''}`}
-                  onClick={() => handleRatingFilterClick(option.value)}
-                >
-                  {option.value}
-                </button>
-              ))}
-            </div>
-              
+            <Dropdown
+              sortOptions={reviewOptions}
+              selectedSortOption={selectedReviewFilter}
+              handleSortChange={handleReviewFilterClick}
+            />
+            <Dropdown
+              sortOptions={ratingOptions}
+              selectedSortOption={selectedRatingFilter}
+              handleSortChange={handleRatingFilterClick}
+            />
+  
             {/* start of department filter */}
-            <div className="filter-title">
-              Department
-            </div>
               <div className="filter-dropdown" ref={filterRef}>
                 {/* <div className="filter-top" > */}
                 <div className="dropdown-label">

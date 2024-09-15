@@ -41,7 +41,7 @@
 
       .progress {
         height: 100%;
-        background-color: rgb(55, 214, 55); /* Green color for progress */
+        background-color: rgb(0, 137, 56); /* Green color for progress */
         transition: width 0.4s ease;
       }
 
@@ -260,7 +260,7 @@
             &.follow-button {
               background-color: rgba(230, 230, 230, 0.776);
               @media (max-width:840px){
-                background-color: rgb(55, 214, 55);
+                background-color: rgb(0, 137, 56);
                 color:white;
                 &:hover {
                   background-color: #23A923 !important;

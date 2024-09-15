@@ -39,7 +39,7 @@ $mobilefooterHeight: 0rem;
           text-align: center;
           margin-bottom: 160px;
           position: absolute;
-          filter: contrast(145%);
+          filter: contrast(115%);
           // this changes the text to white
           // filter: sepia(100%) saturate(300%) hue-rotate(230deg) brightness(2);
           img {
@@ -130,7 +130,7 @@ $mobilefooterHeight: 0rem;
               top: 0;
               bottom: 0;
               width: 6px;
-              background-color: #FFBF00;
+              background-color: #FFC20D;
               border-radius: 0 4px 4px 0;
             }
 
@@ -202,7 +202,7 @@ $mobilefooterHeight: 0rem;
                 top: 0;
                 bottom: 0;
                 width: 6px; /* Width of the green box */
-                background-color: #FFBF00;
+                background-color: #FFC20D;
                 border-radius: 0 4px 4px 0;
                 
               }
@@ -256,7 +256,7 @@ $mobilefooterHeight: 0rem;
           }
 
           .arrow-button:hover {
-            background-color: #FFBF00;
+            background-color: #FFC20D;
             color: white;
             transition: all 0.05s ease-out;
           }

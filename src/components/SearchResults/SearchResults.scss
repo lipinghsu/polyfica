@@ -68,7 +68,8 @@
       height: 100%;
 
       @media (max-width: 1020px) {
-        height: 382px !important; 
+        
+        // height: 382px !important; 
         opacity: 0;
         display: none;
         border-radius: 0 0 18px 18px;
@@ -77,10 +78,11 @@
         z-index: 10;
         box-shadow: none;
         overflow-y: scroll;
-        margin-bottom: 0px !important;
+        margin-bottom: 12px !important;
+        
         background-color: #f5f5f5;
 
-        padding: 0 !important;
+        padding: 0 0 12px 0!important;
         
 
 
@@ -89,12 +91,12 @@
           background-color: transparent!important;
           margin: 0 !important;
           padding-bottom: 0 !important;
-
         }
         .top{
           
         }
         .bot{
+
           padding-top: 0 !important;
         }
       }
@@ -102,66 +104,17 @@
       .top{
         margin-bottom: 32px;
         height: 108px !important;
-
-        .filter-dropdown {
-          .dropdown-label {
-            font-weight: 400;
-            font-size: 14px;
-          }
-        
-          .arrow-icon {
-            width: 20px;
-            height: 20px;
-            transition: transform 0.3s ease;
-            // filter: brightness(0) saturate(100%) invert(11%) sepia(14%) saturate(1006%) hue-rotate(224deg) brightness(97%) contrast(90%);
-            
-            &.rotated {
-              transform: rotate(180deg);
-            }
-          }
-          
-          .sort-options {
-            &.active{
-              transition: all 0.2s ease-in-out;
-              opacity: 1;
-              top: 100%;
-              z-index: 2;
-              .sort-option {
-                padding: 10px 8px;
-              }
-            }
-            z-index: -2;
-            opacity: 0;
-            top: -60px;
-
-            left: 0;
-            width: 100%;
-            position: absolute;
-            border: 1px solid #ccc;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        
-            .sort-option {
-              // padding: 10px 8px;
-              cursor: pointer;
-              font-size: 14px;
-              transition: background-color 0.1s ease-out;
-        
-              &:hover {
-                background-color: rgba(195, 195, 195, 0.425);
-              }
-            }
-          }
-        }
       }
+      
       .bot{
-        // /
-        height: 292px !important;
-        @media (max-width: 1020px) {
-          height: 282px !important;
-        }
+        // height: 202px !important;
 
+        .filter-dropdown{
+          margin-bottom: 12px;
+          &.dep{
+            margin-bottom: 0px;
+          }
+        }
       }
       .inner-wrap{
         border-radius: 18px;
@@ -187,7 +140,7 @@
       }
 
       .filter-title {
-        font-size: 0.8em;
+        font-size: 14px;
         color: #555;
         margin-bottom: 2px;
         padding-left: 4px;
@@ -206,20 +159,25 @@
         background-color: white;
         width: 100%;
         border-radius: 8px;
-        border: 1.5px solid rgba(195, 195, 195, 0.425);
+        // border: 1.5px solid rgba(195, 195, 195, 0.425);
         display: flex;
         flex-direction: row;
-
+        // padding: 2px;
+        
+        
         .review-filter-button {
+          padding: 2px;
           border: none;
           cursor: pointer;
           font-size: 14px;
           background-color: white;
           height: 100%; width: 100%;
-          transition: background-color 0.15s ease-out;
+          
+          transition: background-color 0.1s ease-out;
 
           &:not(:first-child) {
-            border-left: 1.5px solid rgba(195, 195, 195, 0.425);
+            
+            border-left: 1.5px solid #f5f5f5;
           }
 
           &:last-child {
@@ -235,8 +193,9 @@
           }
 
           &.active {
-            background-color: rgb(55, 214, 55);
+            background-color: rgb(0, 137, 56);
             color: white;
+            font-weight: bold;
           }
         }
       }
@@ -265,7 +224,7 @@
         &:hover {
           background-color: rgba(195, 195, 195, 0.425);
           .arrow-icon{
-            background-color: #555;
+            background-color: #002911;
           }
         }
         .sort-select {
@@ -329,7 +288,7 @@
 
           .department-search:focus {
             outline: none !important;
-            border: 1px solid rgb(62, 174, 134);
+            border: 1px solid #008938;
           }
 
           .department-list {
@@ -357,7 +316,7 @@
 
             &.selected {
               transition: 0.15s ease-out;
-              background-color: rgb(62, 174, 134);
+              background-color: #008938;
               color: white;
             }
 
@@ -403,7 +362,7 @@
           width: 40px;
           height: 40px;
           border: 4px solid rgba(0, 0, 0, 0.1);
-          border-top-color: rgb(55, 214, 55);
+          border-top-color: rgb(0, 137, 56);
           border-radius: 50%;
           animation: spin 1s ease-in-out infinite;
         }
@@ -599,7 +558,7 @@
 
       .review-btn {
         width: 100%;
-        background-color: rgb(55, 214, 55);
+        background-color: rgb(0, 137, 56);
         align-items: center;
         justify-content: center;
         text-align: center;
@@ -619,7 +578,7 @@
 
   .toggle-filter-btn.active {
     color: white;
-    background-color: rgb(55, 214, 55);
+    background-color: rgb(0, 137, 56);
     border-radius: 18px 18px 0 0px;
     transition: background-color 0.25s ease-out, color 0.25s ease-out;
     border: none;
@@ -634,13 +593,14 @@
     margin-bottom: 0;
     padding: 10px 20px;
     background-color: white;
-    border: 1px solid #00000033;
-    color:#555;
+    border: 1px solid #008938;
+    color:#008938;
+    
     // border: none;
     height: 36px;
     border-radius: 18px;
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 600;
     width: calc(100vw - 72px);
 
     @media (max-width: 1020px){
@@ -657,8 +617,9 @@
     box-sizing: border-box;
 
     &:hover {
-      color:#444;
-      border: 1px solid #0000007F;
+      color: #00B84D;
+      border: 1px solid #00B84D;
+      transition: all 0.1s ease-in-out;
     
     }
 
