@@ -34,7 +34,7 @@ const ratingOptions = [
 ];
 
 const sortOptions = [
-  { id: 1, value: "Alphabetical (Last Name)" },
+  { id: 1, value: "Default" },
   { id: 2, value: "Alphabetical (First Name)" },
   { id: 3, value: "Highest Rating" },
   { id: 4, value: "Most Reviews" },
@@ -47,20 +47,20 @@ const SearchResults = () => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const [departmentSearchTerm, setDepartmentSearchTerm] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [selectedReviewFilter, setSelectedReviewFilter] = useState('Number of Reviews'); // New state for review filter
+  const [selectedReviewFilter, setSelectedReviewFilter] = useState({id: 1, value: 'Number of Reviews'}); // New state for review filter
   const location = useLocation();
   const history = useHistory();
   const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
-  const [selectedRatingFilter, setSelectedRatingFilter] = useState('Rating');
-  const [selectedSortOption, setSelectedSortOption] = useState("Alphabetical (Last Name)");
+  const [selectedRatingFilter, setSelectedRatingFilter] = useState({id: 1, value: "Rating"});
+  const [selectedSortOption, setSelectedSortOption] = useState({id: 1, value: "Default"});
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isReviewDropdownVisible, setIsReviewDropdownVisible] = useState(false);
   const [isRatingDropdownVisible, setIsRatingDropdownVisible] = useState(false);
-
+  
   const boxRightRef = useRef();
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
@@ -169,22 +169,23 @@ const SearchResults = () => {
         }
 
         // Apply rating filter if selected
-        if (selectedRatingFilter && selectedRatingFilter !== 'Rating') {
-          const minRating = parseFloat(selectedRatingFilter);
+        if (selectedRatingFilter && selectedRatingFilter.value !== 'Rating') {
+          // Remove the + sign and parse the value to a number
+          const minRating = parseFloat(selectedRatingFilter.value.replace('+', ''));
           results = results.filter(professor =>
             professor.difficultyRating && parseFloat(professor.difficultyRating) >= minRating
           );
         }
 
         // Apply review count filter if selected
-        if (selectedReviewFilter && selectedReviewFilter !== 'Number of Reviews') {
-          const reviewCount = parseInt(selectedReviewFilter);
+        if (selectedReviewFilter && selectedReviewFilter.value !== 'Number of Reviews') {
+          const reviewCount = parseInt(selectedReviewFilter.value);
           results = results.filter(professor =>
             professor.commentData && professor.commentData.length >= reviewCount
           );
         }
 
-        sortResults(results, selectedSortOption);
+        sortResults(results, selectedSortOption.value);
         setSearchResults(results);
 
         const difficultyRatings = results.map((professor) => professor.difficultyRating || 0);
@@ -216,7 +217,7 @@ const SearchResults = () => {
   }, [searchTerm, selectedDepartments, selectedReviewFilter, selectedRatingFilter, selectedSortOption]);
 
   const sortResults = (results, sortOption) => {
-    if (sortOption === "Alphabetical (Last Name)") {
+    if (sortOption === "Default") {
       results.sort((a, b) => a.lastName.localeCompare(b.lastName));
     } 
     else if(sortOption === "Alphabetical (First Name)") {
@@ -237,12 +238,12 @@ const SearchResults = () => {
     history.push(`/search/professors/${profID}`);
   };
 
-  const handleRatingFilterClick = (value) => {
-    setSelectedRatingFilter(value);
+  const handleRatingFilterClick = (option) => {
+    setSelectedRatingFilter(option);
   };
 
   const handleDepartmentSearchChange = (event) => {
-    setDepartmentSearchTerm(event.target.value.toLowerCase());
+    setDepartmentSearchTerm(event.target.value);
   };
 
   const handleDepartmentChange = (event) => {
@@ -264,8 +265,8 @@ const SearchResults = () => {
     department.toLowerCase().includes(departmentSearchTerm)
   );
 
-  const handleReviewFilterClick = (value) => {
-    setSelectedReviewFilter(value);
+  const handleReviewFilterClick = (option) => {
+    setSelectedReviewFilter(option);
   };
 
   const dropdownLabel = selectedDepartments.length > 0 
@@ -306,6 +307,7 @@ const SearchResults = () => {
           {searchTerm && (
             <h2>
               {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#008938' }}>{searchTerm}</strong>" in their name
+              
             </h2>
           )}
       </div>
@@ -345,11 +347,6 @@ const SearchResults = () => {
             <div className="section-title">
               Search Filters
             </div>
-            <Dropdown
-              sortOptions={reviewOptions}
-              selectedSortOption={selectedReviewFilter}
-              handleSortChange={handleReviewFilterClick}
-            />
             <Dropdown
               sortOptions={ratingOptions}
               selectedSortOption={selectedRatingFilter}
@@ -397,6 +394,11 @@ const SearchResults = () => {
                   </div>)}
                 </div>
             </div>
+            <Dropdown
+              sortOptions={reviewOptions}
+              selectedSortOption={selectedReviewFilter}
+              handleSortChange={handleReviewFilterClick}
+            />
           </div>
         </div>
 

@@ -8,46 +8,50 @@
       width: 20px;
       height: 20px;
       transition: transform 0.3s ease;
-      // filter: brightness(0) saturate(100%) invert(11%) sepia(14%) saturate(1006%) hue-rotate(224deg) brightness(97%) contrast(90%);
-      
+  
       &.rotated {
         transform: rotate(180deg);
       }
     }
-    
+  
     .sort-options {
-      &.active{
+      &.active {
         transition: all 0.2s ease-in-out;
         opacity: 1;
         top: 100%;
         z-index: 100;
         .sort-option {
-          padding: 10px 8px;
+          padding: 10px 16px;
           z-index: 100;
         }
       }
+  
       z-index: -2;
       opacity: 0;
       top: -60px;
-
       left: 0;
       width: 100%;
       position: absolute;
-      border: 1px solid #ccc;
       background-color: white;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
       .sort-option {
-        z-index: -3;
-        // padding: 10px 8px;
         cursor: pointer;
         font-size: 14px;
+        border-radius: 16px;
         transition: background-color 0.1s ease-out;
   
         &:hover {
-          background-color: rgba(195, 195, 195, 0.425);
+            background-color: #EBFFF3;
+        }
+  
+        // Add the green background for selected option
+        &.selected {
+          background-color: #00cc55;
+          
         }
       }
     }
   }
+  

@@ -8,7 +8,7 @@
   .searchTermInfo {
     width: 100%;
     // margin-top: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
     
     color: #333;
     justify-content: center;
@@ -17,7 +17,7 @@
     // color: white;
     font-size: 16.7px;
     @media(max-width: 1020px){
-      margin-bottom: 0px;
+      margin-bottom: 0px !important;
       font-size: 14px;
       // font-size: 21px;
     }
@@ -110,13 +110,20 @@
         // height: 202px !important;
 
         .filter-dropdown{
+          background-color: red;
           margin-bottom: 12px;
           &.dep{
+            margin-bottom: 0px;
+          }
+          &.rev-filter{
             margin-bottom: 0px;
           }
         }
       }
       .inner-wrap{
+        .rev-filter{
+          margin-bottom: 0px !important;
+        }
         border-radius: 18px;
         // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 16px;
@@ -216,11 +223,14 @@
         // justify-content: center;
         align-items: center;
         font-size: 1.4rem;
+        
 
         @media (max-width: 1020px) {
           width: 100% !important;
         }
-
+        .arrow-icon.active{
+          background-color: #00cc55;
+        }
         &:hover {
           background-color: rgba(195, 195, 195, 0.425);
           .arrow-icon{
@@ -263,9 +273,11 @@
           top: 100%;
           opacity: 1;
           transition: all 0.25s ease-out;
+          z-index: 100;
         }
 
         .department-dropdown {
+          
           // background-color: red;
           position: absolute;
           left: 0;
@@ -273,8 +285,10 @@
           width: 100%;
           opacity: 0;
           background-color: white;
-          border: 1px solid #ccc;
-          border-radius: 4px;
+          // background-color: red;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          // border: 1px solid #ccc;
+          border-radius: 8px;
           padding: 8px;
           // margin-top: 4px;
 
