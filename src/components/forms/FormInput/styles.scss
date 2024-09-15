@@ -48,12 +48,12 @@ $customLightGray: #bbbbbb;
         
     }
     input:hover{
-        border: 1.5px solid #3EAE86;
+        border: 1.5px solid rgb(55, 214, 55);
         transition: none;
         
     }
     input:active, input:focus{
-        border: 2px solid #3EAE86;
+        border: 2px solid rgb(55, 214, 55);
         transition: 0.25s ease-in;
 
     }
@@ -77,7 +77,7 @@ $customLightGray: #bbbbbb;
     position: absolute;
     transform: translate(5px, -4px) scale(1);
     font-weight: 700;
-    color: #3EAE86;
+    color: rgb(55, 214, 55);
     font-size: 1.3rem !important;
     padding: 0;
 }

@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import './ProfProfile.scss';
 import CommentItem from './CommentItem';
 import ProfessorDetails from './ProfessorDetails';
+import thinkingStan from '../../assets/thinking-stan2.png'
 
 
 function calculateAverageQualityRating(commentData) {
@@ -260,10 +261,16 @@ const ProfProfile = () => {
                         />
                     ))
                 ) : (
-                    <div className="no-comment">
-                        <p>No review comments available for this professor.</p>
+                <div className="no-comments">
+                    <div className='image-wrap'>
+                        <img src={thinkingStan} />
                     </div>
-                    
+                    <div className='text-wrap'>
+                        <div className='no-commnets-title'>Be the first to review</div>
+                        <div className='no-commnets-text a'>Nobody's reviewed this professor yet.</div>
+                        <div className='no-commnets-text b'>Share your experience and help others find the right professor.</div>
+                    </div>
+                </div>
                 )}
             </div>
         </div>

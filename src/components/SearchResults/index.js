@@ -304,7 +304,7 @@ const SearchResults = () => {
       <div className="searchTermInfo">
           {searchTerm && (
             <h2>
-              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#3EAE86' }}>{searchTerm}</strong>" in their name
+              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#37d637' }}>{searchTerm}</strong>" in their name
             </h2>
           )}
       </div>

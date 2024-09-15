@@ -191,9 +191,9 @@
         color: #555;
         margin-bottom: 2px;
         padding-left: 4px;
-        // &.rating{
-        //   margin-top: 12px;
-        // }
+        &.rating{
+          margin-top: 4px !important;
+        }
 
         &:not(:first-child) {
           margin-top: 12px;
@@ -235,7 +235,7 @@
           }
 
           &.active {
-            background-color: #3eae86;
+            background-color: rgb(55, 214, 55);
             color: white;
           }
         }
@@ -264,6 +264,9 @@
 
         &:hover {
           background-color: rgba(195, 195, 195, 0.425);
+          .arrow-icon{
+            background-color: #555;
+          }
         }
         .sort-select {
           width: 100%;
@@ -365,7 +368,7 @@
         }
 
         .arrow-icon {
-          background-color: #333;
+          background-color: #d3d3d3;
           display: flex;
           align-items: right;
           justify-self: right;
@@ -400,7 +403,7 @@
           width: 40px;
           height: 40px;
           border: 4px solid rgba(0, 0, 0, 0.1);
-          border-top-color: #3EAE86;
+          border-top-color: rgb(55, 214, 55);
           border-radius: 50%;
           animation: spin 1s ease-in-out infinite;
         }
@@ -432,7 +435,7 @@
           // margin-bottom: 124px;
           // background-color: purple;
           width: 100%;
-          border-radius: 8px;
+          border-radius: 12px;
           // background-color: #f5f5f5;
           // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           // border-bottom: 1px solid #d3d3d3;
@@ -499,7 +502,7 @@
               }
             }
             .department{
-              color: #666;
+              color: #555;
               font-size: 1.2rem;
               margin-bottom: 4px;
             }
@@ -515,7 +518,9 @@
           
               .reviewCommentLength {
                 font-size: 1.4rem;
-                color: #666;
+                color: #555;
+                text-align: right;
+                
                 
               }
             }
@@ -557,8 +562,7 @@
           height: 58px;
           width: 58px;
           margin-right: 16px;
-          // background-color: #3EAE86;
-          // border: 1px solid #d3d3d3;
+
           border-radius: 8px;
           
 
@@ -590,12 +594,12 @@
 
 
       .review-btn:hover {
-        background-color: #2b8d6c;
+        background-color: #23A923;
       }
 
       .review-btn {
         width: 100%;
-        background-color: #3EAE86;
+        background-color: rgb(55, 214, 55);
         align-items: center;
         justify-content: center;
         text-align: center;
@@ -603,6 +607,7 @@
         border-radius: 18px;
         display: flex;
         color: white;
+        font-weight: 500;
 
         a {
           width: 100%;
@@ -614,12 +619,12 @@
 
   .toggle-filter-btn.active {
     color: white;
-    background-color: #3eae86;
+    background-color: rgb(55, 214, 55);
     border-radius: 18px 18px 0 0px;
     transition: background-color 0.25s ease-out, color 0.25s ease-out;
     border: none;
     &:hover{
-      background-color: #2b8d6c;
+      background-color: #23A923;
       border: none;
       color:white;
     }

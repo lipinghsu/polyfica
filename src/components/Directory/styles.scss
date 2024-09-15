@@ -39,6 +39,7 @@ $mobilefooterHeight: 0rem;
           text-align: center;
           margin-bottom: 160px;
           position: absolute;
+          filter: contrast(145%);
           // this changes the text to white
           // filter: sepia(100%) saturate(300%) hue-rotate(230deg) brightness(2);
           img {
@@ -118,7 +119,7 @@ $mobilefooterHeight: 0rem;
           }
 
           .suggestions .suggestion-item.active {
-            background-color: #280845; 
+            background-color: #290542; 
             color: white;
             border-radius: 0 28px 28px 0;
 
@@ -129,7 +130,7 @@ $mobilefooterHeight: 0rem;
               top: 0;
               bottom: 0;
               width: 6px;
-              background-color: #e9b25e;
+              background-color: #FFBF00;
               border-radius: 0 4px 4px 0;
             }
 
@@ -201,7 +202,7 @@ $mobilefooterHeight: 0rem;
                 top: 0;
                 bottom: 0;
                 width: 6px; /* Width of the green box */
-                background-color: #e9b25e;
+                background-color: #FFBF00;
                 border-radius: 0 4px 4px 0;
                 
               }
@@ -255,7 +256,7 @@ $mobilefooterHeight: 0rem;
           }
 
           .arrow-button:hover {
-            background-color: #e9b25e;
+            background-color: #FFBF00;
             color: white;
             transition: all 0.05s ease-out;
           }

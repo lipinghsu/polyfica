@@ -31,15 +31,15 @@
     }
 
     .btn-submit{
-        background-color: #3EAE86;
+        background-color: rgb(55, 214, 55);
         max-width: 80.0rem;
     }
 
     .btn-submit:hover{
         background-color: white;
-        color: #3EAE86;
+        color: rgb(55, 214, 55);
         transition: 0.25s ease-out;
-        border: 1px solid #3EAE86;
+        border: 1px solid rgb(55, 214, 55);
     }
 
     .btn:active {

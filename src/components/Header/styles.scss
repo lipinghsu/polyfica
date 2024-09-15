@@ -114,7 +114,7 @@ $customDarkGray: #b8b8b8;
                             font-weight: 500;
                             font-size: 1.5rem;
                             color: white;
-                            background-color: #3eae86;
+                            background-color: rgb(55, 214, 55);
                             width: 100%;
                             border-radius: 18px;
                             // padding: auto 8px !important;
@@ -177,9 +177,9 @@ $customDarkGray: #b8b8b8;
 
                 &:hover {
                     .text-button:nth-child(1){
-                        background-color: #2b8d6c;    
+                        background-color: #23A923;   
                     }
-                    background-color: #2b8d6c;
+                    background-color: #23A923;
                 }
             }
 
@@ -319,8 +319,7 @@ $customDarkGray: #b8b8b8;
                 }
 
                 &:not(:last-child) {
-                    color: #3eae86;
-                    background-color: #3eae86;
+                    background-color:  rgb(68, 214, 44);
                     border: none;
                 }
 
@@ -586,7 +585,7 @@ $customDarkGray: #b8b8b8;
                 color: rgba($color: #b8b8b8, $alpha: 1.0);
             }
             a:hover {
-                color: #3eae86;
+                color: rgb(55, 214, 55);
             }
         }
         .terms {

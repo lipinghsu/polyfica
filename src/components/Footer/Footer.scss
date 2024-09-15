@@ -1,7 +1,7 @@
 /* Footer.scss */
 
 .site-footer {
-  background: #f8f9fa;
+  background: #f8ff9fa;
   color: black;
   padding: 30px 0 0 0;
   height: 100%;
@@ -58,7 +58,7 @@
   }
   
   a:visited:hover {
-    color: #e9b25e;
+    color: #FFBF00;
   }
 }
 
@@ -90,7 +90,7 @@
   }
   
   a:visited:hover {
-    color: #e9b25e;
+    color: #FFBF00;
   }
 }
 
@@ -124,7 +124,7 @@ ul {
     
     a {
       .green-text {
-        color: #3EAE86;
+        color: rgb(55, 214, 55);
       }
     }
     
@@ -220,7 +220,7 @@ ul {
     /* Add styling to make it visible when needed */
     .popout-box:hover {
       transition: 0.05s all ease-in;
-      background-color: black;
+      background-color: rgb(55, 214, 55);
       color: white;
     }
   }
@@ -246,6 +246,7 @@ ul {
   }
 
   .polySeal-image {
+    filter: hue-rotate(0deg) saturate(4) brightness(1.5);
     width: 100px;
     height: 100px;
     background-image: url('../../assets/polySeal.png');
