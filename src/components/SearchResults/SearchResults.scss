@@ -365,6 +365,32 @@
     }
 
     .prof-wrap {
+      .no-result{
+        padding: 16px;
+        text-align: center;;
+        background-color:  rgb(245, 245, 245);
+        border-radius: 18px;
+        margin-bottom: 32px;
+        height: calc(100% - 32px);
+        // background-color: red;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .text-a{
+          font-size: 24px;
+          font-weight: 700;
+        }
+        .text-b{
+          margin-top: 6px;
+          font-size: 16px;
+          font-weight: 400;
+        }
+      }
+      .empty-div{
+        margin-bottom: 32px;
+      }
       .loading-spinner {
         display: flex;
         justify-content: center;
@@ -390,12 +416,6 @@
       width: 100%;
       padding-left: 32px;
 
-      .empty-div {
-        margin-bottom: 32px;
-        @media (max-width: 840px) {
-          margin-bottom: 24px;
-        }
-      }
       .item-wrap{
         // background-color: red;
         padding-bottom: 6px;
@@ -404,6 +424,9 @@
         &:first-child{
           padding-top: 0px;
         }
+        // &:last-child{
+        //   background-color: red;
+        // }
         .professor {
           // margin-bottom: 124px;
           // background-color: purple;

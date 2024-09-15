@@ -60,7 +60,9 @@ const SearchResults = () => {
   const [loading, setLoading] = useState(true);
   const [isReviewDropdownVisible, setIsReviewDropdownVisible] = useState(false);
   const [isRatingDropdownVisible, setIsRatingDropdownVisible] = useState(false);
-  
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [displayedProfessors, setDisplayedProfessors] = useState(8);
+
   const boxRightRef = useRef();
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
@@ -99,6 +101,23 @@ const SearchResults = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight && !loadingMore) {
+        if (displayedProfessors < searchResults.length) {
+          setLoadingMore(true);
+          setTimeout(() => {
+            setDisplayedProfessors((prevCount) => Math.min(prevCount + 8, searchResults.length)); // Increase by 8 or until all professors are shown
+            setLoadingMore(false);
+          }, 500);
+        }
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loadingMore, displayedProfessors, searchResults.length]);
 
   // collapse filter dropdown menu if user clicks outside of the div
   useEffect(() => {
@@ -403,89 +422,59 @@ const SearchResults = () => {
         </div>
 
         <div className="prof-wrap">
-        
           {loading ? (
             <div className="loading-spinner">
               <div className="spinner"></div>
             </div>
-      ) : 
-          (
-            searchResults.map((professor, index) => (
-              <div className="item-wrap">
-              <div
-                key={index}
-                className="professor"
-                onClick={() => handleProfessorClick(professor.id)}
-              >
-                <div className='profileImage-wrap'>
+          ) : 
+          searchResults.length > 0 ? (
+            searchResults.slice(0, displayedProfessors).map((professor, index) => (
+              <div key={index} className="item-wrap">
+                <div className="professor" onClick={() => handleProfessorClick(professor.id)}>
+                  <div className="profileImage-wrap">
                     {professor.profileImage ? (
-                    <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
+                      <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
                     ) : (
-                    <img src={defaultProfileImage} alt="Default Profile" />
+                      <img src={defaultProfileImage} alt="Default Profile" />
                     )}
-
-                </div>
-                <div className='prof-content'>
-                  <div className="infoHeader">
-                    <div className="professorName">
-                      {professor.firstName} {professor.lastName}
-                    </div>
-                    
-                    <div className="rating-score">
-                      {/* Render stars based on rating using Material-UI Rating */}
-                      <Rating precision={0.5} value= {professor.commentData?.length > 0 
-                        ? (
-                            professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) 
-                            / professor.commentData.length
-                          ).toFixed(1) 
-                        : "-"
-                      } name="size-large" size="large" readOnly />
-                    </div>
                   </div>
-                  <div className="department">{professor.department}</div>
-                  <div className="infoFooter">
-                    <div className="schoolName">{professor.schoolName}</div>
-                    <div className="reviewCommentLength">
-                      {professor.commentData?.length || 0}{" "}
-                      {professor.commentData?.length > 1 ? "reviews" : "review"}
+                  <div className="prof-content">
+                    <div className="infoHeader">
+                      <div className="professorName">{professor.firstName} {professor.lastName}</div>
+                      <div className="rating-score">
+                        <Rating precision={0.5} value={professor.difficultyRating} name="size-large" size="large" readOnly />
+                      </div>
+                    </div>
+                    <div className="department">{professor.department}</div>
+                    <div className="infoFooter">
+                      <div className="schoolName">{professor.schoolName}</div>
+                      <div className="reviewCommentLength">
+                        {professor.commentData?.length || 0} {professor.commentData?.length > 1 ? "reviews" : "review"}
+                      </div>
                     </div>
                   </div>
                 </div>
-
-              </div>
               </div>
             ))
-          )}
-          {searchResults.length >= 1 && (
-            <div className="empty-div">
-              {/* insert margin */}
+          ) : 
+          <div className="no-result">
+            <div className="text-a">
+              Hmm... no professor profiles match '{searchTerm}'
             </div>
-          )}
-
-          <div className="search-bottom">
-            <div className="box-top">
-              <div className="img-box">
-                <img src={searchImg} alt="search" />
-              </div>
-              <div className="text-box">
-                <div className="text-a">
-                  Can't find a professor?
-                </div>
-                <div className="text-b">
-                  They may not be on <strong>Polyfica</strong> yet. Add them now and be the first to write a review!
-                </div>
-              </div>
-            </div>
-            <div className="review-btn">
-              <ConditionalLink
-                  text={("Write a Review")} 
-                  link="/login" 
-                  className={`review-btn`}
-                  preventLink={true}
-              />
+            <div className="text-b">
+              Try checking the spelling or use different keywords to refine your search.
             </div>
           </div>
+          }
           
+          {loadingMore && displayedProfessors < searchResults.length && (
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+            </div>
+          )}
+          {displayedProfessors >= searchResults.length &&
+            <div className="empty-div"/>
+          }
         </div>
       </div>
     </div>
