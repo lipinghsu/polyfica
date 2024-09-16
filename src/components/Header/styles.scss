@@ -132,13 +132,13 @@ $customDarkGray: #b8b8b8;
                         font-size: 1.5rem;
                         font-weight: 500;
                         color: black;
-                        // background-color: rgba(230, 230, 230, 0.776);
+                        // background-color: rgb(228, 236, 231) ;
                         
                         &:hover {
-                            background-color: rgba(230, 230, 230, 0.776);
+                            background-color: rgb(228, 236, 231) ;
                         }
                         &.homepage:hover {
-                            background-color: rgba(230, 230, 230, 0.776);
+                            background-color: rgb(228, 236, 231) ;
                         }
                         &.homepage {
                             background-color: white;
@@ -149,12 +149,11 @@ $customDarkGray: #b8b8b8;
                         }
 
                         &.scrolled {
-                            background-color: rgba(230, 230, 230, 0.776);
+                            // background-color: rgb(228, 236, 231) ;
                             background-color: transparent;
                         }
                         &.scrolled:hover {
-                            
-                            background-color: rgba(230, 230, 230, 0.776);
+                            background-color: rgb(228, 236, 231) ;
                             .text-button.review-btn.scrolled {
                                 // background-color: #d3d3d3;
                             }
@@ -178,9 +177,9 @@ $customDarkGray: #b8b8b8;
 
                 &:hover {
                     .text-button:nth-child(1){
-                        background-color: #23A923;   
+                        background-color: #007A33;
                     }
-                    background-color: #23A923;
+                    background-color: #007A33;
                 }
             }
 
@@ -221,7 +220,7 @@ $customDarkGray: #b8b8b8;
                 }
 
                 .text-button.review-btn.scrolled {
-                    // background-color: rgba(230, 230, 230, 0.776);
+                    // background-color: rgb(228, 236, 231);
                 }
 
                 .text-button.review-btn {
@@ -336,7 +335,7 @@ $customDarkGray: #b8b8b8;
                 background-color: white;
             }
             .signup-btn {
-                background-color: rgba(230, 230, 230, 0.776);
+                background-color: rgb(228, 236, 231) ;
                 z-index: 500;
                 width: 36px;
                 height: 36px;
@@ -348,13 +347,13 @@ $customDarkGray: #b8b8b8;
                 cursor: pointer;
 
                 &:hover {
-                    background-color: rgb(225, 225, 225);
+                    background-color: rgb(200, 215, 207);
                 }
                 &.scrolled {
-                    background-color: rgba(230, 230, 230, 0.776);
+                    background-color: rgb(228, 236, 231) ;
                 }
                 &.scrolled:hover {
-                    background-color: rgb(225, 225, 225);
+                    background-color: rgb(200, 215, 207);
                 }
 
                 .material-symbols-outlined {
@@ -660,7 +659,8 @@ $customDarkGray: #b8b8b8;
 }
 
 .close-button {
-    background-color: rgba(184, 184, 184, 0.25);
+    
+    background-color: rgb(240, 245, 242);
     color: black;
     margin-top: 19px;
     margin-right: 8px;
@@ -678,7 +678,7 @@ $customDarkGray: #b8b8b8;
     right: 12px;
 
     &:hover {
-        background-color: rgba(155, 155, 155, 0.5);
+        background-color: rgb(200, 215, 207);
     }
     .close-image {
         margin-bottom: 3px;

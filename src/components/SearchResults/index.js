@@ -442,7 +442,15 @@ const SearchResults = () => {
                     <div className="infoHeader">
                       <div className="professorName">{professor.firstName} {professor.lastName}</div>
                       <div className="rating-score">
-                        <Rating precision={0.5} value={professor.difficultyRating} name="size-large" size="large" readOnly />
+                        <Rating 
+                          precision={0.5} 
+                          value={professor.commentData && professor.commentData.length > 0 
+                            ? (professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) 
+                            : 0} 
+                          name="size-large" 
+                          size="large" 
+                          readOnly 
+                        />
                       </div>
                     </div>
                     <div className="department">{professor.department}</div>
@@ -459,14 +467,14 @@ const SearchResults = () => {
           ) : 
           <div className="no-result">
             <div className="text-a">
-              Hmm... no professor profiles match '{searchTerm}'
+              Hmm... no professor profiles match '<strong style={{ color: '#008938' }}>{searchTerm}</strong>'
             </div>
             <div className="text-b">
               Try checking the spelling or use different keywords to refine your search.
             </div>
           </div>
           }
-          
+
           {loadingMore && displayedProfessors < searchResults.length && (
             <div className="loading-spinner">
               <div className="spinner"></div>

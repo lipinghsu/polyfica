@@ -118,11 +118,11 @@
           cursor: pointer;           
           &.review-button {
             @media (max-width:840px) {
-              background-color: rgba(230, 230, 230, 0.776);
+              background-color: rgb(240, 245, 242);
               border: 0px;
               &:hover {
                 border: 0px !important;
-                background-color: rgb(225, 225, 225);
+                background-color: rgb(200, 215, 207);
               }
               color:black;
             }
@@ -136,7 +136,7 @@
             border: 1px solid #00000033;
             &:hover {
               border: 1px solid #0000007F;
-              // background-color: rgb(225, 225, 225);
+              // background-color: rgb(200, 215, 207);
             }
           }
         }
@@ -258,7 +258,7 @@
             cursor: pointer;
   
             &.follow-button {
-              background-color: rgba(230, 230, 230, 0.776);
+              background-color: rgb(240, 245, 242) ;
               @media (max-width:840px){
                 background-color: rgb(0, 137, 56);
                 color:white;
@@ -272,7 +272,7 @@
               font-weight: 500;
   
               &:hover {
-                background-color: rgb(225, 225, 225);
+                background-color: rgb(200, 215, 207);
               }
             }
   
@@ -282,9 +282,9 @@
               font-size: 1.5rem;
               font-weight: 500;
               color: black;
-              background-color: rgba(230, 230, 230, 0.776);
+              background-color: rgb(240, 245, 242);
               &:hover {
-                background-color: rgb(225, 225, 225);
+                background-color: rgb(200, 215, 207);
               }
               @media (max-width: 840px) {
               }
@@ -304,11 +304,11 @@
           font-weight: 600 !important;
           color: #333;
           background-color: white;
-          border: 1px solid #00000033;
+          border: 1px solid rgb(200, 215, 207);
           transition: all 0.02s ease-in-out;
           &:hover {
-            border: 1px solid #0000009F;
-            // background-color: rgb(225, 225, 225);
+            border: 1px solid #00CC55;
+            // background-color: rgb(200, 215, 207);
           }
         }
       }
@@ -564,8 +564,8 @@
       border-radius: 8px;
       padding: 12px;
       margin-bottom: 15px;
-      background-color: rgb(248, 249, 250);
-      box-shadow: 2px 2px 3px #eeeeee, -2px -2px 3px #ffffff;
+      // background-color: rgb(248, 249, 250);
+      box-shadow: 2px 2px 3px #eeeeee, -2px -2px 3px #f5f5f5;
       // background-color: #fff;
       // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
@@ -667,7 +667,7 @@
                 border-radius: 50%;
                 font-weight: bolder;
                 color: black;
-                background-color: #e1e1e1;
+                background-color: rgb(240, 245, 242);
                 @media (max-width: 840px) {
                   // width: 100% !important;
                   // background-color: transparent;
@@ -785,7 +785,7 @@
           display: flex;
           justify-content: center;
           // background-color: rgb(248, 249, 250);  /* Matching parent background */
-          background-color: rgba(230, 230, 230, 0.776);
+          background-color: rgb(240, 245, 242);
           // border-radius: 16px;  /* Soft rounded corners */
           // box-shadow: 2px 2px 2px rgba(55, 55, 55, 0.245),  /* Dark shadow for depth */
           // -2px -2px 2px rgba(255, 255, 255, 0.925); 
@@ -794,7 +794,7 @@
 
           .likeButton,
           .dislikeButton {
-            background-color: rgba(230, 230, 230, 0.776);
+            background-color:rgb(240, 245, 242);
             color:black;
             padding: 6px;
             margin: 0 10px;
@@ -816,12 +816,12 @@
 
             &.likeButton:hover {
               color: #007bff;
-              background-color: #e1e1e1;
+              background-color: rgb(200, 215, 207);
             }
 
             &.dislikeButton:hover {
               color: #ff6347;
-              background-color: #e1e1e1;
+              background-color: rgb(200, 215, 207);
             }
           }
 
@@ -838,7 +838,7 @@
         }
 
         .shareContainer {
-          background-color: rgba(230, 230, 230, 0.776);
+          background-color: rgb(240, 245, 242) ;
           &:last-child{
             
             margin-left: auto;
@@ -854,7 +854,7 @@
           height: 36px;
 
           &:hover {
-            background-color: #e1e1e1;
+            background-color: rgb(200, 215, 207);
           }
 
           .shareButton ,
@@ -903,6 +903,7 @@
       }
     }
     .no-comments{
+      background-color: rgb(240, 245, 242);
       @media (max-width:840px) {
         .image-wrap {
           margin: auto 8px;
@@ -912,8 +913,7 @@
           img {
             width: 64px; 
             height: 64px;
-            border-radius: 8px;
-            
+            border-radius: 8px; 
           }
         }
       }
@@ -947,11 +947,14 @@
         }
       }
       .text-wrap{
-        margin-left: 12px;
+        @media (max-width: 840px) {
+          // margin-left: 12px;
+        }
         justify-content: center;
         align-items: center;
         .no-commnets-title{
           @media (max-width: 840px) {
+            
             font-size:19px;
             margin-bottom: 6px;
           }
@@ -978,7 +981,7 @@
       }
       align-items: center;
       height: 128px;
-      // background-color: rgba(230, 230, 230, 0.776);;
+      // background-color: rgb(228, 236, 231) ;;
     
       font-size: 16px;
       font-weight: 400;

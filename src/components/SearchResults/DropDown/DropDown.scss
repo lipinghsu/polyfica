@@ -40,16 +40,17 @@
         cursor: pointer;
         font-size: 14px;
         border-radius: 16px;
-        transition: background-color 0.1s ease-out;
+        transition: background-color 0.5s ease-out;
+        transition: color 0.5s ease-out;
   
         &:hover {
-            background-color: #EBFFF3;
+            background-color: rgb(200, 215, 207);
         }
   
         // Add the green background for selected option
         &.selected {
-          background-color: #00cc55;
-          
+          background-color: #008938;
+          color: white;
         }
       }
     }
