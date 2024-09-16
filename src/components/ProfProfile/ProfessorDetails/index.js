@@ -151,7 +151,7 @@ const ProfessorDetails = ({ professor }) => {
         </div>
 
         {isLargeScreen ? 
-          <button className="review-button">Write a review</button>
+          <button className="review-button">Write a Review</button>
         : null}
       </div>
     </div>

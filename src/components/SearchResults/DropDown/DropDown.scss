@@ -1,59 +1,136 @@
 .filter-dropdown {
-    .dropdown-label {
-      font-weight: 400;
-      font-size: 14px;
+
+  width: 370px !important;
+  height: 39px;
+  position: relative;
+  padding: 8px 16px;
+  border-radius: 19px;
+  
+  width: 100%;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+
+  align-items: center;
+  font-size: 1.4rem;
+  
+  .arrow-icon {
+    background-color: rgb(185, 200, 193);
+    display: flex;
+    align-items: right;
+    justify-self: right;
+    float: right;
+    margin-left: auto;
+    margin-right: 0;
+
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    // filter: brightness(0) saturate(100%) invert(11%) sepia(14%) saturate(1006%) hue-rotate(224deg) brightness(97%) contrast(90%);
+
+    &.rotated {
+      transform: rotate(180deg);
     }
-  
-    .arrow-icon {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.3s ease;
-  
-      &.rotated {
-        transform: rotate(180deg);
+  }
+
+  @media (max-width: 1020px) {
+    background-color: rgb(240, 245, 242) !important;
+    // min-width: 160px;
+    &:hover {
+      background-color: rgb(200, 215, 207) !important;
+      .arrow-icon{
+        background-color: #002911;
       }
     }
+    .sort-options{
+
+    }
+
+  }
+  .arrow-icon.active{
+    background-color: #00cc55;
+  }
+  &:hover {
+    background-color: rgb(200, 215, 207);
+    .arrow-icon{
+      background-color: #002911;
+    }
+  }
+
+  &.active{
+    // background-color: rgb(200, 215, 207) !important;
+    background-color: #008938 !important;
+    .dropdown-label{
+      color:#FFC20D;
+      font-weight: bold;
+    }
+    
+  }
+  &.visible{
+    border-radius: 19px 19px 0px 0px!important;
+
+  }
+
+  .dropdown-label {
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .arrow-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
   
-    .sort-options {
-      &.active {
-        transition: all 0.2s ease-in-out;
-        opacity: 1;
-        top: 100%;
-        z-index: 100;
-        .sort-option {
-          padding: 10px 16px;
-          z-index: 100;
-        }
-      }
-  
-      z-index: -2;
-      opacity: 0;
-      top: -60px;
-      left: 0;
-      width: 100%;
-      position: absolute;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
+  .sort-options {
+    overflow: visible !important;
+    &.active {
+      
+      border-radius: 0px 0px 8px 8px!important;
+      transition: all 0.2s ease-in-out;
+      opacity: 1;
+      top: 100%;
+      z-index: 100;
       .sort-option {
-        cursor: pointer;
-        font-size: 14px;
-        border-radius: 16px;
-        transition: background-color 0.5s ease-out;
-        transition: color 0.5s ease-out;
-  
-        &:hover {
-            background-color: rgb(200, 215, 207);
-        }
-  
-        // Add the green background for selected option
-        &.selected {
-          background-color: #008938;
-          color: #FFC20D;
-          font-weight: bold;
-        }
+        padding: 10px 16px;
+        z-index: 100;
+      }
+    }
+
+    z-index: -2;
+    opacity: 0;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .sort-option {
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 16px;
+      transition: background-color 0.5s ease-out;
+      transition: color 0.5s ease-out;
+
+      &:hover {
+          background-color: rgb(200, 215, 207);
+      }
+
+      // Add the green background for selected option
+      &.selected {
+        background-color: #008938;
+        color: #FFC20D;
+        font-weight: bold;
       }
     }
   }
+}
   

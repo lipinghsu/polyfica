@@ -16,7 +16,7 @@ const capitalizeFirstLetter = (string) => {
 
 
 const reviewOptions = [
-  { id: 1, value: 'Number of Reviews' },
+  { id: 1, value: 'Review' },
   { id: 2, value: '25+' },
   { id: 3, value: '50+' },
   { id: 4, value: '100+' },
@@ -35,7 +35,7 @@ const ratingOptions = [
 
 const sortOptions = [
   { id: 1, value: "Default" },
-  { id: 2, value: "Alphabetical (First Name)" },
+  { id: 2, value: "First Name" },
   { id: 3, value: "Highest Rating" },
   { id: 4, value: "Most Reviews" },
 ];
@@ -45,9 +45,8 @@ const SearchResults = () => {
   const [averageDifficultyRating, setAverageDifficultyRating] = useState(null);
   const [departments, setDepartments] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
-  const [departmentSearchTerm, setDepartmentSearchTerm] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [selectedReviewFilter, setSelectedReviewFilter] = useState({id: 1, value: 'Number of Reviews'}); // New state for review filter
+  const [selectedReviewFilter, setSelectedReviewFilter] = useState({id: 1, value: 'Review'}); // New state for review filter
   const location = useLocation();
   const history = useHistory();
   const filterRef = useRef(null);
@@ -189,15 +188,28 @@ const SearchResults = () => {
 
         // Apply rating filter if selected
         if (selectedRatingFilter && selectedRatingFilter.value !== 'Rating') {
-          // Remove the + sign and parse the value to a number
           const minRating = parseFloat(selectedRatingFilter.value.replace('+', ''));
-          results = results.filter(professor =>
-            professor.difficultyRating && parseFloat(professor.difficultyRating) >= minRating
-          );
+          
+          results = results.filter(professor => {
+            if (professor.commentData && professor.commentData.length > 0) {
+              // Extract all difficultyRating values, convert them to floats, and filter out invalid ones
+              const ratings = professor.commentData
+                .map(comment => parseFloat(comment.difficultyRating))
+                .filter(rating => !isNaN(rating)); // Ensure valid numeric ratings
+              if (ratings.length > 0) {
+                // Calculate the average of the valid ratings
+                const averageRating = ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length;
+                
+                // Compare the average rating with the selected minimum rating
+                return averageRating >= minRating;
+              }
+            }
+            return false; // Exclude professors with no valid ratings
+          });
         }
 
-        // Apply review count filter if selected
-        if (selectedReviewFilter && selectedReviewFilter.value !== 'Number of Reviews') {
+        // Apply Review filter if selected
+        if (selectedReviewFilter && selectedReviewFilter.value !== 'Review') {
           const reviewCount = parseInt(selectedReviewFilter.value);
           results = results.filter(professor =>
             professor.commentData && professor.commentData.length >= reviewCount
@@ -239,7 +251,7 @@ const SearchResults = () => {
     if (sortOption === "Default") {
       results.sort((a, b) => a.lastName.localeCompare(b.lastName));
     } 
-    else if(sortOption === "Alphabetical (First Name)") {
+    else if(sortOption === "First Name") {
       results.sort((a, b) => a.firstName.localeCompare(b.firstName));
     } 
     else if (sortOption === "Highest Rating") {
@@ -250,9 +262,6 @@ const SearchResults = () => {
     }
   };
 
-  
-
-  
   const handleProfessorClick = (profID) => {
     history.push(`/search/professors/${profID}`);
   };
@@ -261,8 +270,8 @@ const SearchResults = () => {
     setSelectedRatingFilter(option);
   };
 
-  const handleDepartmentSearchChange = (event) => {
-    setDepartmentSearchTerm(event.target.value);
+  const handleReviewFilterClick = (option) => {
+    setSelectedReviewFilter(option);
   };
 
   const handleDepartmentChange = (event) => {
@@ -273,24 +282,6 @@ const SearchResults = () => {
         : [...prevSelected, value]
     );
   };
-
-  const toggleDropdown = (event) => {
-    // Prevent the event from propagating to the document
-    event.stopPropagation(); 
-    setDropdownVisible(!dropdownVisible);
-  };
-
-  const filteredDepartments = departments.filter(department =>
-    department.toLowerCase().includes(departmentSearchTerm)
-  );
-
-  const handleReviewFilterClick = (option) => {
-    setSelectedReviewFilter(option);
-  };
-
-  const dropdownLabel = selectedDepartments.length > 0 
-  ? selectedDepartments.join(", ") 
-  : "Department";
 
   const controlMovingDiv = () => {
     if (windowWidth >= 1020) { // Only move when window width is >= 1020px
@@ -318,27 +309,57 @@ const SearchResults = () => {
     }
   }, [windowWidth]); 
 
-
-
   return (
     <div className="search-result-wrap">
       <div className="searchTermInfo">
           {searchTerm && (
             <h2>
               {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#008938' }}>{searchTerm}</strong>" in their name
-              
             </h2>
           )}
       </div>
       {windowWidth < 1020 && (
-        <button className={isFilterVisible ? "toggle-filter-btn active" : "toggle-filter-btn"} onClick={() => setIsFilterVisible(!isFilterVisible)}>
-          {isFilterVisible ? "Hide Filters" : "Show Filters"}
-        </button>
+      <div className="mobile-filter-wrap">
+        <div className="mobile-filter-inner-top">
+        <Dropdown
+          sortOptions={sortOptions}
+          selectedSortOption={selectedSortOption} 
+          handleSortChange={handleSortChange}
+        />
+        <Dropdown
+          sortOptions={ratingOptions}
+          selectedSortOption={selectedRatingFilter}
+          handleSortChange={handleRatingFilterClick}
+        />
+        <Dropdown
+          sortOptions={reviewOptions}
+          selectedSortOption={selectedReviewFilter}
+          handleSortChange={handleReviewFilterClick}
+        />
+        </div>
+        <div className="mobile-filter-inner-bot">
+        <Dropdown
+          sortOptions={departments.map((dept, index) => ({
+            id: index + 1, // Set the id starting from 1 up to the length of departments
+            value: capitalizeFirstLetter(dept)
+          }))}
+          selectedSortOption={{
+            id: selectedDepartments.length ? selectedDepartments.map((_, index) => index + 1).join(',') : 1, // Match the id if needed
+            value: selectedDepartments.join(', ') || "Department"
+          }}
+          handleSortChange={(dept) => handleDepartmentChange({ target: { value: departments[dept.id - 1] } })} // Use dept.id to access the correct department
+          className="department-filter"
+        />
+        </div>
+
+          
+
+      </div>
       )}
 
       <div className="searchResults">
         <div
-          className={isFilterVisible ? "filter-wrap visible" : "filter-wrap"}
+          className={(windowWidth < 1020) ? "filter-wrap" : "filter-wrap"}
           ref={movingDivRef}
           style={
             stop ? {
@@ -372,47 +393,18 @@ const SearchResults = () => {
               handleSortChange={handleRatingFilterClick}
             />
   
-            {/* start of department filter */}
-              <div className="filter-dropdown" ref={filterRef}>
-                {/* <div className="filter-top" > */}
-                <div className="dropdown-label">
-                  {dropdownLabel}
-                </div>
-                <img
-                  src={upArrow}
-                  alt="Toggle Dropdown"
-                  className={`arrow-icon ${dropdownVisible ? 'rotated' : ''}`}
-                />
-                {/* </div> */}
-                <div className="filter-overlay" onClick={toggleDropdown}>
-                  {/* this is a transparent div on top of filter-top */}
-                </div>
-                <div className={dropdownVisible? "department-dropdown active" : "department-dropdown"}>
-                  <input
-                    type="text"
-                    placeholder="Search department"
-                    value={departmentSearchTerm}
-                    onChange={handleDepartmentSearchChange}
-                    className="department-search"
-                  />
-                  {dropdownVisible && (<div className="department-list">
-                    {filteredDepartments.map((dept, index) => (
-                      <label
-                        key={index}
-                        className={`department-option ${selectedDepartments.includes(dept) ? 'selected' : ''}`}
-                      >
-                        <input
-                          type="checkbox"
-                          value={dept}
-                          checked={selectedDepartments.includes(dept)}
-                          onChange={handleDepartmentChange}
-                        />
-                        {capitalizeFirstLetter(dept)}
-                      </label>
-                    ))}
-                  </div>)}
-                </div>
-            </div>
+            <Dropdown
+              sortOptions={departments.map((dept, index) => ({
+                id: index + 1, // Set the id starting from 1 up to the length of departments
+                value: capitalizeFirstLetter(dept)
+              }))}
+              selectedSortOption={{
+                id: selectedDepartments.length ? selectedDepartments.map((_, index) => index + 1).join(',') : 1, // Match the id if needed
+                value: selectedDepartments.join(', ') || "Department"
+              }}
+              handleSortChange={(dept) => handleDepartmentChange({ target: { value: departments[dept.id - 1] } })} // Use dept.id to access the correct department
+              className="department-filter"
+            />
             <Dropdown
               sortOptions={reviewOptions}
               selectedSortOption={selectedReviewFilter}
@@ -475,8 +467,8 @@ const SearchResults = () => {
           </div>
           }
 
-          {loadingMore && displayedProfessors < searchResults.length && (
-            <div className="loading-spinner">
+          {!loadingMore && !loading && displayedProfessors < searchResults.length && (
+            <div className="loading-spinner loadMore">
               <div className="spinner"></div>
             </div>
           )}

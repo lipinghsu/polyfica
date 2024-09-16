@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between; 
   flex-wrap: wrap;
-  height: 420px;
+  height: 400px;
   margin-left: 36px; 
 
   // @media (max-width: 840px) {
@@ -57,7 +57,9 @@
   a:visited {
     color: white;
   }
-  
+  a:hover {
+    color: #FFC20D;
+  }
   a:visited:hover {
     color: #FFC20D;
   }
@@ -173,7 +175,7 @@ ul {
 
     .popout-box {
       background-color: white;
-      color:#FFC20D;
+      color:#008938;
       width: 96px;
       margin-top: 74px;
       // bottom: 20px;
