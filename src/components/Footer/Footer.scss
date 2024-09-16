@@ -1,8 +1,9 @@
 /* Footer.scss */
 
 .site-footer {
-  background-color: rgb(240, 245, 242);
-  color: black;
+  background-color: #008938;
+  // background-color: rgb(240, 245, 242);
+  color: white;
   padding: 30px 0 0 0;
   height: 100%;
   @media (max-width: 840px) {
@@ -50,11 +51,11 @@
   padding-top: 0;
   padding-bottom: 0px;
   a {
-    color: black;
+    color: white;
   }
   
   a:visited {
-    color: black;
+    color: white;
   }
   
   a:visited:hover {
@@ -67,10 +68,10 @@
   font-weight: 500;
   margin: 24px 0 0 0;
   height: 12px;
-  color: black;
+  color: #FFC20D;
   
   a:visited {
-    color: black;
+    color: #FFC20D;
   }
 }
 
@@ -82,11 +83,11 @@
   margin: 8px 0;
   
   a {
-    color: black;
+    color: white;
   }
   
   a:visited {
-    color: black;
+    color: white;
   }
   
   a:visited:hover {
@@ -95,10 +96,9 @@
 }
 
 .more {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   margin-right: 24px;
   @media(max-width: 840px){
-    
     margin-right: 0px;
   }
 }
@@ -119,12 +119,12 @@ ul {
     }
     
     a:visited {
-      color: black;
+      color: white;
     }
     
     a {
-      .green-text {
-        color: rgb(0, 137, 56);
+      .yellow-text {
+        color: #FFC20D;
       }
     }
     
@@ -172,6 +172,8 @@ ul {
     }
 
     .popout-box {
+      background-color: white;
+      color:#FFC20D;
       width: 96px;
       margin-top: 74px;
       // bottom: 20px;
@@ -220,8 +222,8 @@ ul {
     /* Add styling to make it visible when needed */
     .popout-box:hover {
       transition: 0.05s all ease-in;
-      background-color: rgb(0, 137, 56);
-      color: #FFC20D;
+      color:#008938;
+      background-color: #FFC20D;
     }
   }
 
@@ -246,7 +248,7 @@ ul {
   }
 
   .polySeal-image {
-    // filter: hue-rotate(0deg) saturate(5) brightness(0.7);
+    filter: saturate(0) brightness(200);
     width: 100px;
     height: 100px;
     background-image: url('../../assets/polySeal.png');
