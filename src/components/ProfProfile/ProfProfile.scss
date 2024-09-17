@@ -297,7 +297,10 @@
 
         &:hover {
           border: 1px solid #00CC55;
-          color: #00CC55;
+          .text-form-collapsed{
+            color: #00CC55;
+          }
+          
         }
 
         &.expanded{
@@ -352,6 +355,10 @@
 
   .commentForm {
     // margin-top: 20px;
+    .ratingInputs{
+      height: 96px;
+      background-color: red;
+    }
     form {
       display: flex;
       flex-direction: column;
@@ -388,96 +395,7 @@
         font-size: 14px !important;
         width: 100%;
         border-radius: 5px;
-      }
-
-      .ratingInputs {
-        display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 8px;
-        align-items: center;
-
-        label {
-          margin-right: 10px;
-          font-size: 16px;
-          font-weight: bold;
-        }
-
-        .ratingButton {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          margin-right: 10px;
-          margin-bottom: 7.5px;
-          margin-top: 7.5px;
-          border: 1px solid #ccc;
-          border-radius: 50%;
-          font-size: 16px;
-          background-color: #fff;
-          cursor: pointer;
-          transition: background-color 0.3s, color 0.3s;
-
-          &.active {
-            background-color: #007bff;
-            color: #fff;
-            border-color: #007bff;
-          }
-
-          &:hover {
-            background-color: #f0f0f0;
-          }
-
-          &:nth-child(2):hover,
-          &:nth-child(8):hover {
-            background-color: #ff6347;
-          }
-
-          &:nth-child(2).active,
-          &:nth-child(8).active {
-            background-color: #ff6347;
-          }
-
-          &:nth-child(3):hover,
-          &:nth-child(9):hover {
-            background-color: #ffa600;
-          }
-
-          &:nth-child(3).active,
-          &:nth-child(9).active {
-            background-color: #ffa600;
-          }
-
-          &:nth-child(4):hover,
-          &:nth-child(10):hover {
-            background-color: #ffff00;
-          }
-
-          &:nth-child(4).active,
-          &:nth-child(10).active {
-            background-color: #ffff00;
-          }
-
-          &:nth-child(5):hover,
-          &:nth-child(11):hover {
-            background-color: #90ee90;
-          }
-
-          &:nth-child(5).active,
-          &:nth-child(11).active {
-            background-color: #90ee90;
-          }
-
-          &:nth-child(6):hover,
-          &:nth-child(12):hover {
-            background-color: #008000;
-          }
-
-          &:nth-child(6).active,
-          &:nth-child(12).active {
-            background-color: #008000;
-          }
-        }
+        height: 64px;
       }
 
       .courseCodeContainer {
@@ -486,13 +404,23 @@
         width: 100%;
         margin-top: 8px;
         font-size: 14px;
+        .column-wrap{
+          .form-row{
+            .slider-label{
+              margin-bottom: 0px;
+              padding-left: 10px;
+              text-align: left;
+            }
+          }
+        }
 
         .courseCodeInput {
-          flex: 1;
-          padding: 10px;
-          margin-right: 10px;
+          // flex: 1;
+          margin: 5px 10px 4px 0px;
+          padding: 8px;
           border: 1px solid #ccc;
           border-radius: 12px;
+          height: 36px !important;
           &:hover{
             border: 1px solid #00A344;
           }
@@ -504,10 +432,15 @@
         }
 
         .buttonGroup {
-          display: flex;
-          justify-content: flex-end;
           width: auto;
-
+          display: flex;
+          // justify-content: flex-end;
+          margin-bottom: 4px;
+          margin-top: 15px;
+          margin-right:0;
+          margin-left: auto;
+          height: 100%;
+          
           .submitButton,
           .cancelButton {
             padding: 8px 18px;

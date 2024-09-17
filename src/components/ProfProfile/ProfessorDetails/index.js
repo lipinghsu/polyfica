@@ -161,30 +161,33 @@ const ProfessorDetails = ({ professor }) => {
         {isLargeScreen ? 
           <div className={isFormExpanded ? "review-form expanded" : "review-form"} onClick={toggleFormExpansion}>
             {!isFormExpanded ? 
-            <>Write a Review</> 
+            <div className='text-form-collapsed'>Write a Review</div> 
             : 
             <div className="commentForm">
               <form>
                 <textarea className="expandedTextArea" placeholder="Write your review here..." />
-                {/* <div className="ratingInputs">
-                  <div className="form-row rating-sliders">
-                      <div className="slider-label">Quality</div>
-                      <RatingSlider
-                          onChange={(value) => setQualityRating(value)}  // Correctly handle the value
-                          required
-                      />
-                  </div>
-                  <div className="form-row rating-sliders">
-                      <div className="slider-label">Difficulty</div>
-                      <RatingSlider
-                          onChange={(value) => setDifficultyRating(value)}  // Correctly handle the value
-                          required
-                      />
-                  </div>
-                </div> */}
-                
                 <div className="courseCodeContainer">
-                  <input type="text" className="courseCodeInput" placeholder="Course Code" />
+                  <div className='column-wrap'>
+                      <div className="form-row rating-sliders">
+                          <div className="slider-label">Course Code</div>
+                          <input type="text" className="courseCodeInput" placeholder="Course Code" />
+                      </div>
+                      <div className="form-row rating-sliders">
+                          <div className="slider-label">Quality</div>
+                          <RatingSlider
+                              onChange={(value) => setQualityRating(value)}  // Correctly handle the value
+                              required
+                          />
+                      </div>
+                      <div className="form-row rating-sliders">
+                          <div className="slider-label">Difficulty</div>
+                          <RatingSlider
+                              onChange={(value) => setDifficultyRating(value)}  // Correctly handle the value
+                              required
+                          />
+                      </div>
+                  </div>
+                  
                   <div className="buttonGroup">
                     <button className="cancelButton" type="button" onClick={collapseForm}>Cancel</button>
                     <button className="submitButton" type="submit" onClick={handleUpload}>Submit</button>

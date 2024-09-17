@@ -233,21 +233,6 @@ const ProfProfile = () => {
     return (
         <div className="profProfile" onClick={handleFormCollapse}>
             {professor && <ProfessorDetails professor={professor} />}
-            {/* <CommentForm
-                isFormExpanded={isFormExpanded}
-                newComment={newComment}
-                handleCommentChange={handleCommentChange}
-                qualityRating={qualityRating}
-                handleQualityRating={handleQualityRating}
-                difficultyRating={difficultyRating}
-                handleDifficultyRating={handleDifficultyRating}
-                courseCode={courseCode}
-                handleCourseCodeChange={handleCourseCodeChange}
-                handleProfessorUpload={handleProfessorUpload}
-                handleFormClick={handleFormClick}
-                handleFormCollapse={handleFormCollapse}
-            />
-             */}
             <div className="profComments">
                 {professor && professor.commentData && professor.commentData.length > 0 ? (
                     professor.commentData.map((comment, index) => (
