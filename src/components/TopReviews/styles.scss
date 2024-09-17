@@ -35,8 +35,6 @@
     flex-wrap: wrap;
     justify-content: center;
     background-color: white;
-
-
     .item {
       flex: 1 1 30%;
       max-width: 30%;
@@ -170,5 +168,47 @@
 
       
     }
+  }
+}
+
+.skeleton-loader {
+  padding: 12px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-bar {
+  background-color: #e0e0e0;
+  animation: skeleton-loading 1.2s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.item.skeleton .top {
+  width: 80%;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.item.skeleton .center .review-content {
+  width: 90%;
+  height: 16px;
+  margin-bottom: 8px;
+}
+
+.item.skeleton .bottom .user-name,
+.item.skeleton .bottom .prof-name {
+  width: 50%;
+  height: 16px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
   }
 }

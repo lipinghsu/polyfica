@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { LuSearch } from 'react-icons/lu';
 import { firestore } from "../../firebase/utils";
 import { Rating } from '@mui/material';
-
 import './styles.scss';
 
 const TopReviews = (props) => {
@@ -12,6 +11,7 @@ const TopReviews = (props) => {
   const [topReviews, setTopReviews] = useState([]); // Ensure this is an array
   const [maxLengths, setMaxLengths] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 840);
+  const [isLoading, setIsLoading] = useState(true); // State for loading
   const history = useHistory();
   const innerWrapRefs = useRef([]);
 
@@ -38,8 +38,10 @@ const TopReviews = (props) => {
         allReviews.sort((a, b) => b.reviewDates.seconds - a.reviewDates.seconds);
         const topSixReviews = allReviews.slice(0, 6);
         setTopReviews(topSixReviews);
+        setIsLoading(false); // Stop loading after fetching data
       } catch (error) {
         console.error("Error fetching top reviews:", error);
+        setIsLoading(false); // Stop loading in case of error
       }
     };
 
@@ -98,42 +100,63 @@ const TopReviews = (props) => {
     return text;
   };
 
+  const renderSkeletonLoader = (count) => {
+    return Array.from({ length: count }).map((_, index) => (
+      <div className='item skeleton' key={`skeleton-${index}`}>
+        <div className='inner-wrap'>
+          <div className='top skeleton-bar'></div>
+          <div className='center'>
+            <div className='review-content skeleton-bar'></div>
+          </div>
+          <div className='bottom'>
+            <div className='user-prof-container'>
+              <span className='user-name skeleton-bar'></span>
+              <span className='prof-name skeleton-bar'></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <div className='top-reviews'>
       <h1 className='title'>
         The Latest Reviews from Students
       </h1>
       <div className={isMobile ? 'mobile-wrap' : 'wrap'}>
-        {topReviews.slice(0, isMobile ? 3 : 6).map((review, index) => (
-          <div className='item' key={index}>
-            <div className='inner-wrap' ref={el => innerWrapRefs.current[index] = el}>
-              <div className='top'>
-                <div className='rating-score'>
-                  {/* Render stars based on rating using Material-UI Rating */}
-                  <Rating value={review.qualityRating} name="size-large" size="large" readOnly />
+        {isLoading
+          ? renderSkeletonLoader(isMobile ? 3 : 6) // Render skeleton loaders while loading
+          : topReviews.slice(0, isMobile ? 3 : 6).map((review, index) => (
+            <div className='item' key={index}>
+              <div className='inner-wrap' ref={el => innerWrapRefs.current[index] = el}>
+                <div className='top'>
+                  <div className='rating-score'>
+                    {/* Render stars based on rating using Material-UI Rating */}
+                    <Rating value={review.qualityRating} name="size-large" size="large" readOnly />
+                  </div>
                 </div>
-              </div>
-              <div className='center'>
-                <div className='review-content'>
-                  {maxLengths[index] !== undefined ? truncateText(review.reviewComment, maxLengths[index]) : review.reviewComment}
+                <div className='center'>
+                  <div className='review-content'>
+                    {maxLengths[index] !== undefined ? truncateText(review.reviewComment, maxLengths[index]) : review.reviewComment}
+                  </div>
                 </div>
-              </div>
-              <div className='bottom'>
-                <div className='user-prof-container'>
-                  <span className='user-name'>
-                    {review.userName || 'Anonymous'} Reviewed&nbsp;
-                  </span>
-                  <span className='prof-name'>
-                    <Link to={`/search/professors/${review.professorID}`}>
-                      {`${review.professorName}`}
-                    </Link>
-                  </span>
+                <div className='bottom'>
+                  <div className='user-prof-container'>
+                    <span className='user-name'>
+                      {review.userName || 'Anonymous'} Reviewed&nbsp;
+                    </span>
+                    <span className='prof-name'>
+                      <Link to={`/search/professors/${review.professorID}`}>
+                        {`${review.professorName}`}
+                      </Link>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-        {renderEmptyItems(3 - topReviews.slice(0, isMobile ? 3 : 6).length)}
+          ))}
+        {/* {renderEmptyItems(3 - topReviews.slice(0, isMobile ? 3 : 6).length)} */}
       </div>
     </div>
   );

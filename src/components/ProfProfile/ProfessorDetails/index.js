@@ -14,9 +14,9 @@ function calculateAverageQualityRating(commentData) {
 }
 
 const ProfessorDetails = ({ professor }) => {
-  const [professorPictures, setProfessorPictures] = useState(professor.pictures || []);
-  const [thumbNail, setThumbNail] = useState(professor.thumbNail || null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  
+  
+  const [showMobilePopUp, setShowMobilePopUp] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 840);
   const [isFormExpanded, setIsFormExpanded] = useState(false);
 
@@ -83,6 +83,10 @@ const ProfessorDetails = ({ professor }) => {
     }
   };
 
+  const toggleMobilePopUp = () => {
+    setShowMobilePopUp(!showMobilePopUp); // Toggle the pop-up
+  };
+
   return (
     <div className="profDetails">
       <div className="profHeader">
@@ -117,7 +121,7 @@ const ProfessorDetails = ({ professor }) => {
 
           <div className="button-wrap">
             {!isLargeScreen ? 
-              <button className="review-button" onClick={toggleFormExpansion}>Review</button>
+              <button className="review-button-mobile" onClick={toggleMobilePopUp}>Review</button>
             : null}
             <button className="follow-button">Follow</button>
             <button className="like-button">Like</button>
@@ -159,6 +163,30 @@ const ProfessorDetails = ({ professor }) => {
             </div>}
           </div>
         ) : null}
+      </div>
+      {/* Pop-up modal for mobile review form */}
+      <div className={showMobilePopUp ? "mobile-popup visible" : "mobile-popup"}>
+        <div className='column-wrap'>
+          <div className="form-row rating-sliders">
+            <input type="text" className="courseCodeInput" placeholder="Course Code" onChange={e => setReviewCourseName(e.target.value)} />
+          </div>
+
+          <textarea onChange={e => setReviewComment(e.target.value)} className="expandedTextArea" placeholder="Write your review here..." />
+
+          <div className="form-row rating-sliders">
+            <div className="slider-label">Quality</div>
+            <RatingSlider onChange={(value) => setQualityRating(value)} required />
+          </div>
+          <div className="form-row rating-sliders">
+            <div className="slider-label">Difficulty</div>
+            <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
+          </div>
+
+          
+          <button className={!loading ? "submitButton" : "submitButton loading"} type="submit" onClick={handleUpload} disabled={loading}>
+            {loading ? <div className="spinner"></div> : "Submit"}
+          </button>
+        </div>
       </div>
     </div>
   );
