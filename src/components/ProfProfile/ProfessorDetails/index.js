@@ -5,26 +5,24 @@ import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import defaultProfileImage from "../../../assets/defaultProfImage.png";
 import RatingSlider from "../../Header/RatingSlider";
 
-function calculateAverageQualityRating(commentData) {
-  if (!commentData || commentData.length === 0) {
-    return 0;
-  }
-  const totalQualityRating = commentData.reduce((acc, comment) => acc + (comment.qualityRating || 0), 0);
-  return (totalQualityRating / commentData.length).toFixed(1);
-}
-
 const ProfessorDetails = ({ professor }) => {
-  
-  
-  const [showMobilePopUp, setShowMobilePopUp] = useState(false);
+  const [hideMobilePopUp, setHideMobilePopUp] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 840);
   const [isFormExpanded, setIsFormExpanded] = useState(false);
-
   const [qualityRating, setQualityRating] = useState(null);
   const [difficultyRating, setDifficultyRating] = useState(null);
   const [reviewComment, setReviewComment] = useState('');
   const [reviewCourseName, setReviewCourseName] = useState('');
   const [loading, setLoading] = useState(false); // State to handle loading spinner
+
+  useEffect(() => {
+    if(!hideMobilePopUp){
+      document.body.style.overflow = "hidden";
+    }
+    else{
+      document.body.style.overflow = "scroll";
+    }
+}, [hideMobilePopUp]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,12 +38,28 @@ const ProfessorDetails = ({ professor }) => {
   const handleUpload = async (event) => {
     event.preventDefault();
 
-    if (qualityRating === null || difficultyRating === null) {
-      alert('Please provide both Quality Rating and Difficulty Rating.');
-      return;
-    }
+  // Check if all required fields are filled
+  if (qualityRating === null) {
+    alert('Please provide a Quality Rating.');
+    return;
+  }
 
-    setLoading(true); // Start loading spinner
+  if (difficultyRating === null) {
+    alert('Please provide a Difficulty Rating.');
+    return;
+  }
+
+  if (!reviewComment || reviewComment.trim() === '') {
+    alert('Please provide a Review Comment.');
+    return;
+  }
+
+  if (!reviewCourseName || reviewCourseName.trim() === '') {
+    alert('Please provide the Course Code.');
+    return;
+  }
+
+    setLoading(true);
     try {
       const newCommentData = {
         difficultyRating: difficultyRating,
@@ -63,11 +77,11 @@ const ProfessorDetails = ({ professor }) => {
         commentData: arrayUnion(newCommentData)
       });
 
-      window.location.reload(); // Refresh page after successful upload
+      window.location.reload(); 
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {
-      setLoading(false); // Stop loading spinner
+      setLoading(false);
     }
   };
 
@@ -84,7 +98,7 @@ const ProfessorDetails = ({ professor }) => {
   };
 
   const toggleMobilePopUp = () => {
-    setShowMobilePopUp(!showMobilePopUp); // Toggle the pop-up
+    setHideMobilePopUp(!hideMobilePopUp);
   };
 
   return (
@@ -121,7 +135,7 @@ const ProfessorDetails = ({ professor }) => {
 
           <div className="button-wrap">
             {!isLargeScreen ? 
-              <button className="review-button-mobile" onClick={toggleMobilePopUp}>Review</button>
+              <button className={`review-button-mobile ${!hideMobilePopUp ? " active" : ""}`} onClick={toggleMobilePopUp}>Review</button>
             : null}
             <button className="follow-button">Follow</button>
             <button className="like-button">Like</button>
@@ -165,24 +179,25 @@ const ProfessorDetails = ({ professor }) => {
         ) : null}
       </div>
       {/* Pop-up modal for mobile review form */}
-      <div className={showMobilePopUp ? "mobile-popup visible" : "mobile-popup"}>
+      <div className={!hideMobilePopUp && (window.innerWidth <= 840) ? "mobile-review-popup" : "mobile-review-popup visible"}>
         <div className='column-wrap'>
+          <div className="mobile-popup-top">
+            <div className='mobile-popup-title'>Review Prof. {professor.lastName}</div>
+            <span className="close-button" onClick={() => setHideMobilePopUp(true)}>&times;</span>
+          </div>
+
           <div className="form-row rating-sliders">
             <input type="text" className="courseCodeInput" placeholder="Course Code" onChange={e => setReviewCourseName(e.target.value)} />
           </div>
-
-          <textarea onChange={e => setReviewComment(e.target.value)} className="expandedTextArea" placeholder="Write your review here..." />
-
           <div className="form-row rating-sliders">
             <div className="slider-label">Quality</div>
             <RatingSlider onChange={(value) => setQualityRating(value)} required />
           </div>
-          <div className="form-row rating-sliders">
+          <div className="form-row rating-sliders bot">
             <div className="slider-label">Difficulty</div>
             <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
           </div>
-
-          
+          <textarea onChange={e => setReviewComment(e.target.value)} className="expandedTextArea" placeholder="Write your review here..." />
           <button className={!loading ? "submitButton" : "submitButton loading"} type="submit" onClick={handleUpload} disabled={loading}>
             {loading ? <div className="spinner"></div> : "Submit"}
           </button>

@@ -6,15 +6,6 @@ import CommentItem from './CommentItem';
 import ProfessorDetails from './ProfessorDetails';
 import thinkingStan from '../../assets/thinking-stan2.png'
 
-
-function calculateAverageQualityRating(commentData) {
-    if (!commentData || commentData.length === 0) {
-        return 0;
-    }
-    const totalQualityRating = commentData.reduce((acc, comment) => acc + (comment.qualityRating || 0), 0);
-    return (totalQualityRating / commentData.length).toFixed(1);
-}
-
 const ProfProfile = () => {
     const { profID } = useParams();
     const history = useHistory();
@@ -38,37 +29,12 @@ const ProfProfile = () => {
         return () => unsubscribe();
     }, []);
 
-    const handleCommentChange = (event) => {
-        setNewComment(event.target.value);
-    };
-
-    const handleQualityRating = (rating) => {
-        setQualityRating(rating);
-    };
-
-    const handleDifficultyRating = (rating) => {
-        setDifficultyRating(rating);
-    };
-
-    const handleCourseCodeChange = (event) => {
-        setCourseCode(event.target.value);
-    };
-
-    const handleFormExpand = () => {
-        setIsFormExpanded(true);
-    };
-
     const handleFormCollapse = () => {
         setIsFormExpanded(false);
         setNewComment('');
         setQualityRating(0);
         setDifficultyRating(0);
         setCourseCode('');
-    };
-
-    const handleFormClick = (event) => {
-        event.stopPropagation();
-        setIsFormExpanded(true);
     };
 
     async function updateCommentData(professorID, commentData, additionalData) {
@@ -101,34 +67,7 @@ const ProfProfile = () => {
             console.error('Error updating commentData:', error);
         }
     }
-
-    const handleProfessorUpload = async (event) => {
-        event.preventDefault();
-        if (qualityRating === 0 || difficultyRating === 0) {
-            alert('Please provide both Quality Rating and Difficulty Rating.');
-            return;
-        }
-        try {
-            setIsLoading(true);
-            const commentData = {
-                difficultyRating: difficultyRating,
-                qualityRating: qualityRating,
-                reviewComment: newComment,
-                reviewCourseName: courseCode,
-                reviewDates: new Date(),
-                likes: 0,
-                userLikes: [],
-                userDislikes: []
-            }
-            await updateCommentData(professor.profID, commentData);
-            handleFormCollapse();
-            setIsLoading(false);
-            fetchProfessor();
-        } catch (error) {
-            setIsLoading(false);
-        }
-    };
-
+    
     const fetchProfessor = async () => {
         try {
             const professorRef = firestore.collection("professors").doc(profID);

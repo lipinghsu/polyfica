@@ -17,6 +17,7 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index })
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    
 
     const handleShare = async (event) => {
         const shareData = {

@@ -41,7 +41,7 @@
                 cursor: pointer;
 
                 @media(max-width: 540px){
-                    width: 69px;
+                    width: calc(100vw/5 - 5*2px);
                 }
 
                 &.hovered-1 {

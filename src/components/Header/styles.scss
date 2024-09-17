@@ -512,7 +512,13 @@ $customDarkGray: #b8b8b8;
                         align-items: center;
                         color:white;
                         margin: auto 2px;
-                        
+                    }
+
+                    span{
+                        color:white;
+                    }
+                    span:visited{
+                        color:white;
                     }
                 }
 

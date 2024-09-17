@@ -111,6 +111,11 @@
           border-radius: 24px;
           cursor: pointer;           
           &.review-button-mobile {
+            font-family: Helvetica Neue, Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+            &.active{
+              background-color: #FFD20C;
+              color: #008938;
+            }
             @media (max-width:840px) {
               background-color: rgb(240, 245, 242);
               border: 0px;
@@ -427,7 +432,6 @@
             outline: 1px solid #00A344;
             border: 1px solid transparent;
           }
-          // font-size: 16px;
         }
 
         .buttonGroup {
@@ -914,47 +918,101 @@
       border-radius: 16px;
     }
   }
-  .mobile-popup{
+  .mobile-review-popup{
     padding-top: 12px;
     left: 0;
     bottom: 0;
-    height: 320px;
-    position: absolute;
-
+    height: 352px;
+    position: fixed; /* Change this to fixed to ensure it's relative to the viewport */
     width: 100%;
     z-index: 100;
-    
     border-radius: 16px 16px 0 0;
     background-color: rgb(240, 245, 242);
-
-    box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.06);;
-    transition: all 0.05s ease-out;
+    box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.06);
+    transition: bottom 0.25s ease-in-out, z-index 0.1s ease-in-out;
+    
+    /* Ensure it slides in from the bottom */
+    transform: translateY(0%);
+    transition: transform 0.2s ease-in-out;
 
     .column-wrap{
       margin: auto 12px;
+      .mobile-popup-top{
+        display: flex;
+        flex-direction: row; /* Change from column to row for horizontal alignment */
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 8px;
+        .mobile-popup-title{
+          font-weight:700;
+          font-size: 19px;
+          display: flex;
+          
+          justify-content: center;
+          align-items: center;
+          // margin-bottom: 12px;
+          height: 28px;
+        }
+        .close-button{
+          margin: 0;
+          padding-bottom: 4px;
+          background-color: rgb(228, 236, 231);
+          &:hover{
+            background-color: rgb(200, 215, 207);
+          }
+        }
+      }
+
       @media(max-width: 840px){
         flex-direction: column ;
         justify-content: center;
         align-items: center;
         text-align: center;
       }
+      .form-row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 112px;
+        .button-group-container{
+          .button-container {
+            width: calc(100vw/5 - 5*2px);
+          }
+        }
+
+        .slider-label{
+          transform: translateY(18px);
+          z-index: -1;
+          margin: 0;
+          height: 0px;
+        }
+        &.bot{
+          margin-top: 4px;
+        }
+      }
       .courseCodeInput{
-        font-size: 14px !important;
+        border-radius: 16px !important;
+        text-align: center;
+
+        font-size: 13px !important;
         width: 100% !important;
-        border-radius: 5px;
-        // height: 64px;
-        margin-bottom: 12px;
-        padding: 8px;
-        outline:none;
+        
+        
+        margin-bottom: 8px;
+        padding: 8px 12px;
+        outline: none;
+        border: 1px solid rgb(140, 155, 147);
       }
 
       .expandedTextArea {
+        margin-top: 8px;
         font-size: 14px !important;
         width: 100%;
         border-radius: 8px;
-        height: 64px;
+        height: 96px;
         padding: 8px;
-        outline:none;
+        outline: none;
+        border: 1px solid rgb(140, 155, 147);
       }
 
       .submitButton {
@@ -1010,10 +1068,9 @@
       }
 
     }
-    &.visible{
-      z-index: -10000;
-      bottom: -320px;
-    }
+  &.visible {
+    transform: translateY(100%); /* Slide up from the bottom when visible */
+  }
     
 
   }
@@ -1069,23 +1126,35 @@
     height: 24px;
     margin: 8px 0;
     border-radius: 12px;
+    @media (max-width: 840px) {
+      width: 40%;
+    }
   }
   &.detail{
     border-radius: 10px;
-    width: 75%;
+    width: 100%;
     margin-bottom: 12px;
+    @media (max-width: 840px) {
+      height: 40px;
+    }
   }
   &.count{
     height: 36px;
     width: 25%;
     margin-bottom: 12px;
     border-radius: 18px;
+    @media (max-width: 840px) {
+      width: 100%;
+    }
   }
   &.rev-btn{
     width: 100%;
     height: 36px;
     // margin-bottom: 12px;
     border-radius: 18px;
+    @media (max-width: 840px) {
+      height: 56px;
+    }
   }
 
   &.content{
