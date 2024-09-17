@@ -3,9 +3,8 @@ import { storage, firestore } from '../../../firebase/utils';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import defaultProfileImage from "../../../assets/defaultProfImage.png";
-import likeIcon from '../../../assets/like_icon.png';
-
-// Add like/dislike button -> add likeCount in the professor document
+import RatingSlider from "../../Header/RatingSlider"
+// Function to calculate the average quality rating
 function calculateAverageQualityRating(commentData) {
   if (!commentData || commentData.length === 0) {
     return 0;
@@ -21,6 +20,9 @@ const ProfessorDetails = ({ professor }) => {
   const [progress, setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 840);
+  const [isFormExpanded, setIsFormExpanded] = useState(false);
+  const [qualityRating, setQualityRating] = useState(null);
+  const [difficultyRating, setDifficultyRating] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -102,6 +104,17 @@ const ProfessorDetails = ({ professor }) => {
     setThumbNail(mostLiked);
   };
 
+  const toggleFormExpansion = () => {
+    if(!isFormExpanded){
+      setIsFormExpanded(!isFormExpanded);
+    }
+  };
+  const collapseForm = () => {
+    if(isFormExpanded){
+      setIsFormExpanded(!isFormExpanded);
+    }
+  };
+
   return (
     <div className="profDetails">
       <div className="profHeader">
@@ -121,7 +134,6 @@ const ProfessorDetails = ({ professor }) => {
         </p>
 
         <div className="bottom-wrap">
-
           {true ? (
             <div className="count-wrap">
               <div className="review-count">
@@ -139,19 +151,49 @@ const ProfessorDetails = ({ professor }) => {
 
           <div className="button-wrap">
             {!isLargeScreen ? 
-            <button className="review-button">Review</button>
+              <button className="review-button " onClick={toggleFormExpansion}>Review</button>
             : null}
             <button className="follow-button">Follow</button>
-            <button className="like-button">
-              Like
-            </button>
-            
+            <button className="like-button">Like</button>
           </div>
-
         </div>
 
         {isLargeScreen ? 
-          <button className="review-button">Write a Review</button>
+          <div className={isFormExpanded ? "review-form expanded" : "review-form"} onClick={toggleFormExpansion}>
+            {!isFormExpanded ? 
+            <>Write a Review</> 
+            : 
+            <div className="commentForm">
+              <form>
+                <textarea className="expandedTextArea" placeholder="Write your review here..." />
+                {/* <div className="ratingInputs">
+                  <div className="form-row rating-sliders">
+                      <div className="slider-label">Quality</div>
+                      <RatingSlider
+                          onChange={(value) => setQualityRating(value)}  // Correctly handle the value
+                          required
+                      />
+                  </div>
+                  <div className="form-row rating-sliders">
+                      <div className="slider-label">Difficulty</div>
+                      <RatingSlider
+                          onChange={(value) => setDifficultyRating(value)}  // Correctly handle the value
+                          required
+                      />
+                  </div>
+                </div> */}
+                
+                <div className="courseCodeContainer">
+                  <input type="text" className="courseCodeInput" placeholder="Course Code" />
+                  <div className="buttonGroup">
+                    <button className="cancelButton" type="button" onClick={collapseForm}>Cancel</button>
+                    <button className="submitButton" type="submit" onClick={handleUpload}>Submit</button>
+                  </div>
+                </div>
+            </form>
+          </div>}
+            
+          </div>
         : null}
       </div>
     </div>

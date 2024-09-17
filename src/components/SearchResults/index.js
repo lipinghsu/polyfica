@@ -57,8 +57,7 @@ const SearchResults = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [isReviewDropdownVisible, setIsReviewDropdownVisible] = useState(false);
-  const [isRatingDropdownVisible, setIsRatingDropdownVisible] = useState(false);
+
   const [loadingMore, setLoadingMore] = useState(false);
   const [displayedProfessors, setDisplayedProfessors] = useState(8);
 
@@ -66,28 +65,16 @@ const SearchResults = () => {
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
   
-  const toggleSortDropdown = () => {
-    setIsSortDropdownVisible(!isSortDropdownVisible);
-  };
+
   const handleSortChange = (option) => {
     setSelectedSortOption(option);
     setIsSortDropdownVisible(false);
   };
 
-
-  const toggleReviewDropdown = () => {
-    setIsReviewDropdownVisible(!isReviewDropdownVisible);
-  };
-
-  const toggleRatingDropdown = () => {
-    setIsRatingDropdownVisible(!isRatingDropdownVisible);
-  };  
-
   useEffect(() => {
     window.scrollTo(0, 0);
   },[])
 
-  // Effect to track window size changes
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -118,7 +105,6 @@ const SearchResults = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loadingMore, displayedProfessors, searchResults.length]);
 
-  // collapse filter dropdown menu if user clicks outside of the div
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (filterRef.current && !filterRef.current.contains(event.target)) {
@@ -208,7 +194,6 @@ const SearchResults = () => {
           });
         }
 
-        // Apply Review filter if selected
         if (selectedReviewFilter && selectedReviewFilter.value !== 'Review') {
           const reviewCount = parseInt(selectedReviewFilter.value);
           results = results.filter(professor =>
@@ -232,9 +217,8 @@ const SearchResults = () => {
         console.error("Error fetching professors:", error);
       }
       finally {
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       }
-
     };
 
     if (searchTerm) {
@@ -284,7 +268,7 @@ const SearchResults = () => {
   };
 
   const controlMovingDiv = () => {
-    if (windowWidth >= 1020) { // Only move when window width is >= 1020px
+    if (windowWidth >= 1020) {
       const boxRightBottomY = (boxRightRef.current?.offsetHeight + boxRightRef.current?.offsetTop);
       const stopPosition = boxRightBottomY - movingDivRef.current?.offsetHeight - 20; // 20px above the bottom
   
@@ -321,38 +305,36 @@ const SearchResults = () => {
       {windowWidth < 1020 && (
       <div className="mobile-filter-wrap">
         <div className="mobile-filter-inner-top">
-        <Dropdown
-          sortOptions={sortOptions}
-          selectedSortOption={selectedSortOption} 
-          handleSortChange={handleSortChange}
-        />
-        <Dropdown
-          sortOptions={ratingOptions}
-          selectedSortOption={selectedRatingFilter}
-          handleSortChange={handleRatingFilterClick}
-        />
-        <Dropdown
-          sortOptions={reviewOptions}
-          selectedSortOption={selectedReviewFilter}
-          handleSortChange={handleReviewFilterClick}
-        />
+          <Dropdown
+            sortOptions={sortOptions}
+            selectedSortOption={selectedSortOption} 
+            handleSortChange={handleSortChange}
+          />
+          <Dropdown
+            sortOptions={ratingOptions}
+            selectedSortOption={selectedRatingFilter}
+            handleSortChange={handleRatingFilterClick}
+          />
+          <Dropdown
+            sortOptions={reviewOptions}
+            selectedSortOption={selectedReviewFilter}
+            handleSortChange={handleReviewFilterClick}
+          />
         </div>
         <div className="mobile-filter-inner-bot">
-        <Dropdown
-          sortOptions={departments.map((dept, index) => ({
-            id: index + 1, // Set the id starting from 1 up to the length of departments
-            value: capitalizeFirstLetter(dept)
-          }))}
-          selectedSortOption={{
-            id: selectedDepartments.length ? selectedDepartments.map((_, index) => index + 1).join(',') : 1, // Match the id if needed
-            value: selectedDepartments.join(', ') || "Department"
-          }}
-          handleSortChange={(dept) => handleDepartmentChange({ target: { value: departments[dept.id - 1] } })} // Use dept.id to access the correct department
-          className="department-filter"
-        />
+          <Dropdown
+            sortOptions={departments.map((dept, index) => ({
+              id: index + 1, // Set the id starting from 1 up to the length of departments
+              value: capitalizeFirstLetter(dept)
+            }))}
+            selectedSortOption={{
+              id: selectedDepartments.length ? selectedDepartments.map((_, index) => index + 1).join(',') : 1, // Match the id if needed
+              value: selectedDepartments.join(', ') || "Department"
+            }}
+            handleSortChange={(dept) => handleDepartmentChange({ target: { value: departments[dept.id - 1] } })} // Use dept.id to access the correct department
+            className="department-filter"
+          />
         </div>
-
-          
 
       </div>
       )}
@@ -363,7 +345,7 @@ const SearchResults = () => {
           ref={movingDivRef}
           style={
             stop ? {
-              position: 'relative', // Make the position relative when movement is stopped
+              position: 'relative',
               top: 'auto'
             } : {
               position: 'sticky',
@@ -395,7 +377,7 @@ const SearchResults = () => {
   
             <Dropdown
               sortOptions={departments.map((dept, index) => ({
-                id: index + 1, // Set the id starting from 1 up to the length of departments
+                id: index + 1,
                 value: capitalizeFirstLetter(dept)
               }))}
               selectedSortOption={{
@@ -427,7 +409,7 @@ const SearchResults = () => {
                     {professor.profileImage ? (
                       <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
                     ) : (
-                      <img src={defaultProfileImage} alt="Default Profile" />
+                      <img src={defaultProfileImage} alt="Default Profile"/>
                     )}
                   </div>
                   <div className="prof-content">

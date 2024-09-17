@@ -208,13 +208,13 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                 userDislikes: []
             };
             const newProfessorData = {
-                department: department,
-                firstName: firstName,
-                lastName: lastName,
-                schoolName: schoolName,
+                department: department.trim(),
+                firstName: firstName.trim(),
+                lastName: lastName.trim(),
+                schoolName: schoolName.trim(),
                 commentData: [commentData],
                 likeCount: 0,
-                follower: 0,
+                follower: [],
                 profileImage: ""
             };
             

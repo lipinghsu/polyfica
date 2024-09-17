@@ -76,15 +76,9 @@
             border: 1px solid #d3d3d3; /* Optional border */
           }
         }
-
       }
-      
-
-      
-
       display: flex;
       flex-direction: column;
-      // align-items: center;
 
       .profName {
         font-size: 24px;
@@ -180,8 +174,7 @@
 
           .review-count,
           .follower-count,
-          .like-count {
-            
+          .like-count {  
             flex-direction: row; /* Numbers and text on different lines */
             align-items: center;
             text-align: center; /* Center-align numbers and text */
@@ -190,9 +183,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // margin-top: 16px;
-        // background-color: #f9f9f9;
-        // padding: 16px;
         border-radius: 8px;
   
         .count-wrap {
@@ -292,26 +282,28 @@
           }
         }
       }
-      button {
+      .review-form {
         width: 100%;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 24px;
-        cursor: pointer;           
-        &.review-button {
-          border-radius: 18px;
-          font-size: 1.5rem;
-          font-weight: 600;
-          
-          color: rgb(140, 155, 147);
-          background-color: white;
-          border: 1px solid rgb(200, 215, 207);
-          transition: all 0.02s ease-in-out;
-          &:hover {
-            border: 1px solid #00CC55;
-            // background-color: rgb(200, 215, 207);
-          }
+        padding: 12px 16px;
+        cursor: pointer;      
+        text-align: center;
+        border-radius: 18px;
+        font-size: 1.5rem;
+        font-weight: 600; 
+        color: rgb(140, 155, 147);
+        background-color: white;
+        border: 1px solid rgb(200, 215, 207);
+        transition: all 0.02s ease-in-out;
+
+        &:hover {
+          border: 1px solid #00CC55;
+          color: #00CC55;
         }
+
+        &.expanded{
+          // min-height: 144px;
+        }
+
       }
     }
 
@@ -359,23 +351,20 @@
   }
 
   .commentForm {
-    margin-top: 20px;
-
-    h3 {
-      margin-bottom: 10px;
-      color: #333;
-      font-weight: bold;
-    }
-
+    // margin-top: 20px;
     form {
       display: flex;
       flex-direction: column;
-      background-color: #fff;
-      padding: 5px;
+      // background-color: #fff;
+      // padding: 5px;
+      // overflow: scroll;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       transition: all 0.3s;
-
+      textarea{
+        border: none;
+        outline: none;
+      }
       &.collapsedForm {
         align-items: center;
         justify-content: center;
@@ -396,21 +385,15 @@
       }
 
       .expandedTextArea {
-        height: 100px;
-      }
-
-      textarea {
+        font-size: 14px !important;
         width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
         border-radius: 5px;
-        font-size: 16px;
       }
 
       .ratingInputs {
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         align-items: center;
 
         label {
@@ -501,15 +484,23 @@
         display: flex;
         align-items: center;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 8px;
+        font-size: 14px;
 
         .courseCodeInput {
           flex: 1;
           padding: 10px;
           margin-right: 10px;
           border: 1px solid #ccc;
-          border-radius: 5px;
-          font-size: 16px;
+          border-radius: 12px;
+          &:hover{
+            border: 1px solid #00A344;
+          }
+          &:focus{
+            outline: 1px solid #00A344;
+            border: 1px solid transparent;
+          }
+          // font-size: 16px;
         }
 
         .buttonGroup {
@@ -519,29 +510,34 @@
 
           .submitButton,
           .cancelButton {
-            padding: 10px 20px;
+            padding: 8px 18px;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 24px;
             cursor: pointer;
+            
+            font-size: 1.4rem;
+            font-weight: 500;
+            
             margin-left: 10px;
             transition: background-color 0.3s;
 
             &.submitButton {
-              background-color: #e1e1e1;
-              color: black;
+              background-color: #008938;
+              color: white;
 
               &:hover {
-                background-color: #0056b3;
+                background-color: #FFD20C;
+                color: #008938;
               }
             }
 
             &.cancelButton {
-              background-color: #f1f1f1;
+              background-color: rgb(240, 245, 242);
               color: black;
 
               &:hover {
                 background-color: #e55347;
+                color:white
               }
             }
           }
@@ -558,27 +554,17 @@
       margin-top: 0px;
     }
     .commentItem {
-      @media (max-width: 840px) {
-        // margin-bottom: 9px;
-      }
-      
       border-radius: 8px;
       padding: 12px;
       margin-bottom: 15px;
-      // background-color: rgb(248, 249, 250);
       box-shadow: 2px 2px 3px #eeeeee, -2px -2px 3px #f5f5f5;
-      // background-color: #fff;
-      // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-      // min-height: 256px;
-
+      
       .commentHeader {
         display: grid;
         grid-template-columns: 92px 1fr;
         justify-content: space-between;
         margin-bottom: 10px;
         min-height: 160px;
-        // overflow: hidden;
 
         @media (max-width: 840px) {
           display: flex;
@@ -591,19 +577,15 @@
           border-radius: 8px;
           padding: 0 10px;
           margin-right: 10px;
-          // border-bottom: 1px solid #999;
 
           @media (max-width: 840px) {
             margin-right: 0px;
             margin-top: 8px;
-            margin-bottom: 4px;
-            
+            margin-bottom: 4px;            
             border-radius: 0px;
             flex-direction: row;
             padding: 0px;
             justify-content: center;
-            
-            // background-color: rebeccapurple;
 
             .rating-wrap:last-child {
               margin-left: 16px;
@@ -611,9 +593,6 @@
           }
 
           .rating-wrap {
-            &:last-child {
-              // margin-top: 16px;
-            }
             margin-top: auto;
             display: flex;
             flex-direction: column;
@@ -626,16 +605,9 @@
               margin-top: 4px;
               font-size: 14px;
               color: #333;
-              // color: #999;
               font-weight: 500;
-              
-              
               text-align: center;
               width: 100%;
-              // margin-bottom: 8px;
-              &:last-child{
-
-              }
               @media (max-width: 840px) {
                 width: 100%;
                 height: 18px;
@@ -652,9 +624,6 @@
               height: 100%;
               width: 52px;
               @media (max-width: 840px) {
-                // width: 100% !important;
-                // height: 45px;
-                // width: 45px;
                 margin-bottom: 5px;
               }
               .ratingValue {
@@ -750,7 +719,6 @@
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
-        // overflow: hidden;
       }
 
       .commentReview {
@@ -773,8 +741,6 @@
         margin-top: auto;
         padding-top: 3px;
         padding-bottom: 1px;
-        
-        
         border-radius: 25px;
         height: 36px;
         @media (max-width: 840px) {
