@@ -3,8 +3,8 @@ import { storage, firestore } from '../../../firebase/utils';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import defaultProfileImage from "../../../assets/defaultProfImage.png";
-import RatingSlider from "../../Header/RatingSlider"
-// Function to calculate the average quality rating
+import RatingSlider from "../../Header/RatingSlider";
+
 function calculateAverageQualityRating(commentData) {
   if (!commentData || commentData.length === 0) {
     return 0;
@@ -16,13 +16,15 @@ function calculateAverageQualityRating(commentData) {
 const ProfessorDetails = ({ professor }) => {
   const [professorPictures, setProfessorPictures] = useState(professor.pictures || []);
   const [thumbNail, setThumbNail] = useState(professor.thumbNail || null);
-  const [uploading, setUploading] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 840);
   const [isFormExpanded, setIsFormExpanded] = useState(false);
+
   const [qualityRating, setQualityRating] = useState(null);
   const [difficultyRating, setDifficultyRating] = useState(null);
+  const [reviewComment, setReviewComment] = useState('');
+  const [reviewCourseName, setReviewCourseName] = useState('');
+  const [loading, setLoading] = useState(false); // State to handle loading spinner
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,82 +37,48 @@ const ProfessorDetails = ({ professor }) => {
     };
   }, []);
 
-  const handleFileSelect = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-    }
-  };
-
   const handleUpload = async (event) => {
     event.preventDefault();
-    if (!selectedFile) return;
 
-    const metadata = { contentType: selectedFile.type };
-    const storageRef = ref(storage, `professors/${professor.id}/${selectedFile.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, selectedFile, metadata);
-    setUploading(true);
+    if (qualityRating === null || difficultyRating === null) {
+      alert('Please provide both Quality Rating and Difficulty Rating.');
+      return;
+    }
 
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        const progressPercent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progressPercent);
-      },
-      (error) => {
-        console.error('Upload failed:', error);
-        setUploading(false);
-      },
-      async () => {
-        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        const newPicture = { id: Date.now(), url: downloadURL, likeCount: 0 };
+    setLoading(true); // Start loading spinner
+    try {
+      const newCommentData = {
+        difficultyRating: difficultyRating,
+        qualityRating: qualityRating,
+        reviewComment: reviewComment,
+        reviewCourseName: reviewCourseName,
+        reviewDates: new Date(),
+        likes: 0,
+        userLikes: [],
+        userDislikes: []
+      };
 
-        const professorRef = doc(firestore, 'professors', professor.id);
-        await updateDoc(professorRef, {
-          pictures: arrayUnion(newPicture),
-        });
+      const professorRef = firestore.collection('professors').doc(professor.profID);
+      await professorRef.update({
+        commentData: arrayUnion(newCommentData)
+      });
 
-        const updatedPictures = [...professorPictures, newPicture];
-        setProfessorPictures(updatedPictures);
-        updateThumbNail(updatedPictures);
-        setUploading(false);
-        setSelectedFile(null);
-      }
-    );
-  };
-
-  const handleLike = async (id) => {
-    const updatedPictures = professorPictures.map((picture) => {
-      if (picture.id === id) {
-        return { ...picture, likeCount: picture.likeCount + 1 };
-      }
-      return picture;
-    });
-
-    const professorRef = doc(firestore, 'professors', professor.id);
-    await updateDoc(professorRef, {
-      pictures: updatedPictures,
-    });
-
-    setProfessorPictures(updatedPictures);
-    updateThumbNail(updatedPictures);
-  };
-
-  const updateThumbNail = (pictures) => {
-    const mostLiked = pictures.reduce(
-      (max, picture) => (picture.likeCount > max.likeCount ? picture : max),
-      pictures[0]
-    );
-    setThumbNail(mostLiked);
+      window.location.reload(); // Refresh page after successful upload
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setLoading(false); // Stop loading spinner
+    }
   };
 
   const toggleFormExpansion = () => {
-    if(!isFormExpanded){
+    if (!isFormExpanded) {
       setIsFormExpanded(!isFormExpanded);
     }
   };
+
   const collapseForm = () => {
-    if(isFormExpanded){
+    if (isFormExpanded) {
       setIsFormExpanded(!isFormExpanded);
     }
   };
@@ -134,70 +102,63 @@ const ProfessorDetails = ({ professor }) => {
         </p>
 
         <div className="bottom-wrap">
-          {true ? (
-            <div className="count-wrap">
-              <div className="review-count">
-                <span className="number">{professor.commentData?.length || 0}</span>{" "}
-                <span className="count-text">{professor.commentData?.length > 1 ? "reviews" : "review"}</span>
-              </div>
-              <div className="follower-count">
-                <span className="number">0</span> <span className="count-text">follower</span>
-              </div>
-              <div className="like-count">
-                <span className="number">0</span> <span className="count-text">like</span>
-              </div>
+          <div className="count-wrap">
+            <div className="review-count">
+              <span className="number">{professor.commentData?.length || 0}</span>{" "}
+              <span className="count-text">{professor.commentData?.length > 1 ? "reviews" : "review"}</span>
             </div>
-          ) : null}
+            <div className="follower-count">
+              <span className="number">0</span> <span className="count-text">follower</span>
+            </div>
+            <div className="like-count">
+              <span className="number">0</span> <span className="count-text">like</span>
+            </div>
+          </div>
 
           <div className="button-wrap">
             {!isLargeScreen ? 
-              <button className="review-button " onClick={toggleFormExpansion}>Review</button>
+              <button className="review-button" onClick={toggleFormExpansion}>Review</button>
             : null}
             <button className="follow-button">Follow</button>
             <button className="like-button">Like</button>
           </div>
         </div>
 
-        {isLargeScreen ? 
+        {isLargeScreen ? (
           <div className={isFormExpanded ? "review-form expanded" : "review-form"} onClick={toggleFormExpansion}>
             {!isFormExpanded ? 
             <div className='text-form-collapsed'>Write a Review</div> 
             : 
             <div className="commentForm">
               <form>
-                <textarea className="expandedTextArea" placeholder="Write your review here..." />
+                <textarea onChange={e => setReviewComment(e.target.value)} className="expandedTextArea" placeholder="Write your review here..." />
                 <div className="courseCodeContainer">
                   <div className='column-wrap'>
-                      <div className="form-row rating-sliders">
-                          <div className="slider-label">Course Code</div>
-                          <input type="text" className="courseCodeInput" placeholder="Course Code" />
-                      </div>
-                      <div className="form-row rating-sliders">
-                          <div className="slider-label">Quality</div>
-                          <RatingSlider
-                              onChange={(value) => setQualityRating(value)}  // Correctly handle the value
-                              required
-                          />
-                      </div>
-                      <div className="form-row rating-sliders">
-                          <div className="slider-label">Difficulty</div>
-                          <RatingSlider
-                              onChange={(value) => setDifficultyRating(value)}  // Correctly handle the value
-                              required
-                          />
-                      </div>
+                    <div className="form-row rating-sliders">
+                      <div className="slider-label">Course Code</div>
+                      <input type="text" className="courseCodeInput" placeholder="Course Code" onChange={e => setReviewCourseName(e.target.value)} />
+                    </div>
+                    <div className="form-row rating-sliders">
+                      <div className="slider-label">Quality</div>
+                      <RatingSlider onChange={(value) => setQualityRating(value)} required />
+                    </div>
+                    <div className="form-row rating-sliders">
+                      <div className="slider-label">Difficulty</div>
+                      <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
+                    </div>
                   </div>
-                  
+
                   <div className="buttonGroup">
                     <button className="cancelButton" type="button" onClick={collapseForm}>Cancel</button>
-                    <button className="submitButton" type="submit" onClick={handleUpload}>Submit</button>
+                    <button className={!loading ? "submitButton" : "submitButton loading"} type="submit" onClick={handleUpload} disabled={loading}>
+                      {loading ? <div className="spinner"></div> : "Submit"}
+                    </button>
                   </div>
                 </div>
-            </form>
-          </div>}
-            
+              </form>
+            </div>}
           </div>
-        : null}
+        ) : null}
       </div>
     </div>
   );

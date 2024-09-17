@@ -12,7 +12,7 @@ const SortDropdown = ({ sortOptions, selectedSortOption, handleSortChange, class
   return (
     <div className={`filter-dropdown ${selectedSortOption.id === 1 ? '' : ' active '} ${isSortDropdownVisible ? ' visible ' : ''} ${className ? className : ''}`} onClick={toggleSortDropdown}>
       <div className="dropdown-label">
-        {selectedSortOption.value} {/* Display current selected option */}
+        {selectedSortOption.value}
       </div>
       
       <img

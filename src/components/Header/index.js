@@ -227,7 +227,8 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
             });
             setShowModal(false);
             setIsLoading(false);
-        } catch (error) {
+        } 
+        catch (error) {
             setIsLoading(false);
             console.error('Error submitting form:', error);
         }
@@ -474,14 +475,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                             <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>
                                 {t("Add Professor")}
                             </Button>
-                                                    
-                            {/* <div className="cancel" onClick={() => setShowModal(false)}>
-                                <h3>
-                                    <Link to="/">
-                                        {t("common:Cancel")}
-                                    </Link>
-                                </h3>
-                            </div> */}
                         </div>
                     </div>
                 </form>
