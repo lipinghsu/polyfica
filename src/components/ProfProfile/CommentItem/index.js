@@ -4,7 +4,7 @@ import shareIcon from '../../../assets/share_icon.png';
 import commentIcon from '../../../assets/comment_icon.png';
 
 
-const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index }) => {
+const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, handleSubComment}) => {
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 840);
 
     // Update state based on window size
@@ -105,7 +105,7 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index })
                             </button>
                         </div>
                         <div className="shareContainer">
-                            <button className="commentButton" onClick={null}>
+                            <button className="commentButton" onClick={handleSubComment}>
                                 {isSmallScreen ? (
                                     <img src={commentIcon} alt="Comment Icon" />
                                 ) : (

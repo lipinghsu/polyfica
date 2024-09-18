@@ -1,18 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { LuSearch } from 'react-icons/lu';
+import { Link } from 'react-router-dom';
 import { firestore } from "../../firebase/utils";
 import { Rating } from '@mui/material';
 import './styles.scss';
 
 const TopReviews = (props) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
   const [topReviews, setTopReviews] = useState([]); // Ensure this is an array
   const [maxLengths, setMaxLengths] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 840);
   const [isLoading, setIsLoading] = useState(true); // State for loading
-  const history = useHistory();
   const innerWrapRefs = useRef([]);
 
   useEffect(() => {
@@ -78,20 +74,6 @@ const TopReviews = (props) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  const handleSearchClick = () => {
-    if (searchTerm.length > 0) {
-      history.push(`/search/professors/term=${searchTerm}`);
-    }
-  };
-
-  const renderEmptyItems = (count) => {
-    return Array.from({ length: count }).map((_, index) => (
-      <div className='item empty' key={`empty-${index}`}>
-        <div className='inner-wrap'></div>
-      </div>
-    ));
-  };
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {

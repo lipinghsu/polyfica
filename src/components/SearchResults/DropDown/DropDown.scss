@@ -59,16 +59,17 @@
   }
 
   &.active{
-    // background-color: rgb(200, 215, 207) !important;
-    background-color: #008938 !important;
+    background-color: rgb(200, 215, 207) !important;
+    // background-color: #008938 !important;
     .dropdown-label{
-      color:#FFC20D;
-      font-weight: bold;
+      // color:#FFC20D;
+      // font-weight: bold;
     }
     
   }
   &.visible{
-    border-radius: 19px 19px 0px 0px!important;
+    // border-radius: 19px 19px 0px 0px!important;
+    border-radius: 19px;
 
   }
 
@@ -89,16 +90,23 @@
   }
   
   .sort-options {
-    overflow: visible !important;
+    overflow: hidden;
+    // display: flex;
+    // align-items: left;
+    // justify-content: left;
+    // flex-direction: column;
     &.active {
-      
-      border-radius: 0px 0px 8px 8px!important;
+      margin-top: 4px;
+      border-radius: 8px;
       transition: all 0.2s ease-in-out;
       opacity: 1;
       top: 100%;
       z-index: 100;
       .sort-option {
-        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        padding: 12.5px 8px;
+        margin-left: 0;
         z-index: 100;
       }
     }
@@ -111,14 +119,57 @@
     position: absolute;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     .sort-option {
+      
       cursor: pointer;
       font-size: 14px;
-      border-radius: 16px;
-      transition: background-color 0.5s ease-out;
-      transition: color 0.5s ease-out;
+      transition: color 0.05s ease-in;
+      transition: background-color 0.05s ease-in-out;
+      display: flex;
+
+      input[type='radio'] {
+        appearance: none;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        outline: none;
+        transition: box-shadow 0.3s ease;
+
+        // all outer circle border
+        border: 1px solid black;
+      }
+      
+      input[type='radio']:before {
+        // all inner circle border
+        // border: 1px solid black;
+
+        content: '';
+        display: block;
+        width: 60%;
+        height: 60%;
+        margin: 20% auto;
+        border-radius: 50%;
+      }
+
+      input[type='radio']:checked{
+        
+        //outer, selected
+        border: 1px solid #FFC20D;
+      }
+      
+      input[type='radio']:checked:before {
+        // selected, inner circle
+        background: #FFC20D;
+      }
+
+      input{
+        margin: 0;
+        margin-right: 8px;
+      }
+      label{
+
+      }
 
       &:hover {
           background-color: rgb(200, 215, 207);

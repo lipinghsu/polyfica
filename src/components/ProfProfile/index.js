@@ -67,7 +67,7 @@ const ProfProfile = () => {
             console.error('Error updating commentData:', error);
         }
     }
-    
+
     const fetchProfessor = async () => {
         try {
             const professorRef = firestore.collection("professors").doc(profID);
@@ -81,6 +81,13 @@ const ProfProfile = () => {
         } catch (error) {
             console.error("Error fetching professor:", error);
             setIsLoading(false);
+        }
+    };
+
+    const handleSubComment = async (commentIndex) => {
+        if (!currentUser) {
+            history.push('/login');
+            return;
         }
     };
 
@@ -181,6 +188,7 @@ const ProfProfile = () => {
                             currentUser={currentUser}
                             handleLike={handleLike}
                             handleDislike={handleDislike}
+                            handleSubComment= {handleSubComment}
                             index={index}
                         />
                     ))

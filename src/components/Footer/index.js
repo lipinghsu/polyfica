@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './Footer.scss';
 
 const handlePhoneClick = () => {
-  window.open('facetime://' + '8057561111');
+  window.open(`facetime://8057561111`);
 };
 
 const Footer = () => {

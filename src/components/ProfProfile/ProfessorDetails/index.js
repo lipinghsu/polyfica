@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { storage, firestore } from '../../../firebase/utils';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { useHistory } from 'react-router-dom';
+import { firestore } from '../../../firebase/utils';
+import { arrayUnion, arrayRemove } from "firebase/firestore";
 import defaultProfileImage from "../../../assets/defaultProfImage.png";
 import RatingSlider from "../../Header/RatingSlider";
 
-const ProfessorDetails = ({ professor }) => {
+const ProfessorDetails = ({ professor, currentUser }) => {
+  const history = useHistory();
   const [hideMobilePopUp, setHideMobilePopUp] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 840);
   const [isFormExpanded, setIsFormExpanded] = useState(false);
@@ -13,7 +14,9 @@ const ProfessorDetails = ({ professor }) => {
   const [difficultyRating, setDifficultyRating] = useState(null);
   const [reviewComment, setReviewComment] = useState('');
   const [reviewCourseName, setReviewCourseName] = useState('');
-  const [loading, setLoading] = useState(false); // State to handle loading spinner
+  const [loading, setLoading] = useState(false);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     if(!hideMobilePopUp){
@@ -22,7 +25,7 @@ const ProfessorDetails = ({ professor }) => {
     else{
       document.body.style.overflow = "scroll";
     }
-}, [hideMobilePopUp]);
+  }, [hideMobilePopUp]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,37 +38,44 @@ const ProfessorDetails = ({ professor }) => {
     };
   }, []);
 
+  // Check if the user has liked or is following the professor
+  useEffect(() => {
+    if (currentUser && professor) {
+      setHasLiked(professor.userLikes?.includes(currentUser.uid));
+      setIsFollowing(professor.followers?.includes(currentUser.uid));
+    }
+  }, [currentUser, professor]);
+
   const handleUpload = async (event) => {
     event.preventDefault();
 
-  // Check if all required fields are filled
-  if (qualityRating === null) {
-    alert('Please provide a Quality Rating.');
-    return;
-  }
+    if (qualityRating === null) {
+      alert('Please provide a Quality Rating.');
+      return;
+    }
 
-  if (difficultyRating === null) {
-    alert('Please provide a Difficulty Rating.');
-    return;
-  }
+    if (difficultyRating === null) {
+      alert('Please provide a Difficulty Rating.');
+      return;
+    }
 
-  if (!reviewComment || reviewComment.trim() === '') {
-    alert('Please provide a Review Comment.');
-    return;
-  }
+    if (!reviewComment || reviewComment.trim() === '') {
+      alert('Please provide a Review Comment.');
+      return;
+    }
 
-  if (!reviewCourseName || reviewCourseName.trim() === '') {
-    alert('Please provide the Course Code.');
-    return;
-  }
+    if (!reviewCourseName || reviewCourseName.trim() === '') {
+      alert('Please provide the Course Code.');
+      return;
+    }
 
     setLoading(true);
     try {
       const newCommentData = {
-        difficultyRating: difficultyRating,
-        qualityRating: qualityRating,
-        reviewComment: reviewComment,
-        reviewCourseName: reviewCourseName,
+        difficultyRating,
+        qualityRating,
+        reviewComment,
+        reviewCourseName,
         reviewDates: new Date(),
         likes: 0,
         userLikes: [],
@@ -77,7 +87,7 @@ const ProfessorDetails = ({ professor }) => {
         commentData: arrayUnion(newCommentData)
       });
 
-      window.location.reload(); 
+      window.location.reload();
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {
@@ -85,16 +95,68 @@ const ProfessorDetails = ({ professor }) => {
     }
   };
 
-  const toggleFormExpansion = () => {
-    if (!isFormExpanded) {
-      setIsFormExpanded(!isFormExpanded);
+  // Handle Like button click
+  const handleLike = async () => {
+    if (!currentUser) {
+      // alert("Please log in to like.");
+      history.push('/login');
+      return;
+    }
+
+    const professorRef = firestore.collection('professors').doc(professor.profID);
+    try {
+      if (hasLiked) {
+        // Remove like
+        await professorRef.update({
+          userLikes: arrayRemove(currentUser.uid)
+        });
+        setHasLiked(false);
+      } else {
+        // Add like
+        await professorRef.update({
+          userLikes: arrayUnion(currentUser.uid)
+        });
+        setHasLiked(true);
+      }
+    } catch (error) {
+      console.error('Error updating like status:', error);
     }
   };
 
-  const collapseForm = () => {
-    if (isFormExpanded) {
-      setIsFormExpanded(!isFormExpanded);
+  // Handle Follow button click
+  const handleFollow = async () => {
+    if (!currentUser) {
+      // alert("Please log in to follow.");
+      history.push('/login');
+      return;
     }
+
+    const professorRef = firestore.collection('professors').doc(professor.profID);
+    try {
+      if (isFollowing) {
+        // Unfollow
+        await professorRef.update({
+          followers: arrayRemove(currentUser.uid)
+        });
+        setIsFollowing(false);
+      } else {
+        // Follow
+        await professorRef.update({
+          followers: arrayUnion(currentUser.uid)
+        });
+        setIsFollowing(true);
+      }
+    } catch (error) {
+      console.error('Error updating follow status:', error);
+    }
+  };
+
+  const toggleFormExpansion = () => {
+    setIsFormExpanded(!isFormExpanded);
+  };
+
+  const collapseForm = () => {
+    setIsFormExpanded(false);
   };
 
   const toggleMobilePopUp = () => {
@@ -126,10 +188,12 @@ const ProfessorDetails = ({ professor }) => {
               <span className="count-text">{professor.commentData?.length > 1 ? "reviews" : "review"}</span>
             </div>
             <div className="follower-count">
-              <span className="number">0</span> <span className="count-text">follower</span>
+              <span className="number">{professor.followers?.length || 0}</span>{" "}
+              <span className="count-text">{professor.followers?.length > 1 ? "followers" : "follower"}</span>
             </div>
             <div className="like-count">
-              <span className="number">0</span> <span className="count-text">like</span>
+              <span className="number">{professor.userLikes?.length || 0}</span>{" "}
+              <span className="count-text">like{professor.userLikes?.length !== 1 ? "s" : ""}</span>
             </div>
           </div>
 
@@ -137,12 +201,16 @@ const ProfessorDetails = ({ professor }) => {
             {!isLargeScreen ? 
               <button className={`review-button-mobile ${!hideMobilePopUp ? " active" : ""}`} onClick={toggleMobilePopUp}>Review</button>
             : null}
-            <button className="follow-button">Follow</button>
-            <button className="like-button">Like</button>
+            <button className={`follow-button ${isFollowing ? "following" : ""}`} onClick={handleFollow}>
+              {isFollowing ? "Unfollow" : "Follow"}
+            </button>
+            <button className={`like-button ${hasLiked ? "liked" : ""}`} onClick={handleLike}>
+              {hasLiked ? "Unlike" : "Like"}
+            </button>
           </div>
         </div>
 
-        {isLargeScreen ? (
+        {isLargeScreen && (
           <div className={isFormExpanded ? "review-form expanded" : "review-form"} onClick={toggleFormExpansion}>
             {!isFormExpanded ? 
             <div className='text-form-collapsed'>Write a Review</div> 
@@ -176,8 +244,9 @@ const ProfessorDetails = ({ professor }) => {
               </form>
             </div>}
           </div>
-        ) : null}
+        )}
       </div>
+
       {/* Pop-up modal for mobile review form */}
       <div className={!hideMobilePopUp && (window.innerWidth <= 840) ? "mobile-review-popup" : "mobile-review-popup visible"}>
         <div className='column-wrap'>

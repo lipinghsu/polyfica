@@ -1,19 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { firestore } from "../../firebase/utils";
-import "./SearchResults.scss";
-import ConditionalLink from "../Header/ConditionalLink";
-import upArrow from "../../assets/arrow_up.png"; 
-import searchImg from "../../assets/search-img.png";
-import filter_icon from "../../assets/filter_icon.png";
-import defaultProfileImage from "../../assets/defaultProfImage.png";
 import { Rating } from '@mui/material'; 
+import defaultProfileImage from "../../assets/defaultProfImage.png";
 import Dropdown from "./DropDown";
+import "./SearchResults.scss";
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
-
 
 const reviewOptions = [
   { id: 1, value: 'Review' },
@@ -23,8 +18,6 @@ const reviewOptions = [
   { id: 5, value: '200+' }
 ];
 
-
-// this is not working properly
 const ratingOptions = [
   { id: 1, value: 'Rating' },
   { id: 2, value: '2.0+' },
@@ -36,8 +29,8 @@ const ratingOptions = [
 const sortOptions = [
   { id: 1, value: "Default" },
   { id: 2, value: "First Name" },
-  { id: 3, value: "Highest Rating" },
-  { id: 4, value: "Most Reviews" },
+  { id: 3, value: "Most Reviews"},
+  { id: 4, value: "Highest Rating"},
 ];
 
 const SearchResults = () => {
@@ -391,6 +384,7 @@ const SearchResults = () => {
               sortOptions={reviewOptions}
               selectedSortOption={selectedReviewFilter}
               handleSortChange={handleReviewFilterClick}
+              className={"rev-filter"}
             />
           </div>
         </div>
