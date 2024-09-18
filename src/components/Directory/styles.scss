@@ -150,6 +150,22 @@ $mobilefooterHeight: 0rem;
           .suggestion-item {
             font-size: 1.6rem;
             // padding-left: 54px;
+
+            &.search-for{
+              display: flex;
+              align-items: center;
+              height: 48px;
+              .img-wrap{
+                margin: auto 16px;
+                // width: 32px;
+                // height: 32px;
+                svg{
+                  height: 100%;
+                  width: 100%;
+                }
+              }
+            }
+
             cursor: pointer;
             display: flex;
             flex-direction: row;

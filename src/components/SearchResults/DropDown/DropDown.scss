@@ -68,7 +68,6 @@
     
   }
   &.visible{
-    // border-radius: 19px 19px 0px 0px!important;
     border-radius: 19px;
 
   }
@@ -91,10 +90,6 @@
   
   .sort-options {
     overflow: hidden;
-    // display: flex;
-    // align-items: left;
-    // justify-content: left;
-    // flex-direction: column;
     &.active {
       margin-top: 4px;
       border-radius: 8px;
@@ -105,7 +100,7 @@
       .sort-option {
         display: flex;
         align-items: center;
-        padding: 12.5px 8px;
+        padding: 14.5px 8px;
         margin-left: 0;
         z-index: 100;
       }

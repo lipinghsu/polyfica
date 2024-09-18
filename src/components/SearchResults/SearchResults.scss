@@ -126,12 +126,9 @@
 
       .top{
         margin-bottom: 32px;
-        // height: 108px !important;
       }
       
       .bot{
-        // height: 202px !important;
-
         .filter-dropdown{
           margin-bottom: 12px;
           &.dep{
@@ -509,7 +506,7 @@
               display: flex;
               justify-content: space-between;
               align-items: center; /* Ensure vertical alignment */
-              margin-bottom: 4px;
+              margin-bottom: 2px;
           
               .professorName {
                 font-weight: bold;
@@ -528,7 +525,7 @@
             .department{
               color: #555;
               font-size: 1.2rem;
-              margin-bottom: 4px;
+              margin-bottom: 2px;
             }
             .infoFooter {
               display: flex;

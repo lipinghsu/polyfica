@@ -160,10 +160,11 @@ ul {
 .footer-bottom {
   font-size: 14px;
   padding: 10px 36px;
+  
   @media (max-width: 840px) {
     padding: 10px 16px;
-
   }
+
   .bottom-top-wrap {
     display: flex;
     justify-content: space-between;
@@ -211,6 +212,7 @@ ul {
       background-color: transparent;
       transition: 0.2s all ease-in;
       opacity: 0;
+      color: black;
     }
 
     .popout-box-modal.active {

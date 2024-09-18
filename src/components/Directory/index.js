@@ -16,31 +16,27 @@ const Directory = ({ showSignupDropdown }) => {
 
   const handleSearchEnter = (e) => {
     if (e.key === 'Enter' && searchTerm.length > 0) {
-      if (activeSuggestionIndex >= 0) {
+      if (activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length) {
         history.push(`/search/professors/${suggestions[activeSuggestionIndex].profID}`);
-      } 
-      else {
+      } else {
         history.push(`/search/professors?term=${searchTerm}`);
       }
-    } 
-    else if (e.key === 'ArrowDown') {
+    } else if (e.key === 'ArrowDown') {
       setActiveSuggestionIndex((prevIndex) =>
-        prevIndex < suggestions.length - 1 ? prevIndex + 1 : -1
+        prevIndex < suggestions.length ? prevIndex + 1 : -1
       );
-    } 
-    else if (e.key === 'ArrowUp') {
+    } else if (e.key === 'ArrowUp') {
       setActiveSuggestionIndex((prevIndex) =>
-        prevIndex > -1 ? prevIndex - 1 : suggestions.length - 1
+        prevIndex > -1 ? prevIndex - 1 : suggestions.length
       );
     }
   };
 
   const handleSearchClick = () => {
     if (searchTerm.length > 0) {
-      if (activeSuggestionIndex >= 0) {
+      if (activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length) {
         history.push(`/search/professors/${suggestions[activeSuggestionIndex].profID}`);
-      } 
-      else {
+      } else {
         history.push(`/search/professors?term=${searchTerm}`);
       }
     }
@@ -191,6 +187,18 @@ const Directory = ({ showSignupDropdown }) => {
 
                     </Link>
                   ))}
+
+                  {/* Add the last suggestion to search for the term */}
+                  <div
+                    className={`suggestion-item search-for ${activeSuggestionIndex === suggestions.length ? 'active' : ''}`}
+                    onClick={() => history.push(`/search/professors?term=${searchTerm}`)}
+                  >
+                    <div className='img-wrap'>
+                    <LuSearch className='lu-search-icon' />
+                    </div>
+                    
+                    Search for "{searchTerm}"
+                  </div>
                 </div>
               )}
             </div>

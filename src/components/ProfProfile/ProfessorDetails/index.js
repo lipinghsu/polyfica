@@ -152,7 +152,9 @@ const ProfessorDetails = ({ professor, currentUser }) => {
   };
 
   const toggleFormExpansion = () => {
-    setIsFormExpanded(!isFormExpanded);
+    if(!isFormExpanded){
+      setIsFormExpanded(!isFormExpanded);
+    }
   };
 
   const collapseForm = () => {

@@ -11,12 +11,8 @@ const ProfProfile = () => {
     const history = useHistory();
     const [professor, setProfessor] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [newComment, setNewComment] = useState('');
-    const [qualityRating, setQualityRating] = useState(0);
-    const [difficultyRating, setDifficultyRating] = useState(0);
-    const [courseCode, setCourseCode] = useState('');
-    const [currentUser, setCurrentUser] = useState(null);
-    const [isFormExpanded, setIsFormExpanded] = useState(false);
+
+    const [currentUser, setCurrentUser] = useState(null)
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -29,44 +25,36 @@ const ProfProfile = () => {
         return () => unsubscribe();
     }, []);
 
-    const handleFormCollapse = () => {
-        setIsFormExpanded(false);
-        setNewComment('');
-        setQualityRating(0);
-        setDifficultyRating(0);
-        setCourseCode('');
-    };
+    // async function updateCommentData(professorID, commentData, additionalData) {
+    //     try {
+    //         const userRef = firestore.doc(`professors/${professorID}`);
+    //         const snapshot = await userRef.get();
 
-    async function updateCommentData(professorID, commentData, additionalData) {
-        try {
-            const userRef = firestore.doc(`professors/${professorID}`);
-            const snapshot = await userRef.get();
-
-            if (snapshot.exists) {
-                let targetProfessor = snapshot.data();
-                let profCommentData = targetProfessor.commentData || [];
-                profCommentData.push(commentData);
-                const updates = {
-                    commentData: profCommentData,
-                    ...additionalData
-                };
-                await userRef.update(updates);
-            } else {
-                const newProfessorData = {
-                    department: "Test",
-                    firstName: "John",
-                    lastName: "Doe",
-                    profID: professorID,
-                    schoolName: "California Polytechnic State University",
-                    commentData: [commentData],
-                    ...additionalData
-                };
-                await userRef.set(newProfessorData);
-            }
-        } catch (error) {
-            console.error('Error updating commentData:', error);
-        }
-    }
+    //         if (snapshot.exists) {
+    //             let targetProfessor = snapshot.data();
+    //             let profCommentData = targetProfessor.commentData || [];
+    //             profCommentData.push(commentData);
+    //             const updates = {
+    //                 commentData: profCommentData,
+    //                 ...additionalData
+    //             };
+    //             await userRef.update(updates);
+    //         } else {
+    //             const newProfessorData = {
+    //                 department: "Test",
+    //                 firstName: "John",
+    //                 lastName: "Doe",
+    //                 profID: professorID,
+    //                 schoolName: "California Polytechnic State University",
+    //                 commentData: [commentData],
+    //                 ...additionalData
+    //             };
+    //             await userRef.set(newProfessorData);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error updating commentData:', error);
+    //     }
+    // }
 
     const fetchProfessor = async () => {
         try {
@@ -177,7 +165,7 @@ const ProfProfile = () => {
     }
 
     return (
-        <div className="profProfile" onClick={handleFormCollapse}>
+        <div className="profProfile">
             {professor && <ProfessorDetails professor={professor} />}
             <div className="profComments">
                 {professor && professor.commentData && professor.commentData.length > 0 ? (
