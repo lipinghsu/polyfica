@@ -919,15 +919,15 @@
       border-radius: 16px;
     }
   }
+  
   .mobile-review-popup{
-    
-    padding-top: 12px;
     left: 0;
     bottom: 0;
     height: 352px;
     position: fixed; 
     width: 100%;
     z-index: 100;
+    padding-top: 12px;
     border-radius: 16px 16px 0 0;
     background-color: rgb(240, 245, 242);
     box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.06);
@@ -935,7 +935,7 @@
     
     /* Ensure it slides in from the bottom */
     transform: translateY(0%);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease !important;
 
     .column-wrap{
       margin: auto 16px;

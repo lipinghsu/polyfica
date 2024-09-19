@@ -31,6 +31,7 @@
     flex-direction: column;
     scrollbar-width: none;
     .mobile-filter-inner-top{
+
       max-width: calc(100vw - 24px) !important;
       display: flex;
       flex-direction: row;
@@ -54,6 +55,7 @@
   }
 
   .searchResults {
+    
     padding: 0 32px;
     width: 100%;
     display: flex;
@@ -442,6 +444,7 @@
       // padding-left: 32px;
 
       .item-wrap{
+        
         // background-color: red;
         padding-bottom: 6px;
         padding-top: 6px;
@@ -453,6 +456,7 @@
         //   background-color: red;
         // }
         .professor {
+          
           // margin-bottom: 124px;
           // background-color: purple;
           width: 100%;

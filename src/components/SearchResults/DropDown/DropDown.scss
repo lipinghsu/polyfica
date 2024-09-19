@@ -13,7 +13,7 @@
 
   align-items: center;
   font-size: 1.4rem;
-  
+
   .arrow-icon {
     background-color: rgb(185, 200, 193);
     display: flex;
@@ -35,7 +35,7 @@
   }
 
   @media (max-width: 1020px) {
-    background-color: rgb(240, 245, 242) !important;
+    background-color: rgb(240, 245, 242);
     // min-width: 160px;
     &:hover {
       background-color: rgb(200, 215, 207) !important;
@@ -58,13 +58,16 @@
       background-color: #002911;
     }
   }
+  &:active{
+    // background-color: red;
+  }
 
-  &.active{
-    background-color: rgb(200, 215, 207) !important;
+  &.sortActive{
+    background-color: rgb(200, 215, 207);
     // background-color: #008938 !important;
     .dropdown-label{
       // color:#FFC20D;
-      // font-weight: bold;
+      font-weight: bold;
     }
     
   }
