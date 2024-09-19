@@ -4,7 +4,8 @@ import { firestore } from "../../firebase/utils";
 import { Rating } from '@mui/material';
 import './styles.scss';
 
-const TopReviews = (props) => {
+
+  const TopReviews = (props) => {
   const [topReviews, setTopReviews] = useState([]); // Ensure this is an array
   const [maxLengths, setMaxLengths] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 840);
@@ -143,5 +144,6 @@ const TopReviews = (props) => {
     </div>
   );
 };
+
 
 export default TopReviews;

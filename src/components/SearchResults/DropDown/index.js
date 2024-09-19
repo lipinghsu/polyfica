@@ -5,7 +5,9 @@ import './DropDown.scss';
 
 const SortDropdown = ({ sortOptions, selectedSortOption, handleSortChange, className }) => {
   const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
+  const [currentValueURL, setCurrentValueURL] = useState("");
   const history = useHistory(); // Use history instead of useNavigate
+  
 
   const toggleSortDropdown = () => {
     setIsSortDropdownVisible(!isSortDropdownVisible);
@@ -16,9 +18,9 @@ const SortDropdown = ({ sortOptions, selectedSortOption, handleSortChange, class
 
     // Update the URL with the selected filter option
     const urlSearchParams = new URLSearchParams(window.location.search);
-    urlSearchParams.set('sort', option.value); // Set the sort parameter in the URL
-
-    history.push(`?${urlSearchParams.toString()}`); // Navigate to the new URL with the updated query params
+    // setCurrentValueURL(urlSearchParams + "");
+    urlSearchParams.set('sort', option.value); 
+    history.push(`?${urlSearchParams.toString()}`);
   };
 
   return (
@@ -28,6 +30,7 @@ const SortDropdown = ({ sortOptions, selectedSortOption, handleSortChange, class
     >
       <div className="dropdown-label">
         {selectedSortOption.value}
+        {/* {currentValueURL} */}
       </div>
       
       <img

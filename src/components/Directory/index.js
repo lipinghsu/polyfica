@@ -128,13 +128,10 @@ const Directory = ({ showSignupDropdown }) => {
             <div className='polyfica_text'>
               <img src={polyfica_text} alt='polyficaText' />
             </div>
-            <div className={`search-bar-block ${suggestions.length > 0 ? 'active' : ''}`} >
-            </div>
+            <div className={`search-bar-block ${suggestions.length > 0 ? ' active' : ''}`} />
             <div
-              className={`search-bar ${isSearchFocused ? 'active' : ''}`}
-              ref={searchBarRef}
-            >
-              <div className={`search-input ${suggestions.length > 0 ? 'active' : ''}`}>
+              className={`search-bar ${isSearchFocused ? 'active' : ''}`} ref={searchBarRef}>
+              <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
                 <LuSearch className='lu-search-icon' />
                 <input
                   type='text'
@@ -153,11 +150,12 @@ const Directory = ({ showSignupDropdown }) => {
                     <div onClick={handleClearSearch} className='clear-button'>
                       CLEAR
                     </div>
-                    <div onClick={handleSearchClick} className='arrow-button'>
-                      <LuArrowRight className='arrow-icon' />
-                    </div>
+
                   </>
                 )}
+                <div onClick={handleSearchClick} className={`arrow-button ${searchTerm ? 'active' : ''}`}>
+                  <LuArrowRight className='arrow-icon' />
+                </div>
               </div>
               {suggestions.length > 0 && (
                 <div className='suggestions'>
@@ -176,7 +174,7 @@ const Directory = ({ showSignupDropdown }) => {
                       </div>
 
                       <div className='right-wrap'>
-                        <div>
+                        <div className="professor-name">
                           {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
                         </div>
                         <div className="professor-details">
@@ -195,9 +193,8 @@ const Directory = ({ showSignupDropdown }) => {
                   >
                     <div className='img-wrap'>
                     <LuSearch className='lu-search-icon' />
-                    </div>
-                    
-                    Search for "{searchTerm}"
+                    </div >
+                    Search for "{searchTerm}"...
                   </div>
                 </div>
               )}

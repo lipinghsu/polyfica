@@ -44,7 +44,8 @@
       }
     }
     .sort-options{
-
+      width: calc(100% + 38px);
+      min-width: 136px;
     }
 
   }
@@ -90,6 +91,7 @@
   
   .sort-options {
     overflow: hidden;
+    // transition: opacity 0.2s ease-in-out;
     &.active {
       margin-top: 4px;
       border-radius: 8px;
@@ -100,7 +102,7 @@
       .sort-option {
         display: flex;
         align-items: center;
-        padding: 14.5px 8px;
+        padding: 14.5px 15px;
         margin-left: 0;
         z-index: 100;
       }
@@ -108,7 +110,7 @@
 
     z-index: -2;
     opacity: 0;
-    top: -60px;
+    // top: -60px;
     left: 0;
     width: 100%;
     position: absolute;

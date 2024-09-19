@@ -368,7 +368,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 </div>
                             </span>
                             <h2>{t("Write a Review")}</h2>
-                            <h3>{t("Help us understand your class experience.")}</h3>
+                            <h3>{t("Help us understand your class experience")}</h3>
                             
                             <div className="form-row">
                                 <FormInput 

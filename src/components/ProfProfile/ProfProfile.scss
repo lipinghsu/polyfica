@@ -920,11 +920,12 @@
     }
   }
   .mobile-review-popup{
+    
     padding-top: 12px;
     left: 0;
     bottom: 0;
     height: 352px;
-    position: fixed; /* Change this to fixed to ensure it's relative to the viewport */
+    position: fixed; 
     width: 100%;
     z-index: 100;
     border-radius: 16px 16px 0 0;
