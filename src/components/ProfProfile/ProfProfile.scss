@@ -310,6 +310,7 @@
 
         &.expanded{
           // min-height: 144px;
+          border: 1px solid #00CC55;
         }
 
       }
@@ -1071,7 +1072,7 @@
 
     }
   &.visible {
-    transform: translateY(100%); /* Slide up from the bottom when visible */
+    transform: translateY(100%) !important; /* Slide up from the bottom when visible */
   }
     
 

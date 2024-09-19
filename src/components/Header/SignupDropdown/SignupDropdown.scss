@@ -6,6 +6,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-size: 1.5rem;
+    
     .dropdown-menu{
         .dropdown-item {
             display: block;
@@ -13,7 +14,7 @@
             text-decoration: none;
             color: #333;
             white-space: nowrap;
-            // transition: ease-in-out 0.2s;
+            
             &:hover{
                 background-color: rgb(240, 245, 242);
                 border-radius: 8px;

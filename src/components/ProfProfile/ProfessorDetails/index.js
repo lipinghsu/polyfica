@@ -48,6 +48,7 @@ const ProfessorDetails = ({ professor, currentUser }) => {
   useEffect(() => {
     if(!hideMobilePopUp){
       document.body.style.overflow = "hidden";
+      setCurrentTranslateY(0);
     }
     else{
       document.body.style.overflow = "scroll";
@@ -283,10 +284,14 @@ const ProfessorDetails = ({ professor, currentUser }) => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        style={{
-          transform: `translateY(${currentTranslateY}px)`, // This will follow the user's finger movement
-          transition: hideMobilePopUp ? 'transform 0.05s ease-out' : 'none', // Smooth transition when closing
-        }}
+        style={
+          !hideMobilePopUp
+            ? {
+                transform: `translateY(${currentTranslateY}px)`, // This will follow the user's finger movement
+                transition: 'transform 0.05s ease-in-out' // Smooth transition when closing
+              }
+            : {}
+        }
       >
         <div className='column-wrap'>
           <div className="mobile-popup-top">
