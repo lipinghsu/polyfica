@@ -1,6 +1,8 @@
 import React from 'react';
 import './RatingContainer.scss'
 import { Rating } from '@mui/material';
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
+import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 
 const getStarColor = (difficultyRating) => {
   if (difficultyRating >= 5) {
@@ -36,6 +38,8 @@ const RatingContainer = ({ difficultyRating }) => (
             max={5}
             size="large"
             readOnly
+            icon={<StarRoundedIcon fontSize="inherit" />}
+            emptyIcon={<StarBorderRoundedIcon fontSize="inherit" />}
             style={{
               color: getStarColor(difficultyRating),
             }}

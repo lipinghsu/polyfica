@@ -29,7 +29,7 @@ const CommentForm = ({
                     <>
                         <div className='column-wrap'>
                             <div className="form-row rating-sliders">
-                                <div className="slider-label">Difficulty</div>
+                                <div className="slider-label">Rating</div>
                                 <RatingSlider
                                     onChange={(value) => handleDifficultyRating(value)}  // Correctly handle the value
                                     required

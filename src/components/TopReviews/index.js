@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { firestore } from "../../firebase/utils";
 import { Rating } from '@mui/material';
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
+import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
+
 import './styles.scss';
 
 const getStarColor = (difficultyRating) => {
@@ -108,15 +111,18 @@ const getStarColor = (difficultyRating) => {
       <div className='item skeleton' key={`skeleton-${index}`}>
         <div className='inner-wrap'>
           <div className='top skeleton-bar'></div>
-          <div className='center'>
-            <div className='review-content skeleton-bar'></div>
+
+          <div className='center skeleton-bar'>
+            <div className='review-content '></div>
           </div>
-          <div className='bottom'>
+
+          <div className='bottom skeleton-bar'>
             <div className='user-prof-container'>
               <span className='user-name skeleton-bar'></span>
               <span className='prof-name skeleton-bar'></span>
             </div>
           </div>
+
         </div>
       </div>
     ));
@@ -140,6 +146,8 @@ const getStarColor = (difficultyRating) => {
                       value={review.difficultyRating} 
                       name="size-large" 
                       size="large" 
+                      icon={<StarRoundedIcon fontSize="inherit" />}
+                      emptyIcon={<StarBorderRoundedIcon fontSize="inherit" />}
                       readOnly 
                       style={{
                         color: getStarColor(review.difficultyRating),

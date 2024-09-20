@@ -250,7 +250,7 @@ const ProfessorDetails = ({ professor, currentUser }) => {
                       <input type="text" className="courseCodeInput" placeholder="Course Code" onChange={e => setReviewCourseName(e.target.value)} />
                     </div>
                     <div className="form-row rating-sliders">
-                      <div className="slider-label">Difficulty</div>
+                      <div className="slider-label">Rating</div>
                       <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
                     </div>
                   </div>

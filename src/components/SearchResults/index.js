@@ -5,6 +5,8 @@ import { Rating } from '@mui/material';
 import defaultProfileImage from "../../assets/defaultProfImage.png";
 import Dropdown from "./DropDown";
 import "./SearchResults.scss";
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
+import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -78,7 +80,6 @@ const SearchResults = () => {
 
   
   const handleDropdownClick = (dropdownId) => {
-    // If the same dropdown is clicked, toggle it off; otherwise, set it as active
     setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };
   
@@ -325,16 +326,19 @@ const SearchResults = () => {
             sortOptions={sortOptions}
             selectedSortOption={selectedSortOption} 
             handleSortChange={handleSortChange}
+            onClick={() => handleDropdownClick('sort')}
           />
           <Dropdown
             sortOptions={ratingOptions}
             selectedSortOption={selectedRatingFilter}
             handleSortChange={handleRatingFilterClick}
+            onClick={() => handleDropdownClick('rating')}
           />
           <Dropdown
             sortOptions={reviewOptions}
             selectedSortOption={selectedReviewFilter}
             handleSortChange={handleReviewFilterClick}
+            onClick={() => handleDropdownClick('review')}
           />
         </div>
         <div className="mobile-filter-inner-bot">
@@ -349,6 +353,7 @@ const SearchResults = () => {
             }}
             handleSortChange={(dept) => handleDepartmentChange({ target: { value: departments[dept.id - 1] } })} // Use dept.id to access the correct department
             className="department-filter"
+            onClick={() => handleDropdownClick('department')}
           />
         </div>
 
@@ -443,6 +448,8 @@ const SearchResults = () => {
                           max={5}
                           size="large"
                           readOnly
+                          icon={<StarRoundedIcon fontSize="inherit" />}
+                          emptyIcon={<StarBorderRoundedIcon fontSize="inherit" />}
                           style={{
                             // backgroundColor: 'red',
                             color: getStarColor((professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) ),

@@ -91,7 +91,7 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
           />
         </div>
         <div className="form-row rating-sliders bot">
-          <div className="slider-label">Difficulty</div>
+          <div className="slider-label">Rating</div>
           <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
         </div>
         <textarea

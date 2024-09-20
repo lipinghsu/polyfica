@@ -70,6 +70,7 @@
       margin: 0 0 12px;
       height: 100%;
       color: black;
+      line-height: 1.1;
 
       @media (max-width: 840px) {
         margin-bottom: 8px;
@@ -105,7 +106,7 @@
         .dislikeButton {
           background-color:rgb(240, 245, 242);
           color:black;
-          padding: 6px;
+          padding: 8px;
           margin: 0 10px;
           border: none;
           border-radius: 50%;
@@ -114,6 +115,9 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          span{
+            font-size: 20px !important;
+          }
           
           &.liked {
             color: #007bff;
@@ -136,6 +140,7 @@
 
         .dislikeButton {
           transform: rotate(180deg);
+
         }
 
         .likeCount {
