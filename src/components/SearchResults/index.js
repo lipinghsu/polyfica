@@ -10,6 +10,22 @@ const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
+const getStarColor = (difficultyRating) => {
+  if (difficultyRating >= 5) {
+      return '#028940';
+  } else if (difficultyRating >= 4) {
+      return '#1B9E77';
+  } else if (difficultyRating >= 3) {
+      return '#FF8F00';
+  } else if (difficultyRating >= 2) {
+      return '#FFAB00';
+  } else if (difficultyRating >= 1) {
+      return '#FFC20D';
+  } else {
+      return 'transparent';
+  }
+};
+
 const reviewOptions = [
   { id: 1, value: 'Review' },
   { id: 2, value: '25+' },
@@ -39,7 +55,7 @@ const SearchResults = () => {
   const [departments, setDepartments] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [selectedReviewFilter, setSelectedReviewFilter] = useState({id: 1, value: 'Review'}); // New state for review filter
+  const [selectedReviewFilter, setSelectedReviewFilter] = useState({id: 1, value: 'Review'});
   const location = useLocation();
   const history = useHistory();
   const filterRef = useRef(null);
@@ -57,8 +73,15 @@ const SearchResults = () => {
   const boxRightRef = useRef();
   const movingDivRef = useRef();
   const [stop, setStop] = useState(false);
-  
 
+  const [activeDropdown, setActiveDropdown] = useState(null); 
+
+  
+  const handleDropdownClick = (dropdownId) => {
+    // If the same dropdown is clicked, toggle it off; otherwise, set it as active
+    setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
+  };
+  
   const handleSortChange = (option) => {
     setSelectedSortOption(option);
     setIsSortDropdownVisible(false);
@@ -408,16 +431,22 @@ const SearchResults = () => {
                   </div>
                   <div className="prof-content">
                     <div className="infoHeader">
-                      <div className="professorName">{professor.firstName} {professor.lastName}</div>
+                      <div className="professorName">
+                        {professor.firstName} {professor.lastName}
+                      </div>
                       <div className="rating-score">
-                        <Rating 
-                          precision={0.5} 
+                        <Rating
+                          precision={0.5}
                           value={professor.commentData && professor.commentData.length > 0 
                             ? (professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) 
                             : 0} 
-                          name="size-large" 
-                          size="large" 
-                          readOnly 
+                          max={5}
+                          size="large"
+                          readOnly
+                          style={{
+                            // backgroundColor: 'red',
+                            color: getStarColor((professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) ),
+                          }}
                         />
                       </div>
                     </div>

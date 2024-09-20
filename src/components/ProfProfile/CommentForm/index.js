@@ -5,9 +5,6 @@ const CommentForm = ({
     isFormExpanded,
     newComment,
     handleCommentChange,
-    qualityRating,
-    handleQualityRating,
-    difficultyRating,
     handleDifficultyRating,
     courseCode,
     handleCourseCodeChange,
@@ -31,13 +28,6 @@ const CommentForm = ({
                 {isFormExpanded && (
                     <>
                         <div className='column-wrap'>
-                            <div className="form-row rating-sliders">
-                                <div className="slider-label">Quality</div>
-                                <RatingSlider
-                                    onChange={(value) => handleQualityRating(value)}  // Correctly handle the value
-                                    required
-                                />
-                            </div>
                             <div className="form-row rating-sliders">
                                 <div className="slider-label">Difficulty</div>
                                 <RatingSlider

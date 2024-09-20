@@ -13,7 +13,6 @@ const WriteReviewModal = ({ showModal, setShowModal }) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [qualityRating, setQualityRating] = useState(null);
     const [difficultyRating, setDifficultyRating] = useState(null);
     const [reviewComment, setReviewComment] = useState('');
     const [reviewCourseName, setReviewCourseName] = useState('');
@@ -23,15 +22,14 @@ const WriteReviewModal = ({ showModal, setShowModal }) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (qualityRating === null || difficultyRating === null) {
-            alert('Please provide both Quality Rating and Difficulty Rating.');
+        if (difficultyRating === null) {
+            // disable submit button
             return;
         }
         try {
             setIsLoading(true);
             const commentData = {
                 difficultyRating: difficultyRating,
-                qualityRating: qualityRating,
                 reviewComment: reviewComment,
                 reviewCourseName: reviewCourseName,
                 reviewDates: new Date(),
@@ -65,19 +63,8 @@ const WriteReviewModal = ({ showModal, setShowModal }) => {
                 <div className="modal-content">
                     <span className="close-button" onClick={() => setShowModal(false)}>&times;</span>
                     <h4>{t("Write a Review")}</h4>
-                    
                     <form onSubmit={handleFormSubmit}>
-
-
                         <div className="formRow">
-                            <FormInput 
-                                type="number"
-                                name="qualityRating"
-                                value={qualityRating}
-                                onChange={e => setQualityRating(e.target.value)}
-                                label={t("Quality Rating")}
-                                required
-                            />
                             <FormInput 
                                 type="number"
                                 name="difficultyRating"

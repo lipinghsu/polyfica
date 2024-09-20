@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RatingContainer from '../RatingContainer';
 import shareIcon from '../../../assets/share_icon.png';
 import commentIcon from '../../../assets/comment_icon.png';
+import './CommentItem.scss'
 
 
 const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, handleSubComment}) => {
@@ -40,12 +41,6 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, h
         <div className="commentItem">
             <div className="commentHeader">
                 
-                {!isSmallScreen && (
-                    <RatingContainer
-                        qualityRating={comment.qualityRating}
-                        difficultyRating={comment.difficultyRating}
-                    />
-                )}
                 {/* make review button like reddit comment button */}
                 <div className="commentContainer">
                     
@@ -78,16 +73,8 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, h
                             }
                         </p>
                     </div>
-                    {isSmallScreen && (
-                    <RatingContainer
-                        qualityRating={comment.qualityRating}
-                        difficultyRating={comment.difficultyRating}
-                    />
-                    )}
 
                     <p className="commentReview">{comment.reviewComment}</p>
- 
-
                     <div className="likeDislikeShareContainer">
                         <div className="likeDislikeContainer">
                             <button
@@ -104,6 +91,7 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, h
                                 <span className="material-symbols-outlined">shift</span>
                             </button>
                         </div>
+
                         <div className="shareContainer">
                             <button className="commentButton" onClick={handleSubComment}>
                                 {isSmallScreen ? (
@@ -123,6 +111,11 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, h
                                 )}
                             </button>
                         </div>
+
+                        {/* Move the RatingContainer to the right end */}
+                        <RatingContainer
+                            difficultyRating={comment.difficultyRating}
+                        />
                     </div>
                 </div>
             </div>

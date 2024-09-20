@@ -4,6 +4,26 @@ import { firestore } from "../../firebase/utils";
 import { Rating } from '@mui/material';
 import './styles.scss';
 
+const getStarColor = (difficultyRating) => {
+  if (difficultyRating >= 5) {
+      return '#028940';
+  } 
+  else if (difficultyRating >= 4) {
+      return '#1B9E77';
+  } 
+  else if (difficultyRating >= 3) {
+      return '#FF8F00';
+  } 
+  else if (difficultyRating >= 2) {
+      return '#FFAB00';
+  } 
+  else if (difficultyRating >= 1) {
+      return '#FFC20D';
+  } 
+  else {
+      return 'transparent';
+  }
+};
 
   const TopReviews = (props) => {
   const [topReviews, setTopReviews] = useState([]); // Ensure this is an array
@@ -116,7 +136,15 @@ import './styles.scss';
                 <div className='top'>
                   <div className='rating-score'>
                     {/* Render stars based on rating using Material-UI Rating */}
-                    <Rating value={review.qualityRating} name="size-large" size="large" readOnly />
+                    <Rating 
+                      value={review.difficultyRating} 
+                      name="size-large" 
+                      size="large" 
+                      readOnly 
+                      style={{
+                        color: getStarColor(review.difficultyRating),
+                      }}
+                    />
                   </div>
                 </div>
                 <div className='center'>

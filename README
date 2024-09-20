@@ -2,7 +2,8 @@
 # Firebase React Project
 
 ## Overview
-This project is a React application that leverages Firebase for backend services, including authentication, Firestore database, and hosting. The application allows users to write reviews and interact with various features.
+This project is a React application that leverages Firebase for backend services, including authentication, Firestore database, and hosting. 
+The application allows users to write reviews and interact with various features.
 
 ## Table of Contents
 - [Firebase React Project](#firebase-react-project)
@@ -21,19 +22,19 @@ This project is a React application that leverages Firebase for backend services
   - [Acknowledgements](#acknowledgements)
 
 ## Features
-- User authentication (Firebase Authentication)
-- Real-time database (Firestore)
 - Responsive design
 - Review writing functionality
 - Firebase Hosting for deployment
+- Real-time database (Firestore)
+- User authentication (Firebase Authentication)
 
 ## Getting Started
 Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
 ## Prerequisites
-- Node.js (v14 or later)
-- npm (v6 or later)
 - Firebase CLI
+- npm (v6 or later)
+- Node.js (v14 or later)
 
 ## Installation
 1. **Clone the repository:**

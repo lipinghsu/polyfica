@@ -4,13 +4,13 @@ import { firestore } from '../../../firebase/utils';
 import { arrayUnion, arrayRemove } from "firebase/firestore";
 import defaultProfileImage from "../../../assets/defaultProfImage.png";
 import RatingSlider from "../../Header/RatingSlider";
+import MobilePopup from "../../MobilePopup";
 
 const ProfessorDetails = ({ professor, currentUser }) => {
   const history = useHistory();
   const [hideMobilePopUp, setHideMobilePopUp] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 840);
   const [isFormExpanded, setIsFormExpanded] = useState(false);
-  const [qualityRating, setQualityRating] = useState(null);
   const [difficultyRating, setDifficultyRating] = useState(null);
   const [reviewComment, setReviewComment] = useState('');
   const [reviewCourseName, setReviewCourseName] = useState('');
@@ -74,47 +74,40 @@ const ProfessorDetails = ({ professor, currentUser }) => {
     }
   }, [currentUser, professor]);
 
-  const handleUpload = async (event) => {
-    event.preventDefault();
-
-    if (qualityRating === null) {
-      alert('Please provide a Quality Rating.');
-      return;
-    }
-
+  const handleUpload = async ({ reviewComment, reviewCourseName, difficultyRating }) => {
+  
     if (difficultyRating === null) {
       alert('Please provide a Difficulty Rating.');
       return;
     }
-
+  
     if (!reviewComment || reviewComment.trim() === '') {
       alert('Please provide a Review Comment.');
       return;
     }
-
+  
     if (!reviewCourseName || reviewCourseName.trim() === '') {
       alert('Please provide the Course Code.');
       return;
     }
-
+  
     setLoading(true);
     try {
       const newCommentData = {
         difficultyRating,
-        qualityRating,
         reviewComment,
         reviewCourseName,
         reviewDates: new Date(),
         likes: 0,
         userLikes: [],
-        userDislikes: []
+        userDislikes: [],
       };
-
+  
       const professorRef = firestore.collection('professors').doc(professor.profID);
       await professorRef.update({
-        commentData: arrayUnion(newCommentData)
+        commentData: arrayUnion(newCommentData),
       });
-
+  
       window.location.reload();
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -122,6 +115,7 @@ const ProfessorDetails = ({ professor, currentUser }) => {
       setLoading(false);
     }
   };
+  
 
   // Handle Like button click
   const handleLike = async () => {
@@ -256,10 +250,6 @@ const ProfessorDetails = ({ professor, currentUser }) => {
                       <input type="text" className="courseCodeInput" placeholder="Course Code" onChange={e => setReviewCourseName(e.target.value)} />
                     </div>
                     <div className="form-row rating-sliders">
-                      <div className="slider-label">Quality</div>
-                      <RatingSlider onChange={(value) => setQualityRating(value)} required />
-                    </div>
-                    <div className="form-row rating-sliders">
                       <div className="slider-label">Difficulty</div>
                       <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
                     </div>
@@ -279,43 +269,13 @@ const ProfessorDetails = ({ professor, currentUser }) => {
       </div>
 
       {/* Pop-up modal for mobile review form */}
-      <div
-        className={!hideMobilePopUp && (window.innerWidth <= 840) ? "mobile-review-popup" : "mobile-review-popup visible"}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        style={
-          !hideMobilePopUp
-            ? {
-                transform: `translateY(${currentTranslateY}px)`, // This will follow the user's finger movement
-                transition: 'transform 0.05s ease-in-out' // Smooth transition when closing
-              }
-            : {}
-        }
-      >
-        <div className='column-wrap'>
-          <div className="mobile-popup-top">
-            <div className='mobile-popup-title'>Review Prof. {professor.lastName}</div>
-            <span className="close-button" onClick={() => setHideMobilePopUp(true)}>&times;</span>
-          </div>
-
-          <div className="form-row rating-sliders">
-            <input type="text" className="courseCodeInput" placeholder="Course Code" onChange={e => setReviewCourseName(e.target.value)} />
-          </div>
-          <div className="form-row rating-sliders">
-            <div className="slider-label">Quality</div>
-            <RatingSlider onChange={(value) => setQualityRating(value)} required />
-          </div>
-          <div className="form-row rating-sliders bot">
-            <div className="slider-label">Difficulty</div>
-            <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
-          </div>
-          <textarea onChange={e => setReviewComment(e.target.value)} className="expandedTextArea" placeholder="Write your review here..." />
-          <button className={!loading ? "submitButton" : "submitButton loading"} type="submit" onClick={handleUpload} disabled={loading}>
-            {loading ? <div className="spinner"></div> : "Submit"}
-          </button>
-        </div>
-      </div>
+      <MobilePopup
+        professor={professor}
+        onSubmit={handleUpload}  // Pass handleUpload without any event
+        loading={loading}
+        onClose={() => setHideMobilePopUp(true)}
+        isVisible={!hideMobilePopUp}
+      />
     </div>
   );
 };

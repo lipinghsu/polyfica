@@ -1,24 +1,49 @@
 import React from 'react';
+import './RatingContainer.scss'
+import { Rating } from '@mui/material';
 
-const RatingContainer = ({ qualityRating, difficultyRating }) => (
-    <div className="ratingContainer">
-        <div className='rating-wrap'>
-            <div className="qualityRatingRow ratingRow">
-                <div className="ratingValue">
-                    {parseFloat(qualityRating).toFixed(1)}
-                </div>
-                <div className="ratingLabel">Quality</div>
-            </div>
+const getStarColor = (difficultyRating) => {
+  if (difficultyRating >= 5) {
+      return '#028940';
+  } 
+  else if (difficultyRating >= 4) {
+      return '#1B9E77';
+  } 
+  else if (difficultyRating >= 3) {
+      return '#FF8F00';
+  } 
+  else if (difficultyRating >= 2) {
+      return '#FFAB00';
+  } 
+  else if (difficultyRating >= 1) {
+      return '#FFC20D';
+  } 
+  else {
+      return 'transparent';
+  }
+};
+
+
+
+const RatingContainer = ({ difficultyRating }) => (
+  <div className="ratingContainer">
+    <div className="rating-wrap">
+      <div className="difficultyRatingRow ratingRow">
+        <div className="starRating">
+          <Rating
+            precision={0.5}
+            value={difficultyRating}
+            max={5}
+            size="large"
+            readOnly
+            style={{
+              color: getStarColor(difficultyRating),
+            }}
+          />
         </div>
-        <div className='rating-wrap'>
-            <div className="difficultyRatingRow ratingRow">
-                <div className="ratingValue">
-                    {parseFloat(difficultyRating).toFixed(1)}
-                </div>
-                <div className="ratingLabel">Difficulty</div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 );
 
 export default RatingContainer;

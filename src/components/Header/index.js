@@ -39,7 +39,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
     const [isLoading, setIsLoading] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [qualityRating, setQualityRating] = useState(null);
     const [difficultyRating, setDifficultyRating] = useState(null);
     const [reviewComment, setReviewComment] = useState('');
     const [reviewCourseName, setReviewCourseName] = useState('');
@@ -191,15 +190,14 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (qualityRating === null || difficultyRating === null) {
-            alert('Please provide both Quality Rating and Difficulty Rating.');
+        if (difficultyRating === null) {
+            alert('Please give this professor a rating value.');
             return;
         }
         try {
             setIsLoading(true);
             const commentData = {
                 difficultyRating: difficultyRating,
-                qualityRating: qualityRating,
                 reviewComment: reviewComment,
                 reviewCourseName: reviewCourseName,
                 reviewDates: new Date(),
@@ -444,13 +442,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                             />
                             
                             <div className='column-wrap'>
-                                <div className="form-row rating-sliders">
-                                    <div className="slider-label">Quality</div>
-                                    <RatingSlider
-                                        onChange={(value) => setQualityRating(value)}  // Correctly handle the value
-                                        required
-                                    />
-                                </div>
                                 <div className="form-row rating-sliders">
                                     <div className="slider-label">Difficulty</div>
                                     <RatingSlider
