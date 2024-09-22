@@ -609,7 +609,8 @@
   .mobile-review-popup{
     left: 0;
     bottom: 0;
-    height: 352px;
+    // height: 352px;
+    
     position: fixed; 
     width: 100%;
     z-index: 100;
@@ -624,7 +625,9 @@
     transition: transform 0.2s ease !important;
 
     .column-wrap{
+      
       margin: auto 16px;
+      margin-bottom: 12px;
       .mobile-popup-top{
         display: flex;
         flex-direction: row; /* Change from column to row for horizontal alignment */

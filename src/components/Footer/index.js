@@ -54,22 +54,22 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-      <div className="bottom-top-wrap">
-        <div className={popoutBoxDivClass} onClick={togglePopoutBox}>
-          <p>{showPopoutBox ? "CLOSE" : "HELP"}</p>
-        </div>
-        {showPopoutBox && (
-          <div className={popoutModalDivClass}>
-            <p>This is the help modal content.</p>
+        <div className="bottom-top-wrap">
+          <div className={popoutBoxDivClass} onClick={togglePopoutBox}>
+            <p>{showPopoutBox ? "CLOSE" : "HELP"}</p>
           </div>
-        )}
-        <div className="polySeal-container">
-          <div className="polySeal-image"/>
+          {showPopoutBox && (
+            <div className={popoutModalDivClass}>
+              <p>This is the help modal content.</p>
+            </div>
+          )}
+          <div className="polySeal-container">
+            <div className="polySeal-image"/>
+          </div>
         </div>
-      </div>
 
         {/* <p>Learn by Doing<sup><small>SM</small></sup></p> */}
-        <p>&copy; 2024 Cal Poly SLO</p>
+        <p className='copy-right'>&copy; 2024 Cal Poly SLO</p>
       </div>
     </footer>
   );

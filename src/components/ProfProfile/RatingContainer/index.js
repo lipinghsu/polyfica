@@ -5,24 +5,25 @@ import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 
 const getStarColor = (difficultyRating) => {
-  if (difficultyRating >= 5) {
-      return '#028940';
-  } 
-  else if (difficultyRating >= 4) {
-      return '#1B9E77';
-  } 
-  else if (difficultyRating >= 3) {
-      return '#FF8F00';
-  } 
-  else if (difficultyRating >= 2) {
-      return '#FFAB00';
-  } 
-  else if (difficultyRating >= 1) {
-      return '#FFC20D';
-  } 
-  else {
-      return 'transparent';
-  }
+  // if (difficultyRating >= 5) {
+  //     return '#028940';
+  // } 
+  // else if (difficultyRating >= 4) {
+  //     return '#1B9E77';
+  // } 
+  // else if (difficultyRating >= 3) {
+  //     return '#FF8F00';
+  // } 
+  // else if (difficultyRating >= 2) {
+  //     return '#FFAB00';
+  // } 
+  // else if (difficultyRating >= 1) {
+  //     return '#FFC20D';
+  // } 
+  // else {
+  //     return 'transparent';
+  // }
+  return '#FF8F00'; 
 };
 
 

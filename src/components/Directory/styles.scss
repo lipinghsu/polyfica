@@ -26,7 +26,7 @@ $mobilefooterHeight: 0rem;
       background: url('./../../assets/the_ppppp3.jpg') center top no-repeat;
       // background-color: rgb(155, 155, 155);
       background-size: 100% 100%;
-
+      
       .inner-wrap {
         height: calc(100vh - #{$footerHeight} - 48px);
         margin: 16px;
@@ -34,6 +34,7 @@ $mobilefooterHeight: 0rem;
         align-items: center;
         justify-content: center;
         position: relative;
+        
 
         .polyfica_text {
           text-align: center;

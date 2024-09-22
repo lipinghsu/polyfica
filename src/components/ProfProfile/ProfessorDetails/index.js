@@ -17,38 +17,10 @@ const ProfessorDetails = ({ professor, currentUser }) => {
   const [loading, setLoading] = useState(false);
   const [hasLiked, setHasLiked] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
-  const [startY, setStartY] = useState(0);
-  const [currentTranslateY, setCurrentTranslateY] = useState(384);
-
-  // Handle swipe down gesture to dismiss popup
-  const handleTouchStart = (e) => {
-    setStartY(e.touches[0].clientY);
-  };
-
-  const handleTouchMove = (e) => {
-    const currentY = e.touches[0].clientY;
-    const diffY = currentY - startY;
-
-    if (diffY > 0) {
-      setCurrentTranslateY(diffY); // Translate the popup as the user swipes
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (currentTranslateY > 150) {
-      // If the swipe down is greater than 150px, close the popup
-      setCurrentTranslateY(384);
-      setHideMobilePopUp(true);
-    } 
-    else {
-      // If the swipe was not enough, reset the popup to its original position
-      setCurrentTranslateY(0);
-    }
-  };
+  
   useEffect(() => {
     if(!hideMobilePopUp){
       document.body.style.overflow = "hidden";
-      setCurrentTranslateY(0);
     }
     else{
       document.body.style.overflow = "scroll";
@@ -184,7 +156,6 @@ const ProfessorDetails = ({ professor, currentUser }) => {
   };
 
   const toggleMobilePopUp = () => {
-    setCurrentTranslateY(0);
     setHideMobilePopUp(!hideMobilePopUp);
   };
 

@@ -5,7 +5,6 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
   const [currentTranslateY, setCurrentTranslateY] = useState(384);
   const [reviewComment, setReviewComment] = useState('');
   const [reviewCourseName, setReviewCourseName] = useState('');
-
   const [difficultyRating, setDifficultyRating] = useState(null);
 
   // Handle swipe down gesture to dismiss popup
@@ -13,14 +12,21 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
     setStartY(e.touches[0].clientY);
   };
 
+  // Translate the popup as the user swipes
   const handleTouchMove = (e) => {
     const currentY = e.touches[0].clientY;
     const diffY = currentY - startY;
 
     if (diffY > 0) {
-      setCurrentTranslateY(diffY); // Translate the popup as the user swipes
+      setCurrentTranslateY(diffY); 
     }
   };
+
+  useEffect(() => {
+    if (isVisible) {
+      setCurrentTranslateY(0); // Reset to open position when the popup becomes visible
+    }
+  }, [isVisible]);
 
   const handleTouchEnd = () => {
     if (currentTranslateY > 150) {
@@ -28,29 +34,31 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
       setCurrentTranslateY(384);
       onClose();
     } else {
-      // If the swipe was not enough, reset the popup to its original position
+      // If the swipe was not enough, reset the position
       setCurrentTranslateY(0);
     }
   };
 
+  // hide the div when mobile mode is disabled.
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth <= 840) {
         setCurrentTranslateY(0);
       } else {
-        // Reset overflow to scroll when window is resized back to more than 840px
         setCurrentTranslateY(384);
       }
     };
   
-    handleResize(); // Run on component mount
-    window.addEventListener('resize', handleResize); // Add listener for window resize
+    handleResize();
+    window.addEventListener('resize', handleResize);
   
     return () => {
-      window.removeEventListener('resize', handleResize); // Cleanup listener on unmount
+      window.removeEventListener('resize', handleResize);
     };
   }, [window.innerWidth]);
+
+  
 
   const handleSubmit = () => {
     onSubmit({
@@ -69,10 +77,7 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
       onTouchEnd={handleTouchEnd}
       style={
         isVisible
-          ? {
-              transform: `translateY(${currentTranslateY}px)`,
-              transition: 'transform 0.05s ease-in-out',
-            }
+          ? {transform: `translateY(${currentTranslateY}px)`}
           : {}
       }
     >

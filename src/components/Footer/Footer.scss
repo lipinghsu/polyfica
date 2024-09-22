@@ -160,9 +160,16 @@ ul {
 .footer-bottom {
   font-size: 14px;
   padding: 10px 36px;
-  
+  background-color: white;
+  .copy-right {
+    color:black;
+  }
+
+  @media (max-width: 1040px) {
+  }
   @media (max-width: 840px) {
-    padding: 10px 16px;
+    padding: 0.1px 16px;
+
   }
 
   .bottom-top-wrap {
@@ -178,8 +185,8 @@ ul {
     }
 
     .popout-box {
-      background-color: white;
-      color:#008938;
+      background-color:#008938;
+      color: #FFC20D;
       width: 96px;
       margin-top: 74px;
       // bottom: 20px;
@@ -233,14 +240,6 @@ ul {
       background-color: #FFC20D;
     }
   }
-
-  .copy-right {
-    text-align: left;
-  }
-
-  .lbd {
-    text-align: right;
-  }
 }
 
 /* Styles for polySeal */
@@ -252,10 +251,11 @@ ul {
   padding: 15px 0px 0px 16px;
   @media (max-width: 840px){
     padding-right: 0 !important;
+    
   }
 
   .polySeal-image {
-    filter: saturate(0) brightness(200);
+    filter: saturate(3.5);
     width: 100px;
     height: 100px;
     background-image: url('../../assets/polySeal.png');
