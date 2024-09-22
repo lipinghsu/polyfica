@@ -5,7 +5,7 @@ $mobilefooterHeight: 0rem;
 .directory {
   height: 100%;
   z-index: 1;
-
+  background-color: rgb(240, 245, 242);
   .wrap {
     height: calc(100vh - #{$footerHeight + $headerHeight});
     background-size: 100% 100%;
@@ -23,7 +23,8 @@ $mobilefooterHeight: 0rem;
       background-color: transparent;
       display: flex;
       flex-direction: column;
-      background: url('./../../assets/the_ppppp3.jpg') center top no-repeat;
+      // background-color: #
+      // background: url('./../../assets/the_ppppp3.jpg') center top no-repeat;
       // background-color: rgb(155, 155, 155);
       background-size: 100% 100%;
       
@@ -35,6 +36,353 @@ $mobilefooterHeight: 0rem;
         justify-content: center;
         position: relative;
         
+        .search-wrapper {
+          height: 56px;
+          border-radius: 32px;
+          position: absolute;
+          // margin-top: 8px;
+          max-width: 557px;
+          width: 100%;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          @media(max-width: 840px){
+            height: 48px;
+            // margin: auto 20px;
+            transition: height 0.2s ease-out;
+          }
+
+          // background-color: red !important;
+          &.with-shadow {
+            // background-color: blue !important;
+            box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);
+            border-radius: 32px 32px 0 0 ;
+          }
+
+          // wrap when search input is active
+          .search-bar-block {
+            // opacity: 0.45;
+            height: 64px;
+            position: absolute;
+            // top: 0;
+            margin-top: 8px;
+            // margin: auto 20px;
+            max-width: 557px;
+            width: calc(100% + 12px);
+            
+            border-radius: 32px 32px 0 0;
+
+            &.active {
+              // background-color: purple;
+              background-color: rgb(240, 240, 240);
+              transition: height 0.2s ease-out;
+              @media(max-width: 840px){
+                height: 48px;
+                margin: auto 20px;
+                transition: height 0.2s ease-out;
+              }
+            }
+          }
+
+          .search-bar {
+            // opacity: 0.45;
+            width: 100%;
+            // max-width: 545px;
+            border-radius: 28px;
+            border: 1px solid rgb(200, 215, 207);
+            border-radius: 29px;
+            
+            position: relative;
+
+            
+  
+            &.no-shadow {
+              box-shadow: none;
+              border: 0px;
+              &:hover{
+                box-shadow: none;
+              }
+            }
+          
+            &:hover{
+              box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
+              border: 0px;
+            }
+            &:focus-within ~ .search-bar-block {
+              background-color: black;
+              // border: 0px;
+              // position: fixed;
+              // top: 0;
+              // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
+            }
+            &.active{
+              // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
+              // border: 0px;
+              // background-color: red !important;
+            
+              .search-input{
+                
+              }
+            }
+            
+            .suggestions {
+              // opacity: 0.65;
+              position: absolute;
+              width: calc(100% + 6px);
+              max-width: 557px;
+              background-color: rgb(240, 240, 240);
+              border-radius: 0 0 28px 28px;
+              z-index: 10;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              // box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);
+              // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
+              box-shadow: 4px 4px 8px rgb(215, 215, 215, 0.225),
+              -4px 4px 8px rgb(215, 215, 215, 0.225);
+  
+              a {
+                color: black;
+              }
+            }
+  
+            .suggestions .suggestion-item.active {
+              background-color: #290542; 
+              color: white;
+              border-radius: 0 28px 28px 0;
+  
+              &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 6px;
+                background-color: #FFC20D;
+                border-radius: 0 4px 4px 0;
+              }
+  
+              &:last-child {
+                overflow: hidden;
+                border-radius: 0 28px 28px 28px;
+              }
+  
+              .professor-details {
+                .professor-department,
+                .professor-schoolName {
+                  color: white;
+                }
+              }
+            }
+  
+            .suggestion-item {
+              width: 100%;
+              font-size: 1.6rem;
+              // padding-left: 54px;
+  
+              &.search-for{
+                display: flex;
+                align-items: center;
+                height: 48px;
+                border-top: 1px solid rgb(200, 215, 207);
+                &.active{
+                  border-radius: 0 0px 28px 28px !important;
+                }
+                .img-wrap{
+                  margin: auto 16px;
+                  // width: 32px;
+                  // height: 32px;
+                  svg{
+                    height: 100%;
+                    width: 100%;
+                  }
+                }
+              }
+  
+              cursor: pointer;
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+              padding: 6px;
+              position: relative; /* Added to position the green box */
+              .profileImage-wrap {
+                margin: auto 8px;
+                height: 32px;
+                width: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0; /* Prevent shrinking of the container */
+              
+                img {
+                  width: 32px; /* Fixed width */
+                  height: 32px; /* Fixed height */
+                  object-fit: cover; /* Ensure the image fits within the circle */
+                  border-radius: 40px; /* Make the image circular */
+                  border: 1px solid #d3d3d3; /* Optional border */
+                }
+              }
+              &:last-child {
+                padding-bottom: 8px;
+              }
+              &:last-child:hover{
+                border-radius: 0px 28px 28px 28px;
+              }
+  
+              &:hover {
+                background: #280845;
+                color: white;
+                border-radius: 0px 28px 28px 0px;
+                overflow: hidden;
+                .right-wrap{
+  
+                  .professor-details {
+                    .professor-department,
+                    .professor-schoolName {
+                      color:white;
+                    }
+                    
+                  }
+                }
+  
+                &::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  bottom: 0;
+                  width: 6px; /* Width of the green box */
+                  background-color: #FFC20D;
+                  border-radius: 0 4px 4px 0;
+                  
+                }
+  
+  
+              }
+              .right-wrap{
+                .professor-name{
+                  font-size: 14px;
+                }
+                .professor-details {
+                  .professor-department,
+                  .professor-schoolName {
+  
+                  }
+                }
+              }
+  
+              .professor-details {
+                font-size: 1.2rem;
+                margin-top: 3px;
+  
+                .professor-department {
+                  color: rgb(155, 155, 155, 1);
+                }
+                .professor-schoolName {
+                  margin-top: 1px;
+                  display: block;
+                  color: black; /* Adjust this color as needed */
+                }
+              }
+            }
+  
+            .lu-search-icon {
+              font-size: 1.6rem;
+              flex-shrink: 0;
+            }
+  
+            .clear-button,
+            .arrow-icon {
+              flex-shrink: 0;
+            }
+  
+            .arrow-button {
+              width: 48px;
+              height: 56px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding-right: 16px;
+              border-radius: 0 50% 50% 0;
+              margin-left: 4px;
+              cursor: pointer;
+              &:hover {
+                background-color: rgba(155, 155, 155, 0.55);  // A lighter, softer gray
+                color: white;
+                transition: all 0.2s ease;
+                cursor:not-allowed;
+              }
+            
+              &.active:hover {
+                background-color: #FFC20D;  // Bright yellow for the active state
+                color: white;
+                transition: all 0.2s ease;
+                cursor: pointer;
+              }
+            }
+  
+  
+  
+            .clear-button {
+              font-size: 1.25rem;
+              background-color: rgb(155, 155, 155, 0.55);
+              height: 24px;
+              width: 62px;
+              color: white;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              @media (max-width: 840px) {
+                height: 20px;
+                width: 50px;
+                font-size: 1rem;
+              }
+            }
+  
+            .clear-button:hover {
+              background-color: rgb(155, 155, 155, 0.425);
+              transition: all 0.05s ease-out;
+            }
+  
+            .search-input {
+              display: flex;
+              height: 56px;
+              overflow: hidden;
+              align-items: center;
+              background-color: white;
+              border-radius: 28px;
+  
+              transition: height 0.2s ease-out;
+              @media(max-width: 840px){
+                height: 48px;
+                // margin: auto 20px;
+                transition: height 0.2s ease-out;
+              }
+  
+              &.active {
+                border-radius: 28px;
+              }
+  
+              svg {
+                margin-left: 16px;
+              }
+            }
+  
+            input {
+              border: none;
+              padding: 16px;
+              height: 56px;
+              width: 100%;
+              outline: none;
+              font-size: 1.6rem;
+            }
+          }
+        }
 
         .polyfica_text {
           text-align: center;
@@ -65,309 +413,6 @@ $mobilefooterHeight: 0rem;
               width: 340px;
               margin-bottom: -25px;
             }
-          }
-        }
-
-        // wrap when search input is active
-        .search-bar-block {
-          height: 64px;
-          position: absolute;
-          // top: 0;
-          margin-top: 8px;
-          // margin: auto 20px;
-          max-width: 557px;
-          width: calc(100% + 12px);
-          
-          border-radius: 32px 32px 0 0;
-
-          &.active {
-            // background-color: purple;
-            background-color: rgb(240, 240, 240);
-            transition: height 0.2s ease-out;
-            @media(max-width: 840px){
-              height: 48px;
-              margin: auto 20px;
-              transition: height 0.2s ease-out;
-            }
-          }
-        }
-
-        .search-bar {
-          width: 100%;
-          max-width: 545px;
-          border-radius: 28px;
-          // border: 1px solid rgb(200, 215, 207);
-          border-radius: 29px;
-          
-          position: relative;
-          
-          &:hover{
-            // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
-            // border: 0px;
-          }
-          &:focus-within ~ .search-bar-block {
-            background-color: black;
-            // border: 0px;
-            // position: fixed;
-            // top: 0;
-            // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
-          }
-          &.active{
-            // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
-            // border: 0px;
-            // background-color: red !important;
-          
-            .search-input{
-              
-            }
-          }
-          
-          .suggestions {
-            position: absolute;
-            left: -6px;
-            width: calc(100% + 12px);
-            max-width: 557px;
-            background-color: rgb(240, 240, 240);
-            border-radius: 0 0 28px 28px;
-            z-index: 10;
-            // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
-
-            a {
-              color: black;
-            }
-          }
-
-          .suggestions .suggestion-item.active {
-            background-color: #290542; 
-            color: white;
-            border-radius: 0 28px 28px 0;
-
-            &::before {
-              content: '';
-              position: absolute;
-              left: 0;
-              top: 0;
-              bottom: 0;
-              width: 6px;
-              background-color: #FFC20D;
-              border-radius: 0 4px 4px 0;
-            }
-
-            &:last-child {
-              overflow: hidden;
-              border-radius: 0 28px 28px 28px;
-            }
-
-            .professor-details {
-              .professor-department,
-              .professor-schoolName {
-                color: white;
-              }
-            }
-          }
-
-          .suggestion-item {
-            
-            font-size: 1.6rem;
-            // padding-left: 54px;
-
-            &.search-for{
-              display: flex;
-              align-items: center;
-              height: 48px;
-              border-top: 1px solid rgb(200, 215, 207);
-              &.active{
-                border-radius: 0 0px 28px 28px !important;
-              }
-              .img-wrap{
-                margin: auto 16px;
-                // width: 32px;
-                // height: 32px;
-                svg{
-                  height: 100%;
-                  width: 100%;
-                }
-              }
-            }
-
-            cursor: pointer;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            padding: 6px;
-            position: relative; /* Added to position the green box */
-            .profileImage-wrap {
-              margin: auto 8px;
-              height: 32px;
-              width: 32px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-shrink: 0; /* Prevent shrinking of the container */
-            
-              img {
-                width: 32px; /* Fixed width */
-                height: 32px; /* Fixed height */
-                object-fit: cover; /* Ensure the image fits within the circle */
-                border-radius: 40px; /* Make the image circular */
-                border: 1px solid #d3d3d3; /* Optional border */
-              }
-            }
-            &:last-child {
-              padding-bottom: 8px;
-            }
-            &:last-child:hover{
-              border-radius: 0px 28px 28px 28px;
-            }
-
-            &:hover {
-              background: #280845;
-              color: white;
-              border-radius: 0px 28px 28px 0px;
-              overflow: hidden;
-              .right-wrap{
-
-                .professor-details {
-                  .professor-department,
-                  .professor-schoolName {
-                    color:white;
-                  }
-                  
-                }
-              }
-
-              &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 6px; /* Width of the green box */
-                background-color: #FFC20D;
-                border-radius: 0 4px 4px 0;
-                
-              }
-
-
-            }
-            .right-wrap{
-              .professor-name{
-                font-size: 14px;
-              }
-              .professor-details {
-                .professor-department,
-                .professor-schoolName {
-
-                }
-              }
-            }
-
-            .professor-details {
-              font-size: 1.2rem;
-              margin-top: 3px;
-
-              .professor-department {
-                color: rgb(155, 155, 155, 1);
-              }
-              .professor-schoolName {
-                margin-top: 1px;
-                display: block;
-                color: black; /* Adjust this color as needed */
-              }
-            }
-          }
-
-          .lu-search-icon {
-            font-size: 1.6rem;
-            flex-shrink: 0;
-          }
-
-          .clear-button,
-          .arrow-icon {
-            flex-shrink: 0;
-          }
-
-          .arrow-button {
-            width: 48px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-right: 16px;
-            border-radius: 0 50% 50% 0;
-            margin-left: 4px;
-            cursor: pointer;
-            &:hover {
-              background-color: rgba(155, 155, 155, 0.55);  // A lighter, softer gray
-              color: white;
-              transition: all 0.2s ease;
-              cursor:not-allowed;
-            }
-          
-            &.active:hover {
-              background-color: #FFC20D;  // Bright yellow for the active state
-              color: white;
-              transition: all 0.2s ease;
-              cursor: pointer;
-            }
-          }
-
-
-
-          .clear-button {
-            font-size: 1.25rem;
-            background-color: rgb(155, 155, 155, 0.55);
-            height: 24px;
-            width: 62px;
-            color: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            @media (max-width: 840px) {
-              height: 20px;
-              width: 50px;
-              font-size: 1rem;
-            }
-          }
-
-          .clear-button:hover {
-            background-color: rgb(155, 155, 155, 0.425);
-            transition: all 0.05s ease-out;
-          }
-
-          .search-input {
-            display: flex;
-            height: 56px;
-            overflow: hidden;
-            align-items: center;
-            background-color: white;
-            border-radius: 28px;
-
-            transition: height 0.2s ease-out;
-            @media(max-width: 840px){
-              height: 48px;
-              // margin: auto 20px;
-              transition: height 0.2s ease-out;
-            }
-
-            &.active {
-              border-radius: 28px;
-            }
-
-            svg {
-              margin-left: 16px;
-            }
-          }
-
-          input {
-            border: none;
-            padding: 16px;
-            height: 56px;
-            width: 100%;
-            outline: none;
-            font-size: 1.6rem;
           }
         }
 

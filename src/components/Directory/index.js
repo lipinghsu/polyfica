@@ -128,76 +128,77 @@ const Directory = ({ showSignupDropdown }) => {
             <div className='polyfica_text'>
               <img src={polyfica_text} alt='polyficaText' />
             </div>
-            <div className={`search-bar-block ${suggestions.length > 0 ? ' active' : ''}`} />
-            <div
-              className={`search-bar ${isSearchFocused ? 'active' : ''}`} ref={searchBarRef}>
-              <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
-                <LuSearch className='lu-search-icon' />
-                <input
-                  type='text'
-                  value={searchTerm}
-                  onKeyDown={handleSearchEnter}
-                  placeholder='Search for a professor'
-                  onFocus={handleFocus}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    setActiveSuggestionIndex(-1);
-                  }}
-                  className={`${suggestions.length > 0 ? 'active' : ''}`}
-                />
-                {searchTerm && (
-                  <>
-                    <div onClick={handleClearSearch} className='clear-button'>
-                      CLEAR
-                    </div>
-
-                  </>
-                )}
-                <div onClick={handleSearchClick} className={`arrow-button ${searchTerm ? 'active' : ''}`}>
-                  <LuArrowRight className='arrow-icon' />
-                </div>
-              </div>
-              {suggestions.length > 0 && (
-                <div className='suggestions'>
-                  {suggestions.map((professor, index) => (
-                    <Link
-                      to={`/search/professors/${professor.profID}`}
-                      key={index}
-                      className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''}`}
-                    >
-                      <div className='profileImage-wrap'>
-                        {professor.profileImage ? (
-                        <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
-                        ) : (
-                        <img src={defaultProfileImage} alt="Default Profile" />
-                        )}
+            <div className={`search-wrapper ${suggestions.length > 0 ? ' with-shadow' : ''}`}>
+              <div className={`search-bar-block ${suggestions.length > 0 ? ' active' : ''}`} />
+              <div className={`search-bar ${isSearchFocused ? ' active' : ''} ${suggestions.length > 0 ? ' no-shadow' : ''}`} ref={searchBarRef}>
+                <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
+                  <LuSearch className='lu-search-icon' />
+                  <input
+                    type='text'
+                    value={searchTerm}
+                    onKeyDown={handleSearchEnter}
+                    placeholder='Search for a professor'
+                    onFocus={handleFocus}
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                      setActiveSuggestionIndex(-1);
+                    }}
+                    className={`${suggestions.length > 0 ? 'active' : ''}`}
+                  />
+                  {searchTerm && (
+                    <>
+                      <div onClick={handleClearSearch} className='clear-button'>
+                        CLEAR
                       </div>
 
-                      <div className='right-wrap'>
-                        <div className="professor-name">
-                          {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
-                        </div>
-                        <div className="professor-details">
-                          <div className="professor-department">{professor.department}</div>
-                          <div className="professor-schoolName">{professor.schoolName}</div>
-                        </div>
-                      </div>
-
-                    </Link>
-                  ))}
-
-                  {/* Add the last suggestion to search for the term */}
-                  <div
-                    className={`suggestion-item search-for ${activeSuggestionIndex === suggestions.length ? 'active' : ''}`}
-                    onClick={() => history.push(`/search/professors?term=${searchTerm}`)}
-                  >
-                    <div className='img-wrap'>
-                    <LuSearch className='lu-search-icon' />
-                    </div >
-                    Search for "{searchTerm}"...
+                    </>
+                  )}
+                  <div onClick={handleSearchClick} className={`arrow-button ${searchTerm ? 'active' : ''}`}>
+                    <LuArrowRight className='arrow-icon' />
                   </div>
                 </div>
-              )}
+                {suggestions.length > 0 && (
+                  <div className='suggestions'>
+                    {suggestions.map((professor, index) => (
+                      <Link
+                        to={`/search/professors/${professor.profID}`}
+                        key={index}
+                        className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''}`}
+                      >
+                        <div className='profileImage-wrap'>
+                          {professor.profileImage ? (
+                          <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
+                          ) : (
+                          <img src={defaultProfileImage} alt="Default Profile" />
+                          )}
+                        </div>
+
+                        <div className='right-wrap'>
+                          <div className="professor-name">
+                            {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
+                          </div>
+                          <div className="professor-details">
+                            <div className="professor-department">{professor.department}</div>
+                            <div className="professor-schoolName">{professor.schoolName}</div>
+                          </div>
+                        </div>
+
+                      </Link>
+                    ))}
+
+                    {/* Add the last suggestion to search for the term */}
+                    <div
+                      className={`suggestion-item search-for ${activeSuggestionIndex === suggestions.length ? 'active' : ''}`}
+                      onClick={() => history.push(`/search/professors?term=${searchTerm}`)}
+                    >
+                      <div className='img-wrap'>
+                      <LuSearch className='lu-search-icon' />
+                      </div >
+                      Search for "{searchTerm}"...
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
             <a>
               <div className='item-logo'></div>
