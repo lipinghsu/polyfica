@@ -185,6 +185,7 @@ ul {
     }
 
     .popout-box {
+      
       background-color:#008938;
       color: #FFC20D;
       width: 96px;
@@ -227,6 +228,7 @@ ul {
       transition: 0.2s all ease-in;
       opacity: 1;
       margin-bottom: 142px;
+      z-index: 10;
       @media (max-width: 840px){
         transform: translateY(-142px);
         left: 24px;

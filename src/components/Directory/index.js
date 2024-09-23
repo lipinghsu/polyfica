@@ -157,8 +157,7 @@ const Directory = ({ showSignupDropdown }) => {
                     <LuArrowRight className='arrow-icon' />
                   </div>
                 </div>
-                {suggestions.length > 0 && (
-                  <div className='suggestions'>
+                <div className={`suggestions ${suggestions.length > 0 ? ' active' : ''}`}>
                     {suggestions.map((professor, index) => (
                       <Link
                         to={`/search/professors/${professor.profID}`}
@@ -187,17 +186,18 @@ const Directory = ({ showSignupDropdown }) => {
                     ))}
 
                     {/* Add the last suggestion to search for the term */}
+                    {suggestions.length > 0 && (
                     <div
                       className={`suggestion-item search-for ${activeSuggestionIndex === suggestions.length ? 'active' : ''}`}
                       onClick={() => history.push(`/search/professors?term=${searchTerm}`)}
                     >
                       <div className='img-wrap'>
-                      <LuSearch className='lu-search-icon' />
+                        <LuSearch className='lu-search-icon' />
                       </div >
                       Search for "{searchTerm}"...
                     </div>
+                    )}
                   </div>
-                )}
               </div>
             </div>
             <a>
