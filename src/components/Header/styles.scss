@@ -217,12 +217,14 @@ $customDarkGray: #b8b8b8;
                 line-height: 36px;
                 width: 94px;
                 text-align: center;
+                
                 .material-symbols-outlined {
                     margin-bottom: 3px;
                     padding-right: 8px;
                 }
 
                 .text-button.review-btn.scrolled {
+                    
                     // background-color: rgb(228, 236, 231);
                 }
 
@@ -314,7 +316,7 @@ $customDarkGray: #b8b8b8;
 
                 &:nth-child(2) {
                     width: 80px;
-                    color: white !important;
+                    // color: white !important;
                 }
 
                 &:nth-child(3) {
@@ -335,7 +337,7 @@ $customDarkGray: #b8b8b8;
             }
 
             .signup-btn.homepage {
-                background-color: white;
+                background-color: rgb(240, 245, 242);
             }
             .signup-btn {
                 background-color: rgb(228, 236, 231) ;

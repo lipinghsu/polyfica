@@ -97,15 +97,16 @@ const Directory = ({ showSignupDropdown }) => {
 
         suggestions = suggestions.slice(0, 5);
         setSuggestions(suggestions);
-      } catch (error) {
-        console.error("Error fetching suggestions:", error);
+      } 
+      catch (error) {
         setSuggestions([]);
       }
     };
 
     if (searchTerm) {
       fetchSuggestions();
-    } else {
+    } 
+    else {
       setSuggestions([]);
     }
   }, [searchTerm]);
@@ -181,7 +182,6 @@ const Directory = ({ showSignupDropdown }) => {
                             <div className="professor-schoolName">{professor.schoolName}</div>
                           </div>
                         </div>
-
                       </Link>
                     ))}
 
@@ -204,6 +204,29 @@ const Directory = ({ showSignupDropdown }) => {
               <div className='item-logo'></div>
             </a>
             <div className='overlay'></div>
+
+
+          </div>
+
+          <div className='site-descrpition-wrap'>
+                <div className='content-left'>
+                  <div className='title'>
+                    Objective Faculty Reviews
+                  </div>
+                  We impartially evaluate Cal Poly professors to provide insightful and balanced assessments. Our goal is to offer practical feedback on teaching styles, course content, and student experiences, helping you make informed decisions for your academic journey.
+                </div>
+                <div className='content-right'>
+                  <div className='title'>
+                    Learn From Student Reviews
+                  </div>
+                  Students like you want a platform where they can openly share their genuine experiences with professors and courses. We provide just that, and carefully review each submission to ensure accuracy and value, helping you, the student, make informed academic choices.
+                </div>
+          </div>
+
+          <div className='social-wrap'>
+            <div className='instagram-button btn'></div>
+            <div className='twitter-button btn'></div>
+            <div className='facebook-button btn'></div>
           </div>
         </div>
       </div>

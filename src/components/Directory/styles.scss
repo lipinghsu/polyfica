@@ -1,6 +1,7 @@
 $footerHeight: 0rem;
 $headerHeight: 6rem;
 $mobilefooterHeight: 0rem;
+$suggestion-item-appear-duration: 0.2s;
 
 .directory {
   height: 100%;
@@ -13,23 +14,87 @@ $mobilefooterHeight: 0rem;
     justify-content: center;
     align-items: center;
     z-index: 1;
-
+    
     .item {
-      height: calc(100vh - #{$footerHeight});
+      height: calc(100vh);
       min-width: 370px !important;
       width: 100vw;
       top: 0px;
       position: absolute;
       background-color: transparent;
       display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
-      // background-color: #
-      // background: url('./../../assets/the_ppppp3.jpg') center top no-repeat;
-      // background-color: rgb(155, 155, 155);
       background-size: 100% 100%;
-      
+        .social-wrap{
+          width: 160px;
+          height: 48px;
+          background-color: #FFC20D;
+          position: absolute;
+          bottom: 12px;
+          border-radius: 16px;
+
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          .btn{
+            cursor: pointer;
+            background-color: white;
+            height: 32px;
+            width: 32px;
+            border-radius: 16px;
+          }
+        }
+      .site-descrpition-wrap{
+        max-width: 975px;
+        min-height: 192px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        z-index: 5;
+
+        .content-left{
+          padding: 24px;
+          background-color: #008938;
+          color: white;
+          border-radius: 24px;
+          height: 100%;
+          width: 100%;
+          margin-right: 8px;
+          font-size: 16px;
+          line-height: 1.1;
+          .title{
+            color: #FFC20D;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            
+          }
+        }
+        .content-right{
+          padding: 24px;
+          border-radius: 24px;
+          height: 100%;
+          width: 100%;
+          background-color: #008938;
+          color:white;
+          margin-left: 8px;
+          font-size: 16px;
+          line-height: 1.1;
+          .title{
+            color: #FFC20D;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 8px;
+          }
+        }
+      }
       .inner-wrap {
-        height: calc(100vh - #{$footerHeight} - 248px);
+        // transform: translateY(calc(-160px));
+        height: 128px;
+        width: 100%;
         margin: 16px;
         display: flex;
         align-items: center;
@@ -49,15 +114,13 @@ $mobilefooterHeight: 0rem;
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          z-index: 10;
           @media(max-width: 840px){
             height: 48px;
             // margin: auto 20px;
             transition: height 0.2s ease-out;
           }
-
-          // background-color: red !important;
           &.with-shadow {
-            // background-color: blue !important;
             box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);
             border-radius: 32px 32px 0 0 ;
           }
@@ -131,7 +194,7 @@ $mobilefooterHeight: 0rem;
             .suggestions {
               max-height: 0;
               opacity: 0;
-              transition: max-height 0.3s ease, opacity 0.3s ease;
+              transition: max-height 0.25s ease, opacity 0.3s ease;
               position: absolute;
               width: calc(100% + 6px);
               max-width: 557px;
@@ -143,9 +206,13 @@ $mobilefooterHeight: 0rem;
               box-shadow: 4px 4px 8px rgba(215, 215, 215, 0.425),
                           -4px 4px 8px rgba(215, 215, 215, 0.425);
 
+              
               &.active {
-                max-height: 500px; /* Adjust the height as needed */
+                z-index: 20;
+                max-height: 580px; /* Adjust the height as needed */
                 opacity: 1;
+                transition: max-height 0.25s ease, opacity 0.3s ease;
+
               }
 
               a {
@@ -183,6 +250,7 @@ $mobilefooterHeight: 0rem;
             }
   
             .suggestions .suggestion-item.active {
+              transition: max-height 0.25s ease, opacity 0.3s ease;
               background-color: #290542; 
               color: white;
               border-radius: 0 28px 28px 0;
@@ -214,7 +282,9 @@ $mobilefooterHeight: 0rem;
             .suggestion-item {
               width: 100%;
               font-size: 1.6rem;
+
               // padding-left: 54px;
+              /* Stagger the appearance of each item using nth-child */
   
               &.search-for{
                 display: flex;
@@ -422,8 +492,9 @@ $mobilefooterHeight: 0rem;
           margin-bottom: 160px;
           position: absolute;
           filter: contrast(115%);
+
           // this changes the text to white
-          // filter: sepia(100%) saturate(300%) hue-rotate(230deg) brightness(2);
+          // filter: sepia(100%) saturate(0%) hue-rotate(230deg) brightness(2);
           img {
             max-width: 425px; /* Ensures the image does not exceed the container width */
             height: auto; /* Maintains the aspect ratio */
