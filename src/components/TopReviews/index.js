@@ -158,7 +158,7 @@ const getStarColor = (difficultyRating) => {
                 </div>
                 <div className='center'>
                   <div className='review-content'>
-                    {maxLengths[index] !== undefined ? truncateText(review.reviewComment, maxLengths[index]) : review.reviewComment}
+                    "{maxLengths[index] !== undefined ? truncateText(review.reviewComment, maxLengths[index]) : review.reviewComment}"
                   </div>
                 </div>
                 <div className='bottom'>

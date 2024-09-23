@@ -4,7 +4,11 @@ import polyfica_text from './../../assets/polyfica_text.png';
 import { LuSearch, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
 import defaultProfileImage from "../../assets/defaultProfImage.png";
+import facebookLogo from "../../assets/Facebook_Logo_Secondary.png";
+import tiktokLogo from "../../assets/TikTok_Icon_Black_Circle.png";
+import instagramLogo from "../../assets/Instagram_Glyph_White.png";
 import './styles.scss';
+
 
 const Directory = ({ showSignupDropdown }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,6 +17,68 @@ const Directory = ({ showSignupDropdown }) => {
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const searchBarRef = useRef(null);
   const history = useHistory();
+  const dynamicTextRef = useRef(null); 
+  const cursorRef = useRef(null); 
+
+  // Typing effect phrases
+  const phrases = ["Join our community!", 
+                  "Share your experience!", 
+                  "Make informed decisions!"];
+
+  useEffect(() => {
+    let currentPhrase = 0;
+    let charIndex = 0;
+    let typingTimeout = 0;
+    let deletingTimeout = 0;
+
+    const element = dynamicTextRef.current;
+    const cursor = cursorRef.current; // Reference the cursor element
+
+    const setDynamicTextWidth = () => {
+      if (element) {
+        element.style.width = `${element.scrollWidth}px`; // Dynamically set the width based on content
+      }
+    };
+
+    const typePhrase = () => {
+      const currentText = phrases[currentPhrase];
+      if (charIndex < currentText.length) {
+        element.innerHTML += currentText[charIndex];
+        charIndex++;
+        setDynamicTextWidth();  // Update width dynamically as characters are added
+        cursor.style.opacity = 1;  // Ensure the cursor is visible
+        typingTimeout = setTimeout(typePhrase, 100); // Typing speed
+      } else {
+        // After typing is complete, make the cursor blink
+        cursor.style.animation = "blink 1s step-end infinite";
+        deletingTimeout = setTimeout(deletePhrase, 2000); // Wait before deleting
+      }
+    };
+
+    const deletePhrase = () => {
+      const currentText = phrases[currentPhrase];
+      if (charIndex > 0) {
+        element.innerHTML = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        setDynamicTextWidth();  // Update width dynamically as characters are removed
+        cursor.style.opacity = 1;  // Ensure the cursor is visible during delete
+        cursor.style.animation = "";  // Stop blinking while deleting
+        deletingTimeout = setTimeout(deletePhrase, 100); // Deleting speed
+      } 
+      else {
+        currentPhrase = (currentPhrase + 1) % phrases.length; // Cycle to next phrase
+        typingTimeout = setTimeout(typePhrase, 500);
+      }
+    };
+
+    // Start typing effect
+    typePhrase();
+
+    return () => {
+      clearTimeout(typingTimeout);
+      clearTimeout(deletingTimeout);
+    };
+  }, []);
 
   const handleSearchEnter = (e) => {
     if (e.key === 'Enter' && searchTerm.length > 0) {
@@ -204,30 +270,41 @@ const Directory = ({ showSignupDropdown }) => {
               <div className='item-logo'></div>
             </a>
             <div className='overlay'></div>
-
-
           </div>
 
           <div className='site-descrpition-wrap'>
-                <div className='content-left'>
-                  <div className='title'>
-                    Objective Faculty Reviews
-                  </div>
-                  We impartially evaluate Cal Poly professors to provide insightful and balanced assessments. Our goal is to offer practical feedback on teaching styles, course content, and student experiences, helping you make informed decisions for your academic journey.
-                </div>
-                <div className='content-right'>
-                  <div className='title'>
-                    Learn From Student Reviews
-                  </div>
-                  Students like you want a platform where they can openly share their genuine experiences with professors and courses. We provide just that, and carefully review each submission to ensure accuracy and value, helping you, the student, make informed academic choices.
-                </div>
+            <div className='content-left'>
+              <div className='title'>
+                Objective Faculty Reviews
+              </div>
+              We impartially evaluate Cal Poly professors to provide insightful and balanced assessments. Our goal is to offer practical feedback on teaching styles, course content, and student experiences, helping you make informed decisions for your academic journey.
+            </div>
+            <div className='content-right'>
+              <div className='title'>
+                Learn From Student Reviews
+              </div>
+              Students like you seek a platform to openly share their authentic experiences with professors and courses. We thoroughly evaluate each submission to ensure its accuracy and value, helping students make well-informed academic decisions.
+            </div>
           </div>
+          <div className="typing-banner">
+            <span className="dynamic-text" ref={dynamicTextRef}></span>
+            {/* not displaying properly */}
+            {/* <span className="cursor" ref={cursorRef}>|</span> */}
+            <span className="cursor" ref={cursorRef}></span>
+          </div>
+          {/* <div className='social-wrap'>
+            <div className='facebook-button btn'>
+              <img src={facebookLogo}/>
+            </div>
+            <div className='tiktok-button btn'>
+              <img src={tiktokLogo}/>
+            </div>
+            <div className='instagram-button btn'>
+              <img src={instagramLogo}/>
+            </div>
 
-          <div className='social-wrap'>
-            <div className='instagram-button btn'></div>
-            <div className='twitter-button btn'></div>
-            <div className='facebook-button btn'></div>
-          </div>
+
+          </div> */}
         </div>
       </div>
     </div>
