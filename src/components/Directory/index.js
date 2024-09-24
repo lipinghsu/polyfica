@@ -18,6 +18,25 @@ const Directory = ({ showSignupDropdown }) => {
   const dynamicTextRef = useRef(null); 
   const rateText = "Rate a";
 
+// Set a CSS variable for the mobile viewport height
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    // Set the initial viewport height
+    setVh();
+
+    // Only update the height if the window is resized significantly (not on scroll)
+    window.addEventListener('resize', setVh);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener('resize', setVh);
+    };
+  }, []);
+
   // Typing effect phrases
   const phrases = [
     " Professor",
