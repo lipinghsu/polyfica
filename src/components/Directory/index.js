@@ -267,32 +267,17 @@ const Directory = ({ showSignupDropdown }) => {
               </div>
             </div>
             <a>
-              <div className='item-logo'></div>
+              <div className='item-logo'/>
             </a>
-            <div className='overlay'></div>
+            <div className='overlay'/>
           </div>
-
-          
-          <div className="typing-banner">
+        </div>
+        <div className="typing-banner">
             <span className="dynamic-text" ref={dynamicTextRef}></span>
             {/* not displaying properly */}
             {/* <span className="cursor" ref={cursorRef}>|</span> */}
             <span className="cursor" ref={cursorRef}></span>
           </div>
-          {/* <div className='social-wrap'>
-            <div className='facebook-button btn'>
-              <img src={facebookLogo}/>
-            </div>
-            <div className='tiktok-button btn'>
-              <img src={tiktokLogo}/>
-            </div>
-            <div className='instagram-button btn'>
-              <img src={instagramLogo}/>
-            </div>
-
-
-          </div> */}
-        </div>
       </div>
     </div>
   );
