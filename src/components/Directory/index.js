@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import polyfica_text from './../../assets/polyfica_text.png';
+import polyfica_text from './../../assets/polyfica_logo.png';
 import { LuSearch, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
 import defaultProfileImage from "../../assets/defaultProfImage.png";
@@ -47,7 +47,7 @@ const Directory = ({ showSignupDropdown }) => {
         charIndex++;
         setDynamicTextWidth();  // Update width dynamically as characters are added
         cursor.style.opacity = 1;  // Ensure the cursor is visible
-        typingTimeout = setTimeout(typePhrase, 100); // Typing speed
+        typingTimeout = setTimeout(typePhrase, 75); // Typing speed
       } else {
         // After typing is complete, make the cursor blink
         cursor.style.animation = "blink 1s step-end infinite";
@@ -63,7 +63,7 @@ const Directory = ({ showSignupDropdown }) => {
         setDynamicTextWidth();  // Update width dynamically as characters are removed
         cursor.style.opacity = 1;  // Ensure the cursor is visible during delete
         cursor.style.animation = "";  // Stop blinking while deleting
-        deletingTimeout = setTimeout(deletePhrase, 100); // Deleting speed
+        deletingTimeout = setTimeout(deletePhrase, 75); // Deleting speed
       } 
       else {
         currentPhrase = (currentPhrase + 1) % phrases.length; // Cycle to next phrase
@@ -272,20 +272,7 @@ const Directory = ({ showSignupDropdown }) => {
             <div className='overlay'></div>
           </div>
 
-          <div className='site-descrpition-wrap'>
-            <div className='content-left'>
-              <div className='title'>
-                Objective Faculty Reviews
-              </div>
-              We impartially evaluate Cal Poly professors to provide insightful and balanced assessments. Our goal is to offer practical feedback on teaching styles, course content, and student experiences, helping you make informed decisions for your academic journey.
-            </div>
-            <div className='content-right'>
-              <div className='title'>
-                Learn From Student Reviews
-              </div>
-              Students like you seek a platform to openly share their authentic experiences with professors and courses. We thoroughly evaluate each submission to ensure its accuracy and value, helping students make well-informed academic decisions.
-            </div>
-          </div>
+          
           <div className="typing-banner">
             <span className="dynamic-text" ref={dynamicTextRef}></span>
             {/* not displaying properly */}

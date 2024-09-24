@@ -61,13 +61,13 @@
 
   .item {
     &:hover{
-      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.06);;
+      // box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.06);;
       transition: all 0.25s ease-out;
     }
     border-radius: 25px;
     
-    background-color: rgb(240, 245, 242);
-    // box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.06);;
+    // background-color: rgb(240, 245, 242);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.075);;
     
     font-size: 16px;
 
