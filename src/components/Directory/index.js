@@ -4,9 +4,7 @@ import polyfica_text from './../../assets/polyfica_logo.png';
 import { LuSearch, LuArrowRight } from 'react-icons/lu';
 import { firestore } from '../../firebase/utils';
 import defaultProfileImage from "../../assets/defaultProfImage.png";
-import facebookLogo from "../../assets/Facebook_Logo_Secondary.png";
-import tiktokLogo from "../../assets/TikTok_Icon_Black_Circle.png";
-import instagramLogo from "../../assets/Instagram_Glyph_White.png";
+
 import './styles.scss';
 
 
@@ -18,67 +16,67 @@ const Directory = ({ showSignupDropdown }) => {
   const searchBarRef = useRef(null);
   const history = useHistory();
   const dynamicTextRef = useRef(null); 
-  const cursorRef = useRef(null); 
+  const rateText = "Rate a";
 
   // Typing effect phrases
-  const phrases = ["Join our community!", 
-                  "Share your experience!", 
-                  "Make informed decisions!"];
-
+  const phrases = [
+    " Professor",
+    " Lab Instructor",
+    " Research Advisor",
+    " Teaching Assistant",
+    "n Academic Advisor",
+    " Department Chair",
+    " Dean",
+    " Janitor",
+    "ny Falculty Member",
+  ];
+  
   useEffect(() => {
     let currentPhrase = 0;
     let charIndex = 0;
     let typingTimeout = 0;
     let deletingTimeout = 0;
-
+  
     const element = dynamicTextRef.current;
-    const cursor = cursorRef.current; // Reference the cursor element
-
-    const setDynamicTextWidth = () => {
-      if (element) {
-        element.style.width = `${element.scrollWidth}px`; // Dynamically set the width based on content
-      }
+  
+    const replaceSpacesWithNbsp = (text) => {
+      return text.replace(/ /g, "&nbsp;");
     };
-
+  
     const typePhrase = () => {
       const currentText = phrases[currentPhrase];
-      if (charIndex < currentText.length) {
-        element.innerHTML += currentText[charIndex];
+      if (charIndex < currentText.length + 1) {
+        // Replace spaces with &nbsp; when updating innerHTML
+        element.innerHTML = `${replaceSpacesWithNbsp(currentText.substring(0, charIndex))}<span class="cursor"></span>`;
         charIndex++;
-        setDynamicTextWidth();  // Update width dynamically as characters are added
-        cursor.style.opacity = 1;  // Ensure the cursor is visible
         typingTimeout = setTimeout(typePhrase, 75); // Typing speed
       } else {
-        // After typing is complete, make the cursor blink
-        cursor.style.animation = "blink 1s step-end infinite";
         deletingTimeout = setTimeout(deletePhrase, 2000); // Wait before deleting
       }
     };
-
+  
     const deletePhrase = () => {
       const currentText = phrases[currentPhrase];
       if (charIndex > 0) {
-        element.innerHTML = currentText.substring(0, charIndex - 1);
+        // Replace spaces with &nbsp; when updating innerHTML
+        element.innerHTML = `${replaceSpacesWithNbsp(currentText.substring(0, charIndex - 1))}<span class="cursor"></span>`;
         charIndex--;
-        setDynamicTextWidth();  // Update width dynamically as characters are removed
-        cursor.style.opacity = 1;  // Ensure the cursor is visible during delete
-        cursor.style.animation = "";  // Stop blinking while deleting
         deletingTimeout = setTimeout(deletePhrase, 75); // Deleting speed
-      } 
-      else {
+      } else {
         currentPhrase = (currentPhrase + 1) % phrases.length; // Cycle to next phrase
         typingTimeout = setTimeout(typePhrase, 500);
       }
     };
-
+  
     // Start typing effect
     typePhrase();
-
+  
     return () => {
       clearTimeout(typingTimeout);
       clearTimeout(deletingTimeout);
     };
   }, []);
+
 
   const handleSearchEnter = (e) => {
     if (e.key === 'Enter' && searchTerm.length > 0) {
@@ -241,7 +239,7 @@ const Directory = ({ showSignupDropdown }) => {
 
                         <div className='right-wrap'>
                           <div className="professor-name">
-                            {highlightMatch(professor.firstName, searchTerm)} {highlightMatch(professor.lastName, searchTerm)}
+                          {highlightMatch(`${professor.firstName} ${professor.lastName}`, searchTerm)}
                           </div>
                           <div className="professor-details">
                             <div className="professor-department">{professor.department}</div>
@@ -272,11 +270,10 @@ const Directory = ({ showSignupDropdown }) => {
             <div className='overlay'/>
           </div>
         </div>
-        <div className="typing-banner">
-            <span className="dynamic-text" ref={dynamicTextRef}></span>
-            {/* not displaying properly */}
-            {/* <span className="cursor" ref={cursorRef}>|</span> */}
-            <span className="cursor" ref={cursorRef}></span>
+        <div className="typing-banner">{rateText}
+            <span className="dynamic-text" ref={dynamicTextRef}> 
+            </span>
+            
           </div>
       </div>
     </div>

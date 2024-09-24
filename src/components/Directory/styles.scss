@@ -23,16 +23,20 @@ $suggestion-item-appear-duration: 0.2s;
     box-sizing: border-box; /* Ensure padding doesn't add to total width */
 
     .typing-banner {
-      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.075);;
+      // box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.075);;
+      // width: 50%;
+      // border-radius: 16px;
+      background-color: #008938;
+      color:white;
       font-size: 2rem;
       font-weight: bold;
       display: inline-block;
-      width: 50%;
-      height: 48px;
       
+      height: 48px;
+      width: 100%;
       position: absolute;
       bottom: 12px;
-      border-radius: 16px;
+      
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -40,26 +44,26 @@ $suggestion-item-appear-duration: 0.2s;
       min-width: 272px;
     
       .dynamic-text {
-      
         white-space: nowrap;
-        overflow: hidden;
+        // overflow: hidden;
         display: inline-block; /* Ensures text and cursor are inline */
         position: relative;
         transition: width 0.5s ease-out;
         text-align: center;
+        width: auto;
+        // height: 100%;
       }
     
       /* Blinking cursor */
       .cursor {
         border-right: 2px solid;
         animation: blink 1s step-end infinite;
-        position: absolute; /* Position cursor right next to text */
-        right: -5px; /* Adjust as needed to be right next to the text */
       }
     
       /* Blinking effect for the cursor */
       @keyframes blink {
         50% {
+          transition: all 0.25s ease-in-out;
           border-color: transparent;
         }
       }
