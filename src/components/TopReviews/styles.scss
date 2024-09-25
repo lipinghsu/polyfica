@@ -1,22 +1,18 @@
 .top-reviews {
-  padding-top: 54px;
-  margin-bottom: 39px !important;  
-  margin: auto 16px;
+  // padding-top: 54px;
+  margin-bottom: 39px !important;
+  text-align: center;
 
   @media (max-width: 840px) {
-    margin: auto 16px;
+    // margin: auto 16px;
     margin-top: 24px !important;
     padding-top: 12px !important;
     margin-bottom: 24px !important;
   }
-  @media (max-width: 480px) {
-    
-  }
-  @media (max-width: 460px) {
-    
-  }
+
   .title {
-    margin: 0px 36px 8px 36px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     font-size: 25px;
     @media (max-width: 840px) {
       margin: 0 0 12px 0;
@@ -26,38 +22,46 @@
 
   }
 
-  .wrap {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: white;
-    .item {
-      flex: 1 1 30%;
-      max-width: 30%;
-      margin: 1.5%;
-      min-height: 320px;
-      height: 320px;
-      
+  .marquee {
+    overflow: hidden; /* Hide content that moves out of the container */
+    // white-space: nowrap; /* Prevents the items from wrapping to the next line */
+    width: 100%; /* Ensures it stretches across the full width */
 
-      @media (max-width: 840px) {
-        flex: 1 1 100%;
-        max-width: 100%;
-        
+    .marquee-content {
+      display: inline-flex; /* Flex layout to arrange items in a row */
+      animation: scroll 120s linear infinite; /* Animation for continuous scroll */
+
+      .item {
+        flex: 0 0 auto; /* Prevent flex items from shrinking */
+        width: 300px; /* Set a fixed width for each item */
+        margin: 8px 12px; /* Add spacing between items */
+        // background-color: RED;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.075);
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // padding: 8px;
+        height: 512px;
+        .inner-wrap{
+          // background-color: pink;
+          .top{
+            // background-color: purple;
+          }
+          .center{
+            // background-color: cyan;
+            text-align: left;
+          }
+          .bottom{
+            position: absolute;
+            bottom: 0;
+            // background-color: olive;
+          }
+        }
       }
     }
   }
 
-  .mobile-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-
-    .item {
-      width: 100%;
-      margin: 12px 0;
-    }
-  }
 
   .item {
     &:hover{
@@ -85,7 +89,7 @@
       gap: 16px;
       height: 100%;
       @media (max-width: 840px) {
-        align-items: start;
+        // align-items: start;
       }
 
       .top {
@@ -106,7 +110,7 @@
           @media (max-width: 840px) {
             white-space: normal;
             display: -webkit-box;
-            -webkit-line-clamp: 3; // number of lines to show
+            // -webkit-line-clamp: 3; // number of lines to show
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
@@ -134,7 +138,7 @@
         align-self: flex;
         margin-bottom: 48px;
         @media (max-width: 840px) {
-          margin-bottom:0px;
+          // margin-bottom:0px;
           // background-color: blue;
         }
         .user-prof-container{
@@ -162,6 +166,43 @@
         background-color: lightgray;
       }
     }
+  }
+
+  .skeleton {
+    background-color: #e0e0e0;
+    animation: skeleton-loading 1.2s ease-in-out infinite;
+    border-radius: 15px;
+    min-height: 150px;
+  }
+
+  .skeleton-bar {
+    background-color: #e0e0e0;
+    height: 20px;
+    margin-bottom: 10px;
+    animation: skeleton-loading 1.2s ease-in-out infinite;
+    border-radius: 8px;
+  }
+}
+
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* Start at the default position */
+  }
+  100% {
+    transform: translateX(-100%); /* Move the content fully to the left */
   }
 }
 
@@ -193,7 +234,8 @@
 }
 
 .item.skeleton .bottom {
-  width: 50%;
+  overflow: hidden;
+  width: 64px;
   // height: 14px;
   height: 24px !important;
 

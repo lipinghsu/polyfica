@@ -13,10 +13,27 @@ const Directory = ({ showSignupDropdown }) => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const searchBarRef = useRef(null);
   const history = useHistory();
   const dynamicTextRef = useRef(null); 
   const rateText = "Rate a";
+
+  
+
+  // Update windowWidth when the window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
 // Set a CSS variable for the mobile viewport height
   useEffect(() => {
@@ -209,12 +226,12 @@ const Directory = ({ showSignupDropdown }) => {
           style={{ zIndex: isSearchFocused ? 1 : showSignupDropdown ? -1 : 0 }}
         >
           <div className='inner-wrap'>
-            <div className={`polyfica_text ${(suggestions.length > 0 || searchTerm.length > 0) ? 'hide' : ''}`}>
+            <div className={`polyfica_text ${windowWidth < 555 && (suggestions.length > 0 || searchTerm.length > 0) ? 'hide' : ''}`}>
               <img src={polyfica_text} alt='polyficaText' />
             </div>
             <div className={`search-wrapper ${isSearchFocused ? 'focused' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? 'with-shadow' : ''}`}>
               <div className={`search-bar-block ${(suggestions.length > 0 || searchTerm.length > 0) ? ' active' : ''}`} />
-              <div className={`search-bar ${isSearchFocused ? ' active' : ''} ${suggestions.length > 0 ? ' no-shadow' : ''}`} ref={searchBarRef}>
+              <div className={`search-bar ${isSearchFocused ? ' active' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? ' no-shadow' : ''}`} ref={searchBarRef}>
                 <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
                   <LuSearch className='lu-search-icon' />
                   <input
@@ -241,7 +258,9 @@ const Directory = ({ showSignupDropdown }) => {
                     <LuArrowRight className='arrow-icon' />
                   </div>
                 </div>
-                <div className={`suggestions ${(suggestions.length > 0 || searchTerm.length > 0) ? ' active' : ''}`}>
+                
+                 
+                <div className={`suggestions ${(searchTerm.length > 0) ? ' active' : ''} `}>
                     {suggestions.map((professor, index) => (
                       <Link
                         to={`/search/professors/${professor.profID}`}

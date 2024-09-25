@@ -72,7 +72,7 @@ $suggestion-item-appear-duration: 0.2s;
           transition: top 0.5s ease-in-out; /* Apply smooth transition on the top property */
       
           &.with-shadow {
-            top: -126px; /* Move upwards when focused */
+            top: -132px; /* Move upwards when focused */
             z-index: 20;
           }
         }
@@ -199,8 +199,8 @@ $suggestion-item-appear-duration: 0.2s;
                 max-height: 580px; /* Adjust the height as needed */
                 opacity: 1;
                 transition: max-height 0.25s ease, opacity 0.3s ease;
-
               }
+              
 
               a {
                 color: black;
@@ -390,14 +390,16 @@ $suggestion-item-appear-duration: 0.2s;
             .arrow-icon {
               flex-shrink: 0;
             }
-  
+
             .arrow-button {
+              
               width: 48px;
               height: 56px;
               display: flex;
               align-items: center;
               justify-content: center;
               padding-right: 16px;
+              
               border-radius: 0 50% 50% 0;
               margin-left: 4px;
               cursor: pointer;
@@ -407,10 +409,13 @@ $suggestion-item-appear-duration: 0.2s;
                 transition: all 0.2s ease;
                 cursor:not-allowed;
               }
+              &.active{
+                color: white;
+                background-color: #008938;
+              }
             
               &.active:hover {
-                background-color: #FFC20D;  // Bright yellow for the active state
-                color: black;
+                color: #FFC20D;
                 transition: all 0.2s ease;
                 cursor: pointer;
               }
@@ -419,10 +424,11 @@ $suggestion-item-appear-duration: 0.2s;
   
   
             .clear-button {
-              font-size: 1.25rem;
+              font-size: 1.10rem;
+              font-weight: 450;
               // background-color: rgb(155, 155, 155, 0.55);
               background-color: #FFC20D;
-              color:#008938;
+              color:black;
               height: 24px;
               width: 62px;
               border-radius: 12px;
@@ -438,8 +444,7 @@ $suggestion-item-appear-duration: 0.2s;
             }
   
             .clear-button:hover {
-              color: #FFC20D;
-              background-color:#008938;
+              color:#008938;
               transition: all 0.05s ease-out;
             }
   
