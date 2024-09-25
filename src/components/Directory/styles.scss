@@ -63,9 +63,19 @@ $suggestion-item-appear-duration: 0.2s;
       transition: all 0.5s ease-in-out;
       
       @media (max-width: 555px) {
-        transition: all 0.5s ease-in-out;
         height: 448px;
-        // transform: translateY(-50px); /* Move up on smaller screens */
+
+        .search-wrapper {
+          /* Initial state */
+          top: 8px;
+          position: relative;
+          transition: top 0.5s ease-in-out; /* Apply smooth transition on the top property */
+      
+          &.with-shadow {
+            top: -126px; /* Move upwards when focused */
+            z-index: 20;
+          }
+        }
       }
 
      
@@ -343,10 +353,12 @@ $suggestion-item-appear-duration: 0.2s;
   
               }
               .right-wrap{
+                
                 .professor-name{
                   font-size: 14px;
                 }
                 .professor-details {
+                  
                   .professor-department,
                   .professor-schoolName {
   
@@ -398,7 +410,7 @@ $suggestion-item-appear-duration: 0.2s;
             
               &.active:hover {
                 background-color: #FFC20D;  // Bright yellow for the active state
-                color: white;
+                color: black;
                 transition: all 0.2s ease;
                 cursor: pointer;
               }
@@ -408,10 +420,11 @@ $suggestion-item-appear-duration: 0.2s;
   
             .clear-button {
               font-size: 1.25rem;
-              background-color: rgb(155, 155, 155, 0.55);
+              // background-color: rgb(155, 155, 155, 0.55);
+              background-color: #FFC20D;
+              color:#008938;
               height: 24px;
               width: 62px;
-              color: white;
               border-radius: 12px;
               display: flex;
               align-items: center;
@@ -425,7 +438,8 @@ $suggestion-item-appear-duration: 0.2s;
             }
   
             .clear-button:hover {
-              background-color: rgb(155, 155, 155, 0.425);
+              color: #FFC20D;
+              background-color:#008938;
               transition: all 0.05s ease-out;
             }
   
@@ -465,6 +479,10 @@ $suggestion-item-appear-duration: 0.2s;
         }
 
         .polyfica_text {
+          &.hide{
+            opacity: 0;
+          }
+          opacity: 1;
           text-align: center;
           // margin-bottom: 16px;
           position: absolute;
