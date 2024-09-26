@@ -30,6 +30,7 @@
     "react-country-region-selector": "^3.4.0",
     "react-dom": "^18.3.1",
     "react-easy-crop": "^4.4.2",
+    "react-fast-marquee": "^1.6.5",
     "react-i18next": "^11.18.4",
     "react-icons": "^4.9.0",
     "react-native": "^0.69.4",
