@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RatingSlider from '../Header/RatingSlider';
+
 const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
   const [startY, setStartY] = useState(0);
   const [currentTranslateY, setCurrentTranslateY] = useState(384);

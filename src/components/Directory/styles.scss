@@ -7,13 +7,12 @@ $suggestion-item-appear-duration: 0.2s;
   height: 100%;
 
   .wrap {
+    width: 100%;
     display: flex;
     flex-direction: column;  /* This makes the typing-banner part of the column flow */
     justify-content: space-between; /* Ensures space between the content and footer */
     min-height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
-    // padding: 16px;
-    width: 100%;
-
+  
     .typing-banner {
       background-color: #008938;
       color: white;
@@ -22,12 +21,9 @@ $suggestion-item-appear-duration: 0.2s;
       height: 48px;
       width: 100%;
       
-      /* Use flexbox properties to center content */
       display: flex;
       justify-content: center;
       align-items: center;
-    
-      /* Automatically push it to the bottom */
       margin-top: auto;
     
       .dynamic-text {
@@ -50,32 +46,35 @@ $suggestion-item-appear-duration: 0.2s;
     }
 
     .item {
-      height: calc(100vh);
       width: 100%;
+      height: calc(100vh);
       
       top: 0px;
       position: absolute;
-
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       background-size: 100% 100%;
       transition: all 0.5s ease-in-out;
       
-      @media (max-width: 555px) {
-        height: 448px;
+      @media (max-width: 840px) {
+        transition: all 0.5s ease-in-out;
+        height: 408px;
 
         .search-wrapper {
           /* Initial state */
           top: 8px;
           position: relative;
-          transition: top 0.5s ease-in-out; /* Apply smooth transition on the top property */
-      
+          transition: all 0.5s ease-in-out;
+          
           &.with-shadow {
-            top: -132px; /* Move upwards when focused */
+            top: -112px; /* Move upwards when focused */
             z-index: 20;
           }
         }
+      }
+      @media (max-width: 555px) {
+        height: 408px;
       }
 
      
@@ -87,31 +86,22 @@ $suggestion-item-appear-duration: 0.2s;
         align-items: center;
         justify-content: center;
         position: relative;
-        // background-color: rgb(240, 245, 242);
-        @media (max-width: 840px) {
-          // transform: translateY(-50px); /* Move up on smaller screens */
-        }
-
-        @media (max-width: 600px) {
-          // transform: translateY(-75px); /* Move up more on very small screens */
-        }
-
-        @media (max-width: 400px) {
-          // transform: translateY(-100px); /* Further adjustment for mobile */
-        }
 
         .search-wrapper {
+          z-index: 10;
+          width: 100%;
           height: 56px;
+          max-width: 557px;
           border-radius: 32px;
           position: absolute;
-          max-width: 557px;
-          width: 100%;
+          
+          
 
           display: flex;
-          flex-direction: column;
           align-items: center;
           justify-content: center;
-          z-index: 10;
+          flex-direction: column;
+          
           @media(max-width: 840px){
             height: 48px;
             transition: height 0.2s ease-out;
@@ -121,18 +111,17 @@ $suggestion-item-appear-duration: 0.2s;
             border-radius: 32px 32px 0 0 ;
           }
 
-          // wrap when search input is active
           .search-bar-block {
             height: 64px;
             position: absolute;
             margin-top: 8px;
             max-width: 557px;
             width: calc(100%);
-            
             border-radius: 32px 32px 0 0;
-
+            background-color: transparent;
             &.active {
               background-color: rgb(240, 245, 242);
+              
               transition: height 0.2s ease-out;
               @media(max-width: 840px){
                 height: 48px;
@@ -163,19 +152,6 @@ $suggestion-item-appear-duration: 0.2s;
             }
             &:focus-within ~ .search-bar-block {
               background-color: black;
-              // border: 0px;
-              // position: fixed;
-              // top: 0;
-              // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
-            }
-            &.active{
-              // box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
-              // border: 0px;
-              // background-color: red !important;
-            
-              .search-input{
-                
-              }
             }
             
             .suggestions {
@@ -193,14 +169,12 @@ $suggestion-item-appear-duration: 0.2s;
               box-shadow: 4px 4px 8px rgba(215, 215, 215, 0.425),
                           -4px 4px 8px rgba(215, 215, 215, 0.425);
 
-              
               &.active {
                 z-index: 20;
                 max-height: 580px; /* Adjust the height as needed */
                 opacity: 1;
                 transition: max-height 0.25s ease, opacity 0.3s ease;
               }
-              
 
               a {
                 color: black;
@@ -269,35 +243,34 @@ $suggestion-item-appear-duration: 0.2s;
             .suggestion-item {
               width: 100%;
               font-size: 1.6rem;
+              cursor: pointer;
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+              padding: 6px;
+              position: relative;
 
-              // padding-left: 54px;
-              /* Stagger the appearance of each item using nth-child */
-  
               &.search-for{
+                overflow: hidden;
                 display: flex;
                 align-items: center;
                 height: 48px;
                 border-top: 1px solid rgb(200, 215, 207);
+                z-index: -10;
                 &.active{
                   border-radius: 0 0px 28px 28px !important;
                 }
                 .img-wrap{
                   margin: auto 16px;
-                  // width: 32px;
-                  // height: 32px;
+                  width: 16px;
+                  height: 16px;
                   svg{
                     height: 100%;
                     width: 100%;
                   }
                 }
               }
-  
-              cursor: pointer;
-              display: flex;
-              flex-direction: row;
-              align-items: flex-start;
-              padding: 6px;
-              position: relative; /* Added to position the green box */
+
               .profileImage-wrap {
                 margin: auto 8px;
                 height: 32px;
@@ -305,14 +278,14 @@ $suggestion-item-appear-duration: 0.2s;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-shrink: 0; /* Prevent shrinking of the container */
+                flex-shrink: 0;
               
                 img {
-                  width: 32px; /* Fixed width */
-                  height: 32px; /* Fixed height */
-                  object-fit: cover; /* Ensure the image fits within the circle */
-                  border-radius: 40px; /* Make the image circular */
-                  border: 1px solid #d3d3d3; /* Optional border */
+                  width: 32px; 
+                  height: 32px;
+                  object-fit: cover; 
+                  border-radius: 40px;
+                  border: 1px solid #d3d3d3; 
                 }
               }
               &:last-child {
@@ -328,7 +301,6 @@ $suggestion-item-appear-duration: 0.2s;
                 border-radius: 0px 28px 28px 0px;
                 overflow: hidden;
                 .right-wrap{
-  
                   .professor-details {
                     .professor-department,
                     .professor-schoolName {
@@ -353,15 +325,27 @@ $suggestion-item-appear-duration: 0.2s;
   
               }
               .right-wrap{
-                
+                flex-grow: 1; /* Allow the right side to take up available space */
+                min-width: 0; /* Prevent overflowing of content */
                 .professor-name{
+                  white-space: nowrap; /* Ensure professor name doesn't wrap */
+                  overflow: hidden; /* Hide overflow text */
+                  text-overflow: ellipsis; 
                   font-size: 14px;
                 }
                 .professor-details {
-                  
+                  display: flex;
+                  flex-direction: column;
+                  flex-wrap: nowrap; /* Ensure details don't wrap */
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+
                   .professor-department,
                   .professor-schoolName {
-  
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                   }
                 }
               }
@@ -450,16 +434,24 @@ $suggestion-item-appear-duration: 0.2s;
   
             .search-input {
               display: flex;
-              height: 56px;
+              align-items: center !important;
+              justify-content: space-between;
+              box-sizing: border-box;
+              padding: 0px !important;
+              width: 100%;
+              height: 100%;
               overflow: hidden;
-              align-items: center;
               background-color: white;
+              // background-color: red;
               border-radius: 28px;
-  
               transition: height 0.2s ease-out;
+              input{
+                // background-color: blue;
+                height: 100%;
+                
+              }
               @media(max-width: 840px){
                 height: 48px;
-                // margin: auto 20px;
                 transition: height 0.2s ease-out;
               }
   
@@ -489,23 +481,21 @@ $suggestion-item-appear-duration: 0.2s;
           }
           opacity: 1;
           text-align: center;
-          // margin-bottom: 16px;
           position: absolute;
-          // filter: contrast(115%);
-          transform: translateY(-96px) scale(0.75);
-          // this changes the text to white
-          // filter: sepia(100%) saturate(0%) hue-rotate(230deg) brightness(2);
+          
+          transform: translateY(-90px) scale(0.75);
+
           img {
-            max-width: 425px; /* Ensures the image does not exceed the container width */
-            height: auto; /* Maintains the aspect ratio */
+            max-width: 425px;
             display: block;
             margin: 0 auto;
+            transition: all 0.5s ease-in-out;
             @media (max-width: 555px) {
+              transition: all 0.5s ease-in-out;
               width: 90%;
               margin-bottom: 0px;
               margin-bottom: -24px;
             }
-
           }
         }
 

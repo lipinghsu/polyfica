@@ -16,7 +16,7 @@ const ProfProfile = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
       
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -24,37 +24,6 @@ const ProfProfile = () => {
         });
         return () => unsubscribe();
     }, []);
-
-    // async function updateCommentData(professorID, commentData, additionalData) {
-    //     try {
-    //         const userRef = firestore.doc(`professors/${professorID}`);
-    //         const snapshot = await userRef.get();
-
-    //         if (snapshot.exists) {
-    //             let targetProfessor = snapshot.data();
-    //             let profCommentData = targetProfessor.commentData || [];
-    //             profCommentData.push(commentData);
-    //             const updates = {
-    //                 commentData: profCommentData,
-    //                 ...additionalData
-    //             };
-    //             await userRef.update(updates);
-    //         } else {
-    //             const newProfessorData = {
-    //                 department: "Test",
-    //                 firstName: "John",
-    //                 lastName: "Doe",
-    //                 profID: professorID,
-    //                 schoolName: "California Polytechnic State University",
-    //                 commentData: [commentData],
-    //                 ...additionalData
-    //             };
-    //             await userRef.set(newProfessorData);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error updating commentData:', error);
-    //     }
-    // }
 
     const fetchProfessor = async () => {
         try {

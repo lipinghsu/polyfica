@@ -19,7 +19,14 @@ const Directory = ({ showSignupDropdown }) => {
   const dynamicTextRef = useRef(null); 
   const rateText = "Rate a";
 
-  
+  useEffect(() => {
+    if (searchTerm) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, [searchTerm, isSearchFocused]);
 
   // Update windowWidth when the window is resized
   useEffect(() => {
@@ -28,8 +35,6 @@ const Directory = ({ showSignupDropdown }) => {
     };
     
     window.addEventListener('resize', handleResize);
-
-    // Clean up the event listener on unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -40,21 +45,16 @@ const Directory = ({ showSignupDropdown }) => {
     const setVh = () => {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-
-    // Set the initial viewport height
+    };  
     setVh();
-
-    // Only update the height if the window is resized significantly (not on scroll)
     window.addEventListener('resize', setVh);
 
-    // Cleanup the event listener
     return () => {
       window.removeEventListener('resize', setVh);
     };
   }, []);
 
-  // Typing effect phrases
+
   const phrases = [
     " Professor",
     " Lab Instructor",
@@ -64,15 +64,14 @@ const Directory = ({ showSignupDropdown }) => {
     " Department Chair",
     " Dean",
     " Janitor",
-    "ny Falculty Member",
+    "ny falculty member!",
   ];
   
   useEffect(() => {
-    let currentPhrase = 0;
     let charIndex = 0;
+    let currentPhrase = 0;
     let typingTimeout = 0;
     let deletingTimeout = 0;
-  
     const element = dynamicTextRef.current;
   
     const replaceSpacesWithNbsp = (text) => {
@@ -226,11 +225,11 @@ const Directory = ({ showSignupDropdown }) => {
           style={{ zIndex: isSearchFocused ? 1 : showSignupDropdown ? -1 : 0 }}
         >
           <div className='inner-wrap'>
-            <div className={`polyfica_text ${windowWidth < 555 && (suggestions.length > 0 || searchTerm.length > 0) ? 'hide' : ''}`}>
+            <div className={`polyfica_text ${windowWidth < 840 && (suggestions.length > 0 || searchTerm.length > 0) ? 'hide' : ''}`}>
               <img src={polyfica_text} alt='polyficaText' />
             </div>
             <div className={`search-wrapper ${isSearchFocused ? 'focused' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? 'with-shadow' : ''}`}>
-              <div className={`search-bar-block ${(suggestions.length > 0 || searchTerm.length > 0) ? ' active' : ''}`} />
+              <div className={`search-bar-block ${(searchTerm.length > 0) ? ' active' : ''}`} />
               <div className={`search-bar ${isSearchFocused ? ' active' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? ' no-shadow' : ''}`} ref={searchBarRef}>
                 <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
                   <LuSearch className='lu-search-icon' />
@@ -288,16 +287,22 @@ const Directory = ({ showSignupDropdown }) => {
                     ))}
 
                     {/* Add the last suggestion to search for the term */}
+                    {searchTerm.length > 0 && (
                     <div
                       className={`suggestion-item search-for ${activeSuggestionIndex === suggestions.length ? 'active' : ''}`}
-                      onClick={() => history.push(`/search/professors?term=${searchTerm}`)}
+                      onClick={() => {
+                        if (searchTerm.length > 0) {
+                          history.push(`/search/professors?term=${searchTerm}`);
+                        }
+                      }}
                     >
                       <div className='img-wrap'>
                         <LuSearch className='lu-search-icon' />
-                      </div >
+                      </div>
                       Search for "{searchTerm}"...
                     </div>
-                  </div>
+                    )}
+                </div>
               </div>
             </div>
             <a>
