@@ -20,11 +20,13 @@ const Directory = ({ showSignupDropdown }) => {
   const rateText = "Rate a";
 
   useEffect(() => {
-    if (searchTerm) {
+    if (searchTerm && !/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
+    } else if (searchTerm) {
+      window.scrollTo(0, 0);
     }
   }, [searchTerm, isSearchFocused]);
 
@@ -54,7 +56,6 @@ const Directory = ({ showSignupDropdown }) => {
     };
   }, []);
 
-
   const phrases = [
     " Professor",
     " Lab Instructor",
@@ -64,7 +65,7 @@ const Directory = ({ showSignupDropdown }) => {
     " Department Chair",
     " Dean",
     " Janitor",
-    "ny falculty member!",
+    "ny Faculty and Staff",
   ];
   
   useEffect(() => {
@@ -174,7 +175,7 @@ const Directory = ({ showSignupDropdown }) => {
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        if (!searchTerm) {
+        if (!searchTerm || searchTerm.length < 1) {
           setSuggestions([]);
           return;
         }
@@ -193,7 +194,6 @@ const Directory = ({ showSignupDropdown }) => {
             professor.lastName.toLowerCase().includes(term)
           )
         );
-
         suggestions = suggestions.slice(0, 5);
         setSuggestions(suggestions);
       } 
@@ -258,8 +258,7 @@ const Directory = ({ showSignupDropdown }) => {
                   </div>
                 </div>
                 
-                 
-                <div className={`suggestions ${(searchTerm.length > 0) ? ' active' : ''} `}>
+                <div className={`suggestions ${searchTerm.length > 0 ? 'active' : ''}`}>
                     {suggestions.map((professor, index) => (
                       <Link
                         to={`/search/professors/${professor.profID}`}

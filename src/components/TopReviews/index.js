@@ -8,13 +8,6 @@ import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import './styles.scss';
 
 const getStarColor = () => '#FF8F00';
-const invertColor = (rgbColor) => {
-  const color = rgbColor.match(/\d+/g); // Extract RGB components
-  const r = 255 - parseInt(color[0], 10);
-  const g = 255 - parseInt(color[1], 10);
-  const b = 255 - parseInt(color[2], 10);
-  return `rgb(${r}, ${g}, ${b})`; // Return the inverted color
-};
 
 const TopReviews = () => {
   const [topReviews, setTopReviews] = useState([]);
@@ -22,8 +15,11 @@ const TopReviews = () => {
   const marqueeRef = useRef(null);
 
   useEffect(() => {
-    const marquee = marqueeRef.current;
     let interval;
+    let startPos = 0;
+    let scrollStartPos = 0;
+    let isDragging = false;
+    const marquee = marqueeRef.current;
 
     // Clone items and mark them with a class to identify them
     const cloneItems = () => {
@@ -38,6 +34,44 @@ const TopReviews = () => {
           marqueeContent.appendChild(clone);
         });
       }
+    };
+
+    const handleMouseDown = (event) => {
+      isDragging = true;
+      startPos = event.pageX;
+      scrollStartPos = marquee.scrollLeft;
+      event.preventDefault(); // Prevent text selection
+    };
+  
+    const handleMouseMove = (event) => {
+      if (isDragging) {
+        const diff = event.pageX - startPos;
+        marquee.scrollLeft = scrollStartPos - diff;
+      }
+    };
+  
+    const handleMouseUp = () => {
+      isDragging = false;
+    };
+  
+    const handleTouchStart = (event) => {
+      if (event.touches.length === 1) {
+        isDragging = true;
+        startPos = event.touches[0].pageX;
+        scrollStartPos = marquee.scrollLeft;
+        event.preventDefault(); // Prevent scrolling the whole page
+      }
+    };
+  
+    const handleTouchMove = (event) => {
+      if (isDragging && event.touches.length === 1) {
+        const diff = event.touches[0].pageX - startPos;
+        marquee.scrollLeft = scrollStartPos - diff;
+      }
+    };
+  
+    const handleTouchEnd = () => {
+      isDragging = false;
     };
 
     const handleScroll = () => {
@@ -78,12 +112,26 @@ const TopReviews = () => {
     marquee.addEventListener('mouseenter', stopScrolling);
     marquee.addEventListener('mouseleave', startScrolling);
 
-
+    marquee.addEventListener('mousedown', handleMouseDown);
+    marquee.addEventListener('mousemove', handleMouseMove);
+    marquee.addEventListener('mouseup', handleMouseUp);
+    marquee.addEventListener('mouseleave', handleMouseUp); // Also stop dragging when leaving the area
+    marquee.addEventListener('touchstart', handleTouchStart);
+    marquee.addEventListener('touchmove', handleTouchMove);
+    marquee.addEventListener('touchend', handleTouchEnd);
+  
     
     return () => {
       clearInterval(interval); // Clear interval on unmount
       marquee.removeEventListener('mouseenter', stopScrolling);
       marquee.removeEventListener('mouseleave', startScrolling);
+      marquee.removeEventListener('mousedown', handleMouseDown);
+      marquee.removeEventListener('mousemove', handleMouseMove);
+      marquee.removeEventListener('mouseup', handleMouseUp);
+      marquee.removeEventListener('mouseleave', handleMouseUp);
+      marquee.removeEventListener('touchstart', handleTouchStart);
+      marquee.removeEventListener('touchmove', handleTouchMove);
+      marquee.removeEventListener('touchend', handleTouchEnd);
     };
   }, [topReviews, isLoading]);
 
@@ -166,7 +214,7 @@ const TopReviews = () => {
                         name="size-large"
                         size="large"
                         icon={<StarRoundedIcon fontSize="inherit" />}
-                        emptyIcon={<StarBorderRoundedIcon fontSize="inherit" />}
+                        emptyIcon={<StarRoundedIcon fontSize="inherit" color="red !important" />}
                         readOnly
                         style={{
                           color: getStarColor(review.difficultyRating),

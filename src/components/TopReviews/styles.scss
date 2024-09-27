@@ -61,30 +61,43 @@
 
 
   .item {
-    &:hover{
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.15);;
-      transition: all 0.25s ease-out;
-      background-color: black;
-      color:white;
-      .bottom {
-       .user-prof-container{
-        .prof-name { 
-          a{
-            color:white;
-            &:hover, &:visited:hover{
-              color: #FFC20D !important;
-            }
-            &:visited{
-              transition: all 0.25s ease-out;
-              color:white !important;
+    border-radius: 25px;
+  
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.15);
+        transition: all 0.25s ease-out;
+        background-color: black;
+        color: white;
+        .top{
+          .rating-score {
+            .MuiRating-root{
+              .MuiRating-icon.MuiRating-iconEmpty{
+                color: lightgray !important;
+              }
             }
           }
         }
-       } 
+        .bottom {
+          .user-prof-container {
+            
+            .prof-name {
+              a {
+                color: #FFC20D !important;
+                &:hover, &:visited:hover {
+                  color: #FFC20D !important;
+                  text-decoration: underline;
+                }
+                &:visited {
+                  color: #FFC20D !important;
+                }
+              }
+            }
+          }
+        }
       }
-
     }
-    border-radius: 25px;
+    
     
     // background-color: rgb(240, 245, 242);
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.075);;
@@ -113,7 +126,11 @@
         margin-top: 0px;
 
         .rating-score {
-
+          .MuiRating-root{
+            .MuiRating-icon.MuiRating-iconEmpty{
+              // color: red !important;
+            }
+          }
         }
       }
 
