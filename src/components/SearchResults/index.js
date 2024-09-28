@@ -9,8 +9,6 @@ import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 
 
-
-
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
@@ -73,7 +71,7 @@ const SearchResults = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   const handleDropdownClick = (dropdownId) => {
     setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };

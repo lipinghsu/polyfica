@@ -220,8 +220,9 @@ const Directory = ({ showSignupDropdown }) => {
   return (
     <div className='directory'>
       <div className='wrap'>
+
         <div
-          className='item'
+          className={`item ${(suggestions.length > 0 || searchTerm.length > 0) ? ' shifted' : ''}`}
           style={{ zIndex: isSearchFocused ? 1 : showSignupDropdown ? -1 : 0 }}
         >
           <div className='inner-wrap'>

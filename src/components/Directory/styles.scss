@@ -55,32 +55,28 @@ $suggestion-item-appear-duration: 0.2s;
       align-items: center;
       justify-content: center;
       background-size: 100% 100%;
-      transition: all 0.5s ease-in-out;
-      
-      @media (max-width: 840px) {
-        transition: all 0.5s ease-in-out;
-        height: 408px;
+      transition: all 0.2s ease-out;
 
+      @media (max-width: 840px) {
+        height: 408px;
+        &.shifted{
+          height: 170px; 
+          // background-color: red;
+        }
         .search-wrapper {
-          /* Initial state */
           top: 8px;
-          position: relative;
-          transition: all 0.5s ease-in-out;
           border-radius: 28px !important;
           
           &.with-shadow {
-            top: -112px; /* Move upwards when focused */
+            
+            // top: -112px; /* Move upwards when focused */
             box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);
 
             z-index: 20;
           }
         }
       }
-      @media (max-width: 555px) {
-        height: 408px;
-      }
 
-     
       .inner-wrap {
         height: 64px;
         width: 100%;
@@ -89,6 +85,8 @@ $suggestion-item-appear-duration: 0.2s;
         align-items: center;
         justify-content: center;
         position: relative;
+
+        
 
         .search-wrapper {
           z-index: 10;
@@ -357,7 +355,7 @@ $suggestion-item-appear-duration: 0.2s;
   
               .professor-details {
                 font-size: 1.2rem;
-                margin-top: 3px;
+                margin-top: 2px;
   
                 .professor-department {
                   color: rgb(155, 155, 155, 1);
@@ -373,6 +371,7 @@ $suggestion-item-appear-duration: 0.2s;
             .lu-search-icon {
               font-size: 1.6rem;
               flex-shrink: 0;
+              margin-left: 22px !important;
             }
   
             .clear-button,
@@ -405,6 +404,7 @@ $suggestion-item-appear-duration: 0.2s;
             
               &.active:hover {
                 color: #FFC20D;
+                background-color: #007A33;
                 transition: all 0.2s ease;
                 cursor: pointer;
               }
@@ -492,23 +492,29 @@ $suggestion-item-appear-duration: 0.2s;
         .polyfica_text {
           &.hide{
             opacity: 0;
+            height:0;
           }
-          opacity: 1;
-          text-align: center;
           position: absolute;
+          top: 50%;  // Adjust according to the layout needs
+          left: 50%;
+          transform: translate(-50%, -120%) scale(0.75);
+          width: 100%;  // Ensure it spans the full width if needed
+          display: flex;
           align-items: center;
-          transform: translateY(-94px) scale(0.75);
-
+          justify-content: center;
+          text-align: center;  // Centralize text inside the div
           img {
             max-width: 425px;
             display: block;
+            display: flex;
             margin: 0 auto;
             transition: all 0.5s ease-in-out;
-            @media (max-width: 555px) {
+            @media (max-width: 412px) {
               transition: all 0.5s ease-in-out;
-              width: 90%;
-              margin-bottom: 0px;
-              margin-bottom: -24px;
+              width: 95%;
+              transform: translate(0, -10%);
+              // margin-top: 12px;
+              // margin-bottom: -24px;
             }
           }
         }

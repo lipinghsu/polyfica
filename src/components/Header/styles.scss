@@ -132,10 +132,10 @@ $customDarkGray: #b8b8b8;
                         font-size: 1.5rem;
                         font-weight: 500;
                         color: black;
-                        // background-color: rgb(228, 236, 231) ;
+                        background-color: rgb(240, 245, 242) !important;
                         
                         &:hover {
-                            background-color: rgb(228, 236, 231) ;
+                            background-color: rgb(228, 236, 231) !important;
                         }
                         &.homepage:hover {
                             background-color: rgb(228, 236, 231) ;
@@ -149,11 +149,11 @@ $customDarkGray: #b8b8b8;
                         }
 
                         &.scrolled {
-                            // background-color: rgb(228, 236, 231) ;
-                            background-color: transparent;
+                            background-color: rgb(228, 236, 231) !important;
+                            // background-color: transparent;
                         }
                         &.scrolled:hover {
-                            background-color: rgb(228, 236, 231) ;
+                            background-color: rgb(200, 215, 207) !important;
                             .text-button.review-btn.scrolled {
                                 // background-color: #d3d3d3;
                             }
@@ -292,7 +292,7 @@ $customDarkGray: #b8b8b8;
             li {
                 list-style-type: none;
                 padding: 0 8px;
-                margin: 6px;
+                margin: 8px;
                 display: inline-block;
             
                 a,
