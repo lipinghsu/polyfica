@@ -103,10 +103,16 @@ const SiteStats = (props) => {
   // };
 
   return (
-    <div className='site-stats'>
-
-    
+    <div className='site-stats-wrap'>
+      <div>
+        text
+      </div>
+      <div className='site-stats-'>
+        
+      </div>
+      
     </div>
+
   );
 };
 export default SiteStats;

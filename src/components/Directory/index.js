@@ -233,7 +233,7 @@ const Directory = ({ showSignupDropdown }) => {
               <div className={`search-bar-block ${(searchTerm.length > 0) ? ' active' : ''}`} />
               <div className={`search-bar ${isSearchFocused ? ' active' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? ' no-shadow' : ''}`} ref={searchBarRef}>
                 <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
-                  <LuSearch className='lu-search-icon' />
+                  <LuSearch className='lu-search-icon-search-bar' />
                   <input
                     type='text'
                     value={searchTerm}
@@ -297,7 +297,7 @@ const Directory = ({ showSignupDropdown }) => {
                       }}
                     >
                       <div className='img-wrap'>
-                        <LuSearch className='lu-search-icon' />
+                        <LuSearch className='lu-search-icon-search-for' />
                       </div>
                       Search for "{searchTerm}"...
                     </div>

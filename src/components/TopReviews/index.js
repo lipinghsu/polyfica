@@ -4,18 +4,19 @@ import { firestore } from "../../firebase/utils";
 import { Rating } from '@mui/material';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
-
+import QutationMark from '../../assets/quotation-mark.png'
 import './styles.scss';
 
 const getStarColor = () => '#FF8F00';
+
 
 const TopReviews = () => {
   const [topReviews, setTopReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const marqueeRef = useRef(null);
+  const scrollInterval = useRef(null); // Ref to store the interval ID
 
   useEffect(() => {
-    let interval;
     let startPos = 0;
     let scrollStartPos = 0;
     let isDragging = false;
@@ -41,37 +42,41 @@ const TopReviews = () => {
       startPos = event.pageX;
       scrollStartPos = marquee.scrollLeft;
       event.preventDefault(); // Prevent text selection
+      stopScrolling(); // Stop auto-scroll when dragging starts
     };
-  
+
     const handleMouseMove = (event) => {
       if (isDragging) {
         const diff = event.pageX - startPos;
         marquee.scrollLeft = scrollStartPos - diff;
       }
     };
-  
+
     const handleMouseUp = () => {
       isDragging = false;
+      startScrolling(); // Resume auto-scroll when dragging stops
     };
-  
+
     const handleTouchStart = (event) => {
       if (event.touches.length === 1) {
         isDragging = true;
         startPos = event.touches[0].pageX;
         scrollStartPos = marquee.scrollLeft;
         event.preventDefault(); // Prevent scrolling the whole page
+        stopScrolling(); // Stop auto-scroll when touch starts
       }
     };
-  
+
     const handleTouchMove = (event) => {
       if (isDragging && event.touches.length === 1) {
         const diff = event.touches[0].pageX - startPos;
         marquee.scrollLeft = scrollStartPos - diff;
       }
     };
-  
+
     const handleTouchEnd = () => {
       isDragging = false;
+      startScrolling(); // Resume auto-scroll when touch ends
     };
 
     const handleScroll = () => {
@@ -92,15 +97,20 @@ const TopReviews = () => {
     };
 
     const startScrolling = () => {
-      interval = setInterval(() => {
-        handleScroll(); // Continuously scroll
+      // Clear the previous interval if it exists
+      if (scrollInterval.current) {
+        clearInterval(scrollInterval.current);
+      }
+
+      // Start a new interval for auto-scrolling
+      scrollInterval.current = setInterval(() => {
+        handleScroll();
       }, 20); // Adjust the interval for smoother scrolling
     };
 
     const stopScrolling = () => {
-      clearInterval(interval); // Stop scrolling on hover
+      clearInterval(scrollInterval.current); // Stop scrolling on hover or touch
     };
-    
 
     // Clone items when the loading is complete
     if (!isLoading) {
@@ -112,6 +122,7 @@ const TopReviews = () => {
     marquee.addEventListener('mouseenter', stopScrolling);
     marquee.addEventListener('mouseleave', startScrolling);
 
+    // Add mouse and touch event listeners
     marquee.addEventListener('mousedown', handleMouseDown);
     marquee.addEventListener('mousemove', handleMouseMove);
     marquee.addEventListener('mouseup', handleMouseUp);
@@ -119,10 +130,9 @@ const TopReviews = () => {
     marquee.addEventListener('touchstart', handleTouchStart);
     marquee.addEventListener('touchmove', handleTouchMove);
     marquee.addEventListener('touchend', handleTouchEnd);
-  
-    
+
     return () => {
-      clearInterval(interval); // Clear interval on unmount
+      clearInterval(scrollInterval.current); // Clear interval on unmount
       marquee.removeEventListener('mouseenter', stopScrolling);
       marquee.removeEventListener('mouseleave', startScrolling);
       marquee.removeEventListener('mousedown', handleMouseDown);
@@ -134,7 +144,6 @@ const TopReviews = () => {
       marquee.removeEventListener('touchend', handleTouchEnd);
     };
   }, [topReviews, isLoading]);
-
 
 
   useEffect(() => {
@@ -205,7 +214,7 @@ const TopReviews = () => {
         {isLoading
           ? renderSkeletonLoader(6) 
           : topReviews.map((review, index) => ( 
-              <div className="item" key={index}>
+              <div className="item" key={index} >
                 <div className="inner-wrap">
                   <div className="top">
                     <div className="rating-score">
@@ -223,9 +232,13 @@ const TopReviews = () => {
                     </div>
                   </div>
                   <div className="center">
+                  <img src={QutationMark} className='q-mark-bgn' style={{ width: '8px', height: '8px' }} />
                     <div className="review-content">
-                      "{review.reviewComment}"
+                    
+                      {review.reviewComment}
+                      <img src={QutationMark} className='q-mark-end' style={{ width: '8px', height: '8px' }} />
                     </div>
+                    
                   </div>
                   <div className="bottom">
                     <div className="user-prof-container">

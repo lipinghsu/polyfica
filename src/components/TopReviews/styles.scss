@@ -1,10 +1,8 @@
 .top-reviews {
-  // padding-top: 54px;
   margin-bottom: 30px !important;
   text-align: center;
 
   @media (max-width: 840px) {
-    // margin: auto 16px;
     margin-top: 24px !important;
     padding-top: 12px !important;
     margin-bottom: 24px !important;
@@ -19,7 +17,6 @@
       text-align: center;
       font-size: 21px;
     }
-
   }
 
   .marquee {
@@ -41,24 +38,17 @@
         height: 320px;
 
         .inner-wrap{
-          // background-color: pink;
           .top{
-            // background-color: purple;
           }
           .center{
-            // background-color: cyan;
             text-align: left;
           }
           .bottom{
-            // position: absolute;
-            // bottom: 0;
-            // background-color: olive;
           }
         }
       }
     }
   }
-
 
   .item {
     border-radius: 25px;
@@ -76,6 +66,11 @@
                 color: lightgray !important;
               }
             }
+          }
+        }
+        .center{
+          img{
+            filter:invert(1);
           }
         }
         .bottom {
@@ -97,11 +92,7 @@
         }
       }
     }
-    
-    
-    // background-color: rgb(240, 245, 242);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.075);;
-    
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.075);;    
     font-size: 16px;
 
     &.empty {
@@ -118,17 +109,14 @@
       gap: 16px;
       height: 100%;
       @media (max-width: 840px) {
-        // align-items: start;
       }
 
-      .top {
-        
+      .top {  
         margin-top: 0px;
 
         .rating-score {
           .MuiRating-root{
             .MuiRating-icon.MuiRating-iconEmpty{
-              // color: red !important;
             }
           }
         }
@@ -137,13 +125,23 @@
       .center {
         height: 100%;
         overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        .q-mark-bgn{
+          margin-right: 1px !important;
+          transform: rotate(180deg);
+        }
         .review-content {
           display: -webkit-box;
-          -webkit-line-clamp: 12;      /* Limit to 2 lines, adjust as needed */
+          -webkit-line-clamp: 12;     
           -webkit-box-orient: vertical;
-          overflow: hidden;           /* Hides the overflowed text */
+          overflow: hidden;           
           text-overflow: ellipsis;
-
+          .q-mark-end{
+            margin-right: 0px !important;
+            margin-bottom: 8px !important;
+            
+          }
           @media (max-width: 840px) {
             white-space: normal;
             display: -webkit-box;
