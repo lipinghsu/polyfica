@@ -34,6 +34,19 @@
         background-color: rgb(0, 137, 56);
         max-width: 80.0rem;
     }
+    .btn-submit.inactive{
+        background-color: rgb(198, 224, 204);
+        color:rgb(155, 173, 163);
+
+        // background-color: rgb(232, 236, 231);
+        // color:rgb(150, 150, 150);
+    }
+    .btn-submit.inactive:hover{
+        background-color: rgb(198, 224, 204);
+    color:rgb(155, 173, 163);
+        border: 0px;
+        cursor: not-allowed;
+    }
 
     .btn-submit:hover{
         background-color: white;

@@ -93,24 +93,19 @@
       height: 100%;
 
       @media (max-width: 1020px) {
-        
-        // height: 382px !important; 
         opacity: 0;
         display: none;
-        // border-radius: 0 0 18px 18px;
 
         width: 100%;
         z-index: 10;
         box-shadow: none;
         overflow-y: scroll;
+        padding: 0 0 12px 0!important;
         margin-bottom: 12px !important;
-        
         background-color: rgb(240, 245, 242);
 
-        padding: 0 0 12px 0!important;
         
-
-
+        
         .inner-wrap{
           box-shadow: none !important;
           background-color: transparent!important;
@@ -448,7 +443,7 @@
         // background-color: red;
         padding-bottom: 6px;
         padding-top: 6px;
-        border-bottom: 1px solid #d3d3d3;
+        border-bottom: 1px solid rgb(180, 195, 187);
         &:first-child{
           padding-top: 0px;
         }
@@ -546,7 +541,7 @@
                 color: #555;
                 text-align: right;
                 transform: translateY(-1px);
-                
+                margin-left: 8px;
               }
             }
           }

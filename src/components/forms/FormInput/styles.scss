@@ -16,7 +16,7 @@ $customLightGray: #bbbbbb;
         font-weight: 300;
         line-height: 1;
         color:black;
-        border: 1.5px solid rgb(200, 215, 207);
+        border: 1.5px solid rgba(195, 195, 195, 0.425);
         border-radius: 6px;
         transition: 0.25s ease-in;
         padding: 0rem .75rem 0 .75rem;
@@ -84,7 +84,7 @@ $customLightGray: #bbbbbb;
 
 // label transformation when input is filled
 .formRow .filled {
-    transform: translate(10px, -4px) scale(1);
+    transform: translate(6px, -4px) scale(1);
     position: absolute;
     font-weight: 600;
     color: #3B3A3B;

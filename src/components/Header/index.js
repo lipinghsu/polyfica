@@ -44,6 +44,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
     const [reviewCourseName, setReviewCourseName] = useState('');
     const [department, setDepartment] = useState('');
     const [schoolName, setSchoolName] = useState('');
+    const [isFormComplete, setIsFormComplete] = useState(false);
 
     const refOutsideDiv = useRef(null);
     const dropdownRef = useRef(null);
@@ -51,6 +52,12 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
     const signOut = () => {
         dispatch(signOutUserStart());
     }
+
+     // Check if all required form inputs are filled
+     useEffect(() => {
+        const isComplete = firstName.trim() && lastName.trim() && schoolName.trim() && department.trim() && reviewCourseName.trim() && reviewComment.trim() && difficultyRating !== null;
+        setIsFormComplete(isComplete);
+    }, [firstName, lastName, schoolName, department, reviewCourseName, reviewComment, difficultyRating]);
 
     // Disable window scrolling if sidebar or modal is active
     useEffect(() => {
@@ -190,6 +197,11 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        if (!isFormComplete) {
+            return; 
+        }
+
         if (difficultyRating === null) {
             alert('Please give this professor a rating value.');
             return;
@@ -374,7 +386,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                     name="firstName"
                                     value={firstName}
                                     onChange={e => setFirstName(e.target.value)}
-                                    label={t("Prof. First Name")}
+                                    label={t("First Name")}
                                     required
                                 />
                                 <FormInput 
@@ -382,7 +394,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                     name="lastName"
                                     value={lastName}
                                     onChange={e => setLastName(e.target.value)}
-                                    label={t("Prof. Last Name")}
+                                    label={t("Last Name")}
                                     required
                                 />
                             </div>
@@ -404,24 +416,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 label={t("Department")}
                                 required
                             />
-                            {/* <div className="form-row">
-                                <FormInput 
-                                    type="text"
-                                    name="department"
-                                    value={department}
-                                    onChange={e => setDepartment(e.target.value)}
-                                    label={t("Subject")}
-                                    required
-                                />
-                                <FormInput 
-                                    type="text"
-                                    name="reviewCourseName"
-                                    value={reviewCourseName}
-                                    onChange={e => setReviewCourseName(e.target.value)}
-                                    label={t("Course Number")}
-                                    required
-                                />
-                            </div> */}
                             <FormInput 
                                 type="text"
                                 name="reviewCourseName"
@@ -441,12 +435,13 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 required
                             />
                             
-                            <div className='column-wrap'>
+                            <div className='column-wrap rev-modal-rating'>
                                 <div className="form-row rating-sliders">
                                     <div className="slider-label">Rating</div>
                                     <RatingSlider
                                         onChange={(value) => setDifficultyRating(value)}  // Correctly handle the value
                                         required
+                                        className="rev-modal-rating"
                                     />
                                 </div>
                             </div>
@@ -463,7 +458,12 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 </Link>
                                 <span>{t(".")}</span>
                             </div>
-                            <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>
+                            <Button
+                                type="submit"
+                                className={`${isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} ${!isFormComplete ? "inactive" : ""}`}
+                                disabled={isLoading || !isFormComplete}
+                                isLoading={isLoading}
+                            >
                                 {t("Add Professor")}
                             </Button>
                         </div>

@@ -9,7 +9,7 @@ const sizeOptions = [
   { id: 5, value: '5' }
 ];
 
-export default function RatingSlider({ onChange }) {  // Accept a callback prop
+export default function RatingSlider({ onChange, className }) { 
   const [hovered, setHovered] = useState(null);
   const [current, setCurrent] = useState(null);
 
@@ -35,7 +35,7 @@ export default function RatingSlider({ onChange }) {  // Accept a callback prop
     <div className="button-group-container">
       {sizeOptions.map((sizeOption) => {
         const isActive = current >= sizeOption.id;
-        const buttonClass = `button-container${isActive ? " active" : ""} ${hovered ? ` hovered-${hovered}` : ""}`;
+        const buttonClass = `button-container ${className} ${isActive ? " active" : ""} ${hovered ? ` hovered-${hovered}` : ""}`;
         return (
           <div
             className={buttonClass}

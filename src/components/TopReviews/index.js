@@ -126,7 +126,7 @@ const TopReviews = () => {
     marquee.addEventListener('mousedown', handleMouseDown);
     marquee.addEventListener('mousemove', handleMouseMove);
     marquee.addEventListener('mouseup', handleMouseUp);
-    marquee.addEventListener('mouseleave', handleMouseUp); // Also stop dragging when leaving the area
+    marquee.addEventListener('mouseleave', handleMouseUp);
     marquee.addEventListener('touchstart', handleTouchStart);
     marquee.addEventListener('touchmove', handleTouchMove);
     marquee.addEventListener('touchend', handleTouchEnd);

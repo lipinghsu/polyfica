@@ -1,5 +1,5 @@
 .profProfile {
-  border-top: 1px solid #d3d3d3;
+  border-top: 1px solid rgb(180, 195, 187);
   padding-top: 12px;
   margin: 0 36px 36px 36px;
   
@@ -247,12 +247,13 @@
           }
   
           button {
-            padding: 8px 18px;
+            padding: 8px 24px;
             border: none;
             border-radius: 24px;
             cursor: pointer;
   
             &.follow-button {
+              // width: 88px;
               background-color: rgb(240, 245, 242) ;
               @media (max-width:840px){
                 background-color: rgb(0, 137, 56);
@@ -272,12 +273,12 @@
             }
   
             &.like-button {
-              // width: 170px;
               border-radius: 18px;
               font-size: 1.5rem;
               font-weight: 500;
               color: black;
               background-color: rgb(240, 245, 242);
+              // background-color: red;;
               &:hover {
                 background-color: rgb(200, 215, 207);
               }
@@ -292,12 +293,12 @@
         padding: 12px 16px;
         cursor: pointer;      
         text-align: center;
-        border-radius: 18px;
+        border-radius: 20px;
         font-size: 1.5rem;
         font-weight: 600; 
         color: rgb(140, 155, 147);
         background-color: white;
-        border: 1px solid rgb(200, 215, 207);
+        border: 1px solid rgb(180, 195, 187);
         transition: all 0.02s ease-in-out;
 
         &:hover {
@@ -410,6 +411,7 @@
         margin-top: 8px;
         font-size: 14px;
         .column-wrap{
+          display: flex;
           .form-row{
             .slider-label{
               margin-bottom: 0px;
@@ -526,6 +528,7 @@
           margin: auto 8px;
           height: 64px;
           width: 64px;
+          
         
           img {
             width: 64px; 
@@ -535,7 +538,9 @@
         }
       }
       .image-wrap {
+        transform: translateY(-5px);
         @media (max-width: 840px) {
+          transform: translateY(0);
             height: 64px !important;
             width: 64px !important;
           
@@ -564,6 +569,7 @@
         }
       }
       .text-wrap{
+        margin-right: 8px;
         @media (max-width: 840px) {
           // margin-left: 12px;
         }
@@ -625,7 +631,8 @@
     transition: transform 0.2s ease !important;
 
     .column-wrap{
-      
+      display: flex;
+      justify-content: center;
       margin: auto 16px;
       margin-bottom: 12px;
       .mobile-popup-top{
@@ -678,7 +685,7 @@
           height: 0px;
         }
         &.bot{
-          margin-top: 4px;
+          // margin-top: 4px;
         }
       }
       .courseCodeInput{
