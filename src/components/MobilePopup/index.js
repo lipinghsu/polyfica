@@ -88,7 +88,7 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
           <span className="close-button" onClick={onClose}>&times;</span>
         </div>
 
-        <div className="form-row rating-sliders">
+        <div className="form-row course-code">
           <input
             type="text"
             className="courseCodeInput"
@@ -97,13 +97,13 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
           />
         </div>
         <div className="form-row rating-sliders bot">
-          <div className="slider-label">Rating</div>
+          {/* <div className="slider-label">Rating</div> */}
           <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
         </div>
         <textarea
           onChange={(e) => setReviewComment(e.target.value)}
           className="expandedTextArea"
-          placeholder="Write your review here..."
+          placeholder="view here..."
         />
         <button
           className={!loading ? "submitButton" : "submitButton loading"}

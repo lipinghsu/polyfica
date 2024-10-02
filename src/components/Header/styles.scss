@@ -182,7 +182,7 @@ $customDarkGray: #b8b8b8;
                         color: #FFC20D;
                     }
                     font-weight: bold;
-                    background-color: #007A33;
+                    background-color: #007A30;
                 }
             }
 
@@ -560,6 +560,7 @@ $customDarkGray: #b8b8b8;
             // background-color: rgb(132, 82, 82);
             display: flex;
             flex-direction: row;
+            height: 46px;
             
             @media(max-width: 540px){
                 flex-direction: column ;

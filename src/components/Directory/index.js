@@ -18,6 +18,7 @@ const Directory = ({ showSignupDropdown }) => {
   const history = useHistory();
   const dynamicTextRef = useRef(null); 
   const rateText = "Rate a";
+  const [suggestionsLoading, setSuggestionsLoading] = useState(false);
 
   useEffect(() => {
     if (searchTerm && !/iPad|iPhone|iPod/.test(navigator.userAgent)) {
@@ -42,7 +43,7 @@ const Directory = ({ showSignupDropdown }) => {
     };
   }, []);
 
-// Set a CSS variable for the mobile viewport height
+  // Set a CSS variable for the mobile viewport height
   useEffect(() => {
     const setVh = () => {
       const vh = window.innerHeight * 0.01;
@@ -103,8 +104,6 @@ const Directory = ({ showSignupDropdown }) => {
         typingTimeout = setTimeout(typePhrase, 500);
       }
     };
-  
-    // Start typing effect
     typePhrase();
   
     return () => {
@@ -179,15 +178,17 @@ const Directory = ({ showSignupDropdown }) => {
           setSuggestions([]);
           return;
         }
-
+  
+        setSuggestionsLoading(true); // Start loading state
+  
         const professorsRef = firestore.collection("professors");
         let suggestions = [];
         const searchTerms = searchTerm.toLowerCase().split(" ");
-
+  
         const allProfessorsSnapshot = await professorsRef.get();
         let allProfessors = [];
         allProfessorsSnapshot.forEach((doc) => allProfessors.push({ id: doc.id, ...doc.data() }));
-
+  
         suggestions = allProfessors.filter(professor =>
           searchTerms.some(term =>
             professor.firstName.toLowerCase().includes(term) ||
@@ -196,12 +197,14 @@ const Directory = ({ showSignupDropdown }) => {
         );
         suggestions = suggestions.slice(0, 5);
         setSuggestions(suggestions);
+        setSuggestionsLoading(false);
       } 
       catch (error) {
         setSuggestions([]);
+        setSuggestionsLoading(false);
       }
     };
-
+  
     if (searchTerm) {
       fetchSuggestions();
     } 
@@ -209,6 +212,7 @@ const Directory = ({ showSignupDropdown }) => {
       setSuggestions([]);
     }
   }, [searchTerm]);
+  
 
   const highlightMatch = (text, searchTerm) => {
     const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
@@ -230,7 +234,7 @@ const Directory = ({ showSignupDropdown }) => {
               <img src={polyfica_text} alt='polyficaText' />
             </div>
             <div className={`search-wrapper ${isSearchFocused ? 'focused' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? 'with-shadow' : ''}`}>
-              <div className={`search-bar-block ${(searchTerm.length > 0) ? ' active' : ''}`} />
+              <div className={`search-bar-block  ${searchTerm.length > 0 && !suggestionsLoading ? 'active' : ''}`}/>
               <div className={`search-bar ${isSearchFocused ? ' active' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? ' no-shadow' : ''}`} ref={searchBarRef}>
                 <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
                   <LuSearch className='lu-search-icon-search-bar' />
@@ -259,7 +263,7 @@ const Directory = ({ showSignupDropdown }) => {
                   </div>
                 </div>
                 
-                <div className={`suggestions ${searchTerm.length > 0 ? 'active' : ''}`}>
+                <div className={`suggestions ${searchTerm.length > 0 && !suggestionsLoading ? 'active' : ''}`}>
                     {suggestions.map((professor, index) => (
                       <Link
                         to={`/search/professors/${professor.profID}`}

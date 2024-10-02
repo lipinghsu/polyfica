@@ -34,10 +34,11 @@ const ratingOptions = [
 ];
 
 const sortOptions = [
-  { id: 1, value: "Default" },
-  { id: 2, value: "First Name" },
-  { id: 3, value: "Most Reviews"},
-  { id: 4, value: "Highest Rating"},
+  { id: 1, value: "Sort" },
+  { id: 2, value: "Last Name" },
+  { id: 3, value: "First Name" },
+  { id: 4, value: "Most Reviews"},
+  { id: 5, value: "Highest Rating"},
 ];
 
 const SearchResults = () => {
@@ -52,7 +53,7 @@ const SearchResults = () => {
   const filterRef = useRef(null);
   const searchTerm = new URLSearchParams(location.search).get("term");
   const [selectedRatingFilter, setSelectedRatingFilter] = useState({id: 1, value: "Rating"});
-  const [selectedSortOption, setSelectedSortOption] = useState({id: 1, value: "Default"});
+  const [selectedSortOption, setSelectedSortOption] = useState({id: 1, value: "Sort"});
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
@@ -242,7 +243,7 @@ const SearchResults = () => {
   }, [searchTerm, selectedDepartments, selectedReviewFilter, selectedRatingFilter, selectedSortOption]);
 
   const sortResults = (results, sortOption) => {
-    if (sortOption === "Default") {
+    if (sortOption === "Last Name") {
       results.sort((a, b) => a.lastName.localeCompare(b.lastName));
     } 
     else if(sortOption === "First Name") {

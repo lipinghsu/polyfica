@@ -155,8 +155,8 @@
             @media (max-width: 840px) {
               padding-bottom: 12px;
             }
-            border-top: 1px solid #d3d3d3;
-            border-bottom: 1px solid #d3d3d3;
+            border-top: 1px solid rgb(180, 195, 187);
+            border-bottom: 1px solid rgb(180, 195, 187);
             padding-top: 12px;
             width: 100%;
             display: flex;
@@ -247,14 +247,20 @@
           }
   
           button {
-            padding: 8px 24px;
+            padding: 8px 20px;
             border: none;
             border-radius: 24px;
             cursor: pointer;
-  
+            align-items: center;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+
             &.follow-button {
+
               // width: 88px;
               background-color: rgb(240, 245, 242) ;
+              
               @media (max-width:840px){
                 background-color: rgb(0, 137, 56);
                 color:white;
@@ -273,6 +279,7 @@
             }
   
             &.like-button {
+              // width: 72px;
               border-radius: 18px;
               font-size: 1.5rem;
               font-weight: 500;
@@ -360,20 +367,12 @@
   }
 
   .commentForm {
-    // margin-top: 20px;
-    .ratingInputs{
-      height: 96px;
-      background-color: red;
-    }
     form {
       display: flex;
       flex-direction: column;
-      // background-color: #fff;
-      // padding: 5px;
-      // overflow: scroll;
       border-radius: 8px;
-      // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       transition: all 0.3s;
+
       textarea{
         border: none;
         outline: none;
@@ -402,32 +401,36 @@
         width: 100%;
         border-radius: 5px;
         height: 64px;
+        resize: none;
       }
 
       .courseCodeContainer {
         display: flex;
         align-items: center;
         width: 100%;
-        margin-top: 8px;
+        // margin-top: 8px;
         font-size: 14px;
         .column-wrap{
           display: flex;
+          flex-direction: row;
           .form-row{
-            .slider-label{
-              margin-bottom: 0px;
-              padding-left: 5px;
-              text-align: left;
+            &.course-code {
+              margin-top: auto; /* Pushes the form-row with class course-code to the bottom */
             }
+
+            display: flex;
+            // align-items: flex-end; /* Push the items to the bottom */
+            width: 100%; /* Optional, ensures the form-row takes up full width */
           }
         }
 
         .courseCodeInput {
+          height: 38px;
           width: 128px;
           margin: 5px 10px 4px 0px;
           padding: 8px;
           border: 1px solid #ccc;
           border-radius: 12px;
-          height: 36px !important;
           &:hover{
             border: 1px solid #00A344;
           }
@@ -672,18 +675,19 @@
         justify-content: center;
         align-items: center;
         width: 112px;
+
         .button-group-container{
           .button-container {
             width: calc(100vw/5 - 5*2px);
           }
         }
 
-        .slider-label{
-          transform: translateY(18px);
-          z-index: -1;
-          margin: 0;
-          height: 0px;
-        }
+        // .slider-label{
+        //   transform: translateY(18px);
+        //   z-index: -1;
+        //   margin: 0;
+        //   height: 0px;
+        // }
         &.bot{
           // margin-top: 4px;
         }
@@ -696,7 +700,7 @@
         width: 100% !important;
         
         
-        margin-bottom: 8px;
+        // margin-bottom: 8px;
         padding: 8px 12px;
         outline: none;
         border: 1px solid rgb(140, 155, 147);
@@ -710,6 +714,7 @@
         height: 96px;
         padding: 8px;
         outline: none;
+        resize: none;
         border: 1px solid rgb(140, 155, 147);
       }
 

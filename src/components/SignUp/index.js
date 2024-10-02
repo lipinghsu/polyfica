@@ -160,7 +160,7 @@ const SignUp = props => {
                             <span>{t(".")}</span>
                         </div>
                         <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>
-                            {t("Sign-up")}
+                            {t("Sign Up")}
                         </Button>
                         <div className="cancel">
                             <h3>

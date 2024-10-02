@@ -36,7 +36,6 @@
 
   @media (max-width: 1020px) {
     background-color: rgb(240, 245, 242);
-    // min-width: 160px;
     &:hover {
       background-color: rgb(200, 215, 207) !important;
       .arrow-icon{
@@ -44,13 +43,12 @@
       }
     }
     .sort-options{
-      // width: calc(100% + 38px);
       width: calc(100%);
-      // min-width: 136px;
     }
 
   }
   .arrow-icon.active{
+    // transition: background-color 0.25s  ease-in-out;
     background-color: #00cc55;
   }
   &:hover {
@@ -60,14 +58,11 @@
     }
   }
   &:active{
-    // background-color: red;
   }
 
   &.sortActive{
     background-color: rgb(200, 215, 207);
-    // background-color: #008938 !important;
     .dropdown-label{
-      // color:#FFC20D;
       font-weight: bold;
     }
     
@@ -80,14 +75,13 @@
   .dropdown-label {
     width: 100%;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .arrow-icon {
     width: 20px;
     height: 20px;
     transition: transform 0.3s ease;
-
     &.rotated {
       transform: rotate(180deg);
       background-color: #520A85 !important; 
@@ -101,7 +95,7 @@
     &.active {
       margin-top: 4px;
       border-radius: 8px;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.1s ease-in;
       opacity: 1;
       top: 100%;
       z-index: 100;
@@ -124,11 +118,10 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     .sort-option {
-      
       cursor: pointer;
       font-size: 14px;
       transition: color 0.05s ease-in;
-      transition: background-color 0.05s ease-in-out;
+      transition: background-color 0.05s ease-out;
       display: flex;
 
       input[type='radio'] {
@@ -156,7 +149,6 @@
       }
 
       input[type='radio']:checked{
-        
         //outer, selected
         border: 1px solid #FFC20D;
       }
@@ -175,7 +167,7 @@
       }
 
       &:hover {
-          background-color: rgb(200, 215, 207);
+          background-color: rgb(220, 235, 227);
       }
 
       // Add the green background for selected option

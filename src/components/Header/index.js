@@ -49,6 +49,17 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
     const refOutsideDiv = useRef(null);
     const dropdownRef = useRef(null);
 
+    const [isValid, setIsValid] = useState(true);
+  
+    const handleCourseNameChange = (e) => {
+      const value = e.target.value;
+      const courseNameRegex = /^[A-Za-z]+\s\d+$/;
+  
+      // Validate the input against the regex pattern
+      setIsValid(courseNameRegex.test(value));
+      setReviewCourseName(value);
+    };
+
     const signOut = () => {
         dispatch(signOutUserStart());
     }
@@ -177,6 +188,16 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         }
     };
 
+    const clearForm = () => {
+        setFirstName('');
+        setLastName('');
+        setSchoolName('');
+        setDepartment('');
+        setReviewCourseName('');
+        setReviewComment('');
+        setDifficultyRating(null);
+      };
+      
     useEffect(() => {
         if (typeof window !== 'undefined') {
             window.addEventListener('scroll', controlNavbar);
@@ -371,7 +392,11 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                 <form onSubmit={handleFormSubmit}>
                     <div className={showModal ? "rev-modal active" : "rev-modal"}>
                         <div className="modal-content">
-                            <span className="close-button" onClick={() => setShowModal(false)}>
+                            <span className="close-button" 
+                                onClick={() => {
+                                    setShowModal(false); 
+                                    clearForm();}}
+                            >
                                 <div className='close-image'>
                                     {/* <closeImage/> */}
                                     &times;
@@ -420,8 +445,8 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 type="text"
                                 name="reviewCourseName"
                                 value={reviewCourseName}
-                                onChange={e => setReviewCourseName(e.target.value)}
-                                label={t("Course Code (Ex: AERO 101)")}
+                                onChange={handleCourseNameChange}
+                                label="Course Code (Ex: AERO 101)"
                                 required
                             />
 
@@ -437,9 +462,10 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                             
                             <div className='column-wrap rev-modal-rating'>
                                 <div className="form-row rating-sliders">
-                                    <div className="slider-label">Rating</div>
+                                    {/* <div className="slider-label">Rating</div> */}
                                     <RatingSlider
-                                        onChange={(value) => setDifficultyRating(value)}  // Correctly handle the value
+                                          value={difficultyRating}
+                                          onChange={(value) => setDifficultyRating(value)} 
                                         required
                                         className="rev-modal-rating"
                                     />

@@ -11,12 +11,15 @@
         }
 
         .slider-label {
+            position: relative;
+            top: 29px;
             font-weight: bold;
-            margin-bottom: 5px;
             font-size: 1.2rem;
+            z-index: 1;
         }
 
         .button-group-container{
+            z-index: 2;
             display: flex;
             overflow: hidden;
             margin: 4px 0px;

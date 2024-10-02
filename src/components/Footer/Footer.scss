@@ -45,6 +45,68 @@
        margin-bottom: 5px;
     }
   }
+  .feedback-form{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid white;
+    margin-right: 24px;
+    height: 48px;
+    width: 100%;
+
+    @media(max-width: 840px){
+      margin-right: 0px;
+    }
+    .feedback-textarea {
+      overflow-y: hidden;
+      text-wrap: nowrap;
+      &::placeholder {
+        color: #ffffff; 
+        opacity: 0.6;
+      }
+      
+      outline:none;
+      resize: none;
+      border: 0px;
+
+      width: 100%;
+      height: 32px !important;
+      padding: 0px;
+      margin-top: 16px;
+      margin-bottom: 0;
+      border-bottom: 0.5px solid white;
+      
+      background-color: #008938;
+      color:white;
+    
+      font-family: Helvetica Neue, Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+    }
+    
+    .submit-button {
+      padding: 8px 10px;
+      border-radius: 18px;
+      height: 36px;
+      width: 36px;
+      cursor: pointer;
+      margin-right: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .submit-button:hover {
+      background-color: #006f2b;
+    }
+    
+    .success-message {
+      color: #008938;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  }
+
+
 }
 
 .contact-info {
@@ -97,14 +159,6 @@
   }
   a:hover {
     color: #FFC20D;
-  }
-}
-
-.more {
-  border-bottom: 1px solid white;
-  margin-right: 24px;
-  @media(max-width: 840px){
-    margin-right: 0px;
   }
 }
 
@@ -258,7 +312,7 @@ ul {
   }
 
   .polySeal-image {
-    filter: saturate(3.5);
+    filter: saturate(2);
     width: 100px;
     height: 100px;
     background-image: url('../../assets/polySeal.png');

@@ -216,12 +216,12 @@ const ProfessorDetails = ({ professor, currentUser }) => {
                 <textarea onChange={e => setReviewComment(e.target.value)} className="expandedTextArea" placeholder="Write your review here..." />
                 <div className="courseCodeContainer">
                   <div className='column-wrap'>
-                    <div className="form-row rating-sliders">
-                      <div className="slider-label">Course Code</div>
+                    <div className="form-row course-code">
+                      {/* <div className="slider-label">Course Code</div> */}
                       <input type="text" className="courseCodeInput" placeholder="Course Code" onChange={e => setReviewCourseName(e.target.value)} />
                     </div>
                     <div className="form-row rating-sliders">
-                      <div className="slider-label">Rating</div>
+                      {/* <div className="slider-label">Rating</div> */}
                       <RatingSlider onChange={(value) => setDifficultyRating(value)} required />
                     </div>
                   </div>
