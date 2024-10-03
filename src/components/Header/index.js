@@ -64,7 +64,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         dispatch(signOutUserStart());
     }
 
-     // Check if all required form inputs are filled
      useEffect(() => {
         const isComplete = firstName.trim() && lastName.trim() && schoolName.trim() && department.trim() && reviewCourseName.trim() && reviewComment.trim() && difficultyRating !== null;
         setIsFormComplete(isComplete);
@@ -484,6 +483,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 </Link>
                                 <span>{t(".")}</span>
                             </div>
+                            
                             <Button
                                 type="submit"
                                 className={`${isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} ${!isFormComplete ? "inactive" : ""}`}

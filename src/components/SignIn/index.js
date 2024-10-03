@@ -142,7 +142,7 @@ const SignIn = props => {
                     </div>
                 </div>
 
-                <form onSubmit= { handleSubmit }>
+                <form onSubmit={handleSubmit}>
                     <div className="or-tag">
                         <span>OR</span>
                     </div>
