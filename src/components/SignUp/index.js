@@ -81,14 +81,14 @@ const SignUp = props => {
     };
     return(
     <AuthWrapper {...configAuthWrapper}>
-                <h3>
+                <div className="subtitle">
                     {t("Already have an account?")}
                     <span>{t(" ")}</span>
                     <Link to="/login">
                         {t("Sign in here")}
                     </Link>
                     <span>{t("common:.")}</span>
-                </h3>
+                    </div>
 
                 <div className="formWrap">
 
@@ -148,12 +148,12 @@ const SignUp = props => {
                                 required
                             />
                         <div className="terms">
-                            {t("By signing up, you agree to the")}
+                            {t("By creating an account, you agree to our")}
                             <span>{t(" ")}</span>
                                 <Link to="/terms">
                                     {t("Terms of Service")}
                                 </Link>
-                                <span>{t(" and ")}</span>
+                                <span>{t(" and acknowledge our ")}</span>
                                 <Link to="/privacy">
                                     {t("Privacy Policy")}
                                 </Link>

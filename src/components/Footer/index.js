@@ -116,7 +116,11 @@ const Footer = () => {
         </div>
 
         {/* <p>Learn by Doing<sup><small>SM</small></sup></p> */}
-        <p className='copy-right'>&copy; 2024 Cal Poly SLO</p>
+        <div className='text-container'>
+          <p className='copy-right'>&copy; 2024 Cal Poly SLO</p>
+          {/* <p className='lbd'>Learn By Doing</p> */}
+        </div>
+
         
       </div>
     </footer>

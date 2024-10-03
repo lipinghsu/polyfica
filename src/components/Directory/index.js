@@ -307,15 +307,22 @@ const Directory = ({ showSignupDropdown }) => {
                     </div>
                     )}
                 </div>
+                
               </div>
+              
+              
             </div>
             <a>
               <div className='item-logo'/>
             </a>
             <div className='overlay'/>
+            {/* <div className='lbd'>LEARN BY DOING</div> */}
           </div>
+          
         </div>
+        
         <div className="typing-banner">{rateText}
+          
             <span className="dynamic-text" ref={dynamicTextRef}> 
             </span>
             

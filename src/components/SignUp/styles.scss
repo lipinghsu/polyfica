@@ -10,36 +10,26 @@ $signInMargin: 4rem;
 
 .authWrapper{
     .wrap{
-        h3{
+        .subtitle{
             text-align: center;
-            font-weight: 700;
-            font-size: 1.75rem;
-        
-            margin: 0.75rem auto;
-            
-            padding:0 0 0.75rem 0;
-            
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-size: 1.45rem;
+            margin-bottom: 10px;
             a, a:visited{
-                color: rgba($color: #b8b8b8, $alpha: 1.0);
+                color:#008938;
+                // font-weight: 600;
             }
-            a:hover{
-                color:black;
-                text-decoration: underline;
-            }
-        }
+            
+         }
 
 
         .formWrap{
             form{
                 .terms{
                     text-align:  center;
-                    padding: 1rem 0 1.5rem 0;
+                    padding: 0.5rem 0 1rem 0;
                     font-size: 1.45rem;
                     a, a:visited{
-                        color: #{$customDarkGray}
+                        color:#008938;
                     }
                     a:hover{
                         text-decoration: underline;

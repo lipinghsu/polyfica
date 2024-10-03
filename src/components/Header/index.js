@@ -405,7 +405,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                             <h2>{t("Write a Review")}</h2>
                             <h3>{t("Help us understand your class experience")}</h3>
                             
-                            <div className="form-row">
+                            <div className="form-row name">
                                 <FormInput 
                                     type="text"
                                     name="firstName"
@@ -446,7 +446,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 name="reviewCourseName"
                                 value={reviewCourseName}
                                 onChange={handleCourseNameChange}
-                                label="Course Code (Ex: AERO 101)"
+                                label="Course Code"
                                 required
                             />
 

@@ -1,5 +1,7 @@
 $customDarkGray: #b8b8b8;
-
+$form-font-size: 1.5rem;
+$form-font-weight: 300;
+$form-line-height: 1;
 .header {
     transition: all 0.25s ease-out;
     height: 6rem;
@@ -578,7 +580,8 @@ $customDarkGray: #b8b8b8;
 
 
         .reviewComment{
-            
+            // font-weight: 300;
+            font-family: Helvetica Neue, Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
         }
         h2 {
             text-align: center;
@@ -606,12 +609,12 @@ $customDarkGray: #b8b8b8;
         }
         .terms {
             text-align: center;
-            padding: 1rem 0 1rem 0;
+            padding: 1rem 0 0.5rem 0;
             font-size: 1.4rem;
             line-height: 1.15;
             a,
             a:visited {
-                color: #{$customDarkGray};
+                color:#008938;
             }
             a:hover {
                 text-decoration: underline;
@@ -620,26 +623,66 @@ $customDarkGray: #b8b8b8;
         button {
             margin-top: 5px;
         }
+        //rer-modal
         .formRow {
-            input:last-child,
-            &.checkoutInput select {
+            width: 100%;
+            display: flex;
+            position: relative;
+            flex-direction: column;
+
+
+            .formInput{
+                
             }
-            &:last-child {
-                margin-left: 10px;
-            }
+            .formInput,
             .reviewComment {
-                height: 128px;
+
+                
+                width: 100%;
+                // padding: 12px 15px;
+                font-size: 1.4rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                transition: border-color 0.3s ease;
+                &.filled-input{
+                    // border: 1px solid #008938 !important;
+                }
+ 
+                &:focus {
+                    border-color: #008938;
+                    outline: none;
+                }
             }
+        
+            textarea {
+                margin: 10px 0;
+                padding: 12px 7.5px;
+                height: 128px;  // Specific height for the textarea
+                resize: none;   // Disable resizing for consistency
+            }
+        
+            .filled {
+                
+                color: #00662B;
+                
+            }
+
         }
 
         .form-row {
+            &.name{
+                gap: 10px;
+            }
             display: flex;
             width: space-between;
             .formInput {
                 width: 100%;
+                
                 &:first-child {
                     margin-right: 20px;
                 }
+
             }
         }
     }

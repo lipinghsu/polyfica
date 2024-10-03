@@ -66,6 +66,7 @@ $suggestion-item-appear-duration: 0.2s;
         .search-wrapper {
           top: 8px;
           border-radius: 28px !important;
+
           
           &.with-shadow {
             
@@ -85,7 +86,16 @@ $suggestion-item-appear-duration: 0.2s;
         align-items: center;
         justify-content: center;
         position: relative;
-        // background-color: red;
+
+        // .lbd{
+        //   background-color: rgb(240, 245, 242);
+        //   padding: 8px 16px;
+        //   border-radius: 8px;
+        //   font-size: 14px;
+        //   font-weight: 500;
+        //   transform: translateY(56px);
+        //   text-align: center;
+        // }
 
         .search-wrapper {
           z-index: 10;
@@ -99,6 +109,8 @@ $suggestion-item-appear-duration: 0.2s;
           align-items: center;
           justify-content: center;
           flex-direction: column;
+
+  
           
           &.with-shadow {
             box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);

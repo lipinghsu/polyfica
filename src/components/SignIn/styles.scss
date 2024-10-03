@@ -15,7 +15,19 @@ $signInMargin: 4rem;
     flex-direction: column; /* Ensure content stacks vertically */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
-     
+     .subtitle{
+        text-align: center;
+        font-size: 1.45rem;
+        margin-bottom: 10px;
+        a, a:visited{
+            &:hover{
+                text-decoration: underline;
+            }
+            color:#008938;
+            // font-weight: 600;
+        }
+        
+     }
     .wrap{
         width: 100%;
         padding-top: 17.5px;
@@ -31,39 +43,81 @@ $signInMargin: 4rem;
 
             .socialSignin{
                 padding: 5px auto;
+                display: flex;
+                flex-direction: row ;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
                 .row{
-                    
+                    transition: all 0.25s ease-out;
+                    .btn{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        
+                        &:hover{
+                            filter:brightness(0.85);
+                        } 
+
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 19px;
+                        overflow: hidden;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
                     .btn-google{
-                        background-color: white;
-                        border: 1px solid #{$customDarkerGray};
-                        color: black;
+                        background-color: black;
+                        // border: 1px solid #{$customDarkerGray};
+                        
+                        padding: 7px;
                     }
                     .btn-google:hover{
-                        background-color: #fa2d1a0c;
-                        border: 2px solid #fa2d1a2c;
-                        color:#fa2d1a;
+                        // background-color: #fa2d1a0c;
+                        // border: 2px solid #fa2d1a2c;
+                        // color:#fa2d1a;
                     }
         
                     .btn-apple{
-                        background-color: black;
-                        
-                        color: white;
+                        background-color: white;
+                        // background-color: black;
+                        filter: invert(1);
+                        // color: white;
+                        padding: 7px;
                     }
         
                     .btn-apple:hover{
-                        background-color: #8b8b8b;
+                        filter: invert(1) brightness(0.85); 
+                        // background-color: #8b8b8b;
+                        img{
+                            // filter: opacity(85%);
+                        }
+                        
                         
                     }
         
-                    .btn-facebook{
+                    .btn-twitter{
+                        padding: 9px;
+                        // background-color: #1877F2;
+                        // padding: 0px;
+                        filter: invert(1);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         background-color: white;
-                        border: 1px solid #{$customDarkerGray};
-                        color: black;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                        // border: 1px solid white;
                     }
-                    .btn-facebook:hover{
-                        background-color: #177af20c;
-                        border: 2px solid #177af22c;
-                        color:#177af2;
+                    .btn-twitter:hover{
+                        filter: invert(1) brightness(0.85); 
+                        // background-color: #177af20c;
+                        // border: 2px solid #177af22c;
+                        // background-color:#165BDA;
                         
                     }
                 }
@@ -74,7 +128,7 @@ $signInMargin: 4rem;
                 align-items: center;
                 text-align: center;
                 font-weight: 700;
-                font-size: 1.75rem;
+                font-size: 1.4rem;
                 padding: 1rem 0;
                 color: #{$customDarkerGray}
             }
@@ -87,7 +141,7 @@ $signInMargin: 4rem;
                 width: calc(50% - 2.15rem);
                 margin-left: -100%;
                 margin-right: 10px;
-                border-top: 1px solid black;
+                border-top: 1px solid rgb(140, 155, 147);
             }
 
             .or-tag:after{
@@ -98,23 +152,34 @@ $signInMargin: 4rem;
                 width: calc(50% - 2.15rem);
                 margin-right: -100%;
                 margin-left: 10px;
-                border-top: 1px solid black;
+                border-top: 1px solid rgb(140, 155, 147);
             }
         
             .resetPassword{
                 text-align:  right;
-                padding: 1rem 0 1.5rem 0;
+                padding: 0rem 0 1.5rem 0;
                 font-size: 1.45rem;
                 a, a:visited{
                     color: #{$customDarkGray}
                 }
                 a:hover{
+                    color: #008938;
                     text-decoration: underline;
                 }
             }
             .cancel{
-                padding: 0.75rem 0rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0rem 0rem;
+                padding-bottom: 0px;
+                height: 38px;
+                h3{
+                    padding: 0;
+                    margin: 0px;
+                }
                 a:hover{
+                    color:#E74C3C;
                     text-decoration: none;
                 }
             }

@@ -36,23 +36,20 @@
     }
     .btn-submit.inactive{
         background-color: rgb(198, 224, 204);
-        color:rgb(175, 193, 183);
-
-        // background-color: rgb(232, 236, 231);
-        // color:rgb(150, 150, 150);
+        color:white;
     }
     .btn-submit.inactive:hover{
         background-color: rgb(198, 224, 204);
-        color:rgb(175, 193, 183);
+        color:white;
         border: 0px;
         cursor: not-allowed;
     }
 
     .btn-submit:hover{
-        background-color: white;
-        color: rgb(0, 137, 56);
+        color: #FFC20D;
+        background-color: #007A30;
         transition: 0.25s ease-out;
-        border: 1px solid rgb(0, 137, 56);
+        // border: 1px solid rgb(0, 137, 56);
     }
 
     .btn:active {

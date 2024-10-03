@@ -216,10 +216,18 @@ ul {
   font-size: 14px;
   padding: 10px 36px;
   background-color: white;
-  .copy-right {
+  .text-container{
+    display: flex;
     color:black;
+    .copy-right {
+      
+    }
+    .lbd{
+      // margin-right: 0;
+      // margin-left: auto;
+      
+    }
   }
-
   @media (max-width: 1040px) {
   }
   @media (max-width: 840px) {

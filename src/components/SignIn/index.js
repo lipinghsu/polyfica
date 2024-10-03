@@ -1,12 +1,15 @@
 import React , { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { emailSignInStart, googleSignInStart, clearUserError } from "../../redux/User/user.actions";
+import { emailSignInStart, googleSignInStart, clearUserError, twitterSignInStart, appleSignInStart } from "../../redux/User/user.actions";
+
 
 import AuthWrapper from "../AuthWrapper";
 import Button from "./../forms/Button";
 import FormInput from "../forms/FormInput";
-
+import twitterIcon from  "../../assets/twitter.png"
+import appleIcon from  "../../assets/icons8-apple-96.png"
+import googleIcon from  "../../assets/icons8-google-96.png"
 import { useTranslation } from "react-i18next";
 
 import './styles.scss';
@@ -70,8 +73,6 @@ const SignIn = props => {
             // if setIsLoading() is here -> error
             emailSignInStart({ email, password })
         );  
-            
-        
     }
 
     const handleGoogleSignIn = () => {
@@ -79,7 +80,19 @@ const SignIn = props => {
             googleSignInStart()
         );
     }
-    
+
+    const handleTwitterSignIn = () => {
+        dispatch(
+            twitterSignInStart()
+        );
+    };
+
+    const handleAppleSignIn = () => {
+        dispatch(
+            appleSignInStart()
+        );
+    };
+        
     const configAuthWrapper = {
         headline: t("Log In")
     };
@@ -87,7 +100,7 @@ const SignIn = props => {
 
     return(
         <AuthWrapper { ...configAuthWrapper }>
-            <h3>
+            <div className="subtitle">
                 {t("Don't have an account?")}
                 
                 <span>{t(" ")}</span>
@@ -95,7 +108,7 @@ const SignIn = props => {
                     {t("Sign up here")}
                 </Link>
                 <span>{t("common:.")}</span>
-            </h3>
+            </div>
             
             <div className="formWrap">
                 {errors.length > 0 && (
@@ -111,28 +124,28 @@ const SignIn = props => {
                 )} 
                 <div className="socialSignin">
                     <div className="row">
-                        <Button className="btn btn-google" onClick= { handleGoogleSignIn }>
-                            Login with Google
+                        <Button className="btn btn-twitter" onClick={handleTwitterSignIn}>
+                            <img src={twitterIcon} alt="Twitter Icon" />
                         </Button>
+                    </div>
 
-                    </div>
-                    {/* <div className="row">
-                        <Button className="btn btn-apple">
-                            Continue with Apple
-                        </Button>
-                    </div>  */}
                     <div className="row">
-                        <Button className="btn btn-facebook">
-                                Login with Facebook
+                        <Button className="btn btn-google" onClick={handleGoogleSignIn}>
+                            <img src={googleIcon} alt="Google Icon" />
                         </Button>
                     </div>
-                </div> 
+                    
+                    <div className="row">
+                        <Button className="btn btn-apple" onClick={handleAppleSignIn}>
+                            <img src={appleIcon} alt="Apple Icon" />
+                        </Button>
+                    </div>
+                </div>
 
                 <form onSubmit= { handleSubmit }>
                     <div className="or-tag">
                         <span>OR</span>
                     </div>
-
                     <FormInput 
                         type = "email"
                         name = "email"

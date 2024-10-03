@@ -7,6 +7,9 @@ import { handleResetPasswordAPI } from "./user.helpers";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firestore } from "./../../firebase/utils";
 import { v4 } from "uuid";
+// import { twitterProvider, appleProvider } from './../../firebase/utils';
+import { signInFailure } from '../../redux/User/user.actions';
+import { TwitterAuthProvider, OAuthProvider } from 'firebase/auth';
 
 export function* getSnapshotFromUserAuth(user, addtionalData={}){
     try{
@@ -159,20 +162,60 @@ export function* onResetPasswordStart(){
 }
 
 
-const GoogleProvider = new GoogleAuthProvider();
-GoogleProvider.setCustomParameters({prompt: 'select_account'});
-
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt: 'select_account'});
 export function* googleSignIn(){
     try{
-        const { user } = yield signInWithPopup(getAuth(), GoogleProvider);
+        const { user } = yield signInWithPopup(getAuth(), googleProvider);
         yield getSnapshotFromUserAuth(user);
     } catch(err){
         
     }
 }
-
 export function* onGoogleSignInStart(){
     yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn);
+}
+
+export const twitterProvider = new TwitterAuthProvider();
+twitterProvider.setCustomParameters({prompt: 'select_account'});
+export function* twitterSignIn() {
+    try {
+      const { user } = yield signInWithPopup(getAuth(), twitterProvider);
+      yield getSnapshotFromUserAuth(user);
+    } catch (error) {
+      console.error('Twitter Sign-in Error:', error);  // Log the error to debug
+    }
+  }
+export function* onTwitterSignInStart() {
+    yield takeLatest(userTypes.TWITTER_SIGN_IN_START, twitterSignIn);
+}
+
+
+export const appleProvider = new OAuthProvider('apple.com');
+export function onAppleSignInStart() {
+    return {
+        type: userTypes.APPLE_SIGN_IN_START
+    };
+}
+
+// Handle Apple Sign-in
+export const appleSignIn = async () => {
+    try {
+        const result = await auth.signInWithPopup(appleProvider);
+        // Handle sign-in success, get user data
+    } catch (error) {
+        // Handle sign-in error
+    }
+};
+
+// Redux saga example for Apple sign-in
+function* appleSignInSaga() {
+    try {
+        const userAuth = yield appleSignIn(); // Call Firebase method
+        yield put(signInSuccess(userAuth)); // Dispatch success action
+    } catch (error) {
+        yield put(signInFailure(error.message));
+    }
 }
 
 
@@ -186,6 +229,8 @@ export default function* userSagas(){
         call(onSignUpUserStart),
         call(onResetPasswordStart),
         call(onGoogleSignInStart),
+        call(onTwitterSignInStart),
+        call(onAppleSignInStart),
         call(onNewsletterSignUpStart)
     ])
 }

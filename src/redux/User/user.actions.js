@@ -63,10 +63,23 @@ export const resetPasswordSuccess = () => ({
 
 export const googleSignInStart = () => ({
     type: userTypes.GOOGLE_SIGN_IN_START
-})
+});
+
+export const twitterSignInStart = () => ({
+    type: userTypes.TWITTER_SIGN_IN_START
+});
+  
+  export const appleSignInStart = () => ({
+    type: userTypes.APPLE_SIGN_IN_START
+});
 
 
 export const newsLetterSignUpStart = email => ({
     type: userTypes.NEWSLETTER_SIGN_UP_START,
     payload: email
 })
+
+export const signInFailure = (error) => ({
+    type: 'SIGN_IN_FAILURE',
+    payload: error,
+  });

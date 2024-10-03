@@ -6,6 +6,7 @@ import {  getAuth } from "firebase/auth";
 import { getStorage } from 'firebase/storage';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { TwitterAuthProvider, OAuthProvider } from 'firebase/auth';
 
 firebase.initializeApp(firebaseConfig);
 
