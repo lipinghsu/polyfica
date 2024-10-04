@@ -69,11 +69,11 @@
           flex-shrink: 0; /* Prevent shrinking of the container */
         
           img {
-            width: 80px; /* Fixed width */
-            height: 80px; /* Fixed height */
-            object-fit: cover; /* Ensure the image fits within the circle */
-            border-radius: 40px; /* Make the image circular */
-            border: 1px solid #d3d3d3; /* Optional border */
+            width: 80px; 
+            height: 80px; 
+            object-fit: cover; 
+            border-radius: 40px;
+            border: 1px solid rgb(180, 195, 187);
           }
         }
       }

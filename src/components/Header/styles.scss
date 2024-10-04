@@ -549,7 +549,8 @@ $form-line-height: 1;
     transition: 0.25s all ease-out;
 
     .modal-content {
-        background-color: rgb(248, 250, 247) !important;
+        // background-color: rgb(248, 250, 247) !important;
+        background-color: white;
         z-index: 1000;
         overflow: scroll;
         margin: auto;
@@ -715,7 +716,7 @@ $form-line-height: 1;
 }
 
 .close-button {
-    background-color: rgb(220, 225, 222);
+    background-color: rgb(240, 245, 242);
     color: black;
     margin-top: 19px;
     margin-right: 8px;
@@ -734,7 +735,7 @@ $form-line-height: 1;
 
     &:hover {
         color: #E74C3C;
-        background-color: rgb(200, 205, 202);
+        background-color: rgb(220, 225, 222);
     }
     .close-image {
         margin-bottom: 3px;

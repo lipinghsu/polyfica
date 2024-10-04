@@ -171,6 +171,7 @@ const Directory = ({ showSignupDropdown }) => {
     };
   }, [isSearchFocused]);
 
+  //fetch professor suggestions from the database
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
@@ -213,7 +214,6 @@ const Directory = ({ showSignupDropdown }) => {
     }
   }, [searchTerm]);
   
-
   const highlightMatch = (text, searchTerm) => {
     const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
     return parts.map((part, index) =>

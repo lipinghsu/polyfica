@@ -6,18 +6,24 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-size: 1.5rem;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     .dropdown-menu{
         .dropdown-item {
+        
             display: block;
+            text-align: center;
             padding: 10px 20px;
             text-decoration: none;
             color: #333;
             white-space: nowrap;
-            
+            transition: all 0.25 ease-in;
             &:hover{
+                
                 background-color: rgb(240, 245, 242);
-                border-radius: 8px;
+                // border-radius: 8px;
             }
         }
     }

@@ -1,13 +1,12 @@
 // SignupDropdown.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import DropdownItem from './DropDownItem';
 import './SignupDropdown.scss';
 
 const SignupDropdown = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
+
 
     const handleClick = () => {
         if (props.label === "Log Out" && props.signOut) {
@@ -25,9 +24,27 @@ const SignupDropdown = (props) => {
                     : 
                     null
                 }
-                <Link to={props.link} className="dropdown-item" onClick={handleClick}>
-                    {props.label}
-                </Link>
+                <DropdownItem 
+                    label={"About"} 
+                    link={props.link} 
+                    onClick={handleClick} 
+                    isLogout={props.label === "Log Out"} 
+                />
+                <DropdownItem 
+                    label={"Sign Me Up"} 
+                    link={props.link} 
+                    onClick={handleClick} 
+                    isLogout={props.label === "Log Out"} 
+                />
+
+                <DropdownItem 
+                    label={"Add a Professor"} 
+                    link={props.link} 
+                    onClick={handleClick} 
+                    isLogout={props.label === "Log Out"} 
+                />
+
+
             </div>
         </div>
     );

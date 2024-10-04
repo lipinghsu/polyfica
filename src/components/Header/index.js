@@ -332,7 +332,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
                                         {showSignupDropdown && 
-                                        <SignupDropdown label="Sign Me Up" link="/registration" class="SignupDropdown"/>}
+                                        <SignupDropdown link="/registration" class="SignupDropdown"/>}
                                     </div>
                                 ]}
                             </ul>
@@ -490,7 +490,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                 disabled={isLoading || !isFormComplete}
                                 isLoading={isLoading}
                             >
-                                {t("Add Professor")}
+                                {t("Submit Review")}
                             </Button>
                         </div>
                     </div>

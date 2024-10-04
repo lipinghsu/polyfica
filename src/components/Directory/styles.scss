@@ -177,7 +177,7 @@ $suggestion-item-appear-duration: 0.2s;
             .suggestions {
               max-height: 0;
               opacity: 0;
-              transition: max-height 0.25s ease, opacity 0.3s ease;
+              transition: max-height 0.25s ease, opacity 0.4s ease;
               
               position: absolute;
               width: calc(100% );
@@ -194,7 +194,7 @@ $suggestion-item-appear-duration: 0.2s;
                 z-index: 20;
                 max-height: 580px; /* Adjust the height as needed */
                 opacity: 1;
-                transition: max-height 0.25s ease, opacity 0.3s ease;
+                transition: max-height 0.25s ease, opacity 0.4s ease;
               }
 
               a {
@@ -310,11 +310,11 @@ $suggestion-item-appear-duration: 0.2s;
                   height: 32px;
                   object-fit: cover; 
                   border-radius: 40px;
-                  border: 1px solid #d3d3d3; 
+                  border: 1px solid rgb(180, 195, 187);
                 }
               }
               &:last-child {
-                padding-bottom: 8px;
+                // padding-bottom: 8px;
               }
               &:last-child:hover{
                 border-radius: 0px 28px 28px 28px;
@@ -404,6 +404,7 @@ $suggestion-item-appear-duration: 0.2s;
             }
 
             .arrow-button {
+              border: 1px solid rgb(220, 225, 220);
               width: 36px;
               height: 36px;
               display: flex;
@@ -417,6 +418,7 @@ $suggestion-item-appear-duration: 0.2s;
               margin-right: 6px;
               cursor: pointer;
               &:hover {
+                border: 1px solid transparent;
                 background-color: rgba(155, 155, 155, 0.55);  // A lighter, softer gray
                 color: white;
                 
@@ -424,13 +426,15 @@ $suggestion-item-appear-duration: 0.2s;
               }
               &.active{
                 color: white;
+                border: 1px solid transparent;
                 background-color: #008938;
               }
             
               &.active:hover {
-                
+                border: 1px solid #FFC20D;
+                background-color: #008938;
                 color: #FFC20D;
-                background-color: #007a30;
+                // background-color: #007a30;
                 transition: all 0.2s ease;
                 cursor: pointer;
               }

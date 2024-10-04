@@ -25,13 +25,19 @@ $signInMargin: 4rem;
         .formWrap{
             form{
                 .terms{
-                    text-align:  center;
-                    padding: 0.5rem 0 1rem 0;
+                    text-align:  right;
+                    padding: 0rem 0 1.5rem 0;
                     font-size: 1.45rem;
+                    display: flex;
+                    flex-direction: column;
+                    
                     a, a:visited{
-                        color:#008938;
+                        color:#b8b8b8;
+                        
                     }
                     a:hover{
+                        
+                        color:#008938;
                         text-decoration: underline;
                     }
                 }
