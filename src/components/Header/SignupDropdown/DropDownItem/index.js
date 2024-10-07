@@ -2,13 +2,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss'
+import aboutIcon from '../../../../assets/aboutIcon.png'
 
 
-const DropDownItem = ({ label, link, onClick, isLogout }) => {
+const DropDownItem = ({ label, link, onClick, isLogout, icon, className}) => {
     return (
-        <Link to={link} className={`dropdown-item ${isLogout ? 'logout' : ''}`} onClick={onClick}>
+    <div className='dropdown-item'>
+        <div className='icon-wrap'>
+            <img src={icon} className={className}/>
+        </div>
+        <Link to={link} className={`dropdown-ite ${isLogout ? 'logout' : ''}`} onClick={onClick}>
             {label}
         </Link>
+    </div>
+
     );
 };
 

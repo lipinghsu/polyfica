@@ -2,7 +2,7 @@ import React, { useEffect, Suspense, useTransition, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { checkUserSession } from './redux/User/user.actions';
-import Logo from './assets/poly_ratings_text.png';
+import Logo from './assets/polyfica_logo.png';
 
 // components
 import AdminToolbar from './components/AdminToolbar';

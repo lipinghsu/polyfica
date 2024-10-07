@@ -33,18 +33,19 @@ body
 
 
 .fallback {
-    object-fit: cover;
+    // object-fit: cover;
     // display: flex;
     justify-content: center;
     align-items: center;
     height: 100%; /* Adjust the height as needed */
-
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
+    // position: absolute;
+    // margin: auto;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // transform: translateY(50vh);
 }
 
 .centered-image {
@@ -103,7 +104,7 @@ a, a:hover{
     width: 100%;
     // min-height:  calc(100vh - 6rem - 5rem);  // - headerHeight - footerHeight
     
-    border-bottom: 1px solid #d3d3d3;
+    border-bottom: 1px solid rgb(240, 245, 242);
 
     .sidebar {
         position: relative;
@@ -111,7 +112,7 @@ a, a:hover{
         width: 18.0rem;
         min-height: calc(100vh - 6rem - 5rem);  // - headerHeight - footerHeight
         z-index: 1;
-        border-right: 1px solid #d3d3d3;
+        border-right: 1px solid rgb(240, 245, 242);
     }
 
     .content {
@@ -124,7 +125,7 @@ a, a:hover{
 .dashboardLayout {
     height: calc(100% - 6.5rem - 5.8rem);
     .controlPanel{
-        border-top: 1px solid lightgray;
+        border-top: 1px solid rgb(240, 245, 242);
     }
 } 
 

@@ -103,7 +103,7 @@ const MobilePopup = ({ professor, onSubmit, loading, onClose, isVisible }) => {
         <textarea
           onChange={(e) => setReviewComment(e.target.value)}
           className="expandedTextArea"
-          placeholder="view here..."
+          placeholder="Write your review here..."
         />
         <button
           className={!loading ? "submitButton" : "submitButton loading"}

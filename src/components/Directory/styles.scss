@@ -5,12 +5,11 @@ $suggestion-item-appear-duration: 0.2s;
 
 .directory {
   height: 100%;
-
   .wrap {
     width: 100%;
     display: flex;
-    flex-direction: column;  /* This makes the typing-banner part of the column flow */
-    justify-content: space-between; /* Ensures space between the content and footer */
+    flex-direction: column;  
+    justify-content: space-between;
     min-height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
   
     .typing-banner {
@@ -71,7 +70,7 @@ $suggestion-item-appear-duration: 0.2s;
           &.with-shadow {
             
             // top: -112px; /* Move upwards when focused */
-            box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);
+            box-shadow: 2px 2px 14px rgba(210, 215, 212, 0.925);
 
             z-index: 20;
           }
@@ -113,7 +112,7 @@ $suggestion-item-appear-duration: 0.2s;
   
           
           &.with-shadow {
-            box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);
+            box-shadow: 2px 2px 14px rgba(210, 215, 212, 0.925);
             // border-radius: 32px 32px 0 0 ;
             background-color: transparent !important;
           }
@@ -122,7 +121,6 @@ $suggestion-item-appear-duration: 0.2s;
             height: 40px;
             transition: height 0.2s ease-out;
           }
-
 
           .search-bar-block {
             height: 56px;
@@ -138,7 +136,7 @@ $suggestion-item-appear-duration: 0.2s;
             }
             &.active {
               background-color: rgb(240, 245, 242);
-              box-shadow: 2px 2px 14px rgba(200, 215, 207, 0.925);
+              box-shadow: 2px 2px 14px rgba(210, 215, 212, 0.925);
               border-radius: 32px 32px 0 0;
               transition: height 0.2s ease-out;
               @media(max-width: 840px){
@@ -151,7 +149,7 @@ $suggestion-item-appear-duration: 0.2s;
 
           .search-bar {
             width: 100%;
-            border: 1px solid rgba(180, 195, 187);
+            border: 1px solid rgba(190, 195, 192);
             border-radius: 29px;
             height: 50px;
             position: relative;
@@ -170,7 +168,7 @@ $suggestion-item-appear-duration: 0.2s;
           
             &:hover{
               transition: all 0.2s ease-out;
-              box-shadow: 2px 2px 14px rgb(200, 215, 207, 0.925);
+              box-shadow: 2px 2px 14px rgb(210, 215, 212, 0.925);
               border: 0px;
             }
 
@@ -187,12 +185,12 @@ $suggestion-item-appear-duration: 0.2s;
               z-index: -10;
               display: flex;
               flex-direction: column;
-              box-shadow: 4px 4px 8px rgba(215, 215, 215, 0.425),
-                          -4px 4px 8px rgba(215, 215, 215, 0.425);
+              box-shadow: 4px 4px 8px rgba(210, 215, 212, 0.425),
+                          -4px 4px 8px rgba(210, 215, 212, 0.425);
               
               &.active {
                 z-index: 20;
-                max-height: 580px; /* Adjust the height as needed */
+                max-height: 580px; 
                 opacity: 1;
                 transition: max-height 0.25s ease, opacity 0.4s ease;
               }
@@ -277,7 +275,7 @@ $suggestion-item-appear-duration: 0.2s;
                 display: flex;
                 align-items: center;
                 height: 48px;
-                border-top: 1px solid rgb(200, 215, 207);
+                border-top: 1px solid rgb(220, 235, 227);
                 z-index: -10;
                 &.active{
                   border-radius: 0 0px 28px 28px !important;
@@ -310,11 +308,10 @@ $suggestion-item-appear-duration: 0.2s;
                   height: 32px;
                   object-fit: cover; 
                   border-radius: 40px;
-                  border: 1px solid rgb(180, 195, 187);
+                  border: 1px solid rgb(220, 225, 222);
                 }
               }
               &:last-child {
-                // padding-bottom: 8px;
               }
               &:last-child:hover{
                 border-radius: 0px 28px 28px 28px;
@@ -342,7 +339,7 @@ $suggestion-item-appear-duration: 0.2s;
                   left: 0;
                   top: 0;
                   bottom: 0;
-                  width: 6px; /* Width of the green box */
+                  width: 6px; 
                   background-color: #FFC20D;
                   border-radius: 0 4px 4px 0;
                   
@@ -351,12 +348,12 @@ $suggestion-item-appear-duration: 0.2s;
   
               }
               .right-wrap{
-                flex-grow: 1; /* Allow the right side to take up available space */
-                min-width: 0; /* Prevent overflowing of content */
+                flex-grow: 1; 
+                min-width: 0; 
                 overflow: hidden;
                 text-overflow: ellipsis;
                 .professor-name{
-                  white-space: nowrap; /* Ensure professor name doesn't wrap */
+                  white-space: nowrap;
                   overflow: visible;
                   text-overflow: ellipsis; 
                   font-size: 14px;
@@ -364,9 +361,8 @@ $suggestion-item-appear-duration: 0.2s;
                 .professor-details {
                   display: flex;
                   flex-direction: column;
-                  flex-wrap: nowrap; /* Ensure details don't wrap */
+                  flex-wrap: nowrap;
                   white-space: nowrap;
-                  // overflow: hidden;
                   text-overflow: ellipsis;
 
                   .professor-department,
@@ -383,12 +379,12 @@ $suggestion-item-appear-duration: 0.2s;
                 margin-top: 2px;
   
                 .professor-department {
-                  color: rgb(155, 155, 155, 1);
+                  color: rgb(150, 155, 152, 1);
                 }
                 .professor-schoolName {
                   margin-top: 1px;
                   display: block;
-                  color: black; /* Adjust this color as needed */
+                  color: black;
                 }
               }
             }
@@ -404,22 +400,20 @@ $suggestion-item-appear-duration: 0.2s;
             }
 
             .arrow-button {
-              border: 1px solid rgb(220, 225, 220);
+              border: 1px solid rgb(220, 225, 222);
               width: 36px;
               height: 36px;
               display: flex;
               align-items: center;
               justify-content: center;
               padding-right: 16px;
-              // background-color: red;
-              // border-radius: 0 50% 50% 0;
               border-radius: 18px;
               margin-left: 8px;
               margin-right: 6px;
               cursor: pointer;
               &:hover {
                 border: 1px solid transparent;
-                background-color: rgba(155, 155, 155, 0.55);  // A lighter, softer gray
+                background-color: rgba(150, 155, 152, 0.55);  // A lighter, softer gray
                 color: white;
                 
                 cursor:not-allowed;
@@ -434,7 +428,6 @@ $suggestion-item-appear-duration: 0.2s;
                 border: 1px solid #FFC20D;
                 background-color: #008938;
                 color: #FFC20D;
-                // background-color: #007a30;
                 transition: all 0.2s ease;
                 cursor: pointer;
               }
@@ -444,7 +437,6 @@ $suggestion-item-appear-duration: 0.2s;
   
             .clear-button {
               font-weight: 500;
-              // background-color: rgb(155, 155, 155, 0.55);
               background-color: #FFC20D;
               color:black;
               height: 18px;
@@ -473,19 +465,18 @@ $suggestion-item-appear-duration: 0.2s;
               height: 100%;
               overflow: hidden;
               background-color: white;
-              // background-color: red;
               border-radius: 28px;
               transition: height 0.2s ease-out;
               input,
               button,
               textarea {
-                -webkit-appearance: none;  // Disables iOS default styling
-                border-radius: 0;         // Prevents iOS rounding input fields
+                -webkit-appearance: none; 
+                border-radius: 0;         
                 margin: 0;
                 padding: 0;
               }
               input{
-                height: auto;  // Instead of a fixed height
+                height: auto; 
                 min-height: 44px; 
 
                 border: none;
@@ -495,7 +486,7 @@ $suggestion-item-appear-duration: 0.2s;
                 width: 100%;
                 outline: none;
                 font-size: 1.6rem;
-                box-sizing: border-box;  // Ensures padding doesn't affect the total width
+                box-sizing: border-box;  
                 
                 
               }
@@ -521,16 +512,15 @@ $suggestion-item-appear-duration: 0.2s;
             height:0;
           }
           position: absolute;
-          top: 50%;  // Adjust according to the layout needs
+          top: 50%; 
           left: 50%;
           transform: translate(-50%, -120%) scale(0.75);
-          width: 100%;  // Ensure it spans the full width if needed
+          width: 100%;  
           display: flex;
           align-items: center;
           justify-content: center;
-          text-align: center;  // Centralize text inside the div
+          text-align: center; 
           img {
-            // transform: translate(0, -8px);
             max-width: 416px;
             display: block;
             display: flex;
@@ -540,8 +530,7 @@ $suggestion-item-appear-duration: 0.2s;
               transition: all 0.5s ease-in-out;
               width: 80%;
               transform: translate(0, -25%);
-              // margin-top: 12px;
-              // margin-bottom: -24px;
+
             }
           }
         }

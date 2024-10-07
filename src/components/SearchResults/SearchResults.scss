@@ -436,37 +436,27 @@
         }
       }
       width: 100%;
-      // padding-left: 32px;
 
       .item-wrap{
-        
-        // background-color: red;
         padding-bottom: 6px;
         padding-top: 6px;
         border-bottom: 1px solid rgb(180, 195, 187);
         &:first-child{
           padding-top: 0px;
         }
-        // &:last-child{
-        //   background-color: red;
-        // }
         .professor {
-          
-          // margin-bottom: 124px;
-          // background-color: purple;
           width: 100%;
           border-radius: 12px;
-          // background-color: rgb(240, 245, 242);
-          // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          // border-bottom: 1px solid #d3d3d3;
-          // margin-bottom: 6px;
           padding: 16px;
-          transition: background-color 0.01s ease-in-out;
-      
+
           display: flex;
-          align-items: center; /* Align items vertically to center the image and content */
+          align-items: center;
+
+          background-color: white;
+          transition: all 0.02s ease-in;
       
           &:hover {
+            transition: all 0.02s ease-out;
             background-color: rgb(240, 245, 242);
             cursor: pointer;
           }
@@ -487,7 +477,7 @@
             // margin-right: 6px; /* Add some space between the image and content */
       
             img {
-              border: 1px solid rgb(180, 195, 187);
+              border: 1px solid rgb(220, 225, 222);
               border-radius: 50%; /* Make the image circular */
               height: 100% !important;
               width: 100% !important;

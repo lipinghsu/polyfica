@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DropdownItem from './DropDownItem';
 import './SignupDropdown.scss';
-
+import aboutIcon from './../../../assets/aboutIcon.png'
+import signUpIcon from './../../../assets/signUpIcon.png'
+import addProfIcon from './../../../assets/addProfIcon2.png'
 const SignupDropdown = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -29,12 +31,16 @@ const SignupDropdown = (props) => {
                     link={props.link} 
                     onClick={handleClick} 
                     isLogout={props.label === "Log Out"} 
+                    icon = {aboutIcon}
+                    className="about"
                 />
                 <DropdownItem 
                     label={"Sign Me Up"} 
                     link={props.link} 
                     onClick={handleClick} 
                     isLogout={props.label === "Log Out"} 
+                    icon={signUpIcon}
+                    className="sign-up"
                 />
 
                 <DropdownItem 
@@ -42,6 +48,8 @@ const SignupDropdown = (props) => {
                     link={props.link} 
                     onClick={handleClick} 
                     isLogout={props.label === "Log Out"} 
+                    icon={addProfIcon}
+                    className="add-prof"
                 />
 
 

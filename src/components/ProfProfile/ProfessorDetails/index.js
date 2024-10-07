@@ -167,29 +167,30 @@ const ProfessorDetails = ({ professor, currentUser }) => {
             {professor.profileImage ? (
               <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
             ) : (
-              <img src={defaultProfileImage} alt="Default Profile" />
+              <img src={defaultProfileImage} alt="Default Profile" className='default-profile-image' />
             )}
           </div>
         </div>
 
         <h2 className="profName">{professor.firstName} {professor.lastName}</h2>
         <p className="profIntro">
-          Professor in the <b>{professor.department}</b> department at <b>{professor.schoolName}</b>
+          <b className='prof-intro-dep'>{professor.department} Professor</b>
+          <b>{professor.schoolName}</b>
         </p>
 
         <div className="bottom-wrap">
           <div className="count-wrap">
             <div className="review-count">
               <span className="number">{professor.commentData?.length || 0}</span>{" "}
-              <span className="count-text">{professor.commentData?.length > 1 ? "reviews" : "review"}</span>
+              <span className="count-text">{professor.commentData?.length > 1 ? "Reviews" : "Review"}</span>
             </div>
             <div className="follower-count">
               <span className="number">{professor.followers?.length || 0}</span>{" "}
-              <span className="count-text">{professor.followers?.length > 1 ? "followers" : "follower"}</span>
+              <span className="count-text">{professor.followers?.length > 1 ? "Followers" : "Follower"}</span>
             </div>
             <div className="like-count">
               <span className="number">{professor.userLikes?.length || 0}</span>{" "}
-              <span className="count-text">like{professor.userLikes?.length !== 1 ? "s" : ""}</span>
+              <span className="count-text">Like{professor.userLikes?.length !== 1 ? "s" : ""}</span>
             </div>
           </div>
 

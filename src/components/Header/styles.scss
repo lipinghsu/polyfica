@@ -62,7 +62,7 @@ $form-line-height: 1;
                 }
 
                 &:hover {
-                    background-color: rgb(238, 238, 238);
+                    background-color: rgb(240, 245, 242);
                     border-radius: 6px;
                 }
             }
@@ -364,7 +364,7 @@ $form-line-height: 1;
                     
                     padding: 0 !important;
                     &:hover {
-                        background-color: rgba(238, 238, 238, 1);
+                        background-color: rgba(240, 245, 242, 1);
                         border-radius: 6px;
                     }
                 }
@@ -400,7 +400,7 @@ $form-line-height: 1;
         background: white;
         height: calc(100vh - 60px);
         position: absolute;
-        border-right: 1px solid lightgray;
+        // border-right: 1px solid lightgray;
 
         @media (max-width: 840px) {
             min-height: calc(100vh - 6rem - 7.5rem);
@@ -442,20 +442,18 @@ $form-line-height: 1;
 
                 &:hover {
                     border-radius: 24px;
-                    background-color: rgba(238, 238, 238, 1);
+                    background-color: rgba(240, 245, 242, 1);
                 }
             }
 
             .row-account {
                 padding-bottom: 10px;
-                border-bottom: 1px lightgray solid;
+                border-bottom: 1px solid rgba(220, 225, 222, 1);;
                 margin-bottom: 10px;
 
                 .nav-item {
-                    
                     a {
                         padding: 0;
-
                         .row-account-text {
                             font-size: 1.8rem;
                             font-weight: 500;
@@ -472,9 +470,7 @@ $form-line-height: 1;
 
             .logged-out {
                 .account {
-                    border-bottom: 1px lightgray solid;
-
-                    // this is each side menu list item
+                    border-bottom: 1px solid rgba(220, 225, 222, 1);;
                     .nav-item {
                         cursor: pointer;
                         
@@ -515,7 +511,7 @@ $form-line-height: 1;
                 }
 
                 .row-review:hover{
-                    background-color: rgb(55, 55, 55);
+                    background-color: rgb(40, 45, 42);
                 }
             }
         }

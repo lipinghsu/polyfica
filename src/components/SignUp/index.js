@@ -150,15 +150,15 @@ const SignUp = props => {
                         <div className="terms">
                             
                             <span>{t("By creating an account, you agree to our ")}
-                                <Link to="/terms">
+                            <Link to="/terms">
                                     {t("Terms of Service")}
                                 </Link>
-                            </span>
-                            <span>{t(" and acknowledge our ")}
+                                {t(" and ")}
                                 <Link to="/privacy">
                                     {t("Privacy Policy")}
-                                </Link>
+                                </Link>.
                             </span>
+
                             
                         </div>
                         <Button type="submit" className={isLoading ? "btn btn-submit isLoading" : "btn btn-submit"} disabled={isLoading} isLoading={isLoading}>

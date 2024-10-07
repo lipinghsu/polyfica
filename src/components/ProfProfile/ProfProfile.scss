@@ -73,7 +73,7 @@
             height: 80px; 
             object-fit: cover; 
             border-radius: 40px;
-            border: 1px solid rgb(180, 195, 187);
+            border: 1px solid rgb(220, 225, 222);
           }
         }
       }
@@ -84,6 +84,7 @@
         font-size: 24px;
         font-weight: bold;
         margin: 8px 0;
+        margin-bottom: 4px;
         color: #333;
         @media(max-width: 840px){
           font-size: 1.9rem;
@@ -92,18 +93,23 @@
 
       .profIntro {
         @media(max-width: 840px){
-          font-size: 14px;
+          // font-size: 14px;
         }
-        font-size: 16px;
-        color: black;
-        margin-top: 0px;
-        margin-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        color: rgb(100, 115, 107);
+        margin-top: 2px;
+        margin-bottom: 8px;
+        .prof-intro-dep{
+          margin-bottom: 1px;
+        }
         b{
-          font-weight: 600 !important;
+          font-weight: 500 !important;
         }
       }
       .bottom-wrap {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
         button {
           width: 100%;
           padding: 8px 16px;
@@ -128,7 +134,7 @@
             // width: 170px;
             // width: 170px;
             border-radius: 18px;
-            font-size: 1.5rem;
+            font-size: 14px;
             font-weight: 500;
             color: black;
             background-color: white;
@@ -142,7 +148,7 @@
         .review-count,
         .follower-count,
         .like-count {
-          font-size: 16px;
+          font-size: 14px;
           .number{
             font-weight: bold;
           }
@@ -151,6 +157,7 @@
           flex-direction: column-reverse; /* Move items to different columns for small screens */
           // align-items: flex-start; /* Align to the left for better readability */
           gap: 12px; /* Adjust gap between rows */
+          margin-top: 4px;
           .count-wrap{
             @media (max-width: 840px) {
               padding-bottom: 12px;
@@ -213,7 +220,11 @@
           .follower-count,
           .like-count {
             .count-text{
-              color:#6e6d7a
+              color: rgb(100, 115, 107);
+              &:hover{
+                text-decoration: underline;
+                cursor: pointer;
+              }
             }
             display: flex;
             flex-direction: row; /* Numbers and text on the same row by default */
@@ -297,7 +308,7 @@
       }
       .review-form {
         width: 100%;
-        padding: 12px 16px;
+        padding: 6px 12px;
         cursor: pointer;      
         text-align: center;
         border-radius: 20px;
@@ -307,10 +318,13 @@
         background-color: white;
         border: 1px solid rgb(180, 195, 187);
         transition: all 0.02s ease-in-out;
-
+        .text-form-collapsed{
+          padding: 6px 8px;
+        }
         &:hover {
           border: 1px solid #00CC55;
           .text-form-collapsed{
+
             color: #00CC55;
           }
         }
@@ -402,6 +416,7 @@
         border-radius: 5px;
         height: 64px;
         resize: none;
+        margin-top: 4px;
       }
 
       .courseCodeContainer {

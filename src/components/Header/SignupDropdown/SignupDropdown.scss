@@ -12,18 +12,48 @@
     overflow: hidden;
     .dropdown-menu{
         .dropdown-item {
-        
-            display: block;
-            text-align: center;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #333;
+            display: flex;
+            flex-direction: row !important;
+            align-items: center;
+            .icon-wrap{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                width: 32px;
+                height: 32px;
+                border-radius: 16px;
+                // background-color: rgb(240, 245, 242);
+                // padding: 2px;
+                img{
+                    filter:brightness(0);
+                    height: 100%;
+                    width: 100%;
+                }
+                
+            }
+            a{
+                padding-left: 6px;
+                font-size: 1.5rem;
+                font-weight: 500;
+                &, &:visited{
+                    color:black;
+                }
+            }
+            
+            text-align: left;
+            padding: 8px 12px;
             white-space: nowrap;
-            transition: all 0.25 ease-in;
+            transition: all 0.25s ease-out;;
+            background-color: white;
+            cursor: pointer;
             &:hover{
+                transition: all 0.08s ease-out;
                 
                 background-color: rgb(240, 245, 242);
-                // border-radius: 8px;
+                .icon-wrap{
+                    // background-color:  rgb(220, 225, 222);
+                }
             }
         }
     }
