@@ -368,7 +368,8 @@ $suggestion-item-appear-duration: 0.2s;
                   .professor-department,
                   .professor-schoolName {
                     white-space: nowrap;
-                    overflow: hidden;
+                    // overflow: hidden;
+                    overflow-y: visible;
                     text-overflow: ellipsis;
                   }
                 }
@@ -392,6 +393,9 @@ $suggestion-item-appear-duration: 0.2s;
             .lu-search-icon-search-bar {
               margin-left: 22px !important;
               font-size: 2.2rem !important;
+              // width: 24px !important;;
+              // height: 24px !important;;
+              
             }
   
             .clear-button,
@@ -425,7 +429,7 @@ $suggestion-item-appear-duration: 0.2s;
               }
             
               &.active:hover {
-                border: 1px solid #FFC20D;
+                // border: 1px solid #FFC20D;
                 background-color: #008938;
                 color: #FFC20D;
                 transition: all 0.2s ease;
@@ -451,7 +455,7 @@ $suggestion-item-appear-duration: 0.2s;
   
             .clear-button:hover {
               color:#008938;
-              background-color: #F5B800;
+              background-color: #FFCC33;
               transition: all 0.05s ease-out;
             }
   
@@ -502,6 +506,7 @@ $suggestion-item-appear-duration: 0.2s;
               svg {
                 margin-left: 16px;
               }
+              transition: all 0.25s ease-out;
             }
           }
         }

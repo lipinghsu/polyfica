@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { firestore } from '../../../firebase/utils';
 import { arrayUnion, arrayRemove } from "firebase/firestore";
 import defaultProfileImage from "../../../assets/defaultProfImage.png";
+import depIcon from "../../../assets/dep-icon.png";
+import schoolIcon from "../../../assets/school-icon.png";
 import RatingSlider from "../../Header/RatingSlider";
 import MobilePopup from "../../MobilePopup";
 
@@ -174,8 +176,25 @@ const ProfessorDetails = ({ professor, currentUser }) => {
 
         <h2 className="profName">{professor.firstName} {professor.lastName}</h2>
         <p className="profIntro">
-          <b className='prof-intro-dep'>{professor.department} Professor</b>
-          <b>{professor.schoolName}</b>
+
+        <div className='section-wrap'>
+          <div className='icon-wrap'>
+              <img src={depIcon}/>
+          </div>
+          <div className='prof-intro-dep'>
+            {professor.department} Professor
+          </div>
+        </div>
+        <div className='section-wrap'>
+          
+            <div className='icon-wrap'>
+              <img src={schoolIcon}/>
+            </div>
+            <div className='prof-intro-dep'>       
+              {professor.schoolName}
+            </div>
+        </div>
+          
         </p>
 
         <div className="bottom-wrap">

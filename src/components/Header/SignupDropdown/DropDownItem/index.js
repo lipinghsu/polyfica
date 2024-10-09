@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss'
-import aboutIcon from '../../../../assets/aboutIcon.png'
 
 
 const DropDownItem = ({ label, link, onClick, isLogout, icon, className}) => {

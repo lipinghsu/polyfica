@@ -98,7 +98,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-column">
           <div className="column-title">
-            Contact info
+            Campus info
             {/* {temp} */}
           </div>
           <ul>
@@ -113,7 +113,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-column">
-          <h4 className="column-title">Campus Links</h4>
+          <h4 className="column-title">Quink Links</h4>
           <ul>
             <h2 className='quick-links'><a href="https://maps.calpoly.edu/">CAL POLY MAPS</a></h2>
             <h2 className='quick-links'><a href="https://mustangnews.net/">MUSTANG NEWS</a></h2>
@@ -151,11 +151,11 @@ const Footer = () => {
           <div className={popoutBoxDivClass} onClick={togglePopoutBox}>
             <p>{showPopoutBox ? "CLOSE" : "HELP"}</p>
           </div>
-          {showPopoutBox && (
+          
             <div className={popoutModalDivClass}>
               <p>This is the help modal content.</p>
             </div>
-          )}
+          
           <div className="polySeal-container">
             <div className="polySeal-image"/>
           </div>

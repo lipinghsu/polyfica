@@ -53,7 +53,7 @@ const Terms = props => {
             <div className='terms-detail'>
                 <h3>Contact Us</h3>
                 <p>
-                    If you have any questions about these terms, please contact us via our support page.
+                    If you have any questions, please send us a feedback.
                 </p>
             </div>
         </section>

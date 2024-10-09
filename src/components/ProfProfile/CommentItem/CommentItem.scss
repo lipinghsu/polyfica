@@ -1,14 +1,14 @@
 .commentItem {
     border-radius: 8px;
-    padding: 12px;
+    padding: 12px 18px;
     margin-bottom: 15px;
-    box-shadow: 2px 2px 3px #eeeeee, -2px -2px 3px #f5f5f5;
+    box-shadow: 2px 2px 3px hsl(0, 0%, 93%), -2px -2px 3px #f5f5f5;
     
     .commentHeader {
       // display: grid;
       // grid-template-columns: 92px 1fr;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
       // min-height: 128px;
 
       @media (max-width: 840px) {
@@ -70,7 +70,7 @@
       margin: 0 0 12px;
       height: 100%;
       color: black;
-      line-height: 1.1;
+      line-height: 1.25;
 
       @media (max-width: 840px) {
         margin-bottom: 8px;
@@ -85,7 +85,7 @@
       justify-content: flex-start;
       
       gap: 12px;
-      height: 36px;
+      height: 32px;
       margin-top: auto;
       padding-top: 3px;
       padding-bottom: 1px;
@@ -98,16 +98,18 @@
       .likeDislikeContainer {
         display: flex;
         justify-content: center;
-        width: 102px;
+        width: 88px;
         border-radius: 18px;
         background-color: rgb(240, 245, 242);
 
         .likeButton,
         .dislikeButton {
+          height: 32px;
+          width: 32px;
           background-color:rgb(240, 245, 242);
           color:black;
           padding: 8px;
-          margin: 0 10px;
+          margin: 0 8px;
           border: none;
           border-radius: 50%;
           cursor: pointer;
@@ -147,7 +149,7 @@
           display: flex;
           align-items: center;
           font-size: 16px;
-          font-weight: bold;
+          font-weight: 500;
         }
       }
 
@@ -166,7 +168,7 @@
         // background-color: #f1f1f1;
         height: 100%;
         border-radius: 18px;
-        height: 36px;
+        height: 32px;
 
         &:hover {
           background-color: rgb(200, 215, 207);
@@ -180,8 +182,8 @@
             // display: flex;
             justify-content: center;
             align-items: center;
-            height: 36px;
-            width: 36px;
+            height: 32px;
+            width: 32px;
             padding: 0;
             display:block;
             margin:auto;

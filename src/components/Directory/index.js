@@ -155,7 +155,7 @@ const Directory = ({ showSignupDropdown }) => {
     const handleClickOutside = (event) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
         setIsSearchFocused(false);
-        setSuggestions([]);
+        // setSuggestions([]);
         setActiveSuggestionIndex(-1);
       }
     };
@@ -233,8 +233,8 @@ const Directory = ({ showSignupDropdown }) => {
             <div className={`polyfica_text ${windowWidth < 840 && (suggestions.length > 0 || searchTerm.length > 0) ? 'hide' : ''}`}>
               <img src={polyfica_text} alt='polyficaText' />
             </div>
-            <div className={`search-wrapper ${isSearchFocused ? 'focused' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? 'with-shadow' : ''}`}>
-              <div className={`search-bar-block  ${searchTerm.length > 0 && !suggestionsLoading ? 'active' : ''}`}/>
+            <div className={`search-wrapper ${(suggestions.length > 0 || searchTerm.length > 0) ? 'with-shadow' : ''}`}>
+              <div className={`search-bar-block  ${searchTerm.length > 0 && !suggestionsLoading && isSearchFocused ? 'active' : ''}`}/>
               <div className={`search-bar ${isSearchFocused ? ' active' : ''} ${(suggestions.length > 0 || searchTerm.length > 0) ? ' no-shadow' : ''}`} ref={searchBarRef}>
                 <div className={`search-input ${suggestions.length > 0 ? ' active' : ''}`}>
                   <LuSearch className='lu-search-icon-search-bar' />
@@ -263,7 +263,7 @@ const Directory = ({ showSignupDropdown }) => {
                   </div>
                 </div>
                 
-                <div className={`suggestions ${searchTerm.length > 0 && !suggestionsLoading ? 'active' : ''}`}>
+                <div className={`suggestions ${searchTerm.length > 0 && isSearchFocused && !suggestionsLoading ? 'active' : ''}`}>
                     {suggestions.map((professor, index) => (
                       <Link
                         to={`/search/professors/${professor.profID}`}
@@ -291,7 +291,7 @@ const Directory = ({ showSignupDropdown }) => {
                     ))}
 
                     {/* Add the last suggestion to search for the term */}
-                    {searchTerm.length > 0 && (
+                    {searchTerm.length > 0 && isSearchFocused &&(
                     <div
                       className={`suggestion-item search-for ${activeSuggestionIndex === suggestions.length ? 'active' : ''}`}
                       onClick={() => {

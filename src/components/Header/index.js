@@ -472,7 +472,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                             </div>
                                          
                             <div className="terms">
-                                By clicking the "Submit" button, I acknowledge that I have read and agreed to the
+                                By subbmiting this review, you agree to our
                                 <span>{t(" ")}</span>
                                 <Link to="/terms">
                                     {t("Terms of Service")}

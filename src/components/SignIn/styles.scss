@@ -19,6 +19,7 @@ $signInMargin: 4rem;
         text-align: center;
         font-size: 1.45rem;
         margin-bottom: 10px;
+        
         a, a:visited{
             &:hover{
                 text-decoration: underline;
@@ -31,6 +32,7 @@ $signInMargin: 4rem;
     .wrap{
         width: 100%;
         padding-top: 17.5px;
+        padding-bottom: 12.5px;
         background: rgb(248, 250, 247);
         border-radius: 25px;
         box-shadow:  3.5px 3.5px 2px #eeeeee,

@@ -1,5 +1,5 @@
 .profProfile {
-  border-top: 1px solid rgb(180, 195, 187);
+  border-top: 1px solid rgb(180, 185, 182);
   padding-top: 12px;
   margin: 0 36px 36px 36px;
   
@@ -93,20 +93,38 @@
 
       .profIntro {
         @media(max-width: 840px){
-          // font-size: 14px;
+          margin-bottom: 4px;
         }
         display: flex;
         flex-direction: column;
         font-size: 14px;
         color: rgb(100, 115, 107);
         margin-top: 2px;
-        margin-bottom: 8px;
-        .prof-intro-dep{
-          margin-bottom: 1px;
+        margin-bottom: 0px;
+        .section-wrap{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .icon-wrap{
+            height: 20px;
+            width: 20px;
+            // background-color: black;
+            img{
+              filter: brightness(0.5) saturate(2) hue-rotate(90deg);
+              // background-color: red;
+              height: 100%;
+              width: 100%;
+            }
+          }
+          .prof-intro-dep{
+            // margin-bottom: 1px;
+            margin-left: 4px;
+            font-weight: 500 !important;
+          }
         }
-        b{
-          font-weight: 500 !important;
-        }
+
+
+
       }
       .bottom-wrap {
         margin-bottom: 8px;
@@ -239,6 +257,7 @@
           .follow-button,
           .like-button,
           .review-button{
+            height: 32px;;
             font-size: 1.4rem;
             font-weight: 500;
             font-family: Helvetica Neue, Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
@@ -532,11 +551,12 @@
   }
 
   .profComments {
+    // padding: 0 256px;
     border-radius: 8px;
     margin-top: 20px;
     margin-bottom: 20px;
     @media (max-width: 840px) {
-      margin-top: 0px;
+      margin-top: 8px;
     }
 
     .no-comments{
