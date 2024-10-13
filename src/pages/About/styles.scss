@@ -1,32 +1,84 @@
-.about{
-    .about-wrap{
-        // padding: 128px 128px;
-        .image-container{
+.about {
+    .about-wrap {
+        position: relative;
+
+        .image-container {
             width: 100%;
-            img{
+            height: calc(100vh - 60px); // Fill the viewport height minus header
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
                 width: 100%;
-                // min-height: 1040px;
+                height: 100%;
+                filter: brightness(0.6); // Slightly darken the image for better text contrast
                 object-fit: cover;
-                object-position: 0 0;
-                @media (max-width:1040px) {
-                    min-height: 0;
-                    
+                object-position: center;
+                z-index: 1;
+
+                @media (max-width: 1040px) {
+                    height: auto;
                     object-fit: contain;
                 }
             }
 
-        }
-        .text-content-wrap{
-            padding: 16px 36px;
-            @media (max-width: 840px){
-                padding: 16px 24px;
-            }
-            .text-content{
-                font-size: 1.8rem;
-                // font-weight: 500;
+            h3 {
+                position: absolute;
+                z-index: 2;
+                color: white;
+                font-size: 5rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                padding: 16px;
+                text-align: center;
+                font-weight: 700; // Bold, clean look
+                font-family: "Helvetica Neue", sans-serif; // Use a modern font family
+                @media (max-width: 840px) {
+                    font-size: 3.5rem;
+                }
             }
         }
 
+        .text-content-wrap {
+            max-width: 1024px; // Limit width for a clean, blog-like layout
+            margin: 60px auto; // Center the content and add spacing from the top
+            padding: 0 20px;
+            text-align: left;
+            
+
+            @media (max-width: 840px) {
+                margin: 40px auto;
+                padding: 0 15px;
+            }
+
+            .text-content {
+                font-size: 1.8rem; // Clean, large text size
+                line-height: 1.75;
+                color: #222; // Darker text for better readability
+                margin-bottom: 40px;
+                font-family: "Georgia", serif; // Modern serif font for body text
+                font-weight: 400; // Regular weight for readability
+                text-align: left;
+
+                a {
+                    color: #000;
+                    font-weight: 600;
+                    text-decoration: underline; // Similar to the blog's link styling
+                    &:hover {
+                        color: #555; // Slight hover effect
+                    }
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                @media (max-width: 840px) {
+                    font-size: 1.6rem;
+                    margin-bottom: 30px;
+                }
+            }
+        }
     }
-    
 }

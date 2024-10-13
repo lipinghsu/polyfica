@@ -3,23 +3,19 @@
     padding: 12px 18px;
     margin-bottom: 15px;
     box-shadow: 2px 2px 3px hsl(0, 0%, 93%), -2px -2px 3px #f5f5f5;
-    
+
     .commentHeader {
-      // display: grid;
-      // grid-template-columns: 92px 1fr;
       justify-content: space-between;
       margin-bottom: 4px;
-      // min-height: 128px;
 
       @media (max-width: 840px) {
-        display: flex;
-        flex-direction: column;
+        padding-bottom: 8px;
       }
       .commentTop {
         display: flex;
-        justify-content: space-between; // Ensures .commentUser and .commentDate stay at the sides
+        justify-content: space-between;
         align-items: center;
-        position: relative; // To allow absolute positioning for .commentCourse
+        position: relative; 
         width: 100%;
         margin-bottom: 8px;
         padding-top: 8px;
@@ -31,7 +27,6 @@
         }
       
         .commentCourse {
-          // background-color: white;
           color:black !important;
           height: 32px;
           border-radius: 16px;

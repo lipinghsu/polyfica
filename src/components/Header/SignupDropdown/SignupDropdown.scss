@@ -1,20 +1,48 @@
 .signup-dropdown {
-    position: absolute;
-    top: 60px;
     right: 0;
-    background: white;
+    top: 60px;
+    position: absolute;
+
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-size: 1.5rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    height: 0;
+    transition: height 0.15s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
+    &.open{
+        transition: height 0.15s ease-in-out;
+        transition: opacity 0.25s ease-in-out;
+        opacity: 1;
+        height: calc(48px * 3);
+    }
+
     .dropdown-menu{
         .dropdown-item {
             display: flex;
             flex-direction: row !important;
             align-items: center;
+            text-align: left;
+            padding: 8px 12px;
+            white-space: nowrap;
+            transition: all 0.25s ease-out;;
+            background-color: white;
+            cursor: pointer;
+            
+            &:hover{
+                transition: all 0.08s ease-out;
+                background-color: rgb(240, 245, 242);
+                .icon-wrap{
+                    // background-color:  rgb(220, 225, 222);
+                }
+            }
+
+
             .icon-wrap{
                 display: flex;
                 justify-content: center;
@@ -23,15 +51,13 @@
                 width: 32px;
                 height: 32px;
                 border-radius: 16px;
-                // background-color: rgb(240, 245, 242);
-                // padding: 2px;
                 img{
                     filter:brightness(0);
                     height: 100%;
                     width: 100%;
                 }
-                
             }
+
             a{
                 padding-left: 6px;
                 font-size: 1.5rem;
@@ -41,20 +67,8 @@
                 }
             }
             
-            text-align: left;
-            padding: 8px 12px;
-            white-space: nowrap;
-            transition: all 0.25s ease-out;;
-            background-color: white;
-            cursor: pointer;
-            &:hover{
-                transition: all 0.08s ease-out;
-                
-                background-color: rgb(240, 245, 242);
-                .icon-wrap{
-                    // background-color:  rgb(220, 225, 222);
-                }
-            }
+  
+
         }
     }
 }

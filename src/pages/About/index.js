@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from "react-i18next";
-
+import aboutImg from './../../assets/horsie2.jpg'
 import './styles.scss';
-// import backgroundImage from '../../../src/assets/tp101.jpg';
+
 
 const About = props => {
     const { t } = useTranslation(["about"]);
@@ -11,23 +11,24 @@ const About = props => {
         window.scrollTo(0, 0);
     },[])
 
-    return(
+    return (
         <section className='about'>
             <div className='about-wrap'>
                 <div className="image-container">
-                    <img src={""}></img>
+                    <img src= {aboutImg} alt="About Us image"/>
+                    <h3>About</h3>
                 </div>
                 <div className='text-content-wrap'>
-                    <h3>About</h3>
                     <p className='text-content'>
-                    &emsp;&emsp;{t("Büshka, originating from Taipei, is an autonomous streetwear label founded in 2023. It serves as a fusion of contemporary street culture with traditional eastern influences, positioning itself as an independent streetwear clothing brand.")} 
+                        &emsp;&emsp;{t("Welcome to Polyfica, the go-to platform for honest and transparent professor ratings at Cal Poly SLO. Created by students, for students, we aim to provide you with up-to-date and accurate feedback on your professors to help you make informed decisions when selecting classes.")}
                     </p>
                     <p className='text-content'>
-                    &emsp;&emsp;{t("By blending elements from the rich heritage of eastern culture with modern streetwear aesthetics, Büshka aims to create an unique and captivating clothing experience for its audience. With a focus on merging the past and the present, Büshka's vision is to offer a distinctive style that resonates with individuals seeking a harmonious balance between tradition and urban fashion.")}
+                        &emsp;&emsp;{t("Our mission is simple: empower students to share their experiences and insights, making academic life a little easier for everyone. Whether you're looking for the best instructor for your major or trying to avoid a challenging teaching style, we’ve got you covered with easy-to-use search features and detailed reviews.")}
+                    </p>
+                    <p className='text-content'>
+                        &emsp;&emsp;{t("Join us in building a community of students helping students, and make the most of your academic journey.")}
                     </p>
                 </div>
-                
-
             </div>
         </section>
     );

@@ -212,7 +212,7 @@ const Directory = ({ showSignupDropdown }) => {
     else {
       setSuggestions([]);
     }
-  }, [searchTerm]);
+  }, [searchTerm, isSearchFocused]);
   
   const highlightMatch = (text, searchTerm) => {
     const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
@@ -268,7 +268,7 @@ const Directory = ({ showSignupDropdown }) => {
                       <Link
                         to={`/search/professors/${professor.profID}`}
                         key={index}
-                        className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''}`}
+                        className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''} ${searchTerm.length > 0 && isSearchFocused && !suggestionsLoading ? 'show' : ''}` }
                       >
                         <div className='profileImage-wrap'>
                           {professor.profileImage ? (

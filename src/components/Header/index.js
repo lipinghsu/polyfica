@@ -331,8 +331,11 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                             onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
-                                        {showSignupDropdown && 
-                                        <SignupDropdown link="/registration" class="SignupDropdown"/>}
+                                        <SignupDropdown 
+                                            
+                                            class="SignupDropdown"
+                                            showSignupDropdown = {showSignupDropdown}
+                                        />
                                     </div>
                                 ]}
                             </ul>
@@ -496,7 +499,6 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                     </div>
                 </form>
             )}
-
         </>
     );
 };
