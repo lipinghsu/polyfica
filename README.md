@@ -1,9 +1,7 @@
-[Visit the deployed application](https://profh-2298e.web.app/)<br/>
-```markdown
-# Firebase React Project
+# <a href="https://profh-2298e.web.app/">Pölyfica</a>
 
 ## Overview
-This project is a React application that leverages Firebase for backend services, including authentication, Firestore database, and hosting. The application allows users to write reviews and interact with various features.
+A comprehensive redesign of Polyratings, developed as a senior project at Cal Poly SLO, focusing on improving user experience and modernizing the platform.
 
 ## Table of Contents
 - [Firebase React Project](#firebase-react-project)
