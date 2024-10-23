@@ -15,18 +15,18 @@ const About = props => {
         <section className='about'>
             <div className='about-wrap'>
                 <div className="image-container">
-                    <img src= {aboutImg} alt="About Us image"/>
-                    <h3>About</h3>
+                    <img src= {aboutImg} alt="About Us Image"/>
+                    <h3 className='text-in-img'>About</h3>
                 </div>
                 <div className='text-content-wrap'>
                     <p className='text-content'>
-                        &emsp;&emsp;{t("Welcome to Polyfica, the go-to platform for honest and transparent professor ratings at Cal Poly SLO. Created by students, for students, we aim to provide you with up-to-date and accurate feedback on your professors to help you make informed decisions when selecting classes.")}
+                        &emsp;&emsp;{t("At Polyfica, we are revolutionizing the way students at Cal Poly SLO choose their professors. Our platform is designed to help students make informed decisions by providing reliable, student-driven reviews of professors.")}
                     </p>
                     <p className='text-content'>
-                        &emsp;&emsp;{t("Our mission is simple: empower students to share their experiences and insights, making academic life a little easier for everyone. Whether you're looking for the best instructor for your major or trying to avoid a challenging teaching style, we’ve got you covered with easy-to-use search features and detailed reviews.")}
+                        &emsp;&emsp;{t("Whether you're aiming to find the best professor for a specific class, avoid a teaching style that doesn't work for you, or simply discover which instructors can elevate your learning experience, our goal is to make your academic journey smoother, more fulfilling, and more enjoyable.")}
                     </p>
                     <p className='text-content'>
-                        &emsp;&emsp;{t("Join us in building a community of students helping students, and make the most of your academic journey.")}
+                        &emsp;&emsp;{t("With a user-friendly interface and continuously updated content, we ensure that you have the most accurate and relevant information at your fingertips. Join our community of students helping students, and make the most of your academic journey.")}
                     </p>
                 </div>
             </div>

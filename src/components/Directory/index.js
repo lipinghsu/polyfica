@@ -21,15 +21,36 @@ const Directory = ({ showSignupDropdown }) => {
   const [suggestionsLoading, setSuggestionsLoading] = useState(false);
 
   useEffect(() => {
-    if (searchTerm && !/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    } else if (searchTerm) {
-      window.scrollTo(0, 0);
-    }
-  }, [searchTerm, isSearchFocused]);
+    window.scrollTo(0, 0);
+      // window.scrollTo({
+      //   top: 0,
+      //   behavior: 'smooth'
+      // });
+    // if (searchTerm && !/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    //   window.scrollTo({
+    //     top: 0,
+    //     behavior: 'smooth'
+    //   });
+    // } else if (searchTerm) {
+    //   window.scrollTo(0, 0);
+    // }
+  }, [searchTerm]);
+
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    // if (searchTerm && !/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    //   window.scrollTo({
+    //     top: 0,
+    //     behavior: 'smooth'
+    //   });
+    // } else if (searchTerm) {
+    //   window.scrollTo(0, 0);
+    // }
+  }, [isSearchFocused]);
 
   // Update windowWidth when the window is resized
   useEffect(() => {

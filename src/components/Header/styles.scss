@@ -629,6 +629,7 @@ $form-line-height: 1;
 
 
             .formInput{
+ 
                 
             }
             .formInput,
@@ -641,7 +642,11 @@ $form-line-height: 1;
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 box-sizing: border-box;
-                transition: border-color 0.3s ease;
+                transition: border 0.1s ease-in;
+                &:hover{
+                    border: 1.5px solid rgb(0, 137, 56);
+                    transition: border 0.1s ease-out;
+                }
                 &.filled-input{
                     // border: 1px solid #008938 !important;
                 }
@@ -702,13 +707,14 @@ $form-line-height: 1;
 .rev-modal.active::before { 
     opacity: 1;
     z-index: -100;
+    transition: all 0.55s ease-out;
 }
 
 .rev-modal.active {
     opacity: 1;
     margin-top: 0px;
     z-index: 10;
-    transition: 0.55s all ease-out;
+    transition: all 0.55s ease-out;
 }
 
 .close-button {
@@ -731,7 +737,9 @@ $form-line-height: 1;
 
     &:hover {
         color: #E74C3C;
-        background-color: rgb(220, 225, 222);
+        color:white;
+        background-color: #E74C3C;
+        // background-color: rgb(220, 225, 222);
     }
     .close-image {
         margin-bottom: 3px;

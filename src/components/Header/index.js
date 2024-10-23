@@ -74,8 +74,12 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
         if (sidebar && showModal) {
             document.body.style.overflow = '';
         }
-        else if (sidebar) {
+        else if (sidebar || showModal) {
             document.body.style.overflow = 'hidden';
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         } 
         else {
             document.body.style.overflow = '';
@@ -372,8 +376,9 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                         {!currentUser && [
                             <div className='logged-out'>
                                 <div className='account'>
-                                    <NavItem text={t("Log in")} link="/login" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
-                                    <NavItem text={t("Sign up")} link="/registration" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
+                                <NavItem text={t("About")} link="/about" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
+                                    <NavItem text={t("Log In")} link="/login" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
+                                    <NavItem text={t("Sign Up")} link="/registration" setSidebar={setSidebar} sidebar={sidebar} mobile={true} />
                                 </div>
                                 <div className='row-review' onClick={handleWriteReviewClick}>
                                     <ConditionalLink 

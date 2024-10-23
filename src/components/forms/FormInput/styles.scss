@@ -50,7 +50,6 @@ $customLightGray: #bbbbbb;
     input:hover{
         border: 1.5px solid rgb(0, 137, 56);
         transition: none;
-        
     }
     input:active, input:focus{
         border: 2px solid rgb(0, 137, 56);
@@ -85,7 +84,7 @@ $customLightGray: #bbbbbb;
 
 // label transformation when input is filled
 .formRow .filled {
-    transform: translate(6px, -4px) scale(1);
+    transform: translate(2px, -4px) scale(1);
     position: absolute;
     font-weight: 600;
     // color: #3B3A3B;

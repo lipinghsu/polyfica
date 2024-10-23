@@ -99,7 +99,8 @@
     }
     
     .submit-button {
-      padding: 4px 6px;
+      // padding: 4px 6px;
+      padding: 4px;
       border-radius: 18px;
       height: 34px;
       width: 34px;
@@ -109,15 +110,23 @@
       justify-content: center;
       align-items: center;
       border: 0px !important;
-      background-color: transparent;
-      color:white;
+      // background-color: transparent;
+      // color:white;
+      background-color: #FFC20D;
+      color:black;
+      // color: #008938;
+      
       .arrow-icon{
-        transform: scale(1.25);
+        height: 34px;
+        width: 34px;
+        transform: scale(0.75);
       }
     }
     
     .submit-button:hover {
-      background-color: #006f2b;
+      // background-color: #006f2b;
+      // color:white;
+      color: #008938;
     }
     
     .success-message {
@@ -298,37 +307,32 @@ ul {
       margin-left: 96px;
       
       padding: 8px;
-      border-radius: 8px;
       height: 256px;
-      
+      border-radius: 8px;
       
       color: black;
-
-      // opacity: 0;
-      margin-bottom: 140px;
-      // color:transparent;
-      // background-color: transparent;
+      margin-bottom: 140px; 
+    
       transition: all 0.2s ease-out;
       z-index: -1;
     
-      // width:0;
       box-shadow:none;
       @media (max-width: 840px){
-        transform: translateY(-82px);
+        transform: translateY(-98px);
         left: 24px;
       }
     }
 
     .popout-box-modal.active {
-      height: 256px;
-      // width:188px;
-      background-color: #FFFFFF;
-      color:black;
-      transition: all 0.2s ease-out;
       opacity: 1;
-      margin-bottom: 142px;
+      color:black;
+      background-color: #FFFFFF;
+      transition: all 0.2s ease-out;
+      
       z-index: 10;
+      margin-bottom: 142px;
       box-shadow: 1px 1px 3px rgba(90, 90, 90, 0.25);
+
       @media (max-width: 840px){
         transform: translateY(-142px);
         left: 24px;

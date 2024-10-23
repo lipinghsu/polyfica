@@ -132,7 +132,11 @@ $signInMargin: 4rem;
                 font-weight: 700;
                 font-size: 1.4rem;
                 padding: 1rem 0;
-                color: #{$customDarkerGray}
+                color: #{$customDarkerGray};
+                span{
+                    // color: #FFC20D !important;
+                    //  background-color: red;
+                }
             }
 
             .or-tag:before{

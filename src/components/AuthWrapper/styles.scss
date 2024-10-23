@@ -28,6 +28,7 @@ $signInMargin: 0rem;
         width: 100%;
         // dont have an account?
         h2{
+            
             font-size: 2.75rem;
             line-height: 1;
             font-weight: 800;
@@ -35,11 +36,12 @@ $signInMargin: 0rem;
             display: block;
             width: 100%;
             padding: 0;
-            margin: 1.5rem auto 0.75rem auto;
+            margin: 1.0rem auto 1rem auto;
         }
 
         // dont have an account?
         h3{
+            
             display: block !important;
             text-align: center;
             font-weight: 700;

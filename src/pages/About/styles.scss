@@ -2,9 +2,13 @@
     .about-wrap {
         position: relative;
 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         .image-container {
             width: 100%;
-            height: calc(100vh - 60px); // Fill the viewport height minus header
+            // height: calc(100vh - 60px); // Fill the viewport height minus header
             display: flex;
             justify-content: center;
             align-items: center;
@@ -12,7 +16,7 @@
             img {
                 width: 100%;
                 height: 100%;
-                filter: brightness(0.6); // Slightly darken the image for better text contrast
+                filter: brightness(0.75);
                 object-fit: cover;
                 object-position: center;
                 z-index: 1;
@@ -23,50 +27,64 @@
                 }
             }
 
-            h3 {
+            .text-in-img {
                 position: absolute;
                 z-index: 2;
                 color: white;
+                background-color: black;
+                border-radius: 41px;
+                
                 font-size: 5rem;
                 letter-spacing: 1px;
                 text-transform: uppercase;
-                padding: 16px;
+                padding: 16px 32px;
+                border-bottom: 2px solid #008938;
+                border-right: 2px solid #008938;
+                border-top: 2px solid #FFC20D;
+                border-left: 2px solid #FFC20D;
+
                 text-align: center;
                 font-weight: 700; // Bold, clean look
-                font-family: "Helvetica Neue", sans-serif; // Use a modern font family
+                font-family: "Helvetica Neue", sans-serif;
                 @media (max-width: 840px) {
-                    font-size: 3.5rem;
+                    font-size: 2.5rem;
                 }
             }
         }
 
         .text-content-wrap {
-            max-width: 1024px; // Limit width for a clean, blog-like layout
-            margin: 60px auto; // Center the content and add spacing from the top
+            max-width: 1536px; 
+            margin: 32px 32px; 
+            margin-bottom: 56px;
             padding: 0 20px;
             text-align: left;
-            
 
             @media (max-width: 840px) {
-                margin: 40px auto;
-                padding: 0 15px;
+                margin: 32px 16px;
+                margin-top: 16px;
+                margin-bottom: 40px;
+                padding: 0px;
             }
 
             .text-content {
-                font-size: 1.8rem; // Clean, large text size
+                font-size: 1.8rem; 
                 line-height: 1.75;
-                color: #222; // Darker text for better readability
-                margin-bottom: 40px;
-                font-family: "Georgia", serif; // Modern serif font for body text
-                font-weight: 400; // Regular weight for readability
+                color: #222; 
+                margin-bottom: 24px;
+                margin-top: 24px;
+                font-family: "Georgia", serif;
+                
+                // chatGPT font
+                // font-family: Söhne, sans-serif;
+                font-weight: 400; 
                 text-align: left;
 
                 a {
                     color: #000;
                     font-weight: 600;
-                    text-decoration: underline; // Similar to the blog's link styling
+                    text-decoration: underline;
                     &:hover {
-                        color: #555; // Slight hover effect
+                        color: #555;
                     }
                 }
 
@@ -76,7 +94,6 @@
 
                 @media (max-width: 840px) {
                     font-size: 1.6rem;
-                    margin-bottom: 30px;
                 }
             }
         }

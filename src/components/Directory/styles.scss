@@ -13,10 +13,10 @@ $suggestion-item-appear-duration: 0.2s;
     min-height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
   
     .typing-banner {
-      background-color: #008938;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
+      background-color: rgb(240, 245, 242) ;
+      color: black;
+      font-weight: 500;
+      font-size: 1.75rem;
       height: 48px;
       width: 100%;
       

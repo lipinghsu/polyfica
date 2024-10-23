@@ -70,9 +70,9 @@ const EmailPassword = props => {
     };
     return(
         <AuthWrapper { ...configAuthWrapeer }>
-                <h3>
-                    {t("We will send you an email to reset your password.")}
-                </h3>
+            <div className="subtitle">
+                {t("We will send you an email to reset your password.")}
+            </div>
             <div className="formWrap">
                 
                 {errors.length > 0 && (
