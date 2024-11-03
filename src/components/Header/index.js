@@ -72,7 +72,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
     // Disable window scrolling if sidebar or modal is active
     useEffect(() => {
         if (sidebar && showModal) {
-            document.body.style.overflow = '';
+            document.body.style.overflow = 'hidden';
         }
         else if (sidebar || showModal) {
             document.body.style.overflow = 'hidden';
@@ -480,7 +480,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                             </div>
                                          
                             <div className="terms">
-                                By subbmiting this review, you agree to our
+                                By submitting this review, you agree to our
                                 <span>{t(" ")}</span>
                                 <Link to="/terms">
                                     {t("Terms of Service")}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Directory from '../components/Directory';
 import './styles.scss';
 
 const HomepageLayout = (props) => {
@@ -14,8 +15,9 @@ const HomepageLayout = (props) => {
                 setShowSignupDropdown={setShowSignupDropdown} 
                 homepageHeader = {true}
             />
-            {React.cloneElement(props.children, { showSignupDropdown })}
-            <Footer />
+            {/* <Directory showSignupDropdown={showSignupDropdown} /> */}
+            {React.cloneElement(props.children, { showSignupDropdown, setShowSignupDropdown })}
+            {/* <Footer /> */}
         </div>
     );
 };

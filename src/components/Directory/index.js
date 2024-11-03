@@ -7,7 +7,6 @@ import defaultProfileImage from "../../assets/defaultProfImage.png";
 
 import './styles.scss';
 
-
 const Directory = ({ showSignupDropdown }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -22,18 +21,7 @@ const Directory = ({ showSignupDropdown }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-      // window.scrollTo({
-      //   top: 0,
-      //   behavior: 'smooth'
-      // });
-    // if (searchTerm && !/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    //   window.scrollTo({
-    //     top: 0,
-    //     behavior: 'smooth'
-    //   });
-    // } else if (searchTerm) {
-    //   window.scrollTo(0, 0);
-    // }
+
   }, [searchTerm]);
 
   useEffect(() => {
@@ -42,14 +30,7 @@ const Directory = ({ showSignupDropdown }) => {
       top: 0,
       behavior: 'smooth'
     });
-    // if (searchTerm && !/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    //   window.scrollTo({
-    //     top: 0,
-    //     behavior: 'smooth'
-    //   });
-    // } else if (searchTerm) {
-    //   window.scrollTo(0, 0);
-    // }
+
   }, [isSearchFocused]);
 
   // Update windowWidth when the window is resized
@@ -337,7 +318,7 @@ const Directory = ({ showSignupDropdown }) => {
               <div className='item-logo'/>
             </a>
             <div className='overlay'/>
-            {/* <div className='lbd'>LEARN BY DOING</div> */}
+            <div className='lbd'>LEARN <span>BY</span> DOING</div>
           </div>
           
         </div>

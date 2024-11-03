@@ -208,6 +208,8 @@ const TopReviews = () => {
 
   return (
     <div className="top-reviews">
+       {/* <h1 className="heading">Discover the best professors at Cal Poly SLO!</h1> */}
+       {/* <h2 className="subheading">Your top resource for professor ratings and student feedback.</h2> */}
       <h1 className="title">The Latest Reviews from Students</h1>
       <div className="marquee" ref={marqueeRef}>
         <div className="marquee-content">
@@ -217,7 +219,11 @@ const TopReviews = () => {
               <div className="item" key={index} >
                 <div className="inner-wrap">
                   <div className="top">
+                    <div className='pin'>
+                    </div>
+                  
                     <div className="rating-score">
+                    
                       <Rating
                         value={review.difficultyRating}
                         name="size-large"
@@ -241,7 +247,9 @@ const TopReviews = () => {
                     
                   </div>
                   <div className="bottom">
+                    
                     <div className="user-prof-container">
+                      
                       <span className="prof-name">
                         <Link to={`/search/professors/${review.professorID}`}>{`${review.professorName}`}</Link>
                       </span>

@@ -7,7 +7,7 @@ $headerHeight: 6rem;
 $signInMargin: 4rem;
 
 .main-account{
-    // height: calc(100vw - $headerHeight - $signInMargin);
+    // height: calc(100 * --vh - $headerHeight - $signInMargin);
 }
 
 .authWrapper{

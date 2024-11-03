@@ -4,8 +4,8 @@
   margin: auto 0px;
   justify-content: center;
   align-items: center;
+  min-height: calc(50vh - 60px);
   
-
   .searchTermInfo {
     border-radius: 16px;
     margin: auto 32px;
@@ -68,6 +68,7 @@
       padding: 0 16px;
 
       .prof-wrap {
+        
         margin-top: 24px;
         margin-left: 0 !important;
         @media (max-width: 1020px) {
@@ -246,7 +247,8 @@
             background-color: #00cc55;
           }
           &:hover {
-            background-color: rgb(200, 215, 207);
+            transition: all 0.02s ease-in-out;
+            background-color: rgba(200, 215, 207, 0.6);
             .arrow-icon{
               background-color: #002911;
             }
@@ -371,6 +373,7 @@
 
     .prof-wrap {
       margin-left: 32px;
+      
       .no-result{
         @media (max-width: 840px) {
           height: calc(100vh - 190px);
@@ -438,9 +441,9 @@
       width: 100%;
 
       .item-wrap{
-        padding-bottom: 6px;
-        padding-top: 6px;
-        border-bottom: 1px solid rgb(180, 195, 187);
+        padding-bottom: 4px;
+        padding-top: 4px;
+        // border-bottom: 1px solid rgb(180, 195, 187);
         &:first-child{
           padding-top: 0px;
         }
@@ -452,12 +455,12 @@
           display: flex;
           align-items: center;
 
-          background-color: white;
-          transition: all 0.02s ease-in;
+          background-color:  rgb(240, 245, 242);
+          transition: all 0.02s ease-in-out;
       
           &:hover {
-            transition: all 0.02s ease-out;
-            background-color: rgb(240, 245, 242);
+            transition: all 0.02s ease-in-out;
+            background-color: rgba(200, 215, 207, 0.6);
             cursor: pointer;
           }
   
@@ -523,7 +526,7 @@
           
               .schoolName {
                 font-size: 1.2rem;
-                color: #333;
+                color: #222;
               }
           
               .reviewCommentLength {

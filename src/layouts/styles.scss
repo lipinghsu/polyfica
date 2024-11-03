@@ -1,6 +1,24 @@
 $ButtonHeight: 49px;
 
+.homepage-layout {
+    // height: 100vh;
+    // overflow-y: scroll;
+    // scroll-snap-type: y mandatory; // Enables vertical snapping
+}
 
+.snap-section {
+    height: calc(100vh - 60px);              // Full viewport height for the entire layout
+    scroll-snap-align: start;   // Snaps to the top of this section
+    display: flex;
+    flex-direction: column;     // Stacks header, main content, and footer vertically
+}
+
+.flex-wrapper-homepage-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;               // Full height for flexible inner content arrangement
+    overflow: hidden;           // Ensure no extra scroll for internal elements
+}
 
 .flex-wrapper-main-layout{
     .main{

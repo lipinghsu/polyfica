@@ -35,6 +35,7 @@ const Footer = () => {
       console.error('Error uploading location data:', error);
     }
   };
+  
 
   // Request location permission on page load and upload to Firebase if granted
   useEffect(() => {
