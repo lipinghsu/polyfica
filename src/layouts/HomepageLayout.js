@@ -8,7 +8,7 @@ const HomepageLayout = (props) => {
     const [showSignupDropdown, setShowSignupDropdown] = useState(false);
 
     return (
-        <div className='flex-wrapper-homepage-layout'>
+        <div className=''>
             <Header 
                 {...props} 
                 showSignupDropdown={showSignupDropdown} 

@@ -4,6 +4,7 @@
   margin-bottom: 24px;
   min-height: calc(50vh - 56px);
   text-align: center;
+  
 
   @media (max-width: 840px) {
     // padding-top: 36px;
@@ -114,7 +115,7 @@
       gap: 12px;
       height: 100%;
       @media (max-width: 840px) {
-        
+
       }
 
       .top {  
@@ -270,13 +271,15 @@
 }
 
 .item.skeleton{
-  margin: 8px 12px;
-  gap: 0;
+  // margin: 8px 12px;
+  // gap: 16px;
+  gap:12px;
+  padding: 24px;
   .inner-wrap{
     gap: 0;
     width: 100%;
     height: 100%;
-    padding: 12px;
+    padding: 0px;
     padding-bottom: 0;
     padding-top: 0;
 
@@ -284,7 +287,7 @@
       width: 94px;
       height: 22px;
       background-color: #e0e0e0;
-      margin-bottom: 16px;
+      // margin-bottom: 16px;
       .top-content{
         background-color: #e0e0e0;
         width: 100%;

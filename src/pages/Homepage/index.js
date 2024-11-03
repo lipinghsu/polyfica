@@ -14,7 +14,7 @@ const Homepage = ({ showSignupDropdown, setShowSignupDropdown }) => {
     useScrollSnap({ ref: scrollRef, duration: 320, delay: 0});
     return (
         <section className='homepage' >
-            <div className="snap-section">
+            {/* <div className="snap-section"> */}
             {/* <Header 
                 // {...props} 
                 showSignupDropdown={showSignupDropdown} 
@@ -22,7 +22,7 @@ const Homepage = ({ showSignupDropdown, setShowSignupDropdown }) => {
                 homepageHeader = {true}
             /> */}
                 <Directory showSignupDropdown={showSignupDropdown} />
-            </div>
+            {/* </div> */}
             {/* <div className="snap-section"> */}
                 <TopReviews />
                 {/* <Footer /> */}

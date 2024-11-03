@@ -51,14 +51,15 @@ $signInMargin: 4rem;
                 align-items: center;
                 gap: 12px;
                 .row{
-                    transition: all 0.25s ease-out;
                     .btn{
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        filter:brightness(1.15);
                         
                         &:hover{
-                            filter:brightness(0.85);
+                            box-shadow: 0px 0px 4.5px #383838;
+                            transform: scale(1.04);
                         } 
 
                         width: 38px;
@@ -77,6 +78,7 @@ $signInMargin: 4rem;
                         padding: 7px;
                     }
                     .btn-google:hover{
+                        
                         // background-color: #fa2d1a0c;
                         // border: 2px solid #fa2d1a2c;
                         // color:#fa2d1a;
@@ -91,7 +93,9 @@ $signInMargin: 4rem;
                     }
         
                     .btn-apple:hover{
-                        filter: invert(1) brightness(0.85); 
+                        box-shadow: 0px 0px 4.5px #C7C7C7;
+                        transform: scale(1.04);
+                        filter: invert(1) brightness(1.25); 
                         // background-color: #8b8b8b;
                         img{
                             // filter: opacity(85%);
@@ -116,7 +120,10 @@ $signInMargin: 4rem;
                         // border: 1px solid white;
                     }
                     .btn-twitter:hover{
-                        filter: invert(1) brightness(0.85); 
+                        // background-color: #008938;
+                        transform: scale(1.04);
+                        box-shadow: 0px 0px 4.5px #C7C7C7;
+                        filter: invert(1); 
                         // background-color: #177af20c;
                         // border: 2px solid #177af22c;
                         // background-color:#165BDA;

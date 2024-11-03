@@ -7,9 +7,9 @@ $suggestion-item-appear-duration: 0.2s;
   // background-image: url('../../assets/cp.png');
   // background-size: cover;
     // background-repeat: no-repeat;
-
-    // background-color: red;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
+  // background-color: red;
+  // height: 100%;
 
   .wrap {
     width: 100%;
@@ -18,7 +18,7 @@ $suggestion-item-appear-duration: 0.2s;
     justify-content: space-between;
     min-height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
     position: absolute; /* Ensure the parent is relatively positioned */
-bottom:0;
+    bottom:0;
     .typing-banner {
       background-color: rgb(240, 245, 242) ;
       color: black;
