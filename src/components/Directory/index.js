@@ -33,31 +33,19 @@ const Directory = ({ showSignupDropdown }) => {
 
   }, [isSearchFocused]);
 
-  // Update windowWidth when the window is resized
+  // Set a CSS variable for the mobile viewport height
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    
-    window.addEventListener('resize', handleResize);
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };  
+    setVh();
+    window.addEventListener('resize', setVh);
+
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', setVh);
     };
   }, []);
-
-  // Set a CSS variable for the mobile viewport height
-  // useEffect(() => {
-  //   const setVh = () => {
-  //     const vh = window.innerHeight * 0.01;
-  //     document.documentElement.style.setProperty('--vh', `${vh}px`);
-  //   };  
-  //   setVh();
-  //   window.addEventListener('resize', setVh);
-
-  //   return () => {
-  //     window.removeEventListener('resize', setVh);
-  //   };
-  // }, []);
 
   const phrases = [
     " Professor",

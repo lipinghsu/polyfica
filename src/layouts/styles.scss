@@ -5,6 +5,11 @@ $ButtonHeight: 49px;
     // overflow-y: scroll;
     // scroll-snap-type: y mandatory; // Enables vertical snapping
 }
+.flex-wrapper-about-layout{
+    .about-wrap{
+        height: calc(100vh - 60px);
+    }
+}
 
 .snap-section {
     height: calc(100vh - 60px);              // Full viewport height for the entire layout

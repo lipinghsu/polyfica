@@ -5,7 +5,7 @@ $form-line-height: 1;
 .header {
     transition: all 0.25s ease-out;
     height: 6rem;
-    background-color: white;
+    background-color: transparent;
     z-index: 10;
     position: sticky;
     top: 0;
@@ -17,7 +17,7 @@ $form-line-height: 1;
         height: 6rem;
     }
     &.scrolled {
-        // background-color: rgba(240, 245, 242, 0.952);
+        background-color: rgba(240, 245, 242, 0.952);
         box-shadow: 0px -0px 6px rgba(200, 205, 202, 0.925);
     }
 

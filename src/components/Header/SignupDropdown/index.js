@@ -32,7 +32,7 @@ const SignupDropdown = (props) => {
                     onClick={handleClick} 
                     isLogout={props.label === "Log Out"} 
                     icon = {aboutIcon}
-                    className="about"
+                    className="about-icon"
                 />
                 <DropdownItem 
                     label={"Sign Up"} 
@@ -40,7 +40,7 @@ const SignupDropdown = (props) => {
                     onClick={handleClick} 
                     isLogout={props.label === "Log Out"} 
                     icon={signUpIcon}
-                    className="sign-up"
+                    className="sign-up-icon"
                 />
 
                 <DropdownItem 
@@ -49,7 +49,7 @@ const SignupDropdown = (props) => {
                     onClick={handleClick} 
                     isLogout={props.label === "Log Out"} 
                     icon={addProfIcon}
-                    className="add-prof"
+                    className="add-prof-icon"
                 />
 
             </div>

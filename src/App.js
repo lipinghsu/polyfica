@@ -16,6 +16,7 @@ import MainLayout from './layouts/MainLayout';
 import HomepageLayout from './layouts/HomepageLayout';
 import AccountLayout from './layouts/AccountLayout';
 import CheckoutLayout from './layouts/CheckoutLayout';
+import AboutLayout from './layouts/AboutLayout';
 
 // pages
 import Homepage from './pages/Homepage';
@@ -108,9 +109,9 @@ const App = props => {
             </MainLayout>
           )} />
           <Route path="/about" render={() => (
-            <MainLayout>
+            <AboutLayout>
               <About />
-            </MainLayout>
+            </AboutLayout>
           )} />
 
           {/* Route to display the professor profile */}

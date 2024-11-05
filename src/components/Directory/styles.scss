@@ -7,31 +7,43 @@ $suggestion-item-appear-duration: 0.2s;
   // background-image: url('../../assets/cp.png');
   // background-size: cover;
     // background-repeat: no-repeat;
+    transition: all 0.15s ease-in-out;
   height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
   // background-color: red;
   // height: 100%;
+  // height: 100vh;
+
+  // height: calc(100vh - #{$headerHeight}); // Fixed height based on initial viewport
+  // background-color: red;
+  position: relative; // Ensure .typing-banner positions itself within this container
+  overflow: hidden;
+
 
   .wrap {
-    width: 100%;
+    
+    // background-color: red;
+    transition: all 0.15s ease-in-out;
+    min-height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
+    // height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: calc(var(--vh, 1vh) * 100 - #{$headerHeight});
-    position: absolute; /* Ensure the parent is relatively positioned */
-    bottom:0;
+
     .typing-banner {
-      background-color: rgb(240, 245, 242) ;
+
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background-color: rgb(240, 245, 242);
       color: black;
       font-weight: 500;
       font-size: 1.75rem;
-      height: 48px;
-      width: 100%;
-      
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: auto;
-      margin-bottom: 0;
+      margin: 0;
     
       .dynamic-text {
         transition: width 0.5s ease-out;
@@ -55,6 +67,7 @@ $suggestion-item-appear-duration: 0.2s;
     .item {
       width: 100%;
       height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+      
       display: flex;
       align-items: center;
       justify-content: center;
@@ -399,12 +412,12 @@ $suggestion-item-appear-duration: 0.2s;
                 margin-top: 2px;
   
                 .professor-department {
-                  color: rgb(150, 155, 152, 1);
+                  color: #777;
                 }
                 .professor-schoolName {
                   margin-top: 1px;
                   display: block;
-                  color: black;
+                  color: #555;
                 }
               }
             }
