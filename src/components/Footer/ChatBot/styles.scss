@@ -1,0 +1,10 @@
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 10px;
+  }
+
+  .chatbot-input {
+    display: flex;
+    gap: 8px;
+  }

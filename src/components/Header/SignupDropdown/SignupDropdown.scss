@@ -1,0 +1,75 @@
+.signup-dropdown {
+    right: 0;
+    top: 60px;
+    position: absolute;
+
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    height: 0;
+    transition: height 0.15s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
+    &.open{
+        transition: height 0.15s ease-in-out;
+        transition: opacity 0.25s ease-in-out;
+        opacity: 1;
+        // height: calc(44px * 3);
+        height: calc(44px * 2);
+    }
+
+    .dropdown-menu{
+        .dropdown-item {
+            display: flex;
+            flex-direction: row !important;
+            align-items: center;
+            text-align: left;
+            padding: 8px 12px;
+            white-space: nowrap;
+            transition: all 0.25s ease-out;;
+            background-color:  rgb(240, 245, 242);
+            cursor: pointer;
+            
+            &:hover{
+                transition: all 0.08s ease-out;
+                background-color: rgb(200, 215, 207);
+                .icon-wrap{
+                    // background-color:  rgb(220, 225, 222);
+                }
+            }
+
+
+            .icon-wrap{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                width: 28px;
+                height: 28px;
+                border-radius: 14px;
+                img{
+                    filter:brightness(0);
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            a{
+                padding-left: 6px;
+                font-size: 1.5rem;
+                font-weight: 500;
+                &, &:visited{
+                    color:black;
+                }
+            }
+            
+  
+
+        }
+    }
+}

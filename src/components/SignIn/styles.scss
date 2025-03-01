@@ -1,0 +1,182 @@
+$customDarkerGray: #9b9b9b;
+$customDarkGray: #b8b8b8;
+$customLightGray: #d7d7d7;
+
+$footerHeight: 0px;
+$headerHeight: 6rem;
+$signInMargin: 4rem;
+
+.main-account{
+    // height: calc(100 * --vh - $headerHeight - $signInMargin);
+    // background-image: url('../../assets/cp.jpg');
+    // background-size: cover;
+    // background-repeat: no-repeat;
+}
+
+.authWrapper{
+    display: flex; /* Change to flexbox */
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+     .subtitle{
+        text-align: center;
+        font-size: 1.45rem;
+        margin-bottom: 10px;
+        
+        a, a:visited{
+            &:hover{
+                text-decoration: underline;
+            }
+            color:#008938;
+            // font-weight: 600;
+        }
+        
+     }
+    .wrap{
+        width: 100%;
+        padding-top: 17.5px;
+        padding-bottom: 12.5px;
+        background: rgb(248, 250, 247);
+        border-radius: 25px;
+        box-shadow:  3.5px 3.5px 2px #eeeeee,
+                    -3.5px -3.5px 2px #ffffff;
+        
+        .formWrap{
+            .errorMessage{
+                color:red;
+            }
+
+            .socialSignin{
+                padding: 5px auto;
+                display: flex;
+                flex-direction: row ;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                .row{
+                    .btn{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        filter:brightness(1.15);
+                        
+                        &:hover{
+                            box-shadow: 0px 0px 2.5px #383838;
+                            transform: scale(1.03);
+                        } 
+
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 19px;
+                        overflow: hidden;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .btn-google{
+                        background-color: black;
+
+                        padding: 7px;
+                    }
+                    .btn-google:hover{
+                    }
+        
+                    .btn-apple{
+                        background-color: white;
+                        filter: invert(1);
+                        padding: 7px;
+                    }
+        
+                    .btn-apple:hover{
+                        box-shadow: 0px 0px 2.5px #C7C7C7;
+                        transform: scale(1.03);
+                        filter: invert(1) brightness(1.25);    
+                    }
+        
+                    .btn-twitter{
+                        padding: 9px;
+                        filter: invert(1);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: white;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .btn-twitter:hover{
+                        transform: scale(1.03);
+                        box-shadow: 0px 0px 2.5px #C7C7C7;
+                        filter: invert(1); 
+                        
+                    }
+                }
+        
+            }
+
+            .or-tag{
+                align-items: center;
+                text-align: center;
+                font-weight: 700;
+                font-size: 1.4rem;
+                padding: 1rem 0;
+                color: #{$customDarkerGray};
+            }
+
+            .or-tag:before{
+                content: "";
+                display: inline-flex;
+                height: 0.5em;
+                vertical-align: bottom;
+                width: calc(50% - 2.15rem);
+                margin-left: -100%;
+                margin-right: 10px;
+                border-top: 1px solid rgb(140, 155, 147);
+            }
+
+            .or-tag:after{
+                content: "";
+                display: inline-flex;
+                height: 0.5em;
+                vertical-align: bottom;
+                width: calc(50% - 2.15rem);
+                margin-right: -100%;
+                margin-left: 10px;
+                border-top: 1px solid rgb(140, 155, 147);
+            }
+        
+            .resetPassword{
+                text-align:  right;
+                padding: 0rem 0 1.5rem 0;
+                font-size: 1.45rem;
+                a, a:visited{
+                    color: #{$customDarkGray}
+                }
+                a:hover{
+                    color: #008938;
+                    text-decoration: underline;
+                }
+            }
+            .cancel{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0rem 0rem;
+                padding-bottom: 0px;
+                height: 38px;
+                h3{
+                    padding: 0;
+                    margin: 0px;
+                }
+                a:hover{
+                    color:#E74C3C;
+                    text-decoration: none;
+                }
+            }
+            
+        }
+    }
+    
+}

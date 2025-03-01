@@ -1,0 +1,223 @@
+.commentItem {
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 15px;
+    // box-shadow: 2px 2px 3px hsl(0, 0%, 93%), -2px -2px 3px #f5f5f5;
+    background-color: rgb(240, 245, 242);
+
+    .commentHeader {
+      justify-content: space-between;
+      margin-bottom: 4px;
+
+      @media (max-width: 840px) {
+        padding-bottom: 8px;
+      }
+      .commentTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative; 
+        width: 100%;
+        margin-bottom: 8px;
+        padding-top: 8px;
+      
+        .commentUser {
+          font-size: 14px;
+          color: #555;
+          margin: 0;
+        }
+      
+        .commentCourse {
+          color:black !important;
+          height: 32px;
+          border-radius: 16px;
+          width: 96px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          position: absolute; // Ensures it's centered relative to .commentTop
+          left: 50%; // Move the element to the center of the container
+          transform: translateX(-50%); // Shift it back by 50% of its own width for true centering
+          font-size: 15px;
+          font-weight: bold;
+          color: #333;
+          margin: 0;
+        }
+      
+        .commentDate {
+          font-size: 14px;
+          color: #555;
+          margin: 0;
+        }
+      }
+      
+    }
+
+    .commentContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .commentReview {
+      font-size: 15px;
+      margin: 0 0 12px;
+      height: 100%;
+      color: black;
+      line-height: 1.25;
+
+      @media (max-width: 840px) {
+        margin-bottom: 8px;
+        // font-size: 14px;
+      }
+    }
+
+    .likeDislikeShareContainer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      
+      gap: 12px;
+      height: 32px;
+      margin-top: auto;
+      padding-top: 3px;
+      padding-bottom: 1px;
+      border-radius: 25px;
+      
+      @media (max-width: 840px) {
+        padding-top: 15px;
+      }
+
+      .likeDislikeContainer {
+        display: flex;
+        justify-content: center;
+        width: 88px;
+        border-radius: 18px;
+        // background-color: rgb(240, 245, 242);
+        // background-color: rgb(200, 215, 207);
+        background-color: rgb(220, 230, 224);
+
+        .likeButton,
+        .dislikeButton {
+          height: 32px;
+          width: 32px;
+          // background-color:rgb(240, 245, 242);
+          // background-color: rgb(200, 215, 207);
+          background-color: rgb(220, 230, 224);
+          color:black;
+          padding: 8px;
+          margin: 0 8px;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          span{
+            font-size: 20px !important;
+          }
+          
+          &.liked {
+            color: #007bff;
+          }
+
+          &.disliked {
+            color: #ff6347;
+          }
+
+          &.likeButton:hover {
+            color: #007bff;
+            background-color: rgb(200, 215, 207);
+          }
+
+          &.dislikeButton:hover {
+            color: #ff6347;
+            background-color: rgb(200, 215, 207);
+          }
+        }
+
+        .dislikeButton {
+          transform: rotate(180deg);
+
+        }
+
+        .likeCount {
+          display: flex;
+          align-items: center;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+
+      .shareContainer {
+        
+        // background-color: rgb(240, 245, 242) ;
+        background-color: rgb(220, 230, 224);
+        &:last-child{
+          
+          margin-left: auto;
+          // margin-right: 4px;
+        }
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        // background-color: #f1f1f1;
+        height: 100%;
+        border-radius: 18px;
+        height: 32px;
+
+        &:hover {
+          background-color: rgb(200, 215, 207);
+        }
+
+        .shareButton ,
+        .commentButton {
+          
+          
+          @media (max-width:840px) {
+            // display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 32px;
+            width: 32px;
+            padding: 0;
+            display:block;
+            margin:auto;
+            img{
+              height: 100%;
+              width: 100%;
+              padding: 8px;
+              filter: brightness(0);
+            }
+
+          }
+
+          padding: 6px;
+          margin: 0 10px;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: transparent;
+          font-size: 1.4rem;
+          font-weight: 500;
+          font-family: Helvetica Neue, Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
+
+          &:hover {
+            // color: #00b300;
+          }
+        }
+      }
+      .ratingContainer {
+        margin-left: auto; /* Push the RatingContainer to the right */
+      }
+    }
+  }
