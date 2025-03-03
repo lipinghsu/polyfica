@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ConditionalLink = (props) => {
     const handleClick = (e) => {
+        // props.setIsClicked(!props.isClicked)
         if (props.preventLink) {
             e.preventDefault();
             props.handleWriteReviewClick();
@@ -10,7 +11,16 @@ const ConditionalLink = (props) => {
     };
 
     return (
-        <Link to={props.link} onClick={handleClick} className= {props.navClassName}>
+        <Link 
+            to={props.link} 
+            onClick={handleClick} 
+            className= {props.navClassName}
+            onMouseDown={() => props.setIsRevPressed(true)}
+            onMouseUp={() => props.setIsRevPressed(false)}
+            onMouseLeave={() => props.setIsRevPressed(false)}
+            
+            setIsRevPressed={props.setIsRevPressed}
+        >
             {props.reviewButton ? 
             <span className="material-symbols-outlined">
                 edit_square
@@ -20,10 +30,6 @@ const ConditionalLink = (props) => {
             }
             <span className={props.link ? ("text-button " + props.className) : "text-button"}>
                 {props.text}
-                {/* cart item number */}
-                {props.number !== 0 && props.number &&
-                    <span> ({props.number})</span>
-                }
             </span>
         </Link>
     );

@@ -1,8 +1,7 @@
 .commentItem {
-    border-radius: 8px;
+    border-radius: 16px;
     padding: 12px 18px;
     margin-bottom: 15px;
-    // box-shadow: 2px 2px 3px hsl(0, 0%, 93%), -2px -2px 3px #f5f5f5;
     background-color: rgb(240, 245, 242);
 
     .commentHeader {
@@ -28,7 +27,7 @@
         }
       
         .commentCourse {
-          color:black !important;
+          color: black !important;
           height: 32px;
           border-radius: 16px;
           width: 96px;
@@ -96,16 +95,14 @@
         justify-content: center;
         width: 88px;
         border-radius: 18px;
-        // background-color: rgb(240, 245, 242);
-        // background-color: rgb(200, 215, 207);
+
         background-color: rgb(220, 230, 224);
 
         .likeButton,
         .dislikeButton {
           height: 32px;
           width: 32px;
-          // background-color:rgb(240, 245, 242);
-          // background-color: rgb(200, 215, 207);
+
           background-color: rgb(220, 230, 224);
           color:black;
           padding: 8px;
@@ -154,8 +151,7 @@
       }
 
       .shareContainer {
-        
-        // background-color: rgb(240, 245, 242) ;
+
         background-color: rgb(220, 230, 224);
         &:last-child{
           

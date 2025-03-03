@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
+import './NavItem.scss';
 const NavItem = (props) => {
   const [open, setOpen] = useState(false);
   const refOutsideDiv = useRef(null);
@@ -30,7 +30,14 @@ const NavItem = (props) => {
   };
 
   return (
-    <li className="nav-item" onClick={handleItemClick}> {/* Click handler */}
+    <li 
+      className={`nav-item ${props.className || ''}`} 
+      onClick={handleItemClick}
+      onMouseDown={props.onMouseDown}
+      onMouseUp={props.onMouseUp}
+      onMouseLeave={props.onMouseLeave}
+    >
+
       {/* not mobile, image */}
       {props.image && !props.mobile && (
         <div ref={refOutsideDiv} className="profile-image-button">

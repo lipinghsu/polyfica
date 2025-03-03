@@ -89,6 +89,7 @@ $form-line-height: 1;
         }
 
         .callToActions {
+            
             right: 0px;
             color: black;
             ul,
@@ -98,14 +99,24 @@ $form-line-height: 1;
                 height: 36px;
                 display: flex;
                 align-items: center;
+                .signup-container {
+                    // background-color: red;
+                    border-radius: 50%;
+                    &.click{
+                    background-color: red;
+                    }
+                }
             }
 
             li.nav-item {
                 border-radius: 18px;
+                
             }
             ul {
                 .nav-item {
-                    
+                    &.clicked{
+                        filter:brightness(0.85);
+                    }
                     .text-button {
                         
                         align-items: center;
@@ -147,6 +158,10 @@ $form-line-height: 1;
                         &.homepage {
                             background-color: white;
                         }
+                        &.clicked { 
+                            // background-color: rgb(160, 185, 175) !important;;
+                            filter: brightness(0.85);
+                        }
 
                         &:visited {
                             color: black;
@@ -178,15 +193,17 @@ $form-line-height: 1;
                 a {
                     color: white;
                 }
-
+                
                 &:hover {
                     .text-button:nth-child(1){
-                        
                         background-color: transparent;
                         color: #FFC20D;
                     }
                     font-weight: bold;
                     background-color: #007A30;
+                }
+                &.clicked { 
+                    // background-color: red;
                 }
             }
 
@@ -241,7 +258,9 @@ $form-line-height: 1;
                     margin-bottom: 0px;
                     border-bottom-width: 0px;
                     border-bottom-style: solid;
-                    
+                    &.clicked{
+                        // background-color: red;
+                    }
                 }
 
                 a {
@@ -328,12 +347,8 @@ $form-line-height: 1;
                 }
             }
 
-            .signup-btn.homepage {
-                // background-color: rgb(240, 245, 242);
-            }
             .signup-btn {
                 background-color: rgb(240, 245, 242);
-                // background-color: rgb(240, 245, 242);
                 z-index: 500;
                 width: 36px;
                 height: 36px;
@@ -344,11 +359,15 @@ $form-line-height: 1;
                 justify-content: center;
                 cursor: pointer;
 
+                &.clicked{
+                    filter: brightness(0.85) !important;
+                }
+
                 &:hover {
                     background-color: rgb(200, 215, 207);
                 }
                 &.scrolled {
-                    // background-color: rgb(228, 236, 231) ;
+                    // background-color: red;
                 }
                 &.scrolled:hover {
                     background-color: rgb(200, 215, 207);
@@ -364,7 +383,6 @@ $form-line-height: 1;
         .mobile {
             ul {
                 .nav-item {
-                    
                     padding: 0 !important;
                     &:hover {
                         background-color: rgba(240, 245, 242, 1);
@@ -388,7 +406,6 @@ $form-line-height: 1;
                 
                 a {
                     span {
-                        // font-size: 5rem;
                     }
                 }
             }
@@ -478,6 +495,7 @@ $form-line-height: 1;
                         cursor: pointer;
                         
                         .text-button {
+                            background-color: transparent;
                             font-weight: 500;
                             font-size: 1.8rem;
                         }

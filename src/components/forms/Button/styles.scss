@@ -19,6 +19,9 @@
         margin: 0.5rem auto 0.5rem auto;
         transition: none;
         cursor: pointer;
+        &.clicked{
+            // filter:brightness(0.5);
+        }
     }
     
     .btn:hover{

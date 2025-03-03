@@ -45,6 +45,10 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
     const [department, setDepartment] = useState('');
     const [schoolName, setSchoolName] = useState('');
     const [isFormComplete, setIsFormComplete] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
+    const [isLogInPressed, setIsLogInPressed] = useState(false);
+    const [isRevPressed, setIsRevPressed] = useState(false);
+    const [isContPressed, setIsContPressed] = useState(false);
 
     const refOutsideDiv = useRef(null);
     const dropdownRef = useRef(null);
@@ -88,6 +92,21 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
             document.body.style.overflow = '';
         };
     }, [sidebar, showModal]);
+
+    // Detect if mouse release anywhere on the page
+    useEffect(() => {
+        const handleMouseUp = () => setIsPressed(false);
+
+        document.addEventListener("mouseup", handleMouseUp);
+        return () => document.removeEventListener("mouseup", handleMouseUp);
+    }, []);
+    
+    useEffect(() => {
+        const handleMouseUp = () => setIsPressed(false);
+
+        document.addEventListener("mouseup", handleMouseUp);
+        return () => document.removeEventListener("mouseup", handleMouseUp);
+    }, []);
 
     // Detect scroll
     useEffect(() => {
@@ -293,7 +312,7 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                     {!mobile &&
                         <div className='callToActions'>
                             <ul>
-                                {/* logged in */}
+                                {/* desktop mode, logged in */}
                                 {currentUser && [
                                     <ConditionalLink 
                                         text={t("Write a Review")} 
@@ -303,37 +322,71 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
                                         handleWriteReviewClick={handleWriteReviewClick} // Pass the function as a prop
                                     />
                                 ]}
+
                                 {currentUser && [
                                     <div className="signup-container" ref={dropdownRef}>
                                         <button 
-                                            className={`signup-btn ${isScrolled ? 'scrolled' : ''}`}
-                                            onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
+                                            className={`signup-btn `}
+                                            onClick={() => setShowSignupDropdown(!showSignupDropdown)}
+                                            onMouseDown={() => setIsContPressed(true)}
+                                            onMouseUp={() => setIsContPressed(false)}
+                                            onMouseLeave={() => setIsContPressed(false)}
+                                            setIsContPressed={setIsContPressed}
+                                        >
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
                                         {showSignupDropdown && <SignupDropdown label="Log Out" link="/" signOut={signOut} />}
                                     </div>
                                 ]}
 
-                                {/* not logged in */}
-                                {!currentUser && [
+                                {/* desktop mode, not logged in */}
+                                {!currentUser && [<>
+                                    {/* review button */}
                                     <ConditionalLink 
-                                        text={t("Write a Review")} 
-                                        link="/login" 
-                                        className={`review-btn ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''}`}
-                                        navClassName={`nav-item ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''}`}
+                                        text={t("Write a Review ")} 
+                                        className={`review-btn ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''} ${isRevPressed ? ' clicked' : ""}`}
+                                        navClassName={`nav-item ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''} ${isRevPressed ? ' clicked' : ""}`}
                                         preventLink={true}
                                         reviewButton={true}
-                                        handleWriteReviewClick={handleWriteReviewClick} // Pass the function as a prop
+                                        handleWriteReviewClick={handleWriteReviewClick}
+                                        
+                                        onMouseDown={() => setIsRevPressed(true)}
+                                        onMouseUp={() => setIsRevPressed(false)}
+                                        onMouseLeave={() => setIsRevPressed(false)}
+                                        setIsRevPressed={setIsRevPressed}
                                     />
+                                </>
+                                    
                                 ]}
                                 {!currentUser && [
-                                    <NavItem text={t("Log In")} link="/login" className="login-button" mobile={false}/>
-                                ]}
+                                    // log in button
+                                    <NavItem 
+                                        text={t("Log In")} 
+                                        link="/login" 
+                                        className={`login-button ${isLogInPressed ? " clicked" : ""}`} 
+                                        mobile={false}
+
+                                        onMouseDown={() => setIsLogInPressed(true)}
+                                        onMouseUp={() => setIsLogInPressed(false)}
+                                        onMouseLeave={() => setIsLogInPressed(false)}
+                                        setIsPressed={setIsLogInPressed}
+                                    />
+                                ]}      
+                                        
                                 {!currentUser && [
-                                    <div className="signup-container" ref={dropdownRef}>
+                                    <div 
+                                        className={`signup-container ${isContPressed ? " clicked" : ""}`}                
+                                        onMouseDown={() => setIsContPressed(true)}
+                                        onMouseUp={() => setIsContPressed(false)}
+                                        onMouseLeave={() => setIsContPressed(false)}
+                                        setIsPressed={setIsContPressed}
+                                        ref={dropdownRef}>
+                                            
                                         <button     
-                                            className={`signup-btn ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''}`}
-                                            onClick={() => setShowSignupDropdown(!showSignupDropdown)}>
+                                            className={`signup-btn ${isScrolled ? 'scrolled' : ''} ${homepageHeader ? ' homepage' : ''} ${isContPressed ? 'clicked' : ''}`}
+                                            onClick={() => setShowSignupDropdown(!showSignupDropdown)}
+                                            
+                                        >
                                             <span className="material-symbols-outlined">more_horiz</span>
                                         </button>
                                         <SignupDropdown 
