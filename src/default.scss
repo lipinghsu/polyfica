@@ -45,13 +45,14 @@ body
     // left: 0;
     // right: 0;
     // bottom: 0;
-    // transform: translateY(50vh);
+    
 }
 
 .centered-image {
-    max-width: 100%;
-    // max-height: 100%;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -117%);
 }
 
 .App{

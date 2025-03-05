@@ -31,7 +31,6 @@ import Cart from './pages/Cart';
 import Payment from './pages/Payment';
 import Order from './pages/Order';
 import ProfProfile from './components/ProfProfile';
-// import Profile from './pages/Profile';
 import Terms from './pages/Terms';
 import About from './pages/About';
 
@@ -40,28 +39,7 @@ import "boxicons/css/boxicons.min.css";
 import './default.scss';
 import DashBoardLayout from './layouts/DashboardLayout';
 import AdminLayout from './layouts/AdminLayout';
-
 import SearchResults from './components/SearchResults';
-
-function FallbackComponent() {
-  const [showImage, setShowImage] = React.useState(false);
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowImage(true);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-  if (showImage) {
-    return <img src={Logo} className='fallback centered-image resized-image' />;
-  } else {
-    return null; // Or you can return a loading spinner or placeholder
-  }
-}
 
 const App = props => {
   const dispatch = useDispatch();
@@ -154,7 +132,6 @@ const App = props => {
             </CheckoutLayout>
             // </WithAuth>
           )} />
-
 
           <Route path="/dashboard" render={() => (
             // the WithAuth tag restricts access.

@@ -129,7 +129,7 @@ const ProfProfile = () => {
                     <div className="subtitle">
                         Create your account and find the best professors at Cal Poly.
                     </div>
-                    <Button type="submit" className="btn btn-submit">Continue with Google</Button>
+                    <Button type="submit" className="btn btn-submit btn-google">Continue with Google</Button>
                     <Button type="submit" className="btn btn-submit">Continue with Amazon</Button>
                     <Button type="submit" className="btn btn-submit">Continue with Facebook</Button>
                     <div className="sub-terms">
