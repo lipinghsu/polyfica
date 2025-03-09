@@ -9,7 +9,10 @@ import thinkingStan from '../../assets/thinking-stan2.png';
 import Button from '../forms/Button';
 import homeIcon from '../../assets/bs-icon.png';
 import { useTranslation } from "react-i18next";
-import SidebarItem from './SideBarItem';
+
+import LeftSideBar from '../LeftSideBar'
+import RightSideBar from '../RightSideBar'
+
 
 const ProfProfile = () => {
     const { profID } = useParams();
@@ -71,10 +74,9 @@ const ProfProfile = () => {
         <div className="content-wrap">
             
             {isMediumScreen && (
-                <div className="sidebar-left">
-                    <SidebarItem icon={homeIcon} label={"Home"} link="/"/>
-                    {/* <SidebarItem icon={homeIcon} label={"Professor List"} link="/"/> */}
-                </div>
+                <>
+                <LeftSideBar />
+                </>
             )}
 
             {isLoading ? 
@@ -123,34 +125,7 @@ const ProfProfile = () => {
             }
 
             {isWideScreen && (
-            <div className="sidebar-right">
-                <div className="mt-md">
-                    <div className="title">New to Pölyfica?</div>
-                    <div className="subtitle">
-                        Create your account and find the best professors at Cal Poly.
-                    </div>
-                    <Button type="submit" className="btn btn-submit btn-google">Continue with Google</Button>
-                    <Button type="submit" className="btn btn-submit">Continue with Amazon</Button>
-                    <Button type="submit" className="btn btn-submit">Continue with Facebook</Button>
-                    <div className="sub-terms">
-                        By continuing, you agree to the 
-                        <span>{t(" ")}</span>
-                            <Link to="/terms">
-                                {t("Terms of Service")}
-                            </Link>
-                        <span>{t(" ")}</span>
-                        and acknowledge that you accept our 
-                        <span>{t(" ")}</span>
-                        <Link to="/terms">
-                                {t("Private Policy")}
-                        </Link>
-                        .
-                    </div>
-                </div>
-                {/* Rating Distribution */}
-                {/* Top rated professors in the same department */}
-                {/* Similar Professors */}
-            </div>
+                <RightSideBar/>
             )}
         </div>
     );

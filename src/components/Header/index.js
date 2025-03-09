@@ -193,21 +193,35 @@ const Header = ({ showSignupDropdown, setShowSignupDropdown, homepageHeader }) =
     }, []);
 
     const controlNavbar = () => {
-        if (typeof window !== 'undefined') {
-            if (window.scrollY > 0) {
-                setHide(false);
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const pageHeight = document.documentElement.scrollHeight;
+        if(homepageHeader){
+            if (scrollPosition >= pageHeight - 1) { 
+                setHide(true); // Hide header when at the bottom
+                setShowSignupDropdown(false);
                 document.querySelector('header').classList.add('scrolled');
             } else {
+                setHide(false); // Show header otherwise
                 document.querySelector('header').classList.remove('scrolled');
             }
-
-            if (window.scrollY < 45 || window.scrollY < lastScrollY) {
-                setHide(false);
-            } else {
-                setHide(true);
-            }
-            setLastScrollY(window.scrollY);
         }
+
+
+        // if (typeof window !== 'undefined') {
+        //     if (window.scrollY > 0) {
+        //         setHide(false);
+                
+        //     } else {
+                
+        //     }
+
+        //     if (window.scrollY < 45 || window.scrollY < lastScrollY) {
+        //         setHide(false);
+        //     } else {
+        //         setHide(true);
+        //     }
+        //     setLastScrollY(window.scrollY);
+        // }
     };
 
     const clearForm = () => {

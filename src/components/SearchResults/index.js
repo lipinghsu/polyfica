@@ -7,6 +7,8 @@ import Dropdown from "./DropDown";
 import "./SearchResults.scss";
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
+import LeftSideBar from '../LeftSideBar';
+import RightSideBar from '../RightSideBar';
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -57,9 +59,12 @@ const SearchResults = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSortDropdownVisible, setIsSortDropdownVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  
   const [loadingMore, setLoadingMore] = useState(false);
   const [displayedProfessors, setDisplayedProfessors] = useState(8);
+
+  const [isMediumScreen, setIsMediumScreen] = useState(window.innerWidth > 840);
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 1100);
 
   const boxRightRef = useRef();
   const movingDivRef = useRef();
@@ -68,6 +73,16 @@ const SearchResults = () => {
   const [activeDropdown, setActiveDropdown] = useState(null); 
 
   
+  useEffect(() => {
+    const handleResize = () => {
+        setIsWideScreen(window.innerWidth > 1100);
+        setIsMediumScreen(window.innerWidth > 840);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+}, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -304,94 +319,48 @@ const SearchResults = () => {
   }, [windowWidth]); 
 
   return (
-    <div className="search-result-wrap">
-      <div className="searchTermInfo">
-          {searchTerm && (
-            <h2>
-              {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#008938' }}>{searchTerm}</strong>" in their name
-            </h2>
-          )}
-      </div>
-      {windowWidth < 1020 && (
-      <div className="mobile-filter-wrap">
-        <div className="mobile-filter-inner-top">
-          <Dropdown
-            sortOptions={sortOptions}
-            selectedSortOption={selectedSortOption} 
-            handleSortChange={handleSortChange}
-            onClick={() => handleDropdownClick('sort')}
-          />
-          <Dropdown
-            sortOptions={ratingOptions}
-            selectedSortOption={selectedRatingFilter}
-            handleSortChange={handleRatingFilterClick}
-            onClick={() => handleDropdownClick('rating')}
-          />
-          <Dropdown
-            sortOptions={reviewOptions}
-            selectedSortOption={selectedReviewFilter}
-            handleSortChange={handleReviewFilterClick}
-            onClick={() => handleDropdownClick('review')}
-          />
-        </div>
-        <div className="mobile-filter-inner-bot">
-          <Dropdown
-            sortOptions={departments.map((dept, index) => ({
-              id: index + 1, // Set the id starting from 1 up to the length of departments
-              value: capitalizeFirstLetter(dept)
-            }))}
-            selectedSortOption={{
-              id: selectedDepartments.length ? selectedDepartments.map((_, index) => index + 1).join(',') : 1, // Match the id if needed
-              value: selectedDepartments.join(', ') || "Department"
-            }}
-            handleSortChange={(dept) => handleDepartmentChange({ target: { value: departments[dept.id - 1] } })} // Use dept.id to access the correct department
-            className="department-filter"
-            onClick={() => handleDropdownClick('department')}
-          />
-        </div>
-
-      </div>
+    <div className="outter-wrap"
+      // ref={movingDivRef}
+    >
+      {isMediumScreen && (
+        <>
+          <LeftSideBar />
+        </>
       )}
-
-      <div className="searchResults">
-        <div
-          className={(windowWidth < 1020) ? "filter-wrap" : "filter-wrap"}
-          ref={movingDivRef}
-          style={
-            stop ? {
-              position: 'relative',
-              top: 'auto'
-            } : {
-              position: 'sticky',
-              top: 72
-            }
-          }
-        >
-          <div className="inner-wrap top">
-            {/* sort */}
-            <div className="section-title">
-              Sort By
-            </div>
+      <div className="search-result-wrap">
+        <div className="searchTermInfo">
+            {searchTerm && (
+              <h2>
+                {searchResults.length} professor{searchResults.length !== 1 ? "s" : ""} with "<strong style={{ color: '#008938' }}>{searchTerm}</strong>" in their name
+              </h2>
+            )}
+        </div>
+        {windowWidth < 840 && (
+        <div className="mobile-filter-wrap">
+          <div className="mobile-filter-inner-top">
             <Dropdown
               sortOptions={sortOptions}
               selectedSortOption={selectedSortOption} 
               handleSortChange={handleSortChange}
+              onClick={() => handleDropdownClick('sort')}
             />
-          </div>
-
-          <div className="inner-wrap bot">
-            <div className="section-title">
-              Search Filters
-            </div>
             <Dropdown
               sortOptions={ratingOptions}
               selectedSortOption={selectedRatingFilter}
               handleSortChange={handleRatingFilterClick}
+              onClick={() => handleDropdownClick('rating')}
             />
-  
+            <Dropdown
+              sortOptions={reviewOptions}
+              selectedSortOption={selectedReviewFilter}
+              handleSortChange={handleReviewFilterClick}
+              onClick={() => handleDropdownClick('review')}
+            />
+          </div>
+          <div className="mobile-filter-inner-bot">
             <Dropdown
               sortOptions={departments.map((dept, index) => ({
-                id: index + 1,
+                id: index + 1, // Set the id starting from 1 up to the length of departments
                 value: capitalizeFirstLetter(dept)
               }))}
               selectedSortOption={{
@@ -400,88 +369,89 @@ const SearchResults = () => {
               }}
               handleSortChange={(dept) => handleDepartmentChange({ target: { value: departments[dept.id - 1] } })} // Use dept.id to access the correct department
               className="department-filter"
-            />
-            <Dropdown
-              sortOptions={reviewOptions}
-              selectedSortOption={selectedReviewFilter}
-              handleSortChange={handleReviewFilterClick}
-              className={"rev-filter"}
+              onClick={() => handleDropdownClick('department')}
             />
           </div>
-        </div>
 
-        <div className="prof-wrap">
-          {loading ? (
-            <div className="loading-spinner">
-              <div className="spinner"></div>
-            </div>
-          ) : 
-          searchResults.length > 0 ? (
-            searchResults.slice(0, displayedProfessors).map((professor, index) => (
-              <div key={index} className="item-wrap">
-                <div className="professor" onClick={() => handleProfessorClick(professor.id)}>
-                  <div className="profileImage-wrap">
-                    {professor.profileImage ? (
-                      <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
-                    ) : (
-                      <img src={defaultProfileImage} alt="Default Profile"/>
-                    )}
-                  </div>
-                  <div className="prof-content">
-                    <div className="infoHeader">
-                      <div className="professorName">
-                        {professor.firstName} {professor.lastName}
-                      </div>
-                      <div className="rating-score">
-                        <Rating
-                          precision={0.5}
-                          value={professor.commentData && professor.commentData.length > 0 
-                            ? (professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) 
-                            : 0} 
-                          max={5}
-                          size="large"
-                          readOnly
-                          icon={<StarRoundedIcon fontSize="inherit" />}
-                          emptyIcon={<StarBorderRoundedIcon fontSize="inherit" />}
-                          style={{
-                            // backgroundColor: 'red',
-                            color: getStarColor((professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) ),
-                          }}
-                        />
-                      </div>
+        </div>
+        )}
+
+        <div className="searchResults">
+          <div className="prof-wrap">
+            {loading ? (
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+              </div>
+            ) : 
+            searchResults.length > 0 ? (
+              searchResults.slice(0, displayedProfessors).map((professor, index) => (
+                <div key={index} className="item-wrap">
+                  <div className="professor" onClick={() => handleProfessorClick(professor.id)}>
+                    <div className="profileImage-wrap">
+                      {professor.profileImage ? (
+                        <img src={professor.profileImage} alt={`${professor.firstName} ${professor.lastName}`} />
+                      ) : (
+                        <img src={defaultProfileImage} alt="Default Profile"/>
+                      )}
                     </div>
-                    <div className="department">{professor.department}</div>
-                    <div className="infoFooter">
-                      <div className="schoolName">{professor.schoolName}</div>
-                      <div className="reviewCommentLength">
-                        {professor.commentData?.length || 0} {professor.commentData?.length > 1 ? "reviews" : "review"}
+                    <div className="prof-content">
+                      <div className="infoHeader">
+                        <div className="professorName">
+                          {professor.firstName} {professor.lastName}
+                        </div>
+                        <div className="rating-score">
+                          <Rating
+                            precision={0.5}
+                            value={professor.commentData && professor.commentData.length > 0 
+                              ? (professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) 
+                              : 0} 
+                            max={5}
+                            size="large"
+                            readOnly
+                            icon={<StarRoundedIcon fontSize="inherit" />}
+                            emptyIcon={<StarBorderRoundedIcon fontSize="inherit" />}
+                            style={{
+                              color: getStarColor((professor.commentData.reduce((acc, comment) => acc + parseFloat(comment.difficultyRating || 0), 0) / professor.commentData.length).toFixed(1) ),
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className="department">{professor.department}</div>
+                      <div className="infoFooter">
+                        <div className="schoolName">{professor.schoolName}</div>
+                        <div className="reviewCommentLength">
+                          {professor.commentData?.length || 0} {professor.commentData?.length > 1 ? "reviews" : "review"}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              ))
+            ) : 
+            <div className="no-result">
+              <div className="text-a">
+                Hmm... no professor profiles match '<strong style={{ color: '#008938' }}>{searchTerm}</strong>'
               </div>
-            ))
-          ) : 
-          <div className="no-result">
-            <div className="text-a">
-              Hmm... no professor profiles match '<strong style={{ color: '#008938' }}>{searchTerm}</strong>'
+              <div className="text-b">
+                Try checking the spelling or use different keywords to refine your search.
+              </div>
             </div>
-            <div className="text-b">
-              Try checking the spelling or use different keywords to refine your search.
-            </div>
-          </div>
-          }
+            }
 
-          {!loadingMore && !loading && displayedProfessors < searchResults.length && (
-            <div className="loading-spinner loadMore">
-              <div className="spinner"></div>
-            </div>
-          )}
-          {displayedProfessors >= searchResults.length &&
-            <div className="empty-div"/>
-          }
+            {!loadingMore && !loading && displayedProfessors < searchResults.length && (
+              <div className="loading-spinner loadMore">
+                <div className="spinner"></div>
+              </div>
+            )}
+            {displayedProfessors >= searchResults.length &&
+              <div className="empty-div"/>
+            }
+          </div>
         </div>
       </div>
+      {isWideScreen && (
+        <RightSideBar />
+      )}
     </div>
   );
 };

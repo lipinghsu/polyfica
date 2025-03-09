@@ -2,7 +2,9 @@ $customDarkGray: #b8b8b8;
 $form-font-size: 1.5rem;
 $form-font-weight: 300;
 $form-line-height: 1;
+
 .header {
+    border-bottom: 1px solid #c9ccd3;
     transition: all 0.25s ease-out;
     height: 6rem;
     background-color: transparent;
@@ -11,10 +13,12 @@ $form-line-height: 1;
     top: 0;
     padding: 0 3.6rem;
     box-shadow: none;
+    background-color: white;
 
     @media (max-width: 840px) {
         padding: 0 1.6rem;
         height: 6rem;
+        border-bottom: none;
     }
     &.scrolled {
         background-color: rgba(255, 255, 255, 1);

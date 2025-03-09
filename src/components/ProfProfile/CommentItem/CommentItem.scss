@@ -115,23 +115,24 @@
           align-items: center;
           justify-content: center;
           span{
-            font-size: 20px !important;
+            
+            font-size: 18px !important;
           }
           
-          &.liked {
+          &.disliked {
             color: #007bff;
           }
 
-          &.disliked {
+          &.liked {
             color: #ff6347;
           }
 
-          &.likeButton:hover {
+          &.dislikeButton:hover {
             color: #007bff;
             background-color: rgb(200, 215, 207);
           }
 
-          &.dislikeButton:hover {
+          &.likeButton:hover {
             color: #ff6347;
             background-color: rgb(200, 215, 207);
           }
@@ -171,29 +172,34 @@
           background-color: rgb(200, 215, 207);
         }
 
+        
         .shareButton ,
         .commentButton {
-          
-          
+          .button-text{
+            margin-left: 6px;
+          }
           @media (max-width:840px) {
             // display: flex;
             justify-content: center;
             align-items: center;
+            display:flex;
             height: 32px;
             width: 32px;
-            padding: 0;
-            display:block;
-            margin:auto;
-            img{
-              height: 100%;
-              width: 100%;
-              padding: 8px;
-              filter: brightness(0);
-            }
-
+          }
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 4px;
+          img{
+            
+            height: 20px;
+            width: 20px;
+            // padding: 8px;
+            filter: brightness(0);
+            
           }
 
-          padding: 6px;
+          padding: 4px;
           margin: 0 10px;
           border: none;
           border-radius: 50%;

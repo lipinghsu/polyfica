@@ -188,7 +188,7 @@ $suggestion-item-appear-duration: 0.2s;
 
           .search-bar {
             width: 100%;
-            border: 1px solid rgba(140, 145, 142);
+            border: 1px solid rgb(169, 163, 160);
             border-radius: 29px;
             height: 50px;
             position: relative;
@@ -563,7 +563,7 @@ $suggestion-item-appear-duration: 0.2s;
             height:0;
           }
           position: absolute;
-          top: 50%; 
+          top: 49%; 
           left: 50%;
           transform: translate(-50%, -117%) scale(0.75);
           width: 100%;  

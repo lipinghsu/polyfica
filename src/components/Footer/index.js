@@ -187,7 +187,7 @@ const Footer = () => {
         </div>
 
         <div className="text-container">
-          <p className="copy-right">&copy; 2024 Cal Poly SLO</p>
+          <p className="copy-right">&copy; 2025 Cal Poly SLO</p>
           
         </div>
       </div>

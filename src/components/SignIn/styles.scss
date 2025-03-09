@@ -38,8 +38,8 @@ $signInMargin: 4rem;
         padding-bottom: 12.5px;
         background: rgb(248, 250, 247);
         border-radius: 25px;
-        box-shadow:  3.5px 3.5px 2px #eeeeee,
-                    -3.5px -3.5px 2px #ffffff;
+        box-shadow:  0.5px 3.5px 4px #eeeeee
+                , -0.5px -3.5px 4px #ffffff;
         
         .formWrap{
             .errorMessage{
@@ -76,9 +76,9 @@ $signInMargin: 4rem;
                     }
                     .btn-google{
                         background-color: black;
-
                         padding: 7px;
                     }
+
                     .btn-google:hover{
                     }
         

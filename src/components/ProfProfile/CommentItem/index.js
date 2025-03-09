@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RatingContainer from '../RatingContainer';
 import shareIcon from '../../../assets/share_icon.png';
-import commentIcon from '../../../assets/comment_icon.png';
+import commentIcon from '../../../assets/comment-icon.png';
 import './CommentItem.scss'
 
 
@@ -97,7 +97,13 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, h
                                 {isSmallScreen ? (
                                     <img src={commentIcon} alt="Comment Icon" />
                                 ) : (
-                                    <span className="material-icons">Comment</span>
+                                <>
+                                    <img src={commentIcon} alt="Comment Icon" />
+                                    <span className="button-text">
+                                            Comment
+                                    </span>
+                                </>
+
                                 )}
                             </button>
                         </div>
@@ -107,7 +113,12 @@ const CommentItem = ({ comment, currentUser, handleLike, handleDislike, index, h
                                 {isSmallScreen ? (
                                     <img src={shareIcon} alt="Share Icon" />
                                 ) : (
-                                    <span className="material-icons">Share</span>
+                                <>
+                                    <img src={shareIcon} alt="Share Icon" />
+                                    <span className="button-text">
+                                            Share
+                                    </span>
+                                </>
                                 )}
                             </button>
                         </div>
