@@ -1,7 +1,7 @@
 # <a href="https://profh-2298e.web.app/">Pölyfica</a>
 
 ## Overview
-A comprehensive redesign of Polyratings, developed as a senior project at Cal Poly SLO, focusing on improving user experience and modernizing the platform.
+A comprehensive redesign of Polyratings, focusing on improving user experience and modernizing the platform.
 
 ## Table of Contents
 - [Firebase React Project](#firebase-react-project)
